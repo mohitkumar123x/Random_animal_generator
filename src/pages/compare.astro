@@ -1,0 +1,225 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import animals from '../data/animals.json';
+---
+
+<Layout title="Compare Animals | Random Animal Generator">
+  <Navbar />
+  <main class="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
+    <section class="mb-8 text-center">
+      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">⚖️ Animal Comparison</h1>
+      <p class="mx-auto mt-3 max-w-lg text-sm text-body dark:text-[#a1a1a1]">
+        Pick two animals and see how they stack up against each other.
+      </p>
+    </section>
+
+    <div class="mb-6 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
+      <div class="relative w-full sm:w-auto">
+        <input id="search-a" type="text" placeholder="Search animal 1..." class="w-full sm:w-56 rounded-lg border border-hairline bg-canvas-elevated px-3 py-2 text-sm text-ink outline-none transition-colors focus:border-link dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#ededed] dark:focus:border-link" />
+        <div id="dropdown-a" class="absolute z-10 mt-1 hidden w-full sm:w-56 max-h-60 overflow-y-auto rounded-lg border border-hairline bg-canvas-elevated shadow-lg dark:border-[#333] dark:bg-[#1a1a1a]"></div>
+      </div>
+      <span class="text-lg text-muted">vs</span>
+      <div class="relative w-full sm:w-auto">
+        <input id="search-b" type="text" placeholder="Search animal 2..." class="w-full sm:w-56 rounded-lg border border-hairline bg-canvas-elevated px-3 py-2 text-sm text-ink outline-none transition-colors focus:border-link dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#ededed] dark:focus:border-link" />
+        <div id="dropdown-b" class="absolute z-10 mt-1 hidden w-full sm:w-56 max-h-60 overflow-y-auto rounded-lg border border-hairline bg-canvas-elevated shadow-lg dark:border-[#333] dark:bg-[#1a1a1a]"></div>
+      </div>
+      <button id="random-pick" class="rounded-lg border border-hairline bg-canvas-elevated px-3 py-2 text-xs font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]">🎲 Random</button>
+    </div>
+
+    <div id="compare-result" class="hidden">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div id="card-a" class="rounded-2xl border border-hairline bg-canvas-elevated overflow-hidden dark:border-[#333] dark:bg-[#1a1a1a]"></div>
+        <div id="card-b" class="rounded-2xl border border-hairline bg-canvas-elevated overflow-hidden dark:border-[#333] dark:bg-[#1a1a1a]"></div>
+      </div>
+      <div id="comparison-stats" class="mt-6 rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]"></div>
+    </div>
+
+    <div id="compare-placeholder" class="rounded-2xl border border-dashed border-hairline bg-hairline-soft/50 py-16 text-center dark:border-[#333] dark:bg-[#111]">
+      <p class="text-4xl mb-3">⚖️</p>
+      <p class="text-sm text-muted">Select two animals to compare</p>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script define:vars={{ animals: JSON.stringify(animals) }}>
+  const allAnimals = JSON.parse(animals);
+  let animalA = null, animalB = null;
+
+  const consLabels = {
+    LC: { text: 'Least Concern', color: 'bg-conservation-lc/15 text-conservation-lc border border-conservation-lc/30' },
+    NT: { text: 'Near Threatened', color: 'bg-conservation-nt/15 text-conservation-nt border border-conservation-nt/30' },
+    VU: { text: 'Vulnerable', color: 'bg-conservation-vu/15 text-conservation-vu border border-conservation-vu/30' },
+    EN: { text: 'Endangered', color: 'bg-conservation-en/15 text-conservation-en border border-conservation-en/30' },
+    CR: { text: 'Critically Endangered', color: 'bg-conservation-cr/15 text-conservation-cr border border-conservation-cr/30' },
+    EW: { text: 'Extinct in Wild', color: 'bg-conservation-ew/15 text-conservation-ew border border-conservation-ew/30' },
+    EX: { text: 'Extinct', color: 'bg-conservation-ex/15 text-conservation-ex border border-conservation-ex/30' },
+    DD: { text: 'Data Deficient', color: 'bg-muted/15 text-muted border border-muted/30' },
+  };
+
+  function renderCard(animal, containerId) {
+    const el = document.getElementById(containerId);
+    if (!animal) { el.innerHTML = ''; return; }
+    const cons = consLabels[animal.conservation] || consLabels.LC;
+    el.innerHTML = `
+      <div class="bg-gradient-to-br from-link-soft/50 via-violet-soft/30 to-pink-soft/30 p-4 text-center sm:p-5 dark:from-[#1a2744] dark:via-[#2a1a3a] dark:to-[#3a1a2a]">
+        <div class="text-5xl mb-2 emoji-icon sm:text-6xl">${animal.emoji}</div>
+        <h3 class="text-base font-bold text-ink dark:text-[#ededed]">${animal.name}</h3>
+        ${animal.scientificName ? `<p class="text-xs italic text-muted mt-0.5">${animal.scientificName}</p>` : ''}
+        <span class="mt-1.5 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium ${cons.color}">${cons.text}</span>
+      </div>
+      <div class="p-3 sm:p-4">
+        ${animal.description ? `<p class="text-xs text-body leading-relaxed mb-3 dark:text-[#a1a1a1]">${animal.description}</p>` : ''}
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas px-2.5 py-2 dark:border-[#333] dark:bg-[#111]">
+            <span>🌍</span><div class="min-w-0"><p class="text-[10px] text-faint">Habitat</p><p class="font-medium text-ink truncate dark:text-[#ededed]">${animal.habitat}</p></div>
+          </div>
+          <div class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas px-2.5 py-2 dark:border-[#333] dark:bg-[#111]">
+            <span>🍽️</span><div class="min-w-0"><p class="text-[10px] text-faint">Diet</p><p class="font-medium text-ink truncate dark:text-[#ededed]">${animal.diet}</p></div>
+          </div>
+          <div class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas px-2.5 py-2 dark:border-[#333] dark:bg-[#111]">
+            <span>⏱️</span><div class="min-w-0"><p class="text-[10px] text-faint">Lifespan</p><p class="font-medium text-ink truncate dark:text-[#ededed]">${animal.lifespan}</p></div>
+          </div>
+          <div class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas px-2.5 py-2 dark:border-[#333] dark:bg-[#111]">
+            <span>⚖️</span><div class="min-w-0"><p class="text-[10px] text-faint">Weight</p><p class="font-medium text-ink truncate dark:text-[#ededed]">${animal.weight}</p></div>
+          </div>
+        </div>
+        <div class="mt-2 grid grid-cols-3 gap-2 text-xs">
+          <div class="rounded-lg border border-hairline bg-canvas p-2 text-center dark:border-[#333] dark:bg-[#111]">
+            <p class="text-[10px] text-faint mb-0.5">Speed</p>
+            <p class="font-semibold text-ink dark:text-[#ededed]">${animal.speed}</p>
+          </div>
+          <div class="rounded-lg border border-hairline bg-canvas p-2 text-center dark:border-[#333] dark:bg-[#111]">
+            <p class="text-[10px] text-faint mb-0.5">Length</p>
+            <p class="font-semibold text-ink dark:text-[#ededed]">${animal.length || '—'}</p>
+          </div>
+          <div class="rounded-lg border border-hairline bg-canvas p-2 text-center dark:border-[#333] dark:bg-[#111]">
+            <p class="text-[10px] text-faint mb-0.5">Region</p>
+            <p class="font-semibold text-ink dark:text-[#ededed]">${animal.region}</p>
+          </div>
+        </div>
+        <div class="mt-2 rounded-lg border border-hairline bg-canvas p-2.5 dark:border-[#333] dark:bg-[#111]">
+          <p class="text-[10px] uppercase tracking-wider text-faint mb-1">🧬 Taxonomy</p>
+          <div class="grid grid-cols-1 gap-1 text-[11px] sm:grid-cols-3 sm:gap-1.5">
+            <div class="flex items-center gap-1"><span class="text-faint">Class:</span> <span class="font-medium text-ink dark:text-[#ededed]">${animal.class || '—'}</span></div>
+            <div class="flex items-center gap-1"><span class="text-faint">Order:</span> <span class="font-medium text-ink dark:text-[#ededed]">${animal.order || '—'}</span></div>
+            <div class="flex items-center gap-1"><span class="text-faint">Family:</span> <span class="font-medium text-ink dark:text-[#ededed]">${animal.family || '—'}</span></div>
+          </div>
+        </div>
+        <div class="mt-2 rounded-xl border border-link-soft bg-link-soft/30 p-2.5 dark:border-[#1e3a5f] dark:bg-[#0f1f33]">
+          <p class="text-[10px] uppercase tracking-wider text-link font-medium mb-0.5 dark:text-link">💡 Fun Fact</p>
+          <p class="text-xs text-body leading-relaxed dark:text-[#a1a1a1]">${animal.funFact}</p>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderComparison() {
+    if (!animalA || !animalB) return;
+    document.getElementById('compare-placeholder').classList.add('hidden');
+    document.getElementById('compare-result').classList.remove('hidden');
+    renderCard(animalA, 'card-a');
+    renderCard(animalB, 'card-b');
+
+    const consLabels = {
+      LC: 'Least Concern', NT: 'Near Threatened', VU: 'Vulnerable',
+      EN: 'Endangered', CR: 'Critically Endangered', EW: 'Extinct in Wild',
+      EX: 'Extinct', DD: 'Data Deficient',
+    };
+    const catLabels = {
+      mammal: 'Mammal', bird: 'Bird', fish: 'Fish', reptile: 'Reptile',
+      amphibian: 'Amphibian', insect: 'Insect', marine: 'Marine',
+    };
+
+    const rows = [
+      { label: 'Diet', icon: '🍽️', a: animalA.diet, b: animalB.diet },
+      { label: 'Habitat', icon: '🌍', a: animalA.habitat, b: animalB.habitat },
+      { label: 'Region', icon: '🗺️', a: animalA.region, b: animalB.region },
+      { label: 'Lifespan', icon: '⏱️', a: animalA.lifespan, b: animalB.lifespan },
+      { label: 'Weight', icon: '⚖️', a: animalA.weight, b: animalB.weight },
+      { label: 'Speed', icon: '💨', a: animalA.speed, b: animalB.speed },
+      { label: 'Conservation', icon: '🛡️', a: consLabels[animalA.conservation] || animalA.conservation, b: consLabels[animalB.conservation] || animalB.conservation },
+      { label: 'Category', icon: '📂', a: catLabels[animalA.category] || animalA.category, b: catLabels[animalB.category] || animalB.category },
+    ];
+
+    const stats = document.getElementById('comparison-stats');
+    stats.innerHTML = `
+      <div class="flex items-center justify-between mb-5">
+        <h3 class="text-base font-bold text-ink dark:text-[#ededed]">Comparison Summary</h3>
+        <div class="flex items-center gap-4 text-xs text-muted">
+          <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-conservation-lc"></span>Same</span>
+          <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-error"></span>Different</span>
+        </div>
+      </div>
+      <div class="space-y-2">
+        ${rows.map(r => {
+          const same = r.a === r.b;
+          return `
+          <div class="rounded-xl border border-hairline bg-canvas-elevated overflow-hidden dark:border-[#333] dark:bg-[#1a1a1a]">
+            <div class="flex items-center gap-2 bg-hairline-soft/50 px-3 py-2 dark:bg-[#111]">
+              <span class="text-sm">${r.icon}</span>
+              <span class="text-xs font-semibold text-ink dark:text-[#ededed]">${r.label}</span>
+              ${same ? '<span class="ml-auto rounded-full bg-conservation-lc/15 px-2 py-0.5 text-[10px] font-medium text-conservation-lc border border-conservation-lc/30">Same</span>' : ''}
+            </div>
+            <div class="grid grid-cols-2 divide-x divide-hairline dark:divide-[#333]">
+              <div class="px-3 py-2.5 text-center">
+                <p class="text-[10px] uppercase tracking-wider text-muted mb-1">${animalA.name}</p>
+                <p class="text-sm font-medium text-ink dark:text-[#ededed]">${r.a}</p>
+              </div>
+              <div class="px-3 py-2.5 text-center">
+                <p class="text-[10px] uppercase tracking-wider text-muted mb-1">${animalB.name}</p>
+                <p class="text-sm font-medium text-ink dark:text-[#ededed]">${r.b}</p>
+              </div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    `;
+  }
+
+  function showDropdown(inputId, dropdownId) {
+    const input = document.getElementById(inputId);
+    const dropdown = document.getElementById(dropdownId);
+    input.addEventListener('input', () => {
+      const val = input.value.toLowerCase().trim();
+      if (val.length < 1) { dropdown.classList.add('hidden'); return; }
+      const matches = allAnimals.filter(a => a.name.toLowerCase().includes(val)).slice(0, 10);
+      if (matches.length === 0) { dropdown.classList.add('hidden'); return; }
+      dropdown.classList.remove('hidden');
+      dropdown.innerHTML = matches.map(a => `
+        <button class="w-full text-left px-3 py-2 text-sm text-body hover:bg-hairline-soft dark:text-[#a1a1a1] dark:hover:bg-[#222]" data-id="${a.id}">
+          <span class="mr-2">${a.emoji}</span>${a.name}
+        </button>
+      `).join('');
+      dropdown.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const animal = allAnimals.find(a => a.id === btn.dataset.id);
+          if (inputId === 'search-a') animalA = animal;
+          else animalB = animal;
+          input.value = `${animal.emoji} ${animal.name}`;
+          dropdown.classList.add('hidden');
+          renderComparison();
+        });
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!input.contains(e.target) && !dropdown.contains(e.target)) dropdown.classList.add('hidden');
+    });
+  }
+
+  showDropdown('search-a', 'dropdown-a');
+  showDropdown('search-b', 'dropdown-b');
+
+  document.getElementById('random-pick')?.addEventListener('click', () => {
+    const a = allAnimals[Math.floor(Math.random() * allAnimals.length)];
+    let b = a;
+    while (b === a) b = allAnimals[Math.floor(Math.random() * allAnimals.length)];
+    animalA = a; animalB = b;
+    document.getElementById('search-a').value = `${a.emoji} ${a.name}`;
+    document.getElementById('search-b').value = `${b.emoji} ${b.name}`;
+    renderComparison();
+  });
+</script>

@@ -1,0 +1,691 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import animals from '../data/animals.json';
+
+const totalAnimals = animals.length;
+const categories = [...new Set(animals.map(a => a.category))];
+const conservationStatuses = [...new Set(animals.map(a => a.conservation))];
+
+const consCounts = {};
+conservationStatuses.forEach(s => { consCounts[s] = animals.filter(a => a.conservation === s).length; });
+
+const catCounts = {};
+categories.forEach(c => { catCounts[c] = animals.filter(a => a.category === c).length; });
+---
+
+<Layout
+  title="Random Animal Generator Blog | Wildlife Facts, Conservation & Education"
+  description="Explore wildlife articles with infographics, conservation data tables, animal classification charts, and educational guides. Learn about endangered species, habitats, and how random animal generators aid education."
+  canonical="https://bestrandomanimalgenerator.com/blog"
+>
+  <Navbar />
+
+  <main class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
+
+    <!-- Blog Header -->
+    <header class="mb-12 text-center">
+      <div class="mb-3 inline-flex items-center gap-1.5 rounded-full border border-hairline bg-canvas-elevated px-3 py-1 text-xs text-muted dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#888]">
+        <span class="h-1.5 w-1.5 rounded-full bg-link animate-pulse"></span>
+        Wildlife Knowledge Hub
+      </div>
+      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">
+        Random Animal Generator Blog
+      </h1>
+      <p class="mx-auto mt-3 max-w-2xl text-sm text-body sm:text-base dark:text-[#a1a1a1]">
+        Explore wildlife through infographics, data tables, and educational guides. Learn about conservation, animal classification, and the incredible diversity of life on Earth.
+      </p>
+    </header>
+
+    <!-- Table of Contents -->
+    <nav class="mb-12 rounded-2xl border border-hairline bg-canvas-elevated p-5 dark:border-[#333] dark:bg-[#1a1a1a]">
+      <h2 class="mb-3 text-sm font-bold uppercase tracking-wider text-muted">Table of Contents</h2>
+      <ul class="space-y-1.5 text-sm">
+        <li><a href="#conservation-guide" class="text-link hover:underline">1. Complete Guide to Animal Conservation Status</a></li>
+        <li><a href="#classification-chart" class="text-link hover:underline">2. Animal Kingdom Classification Chart</a></li>
+        <li><a href="#category-breakdown" class="text-link hover:underline">3. Animal Categories Breakdown with Data</a></li>
+        <li><a href="#habitat-map" class="text-link hover:underline">4. Global Animal Habitat Distribution</a></li>
+        <li><a href="#endangered-flowchart" class="text-link hover:underline">5. Endangered Species Decision Flowchart</a></li>
+        <li><a href="#record-holders" class="text-link hover:underline">6. Animal Record Holders Table</a></li>
+        <li><a href="#generator-workflow" class="text-link hover:underline">7. How the Random Animal Generator Works</a></li>
+        <li><a href="#fun-facts-grid" class="text-link hover:underline">8. Mind-Blowing Animal Facts Grid</a></li>
+        <li><a href="#education-guide" class="text-link hover:underline">9. Using Random Animal Generators in Education</a></li>
+        <li><a href="#extinction-timeline" class="text-link hover:underline">10. Extinct Animals Timeline</a></li>
+      </ul>
+    </nav>
+
+    <!-- Section 1: Conservation Status Guide -->
+    <section id="conservation-guide" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">Complete Guide to Animal Conservation Status</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        The International Union for Conservation of Nature (IUCN) Red List is the world's most comprehensive inventory of species' conservation status. Our random animal generator includes animals across all IUCN categories, helping users learn about wildlife preservation while discovering new species.
+      </p>
+
+      <!-- Conservation Status Table -->
+      <div class="mb-6 overflow-x-auto rounded-2xl border border-hairline dark:border-[#333]">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="border-b border-hairline bg-canvas-elevated dark:border-[#333] dark:bg-[#1a1a1a]">
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Status Code</th>
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Full Name</th>
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Definition</th>
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Animals in DB</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1 rounded-full bg-conservation-lc/15 px-2 py-0.5 text-[10px] font-bold text-conservation-lc border border-conservation-lc/30">LC</span></td>
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">Least Concern</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Widespread and abundant species with stable populations</td>
+              <td class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">{consCounts['LC'] || 0}</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1 rounded-full bg-conservation-nt/15 px-2 py-0.5 text-[10px] font-bold text-conservation-nt border border-conservation-nt/30">NT</span></td>
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">Near Threatened</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Species likely to become threatened in the near future</td>
+              <td class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">{consCounts['NT'] || 0}</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1 rounded-full bg-conservation-vu/15 px-2 py-0.5 text-[10px] font-bold text-conservation-vu border border-conservation-vu/30">VU</span></td>
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">Vulnerable</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Species facing a high risk of extinction in the wild</td>
+              <td class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">{consCounts['VU'] || 0}</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1 rounded-full bg-conservation-en/15 px-2 py-0.5 text-[10px] font-bold text-conservation-en border border-conservation-en/30">EN</span></td>
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">Endangered</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Species facing a very high risk of extinction in the wild</td>
+              <td class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">{consCounts['EN'] || 0}</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1 rounded-full bg-conservation-cr/15 px-2 py-0.5 text-[10px] font-bold text-conservation-cr border border-conservation-cr/30">CR</span></td>
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">Critically Endangered</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Species facing an extremely high risk of extinction</td>
+              <td class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">{consCounts['CR'] || 0}</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1 rounded-full bg-gray-400/15 px-2 py-0.5 text-[10px] font-bold text-gray-400 border border-gray-400/30">EW</span></td>
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">Extinct in the Wild</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Known only to survive in captivity or cultivation</td>
+              <td class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">{consCounts['EW'] || 0}</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1 rounded-full bg-gray-500/15 px-2 py-0.5 text-[10px] font-bold text-gray-500 border border-gray-500/30">EX</span></td>
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">Extinct</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">No reasonable doubt that the last individual has died</td>
+              <td class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">{consCounts['EX'] || 0}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Conservation Bar Chart -->
+      <div class="rounded-2xl border border-hairline bg-canvas-elevated p-5 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h3 class="mb-4 text-sm font-bold text-ink dark:text-[#ededed]">Conservation Status Distribution</h3>
+        <div class="space-y-3">
+          {Object.entries(consCounts).filter(([k]) => k !== 'DD').map(([status, count]) => {
+            const pct = Math.round((count / totalAnimals) * 100);
+            const colors = {
+              LC: 'bg-conservation-lc', NT: 'bg-conservation-nt', VU: 'bg-conservation-vu',
+              EN: 'bg-conservation-en', CR: 'bg-conservation-cr', EW: 'bg-gray-400', EX: 'bg-gray-500'
+            };
+            return (
+              <div class="flex items-center gap-3">
+                <span class="w-8 text-right text-xs font-bold text-muted">{status}</span>
+                <div class="flex-1 h-6 rounded-full bg-hairline/50 overflow-hidden dark:bg-[#333]">
+                  <div class={`h-full rounded-full ${colors[status] || 'bg-muted'} transition-all`} style={`width: ${pct}%`} />
+                </div>
+                <span class="w-16 text-right text-xs font-medium text-ink dark:text-[#ededed]">{count} ({pct}%)</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Animal Kingdom Classification -->
+    <section id="classification-chart" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">Animal Kingdom Classification Chart</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        The biological classification system organizes all living organisms into a hierarchical structure. Our random animal generator uses this taxonomy to categorize species, providing class, order, and family information for each animal in the database.
+      </p>
+
+      <!-- Classification Flowchart -->
+      <div class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h3 class="mb-5 text-sm font-bold uppercase tracking-wider text-muted text-center">Taxonomic Classification of Animals</h3>
+
+        <!-- CSS Flowchart -->
+        <div class="flex flex-col items-center gap-3">
+          <!-- Kingdom -->
+          <div class="rounded-xl bg-link/15 border border-link/30 px-6 py-3 text-center">
+            <p class="text-[10px] uppercase tracking-wider text-link font-bold">Kingdom</p>
+            <p class="text-sm font-bold text-ink dark:text-[#ededed]">Animalia</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Phylum -->
+          <div class="rounded-xl bg-violet/15 border border-violet/30 px-6 py-3 text-center">
+            <p class="text-[10px] uppercase tracking-wider text-violet font-bold">Phylum</p>
+            <p class="text-sm font-bold text-ink dark:text-[#ededed]">Chordata, Arthropoda, Mollusca, etc.</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Class (horizontal row) -->
+          <div class="w-full">
+            <p class="mb-2 text-center text-[10px] uppercase tracking-wider text-pink font-bold">Class</p>
+            <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
+              <div class="rounded-lg border border-hairline bg-canvas p-3 text-center dark:border-[#333] dark:bg-[#111]">
+                <span class="text-xl">🦁</span>
+                <p class="text-xs font-bold text-ink dark:text-[#ededed]">Mammalia</p>
+                <p class="text-[10px] text-muted">Mammals</p>
+              </div>
+              <div class="rounded-lg border border-hairline bg-canvas p-3 text-center dark:border-[#333] dark:bg-[#111]">
+                <span class="text-xl">🦅</span>
+                <p class="text-xs font-bold text-ink dark:text-[#ededed]">Aves</p>
+                <p class="text-[10px] text-muted">Birds</p>
+              </div>
+              <div class="rounded-lg border border-hairline bg-canvas p-3 text-center dark:border-[#333] dark:bg-[#111]">
+                <span class="text-xl">🐊</span>
+                <p class="text-xs font-bold text-ink dark:text-[#ededed]">Reptilia</p>
+                <p class="text-[10px] text-muted">Reptiles</p>
+              </div>
+              <div class="rounded-lg border border-hairline bg-canvas p-3 text-center dark:border-[#333] dark:bg-[#111]">
+                <span class="text-xl">🐸</span>
+                <p class="text-xs font-bold text-ink dark:text-[#ededed]">Amphibia</p>
+                <p class="text-[10px] text-muted">Amphibians</p>
+              </div>
+              <div class="rounded-lg border border-hairline bg-canvas p-3 text-center dark:border-[#333] dark:bg-[#111]">
+                <span class="text-xl">🐟</span>
+                <p class="text-xs font-bold text-ink dark:text-[#ededed]">Actinopterygii</p>
+                <p class="text-[10px] text-muted">Bony Fish</p>
+              </div>
+              <div class="rounded-lg border border-hairline bg-canvas p-3 text-center dark:border-[#333] dark:bg-[#111]">
+                <span class="text-xl">🦈</span>
+                <p class="text-xs font-bold text-ink dark:text-[#ededed]">Chondrichthyes</p>
+                <p class="text-[10px] text-muted">Cartilaginous Fish</p>
+              </div>
+              <div class="rounded-lg border border-hairline bg-canvas p-3 text-center dark:border-[#333] dark:bg-[#111]">
+                <span class="text-xl">🐙</span>
+                <p class="text-xs font-bold text-ink dark:text-[#ededed]">Insecta</p>
+                <p class="text-[10px] text-muted">Insects</p>
+              </div>
+              <div class="rounded-lg border border-hairline bg-canvas p-3 text-center dark:border-[#333] dark:bg-[#111]">
+                <span class="text-xl">🐋</span>
+                <p class="text-xs font-bold text-ink dark:text-[#ededed]">Mammalia</p>
+                <p class="text-[10px] text-muted">Cetaceans</p>
+              </div>
+            </div>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Order -->
+          <div class="rounded-xl bg-pink/15 border border-pink/30 px-6 py-3 text-center">
+            <p class="text-[10px] uppercase tracking-wider text-pink font-bold">Order</p>
+            <p class="text-sm font-bold text-ink dark:text-[#ededed]">Carnivora, Primates, Rodentia, etc.</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Family -->
+          <div class="rounded-xl bg-conservation-lc/15 border border-conservation-lc/30 px-6 py-3 text-center">
+            <p class="text-[10px] uppercase tracking-wider text-conservation-lc font-bold">Family</p>
+            <p class="text-sm font-bold text-ink dark:text-[#ededed]">Felidae, Canidae, Ursidae, etc.</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Genus & Species -->
+          <div class="flex gap-3">
+            <div class="rounded-xl bg-conservation-nt/15 border border-conservation-nt/30 px-5 py-3 text-center">
+              <p class="text-[10px] uppercase tracking-wider text-conservation-nt font-bold">Genus</p>
+              <p class="text-sm font-bold text-ink dark:text-[#ededed]">Panthera, Canis, etc.</p>
+            </div>
+            <div class="rounded-xl bg-conservation-vu/15 border border-conservation-vu/30 px-5 py-3 text-center">
+              <p class="text-[10px] uppercase tracking-wider text-conservation-vu font-bold">Species</p>
+              <p class="text-sm font-bold text-ink dark:text-[#ededed]">P. leo, C. lupus, etc.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Category Breakdown -->
+    <section id="category-breakdown" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">Animal Categories Breakdown</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        Our random animal generator covers {totalAnimals}+ animals across {categories.length} major categories. Each category represents a distinct group of animals with unique characteristics, habitats, and adaptations. Here is a detailed breakdown of our database.
+      </p>
+
+      <!-- Category Cards Grid -->
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { name: 'Mammal', icon: '🦁', desc: 'Warm-blooded, hair/fur, milk-producing' },
+          { name: 'Bird', icon: '🦅', desc: 'Feathered, warm-blooded, egg-laying' },
+          { name: 'Fish', icon: '🐟', desc: 'Aquatic, gills, cold-blooded' },
+          { name: 'Reptile', icon: '🐊', desc: 'Scaled, cold-blooded, egg-laying' },
+          { name: 'Amphibian', icon: '🐸', desc: 'Moist skin, dual life, cold-blooded' },
+          { name: 'Insect', icon: '🦋', desc: 'Exoskeleton, six legs, wings' },
+          { name: 'Marine', icon: '🐙', desc: 'Ocean-dwelling, diverse species' },
+          { name: 'Extinct', icon: '🦤', desc: 'No longer living, historical records' },
+        ].map(cat => (
+          <div class="rounded-xl border border-hairline bg-canvas-elevated p-4 text-center transition-colors hover:border-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:hover:border-[#444]">
+            <div class="text-3xl mb-2">{cat.icon}</div>
+            <h3 class="text-sm font-bold text-ink dark:text-[#ededed]">{cat.name}</h3>
+            <p class="text-[10px] text-muted mt-1">{cat.desc}</p>
+            <p class="mt-2 text-lg font-bold text-link">{catCounts[cat.name.toLowerCase()] || 0}</p>
+            <p class="text-[10px] text-muted">animals</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 4: Habitat Distribution -->
+    <section id="habitat-map" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">Global Animal Habitat Distribution</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        Animals have adapted to virtually every environment on Earth. Our random animal generator database includes species from diverse habitats, each presenting unique challenges and evolutionary adaptations.
+      </p>
+
+      <!-- Habitat Table -->
+      <div class="overflow-x-auto rounded-2xl border border-hairline dark:border-[#333]">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="border-b border-hairline bg-canvas-elevated dark:border-[#333] dark:bg-[#1a1a1a]">
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Habitat Type</th>
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Climate</th>
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Key Adaptations</th>
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Example Species</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🌲 Tropical Forest</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Hot, humid, rainy</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Camouflage, canopy climbing, bright colors</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Toucan, Jaguar, Poison Dart Frog</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🏔️ Mountain</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Cold, low oxygen</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Thick fur, large lungs, strong claws</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Snow Leopard, Mountain Goat, Golden Eagle</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🌊 Ocean</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Saltwater, deep pressure</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Streamlined body, sonar, bioluminescence</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Blue Whale, Octopus, Great White Shark</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🏜️ Desert</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Extreme heat, arid</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Water conservation, burrowing, nocturnal</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Camel, Fennec Fox, Thorny Devil</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🧊 Arctic</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Freezing, seasonal darkness</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Blubber, white camouflage, hibernation</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Polar Bear, Arctic Fox, Snowy Owl</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🌿 Grassland</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Moderate rain, open plains</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Speed, herding, camouflage</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Zebra, Cheetah, African Elephant</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🌿 Freshwater</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Lakes, rivers, ponds</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Gills, fins, camouflage</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Nile Crocodile, Piranha, Axolotl</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 5: Endangered Species Flowchart -->
+    <section id="endangered-flowchart" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">Endangered Species Decision Flowchart</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        Understanding how species become endangered involves a complex interplay of factors. This flowchart illustrates the main threats that push species toward extinction and the conservation actions that can help reverse their decline.
+      </p>
+
+      <div class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h3 class="mb-5 text-sm font-bold uppercase tracking-wider text-muted text-center">Threats to Wildlife & Conservation Actions</h3>
+
+        <!-- Flowchart -->
+        <div class="flex flex-col items-center gap-4">
+          <!-- Root Cause -->
+          <div class="rounded-xl bg-error/15 border border-error/30 px-6 py-3 text-center">
+            <p class="text-xs font-bold text-error">Human Activity</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Threats Row -->
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 w-full">
+            <div class="rounded-lg border border-error/30 bg-error/10 p-3 text-center">
+              <p class="text-xl mb-1">🏗️</p>
+              <p class="text-xs font-bold text-ink dark:text-[#ededed]">Habitat Loss</p>
+              <p class="text-[10px] text-muted">Deforestation, urbanization</p>
+            </div>
+            <div class="rounded-lg border border-error/30 bg-error/10 p-3 text-center">
+              <p class="text-xl mb-1">🎯</p>
+              <p class="text-xs font-bold text-ink dark:text-[#ededed]">Overexploitation</p>
+              <p class="text-[10px] text-muted">Hunting, poaching, fishing</p>
+            </div>
+            <div class="rounded-lg border border-error/30 bg-error/10 p-3 text-center">
+              <p class="text-xl mb-1">🌡️</p>
+              <p class="text-xs font-bold text-ink dark:text-[#ededed]">Climate Change</p>
+              <p class="text-[10px] text-muted">Temperature shifts, sea level</p>
+            </div>
+            <div class="rounded-lg border border-error/30 bg-error/10 p-3 text-center">
+              <p class="text-xl mb-1">🦠</p>
+              <p class="text-xs font-bold text-ink dark:text-[#ededed]">Pollution & Disease</p>
+              <p class="text-[10px] text-muted">Pesticides, invasive species</p>
+            </div>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Impact -->
+          <div class="rounded-xl bg-conservation-vu/15 border border-conservation-vu/30 px-6 py-3 text-center">
+            <p class="text-xs font-bold text-conservation-vu">Population Decline</p>
+            <p class="text-[10px] text-muted">Reduced numbers, genetic diversity loss</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- IUCN Assessment -->
+          <div class="rounded-xl bg-conservation-en/15 border border-conservation-en/30 px-6 py-3 text-center">
+            <p class="text-xs font-bold text-conservation-en">IUCN Red List Assessment</p>
+            <p class="text-[10px] text-muted">Scientists evaluate extinction risk</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Conservation Actions Row -->
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 w-full">
+            <div class="rounded-lg border border-conservation-lc/30 bg-conservation-lc/10 p-3 text-center">
+              <p class="text-xl mb-1">🏞️</p>
+              <p class="text-xs font-bold text-ink dark:text-[#ededed]">Protected Areas</p>
+              <p class="text-[10px] text-muted">National parks, reserves</p>
+            </div>
+            <div class="rounded-lg border border-conservation-lc/30 bg-conservation-lc/10 p-3 text-center">
+              <p class="text-xl mb-1">🔬</p>
+              <p class="text-xs font-bold text-ink dark:text-[#ededed]">Research & Monitoring</p>
+              <p class="text-[10px] text-muted">Tracking, population studies</p>
+            </div>
+            <div class="rounded-lg border border-conservation-lc/30 bg-conservation-lc/10 p-3 text-center">
+              <p class="text-xl mb-1">📜</p>
+              <p class="text-xs font-bold text-ink dark:text-[#ededed]">Legal Protection</p>
+              <p class="text-[10px] text-muted">Hunting bans, trade laws</p>
+            </div>
+            <div class="rounded-lg border border-conservation-lc/30 bg-conservation-lc/10 p-3 text-center">
+              <p class="text-xl mb-1">🌱</p>
+              <p class="text-xs font-bold text-ink dark:text-[#ededed]">Habitat Restoration</p>
+              <p class="text-[10px] text-muted">Reforestation, cleanup</p>
+            </div>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Outcome -->
+          <div class="rounded-xl bg-conservation-lc/15 border border-conservation-lc/30 px-6 py-3 text-center">
+            <p class="text-xs font-bold text-conservation-lc">Species Recovery</p>
+            <p class="text-[10px] text-muted">Population stabilization & growth</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Record Holders -->
+    <section id="record-holders" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">Animal Record Holders</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        The animal kingdom is full of extremes. From the fastest land animal to the largest creature ever to live, these record holders showcase the incredible diversity of life on Earth.
+      </p>
+
+      <div class="overflow-x-auto rounded-2xl border border-hairline dark:border-[#333]">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="border-b border-hairline bg-canvas-elevated dark:border-[#333] dark:bg-[#1a1a1a]">
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Record</th>
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Animal</th>
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Measurement</th>
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Fun Fact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🏃 Fastest Land Animal</td>
+              <td class="px-4 py-3 font-bold text-link">Cheetah</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">112 km/h (70 mph)</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Can accelerate from 0 to 100 km/h in 3 seconds</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🐋 Largest Animal Ever</td>
+              <td class="px-4 py-3 font-bold text-link">Blue Whale</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">30 m (98 ft) length</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Heart is the size of a small car</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🦅 Fastest Bird (Dive)</td>
+              <td class="px-4 py-3 font-bold text-link">Peregrine Falcon</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">389 km/h (242 mph)</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Folds wings to achieve maximum speed</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🐢 Longest Living</td>
+              <td class="px-4 py-3 font-bold text-link">Galápagos Tortoise</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">175+ years</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Jonathan, a Seychelles tortoise, lived to 190</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🐧 Deepest Diver</td>
+              <td class="px-4 py-3 font-bold text-link">Emperor Penguin</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">565 m (1,854 ft)</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Holds breath for over 20 minutes</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🐘 Largest Land Animal</td>
+              <td class="px-4 py-3 font-bold text-link">African Elephant</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">6,000 kg (13,200 lbs)</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Can detect water sources 12 miles away</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">🧠 Smallest Mammal</td>
+              <td class="px-4 py-3 font-bold text-link">Bumblebee Bat</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">2 g (0.07 oz)</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Fits on a human thumbnail</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 7: Generator Workflow -->
+    <section id="generator-workflow" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">How the Random Animal Generator Works</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        Our random animal generator uses a sophisticated algorithm to provide fair, unbiased selections from our database of {totalAnimals}+ animals. Here is the step-by-step workflow behind each generation.
+      </p>
+
+      <div class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h3 class="mb-5 text-sm font-bold uppercase tracking-wider text-muted text-center">Generation Process Flowchart</h3>
+
+        <div class="flex flex-col items-center gap-4">
+          <!-- Step 1 -->
+          <div class="rounded-xl bg-link/15 border border-link/30 px-6 py-3 text-center">
+            <p class="text-[10px] uppercase tracking-wider text-link font-bold">Step 1</p>
+            <p class="text-sm font-bold text-ink dark:text-[#ededed]">User Clicks Generate</p>
+            <p class="text-[10px] text-muted">Button press, Spacebar, or mobile FAB</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Step 2 -->
+          <div class="rounded-xl bg-violet/15 border border-violet/30 px-6 py-3 text-center">
+            <p class="text-[10px] uppercase tracking-wider text-violet font-bold">Step 2</p>
+            <p class="text-sm font-bold text-ink dark:text-[#ededed]">Apply Filters</p>
+            <p class="text-[10px] text-muted">Category + Conservation status filters</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Step 3 -->
+          <div class="rounded-xl bg-pink/15 border border-pink/30 px-6 py-3 text-center">
+            <p class="text-[10px] uppercase tracking-wider text-pink font-bold">Step 3</p>
+            <p class="text-sm font-bold text-ink dark:text-[#ededed]">No Repeat Check</p>
+            <p class="text-[10px] text-muted">Remove previously shown animals if enabled</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Step 4 -->
+          <div class="rounded-xl bg-conservation-lc/15 border border-conservation-lc/30 px-6 py-3 text-center">
+            <p class="text-[10px] uppercase tracking-wider text-conservation-lc font-bold">Step 4</p>
+            <p class="text-sm font-bold text-ink dark:text-[#ededed]">Random Selection</p>
+            <p class="text-[10px] text-muted">Math.random() picks from filtered pool</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Step 5 -->
+          <div class="rounded-xl bg-conservation-nt/15 border border-conservation-nt/30 px-6 py-3 text-center">
+            <p class="text-[10px] uppercase tracking-wider text-conservation-nt font-bold">Step 5</p>
+            <p class="text-sm font-bold text-ink dark:text-[#ededed]">Animation & Display</p>
+            <p class="text-[10px] text-muted">Emoji shuffle, progress bar, card reveal</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Step 6 -->
+          <div class="rounded-xl bg-conservation-vu/15 border border-conservation-vu/30 px-6 py-3 text-center">
+            <p class="text-[10px] uppercase tracking-wider text-conservation-vu font-bold">Step 6</p>
+            <p class="text-sm font-bold text-ink dark:text-[#ededed]">Animal Card Rendered</p>
+            <p class="text-[10px] text-muted">Full details with emoji, stats, facts</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: Fun Facts Grid -->
+    <section id="fun-facts-grid" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">Mind-Blowing Animal Facts</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        Our random animal generator is packed with fascinating facts about every species. Here are some of the most surprising facts from our database of {totalAnimals}+ animals.
+      </p>
+
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          { emoji: '🐙', title: 'Three Hearts', text: 'Octopuses have three hearts. Two pump blood to the gills, while the third pumps it to the rest of the body.' },
+          { emoji: '🐘', title: 'Can\'t Jump', text: 'Elephants are the only mammals that cannot jump. Their legs are designed for weight support, not jumping.' },
+          { emoji: '🦩', title: 'Flamboyance', text: 'A group of flamingos is called a "flamboyance." They get their pink color from eating shrimp and algae.' },
+          { emoji: '🦈', title: 'Older Than Trees', text: 'Sharks have existed for over 400 million years — that is 200 million years before trees appeared on Earth.' },
+          { emoji: '🐊', title: 'Tears', text: 'Crocodiles appear to cry while eating, but these are actually lubricating tears produced by glands near their eyes.' },
+          { emoji: '🐳', title: 'Blue Heart', text: 'A blue whale\'s heart weighs about 400 pounds (180 kg) and beats roughly once every 10 seconds.' },
+          { emoji: '🦔', title: 'Immune to Venom', text: 'Hedgehogs are immune to many venoms, including adder venom. They can even eat poisonous snakes.' },
+          { emoji: '🐦', title: 'No Teeth', text: 'Birds have no teeth. Instead, they swallow stones that grind food in their gizzard, acting as a replacement.' },
+          { emoji: '🐢', title: 'Breathing', text: 'Turtles can breathe through their rear end. This adaptation helps them survive during long hibernations underwater.' },
+        ].map(fact => (
+          <div class="rounded-xl border border-hairline bg-canvas-elevated p-4 transition-colors hover:border-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:hover:border-[#444]">
+            <div class="mb-2 flex items-center gap-2">
+              <span class="text-2xl">{fact.emoji}</span>
+              <h3 class="text-sm font-bold text-ink dark:text-[#ededed]">{fact.title}</h3>
+            </div>
+            <p class="text-xs text-body leading-relaxed dark:text-[#a1a1a1]">{fact.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 9: Education Guide -->
+    <section id="education-guide" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">Using Random Animal Generators in Education</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        Random animal generators have become powerful educational tools for teachers, parents, and students. They make learning about wildlife interactive and engaging while covering key biology concepts.
+      </p>
+
+      <!-- Education Methods Table -->
+      <div class="overflow-x-auto rounded-2xl border border-hairline dark:border-[#333]">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="border-b border-hairline bg-canvas-elevated dark:border-[#333] dark:bg-[#1a1a1a]">
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Activity</th>
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Subject</th>
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Age Group</th>
+              <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">Learning Outcome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">Daily Animal Card</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Biology, Geography</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">6-12 years</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Animal identification, habitat awareness</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">Drawing Challenge</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Art, Biology</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">8-16 years</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Observation skills, anatomy understanding</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">Conservation Debate</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Environmental Science</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">12-18 years</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Critical thinking, environmental awareness</td>
+            </tr>
+            <tr class="border-b border-hairline dark:border-[#333]">
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">Creative Writing</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Language Arts</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">All ages</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Storytelling, vocabulary building</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">Animal Quiz Game</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Biology, General Knowledge</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">All ages</td>
+              <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">Memory, recall, fun learning</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 10: Extinct Animals Timeline -->
+    <section id="extinction-timeline" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">Extinct Animals Timeline</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        Extinction is a natural part of evolution, but human activity has accelerated the process dramatically. Our random animal generator includes {consCounts['EX'] || 0} extinct species to help educate users about the importance of conservation.
+      </p>
+
+      <!-- Timeline -->
+      <div class="relative border-l-2 border-hairline pl-6 dark:border-[#333]">
+        {[
+          { year: '1681', animal: '🦤 Dodo', event: 'Last dodo killed on Mauritius due to hunting and invasive species' },
+          { year: '1768', animal: '🐦 Steller\'s Sea Cow', event: 'Hunted to extinction within 27 years of its discovery' },
+          { year: '1883', animal: '🦓 Quagga', event: 'Last quagga died in Amsterdam Zoo; only 1,000 bones remain' },
+          { year: '1914', animal: '🕊️ Passenger Pigeon', event: 'Martha, the last passenger pigeon, died at Cincinnati Zoo' },
+          { year: '1936', animal: '🐯 Tasmanian Tiger', event: 'Last thylacine died at Hobart Zoo; now extinct for nearly a century' },
+          { year: '2011', animal: '🦏 Western Black Rhino', event: 'Declared extinct; last seen in Cameroon in 2006' },
+        ].map(item => (
+          <div class="mb-8 relative">
+            <div class="absolute -left-[31px] top-1 h-4 w-4 rounded-full border-2 border-hairline bg-canvas dark:border-[#555] dark:bg-[#1a1a1a]" />
+            <div class="rounded-xl border border-hairline bg-canvas-elevated p-4 dark:border-[#333] dark:bg-[#1a1a1a]">
+              <div class="mb-1 flex items-center gap-2">
+                <span class="rounded-full bg-conservation-cr/15 px-2 py-0.5 text-[10px] font-bold text-conservation-cr border border-conservation-cr/30">{item.year}</span>
+                <span class="text-sm font-bold text-ink dark:text-[#ededed]">{item.animal}</span>
+              </div>
+              <p class="text-xs text-body dark:text-[#a1a1a1]">{item.event}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="rounded-2xl border border-hairline bg-canvas-elevated p-8 text-center dark:border-[#333] dark:bg-[#1a1a1a]">
+      <h2 class="mb-3 text-xl font-bold text-ink dark:text-[#ededed]">Start Discovering Animals</h2>
+      <p class="mb-5 text-sm text-body dark:text-[#a1a1a1]">Generate random animals with pictures, fun facts, and conservation status. Free and instant.</p>
+      <a href="/" class="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-2.5 text-sm font-medium text-white transition-all hover:opacity-90 dark:bg-[#ededed] dark:text-[#0a0a0a]">
+        🎲 Try the Random Animal Generator
+      </a>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

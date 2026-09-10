@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="About Us | Random Animal Generator" description="Learn about the Random Animal Generator team and our mission to make wildlife education fun and accessible for everyone.">
+  <Navbar />
+
+  <main class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
+    <div class="mb-10 text-center">
+      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">About Us</h1>
+      <p class="mx-auto mt-3 max-w-lg text-sm text-body sm:text-base dark:text-[#a1a1a1]">
+        Our mission is to make wildlife education fun, accessible, and engaging for everyone.
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Our Story</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          Random Animal Generator was created with a simple goal: to spark curiosity about the natural world. We noticed that learning about animals could be both educational and entertaining, so we built a tool that combines discovery with fun. Whether you're a student researching wildlife, a teacher looking for classroom resources, or just someone who loves animals, our generator is here for you.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Our Mission</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          We believe that understanding wildlife is the first step toward protecting it. Our platform provides detailed information about hundreds of animals, including their habitats, diets, conservation status, and fascinating facts. By making this information freely available, we hope to inspire the next generation of conservationists, biologists, and nature enthusiasts.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">What We Offer</h2>
+        <ul class="space-y-3 text-sm text-body dark:text-[#a1a1a1]">
+          <li class="flex items-start gap-2">
+            <span class="mt-0.5 text-conservation-lc">&#10003;</span>
+            <span><strong class="text-ink dark:text-[#ededed]">Random Animal Generator</strong> &mdash; Discover a random animal with a single click or keypress.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-0.5 text-conservation-lc">&#10003;</span>
+            <span><strong class="text-ink dark:text-[#ededed]">Spinner Wheel</strong> &mdash; Spin the wheel for a fun, gamified way to explore animals.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-0.5 text-conservation-lc">&#10003;</span>
+            <span><strong class="text-ink dark:text-[#ededed]">Animal Quiz</strong> &mdash; Test your knowledge with trivia questions about habitats and diets.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-0.5 text-conservation-lc">&#10003;</span>
+            <span><strong class="text-ink dark:text-[#ededed]">Compare Animals</strong> &mdash; See how two animals stack up side by side.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Get in Touch</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          Have questions, suggestions, or just want to say hello? We'd love to hear from you. Visit our <a href="/contact-us" class="text-link underline underline-offset-2 transition-colors hover:text-link-deep">Contact Us</a> page to get in touch with our team.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

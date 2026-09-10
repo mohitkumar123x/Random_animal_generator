@@ -1,0 +1,45 @@
+---
+const categories = [
+  { id: 'all', label: 'All Animals', emoji: '🌍' },
+  { id: 'mammal', label: 'Mammals', emoji: '🐘' },
+  { id: 'bird', label: 'Birds', emoji: '🦅' },
+  { id: 'fish', label: 'Fish', emoji: '🐠' },
+  { id: 'reptile', label: 'Reptiles', emoji: '🦎' },
+  { id: 'amphibian', label: 'Amphibians', emoji: '🐸' },
+  { id: 'insect', label: 'Insects', emoji: '🦋' },
+  { id: 'marine', label: 'Marine', emoji: '🐙' },
+];
+---
+
+<div class="overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0" style="scrollbar-width: none; -ms-overflow-style: none;">
+  <div class="flex flex-nowrap gap-2 min-w-max sm:min-w-0">
+    {categories.map((cat) => (
+      <button
+        data-category={cat.id}
+        class={`cat-btn inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1.5 text-xs font-medium transition-all sm:px-3 ${cat.id === 'all'
+          ? 'border-ink bg-ink text-white dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]'
+          : 'border-hairline bg-canvas-elevated text-body hover:border-faint hover:text-ink dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:border-[#555] dark:hover:text-[#ededed]'
+        }`}
+      >
+        <span>{cat.emoji}</span>
+        <span>{cat.label}</span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script is:inline>
+  document.querySelectorAll('.cat-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cat-btn').forEach((b) => {
+        b.className = b.className
+          .replace('border-ink bg-ink text-white', 'border-hairline bg-canvas-elevated text-body')
+          .replace('dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]', 'dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1]');
+      });
+      btn.className = btn.className
+        .replace('border-hairline bg-canvas-elevated text-body', 'border-ink bg-ink text-white')
+        .replace('dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1]', 'dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]');
+      window.dispatchEvent(new CustomEvent('category-change', { detail: btn.dataset.category }));
+    });
+  });
+</script>

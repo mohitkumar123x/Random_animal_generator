@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Server Error (500) | Random Animal Generator"
+  description="Something went wrong on our end. Please try again later or return to the Random Animal Generator homepage."
+  canonical="https://bestrandomanimalgenerator.com/500"
+>
+  <Navbar />
+
+  <main class="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
+    <div class="text-center">
+      <!-- Large Emoji -->
+      <div class="mb-6 text-7xl sm:text-8xl">💥</div>
+
+      <!-- Error Code -->
+      <p class="mb-2 text-8xl font-black tracking-tighter text-hairline sm:text-9xl dark:text-[#222]">
+        500
+      </p>
+
+      <!-- Title -->
+      <h1 class="mb-3 text-2xl font-bold text-ink sm:text-3xl dark:text-[#ededed]">
+        Something Went Wrong
+      </h1>
+
+      <!-- Description -->
+      <p class="mx-auto mb-8 max-w-md text-sm text-body sm:text-base dark:text-[#a1a1a1]">
+        Our servers encountered an unexpected error. Our team has been notified and is working on a fix.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-2.5 text-sm font-medium text-white transition-all hover:opacity-90 active:scale-95 dark:bg-[#ededed] dark:text-[#0a0a0a]"
+        >
+          🏠 Go Home
+        </a>
+        <button
+          onclick="window.location.reload()"
+          class="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas-elevated px-6 py-2.5 text-sm font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"
+        >
+          🔄 Try Again
+        </button>
+        <button
+          onclick="history.back()"
+          class="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas-elevated px-6 py-2.5 text-sm font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"
+        >
+          ← Go Back
+        </button>
+      </div>
+
+      <!-- Status Card -->
+      <div class="mx-auto mt-12 max-w-sm rounded-2xl border border-hairline bg-canvas-elevated p-5 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <p class="mb-2 text-xs font-bold uppercase tracking-wider text-muted">What you can do</p>
+        <ul class="space-y-1.5 text-left text-sm text-body dark:text-[#a1a1a1]">
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Refresh the page</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Go back to the previous page</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Visit our homepage</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Try again in a few minutes</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,23 +1,230 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  type?: string;
+  locale?: string;
+  dir?: string;
+}
+
+const SITE_URL = 'https://bestrandomanimalgenerator.com';
+const SITE_NAME = 'Best Random Animal Generator';
+
+const {
+  title = "Random Animal Generator | Free Online Tool with Pictures & Fun Facts",
+  description = "Generate random animals instantly with pictures, fun facts, habitat, diet, conservation status and more. The best free random animal generator for kids, teachers, artists, and animal lovers. Over 1000+ animals with a spinner wheel, drawing prompts, and quiz.",
+  canonical = SITE_URL,
+  image = `${SITE_URL}/og-image.png`,
+  type = 'website',
+  locale = 'en',
+  dir = 'ltr'
+} = Astro.props;
+
+const pageTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+
+const allLocales = ['en', 'es', 'ja', 'fr', 'de', 'pt', 'ko', 'it', 'zh-CN', 'zh-TW', 'ar'];
+
+function getLocalePath(loc: string) {
+  if (loc === 'en') return SITE_URL;
+  return `${SITE_URL}/${loc}`;
+}
+
+function getAlternateLinks() {
+  return allLocales.map(loc => {
+    const href = loc === 'en' ? SITE_URL : `${SITE_URL}/${loc}`;
+    return `<link rel="alternate" hreflang="${loc}" href="${href}" />`;
+  }).join('\n    ');
+}
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang={locale} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary SEO -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Hreflang Tags -->
+    {allLocales.map(loc => (
+      <link rel="alternate" hreflang={loc} href={loc === 'en' ? SITE_URL : `${SITE_URL}/${loc}`} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={SITE_URL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content={locale.replace('-', '_')} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Additional SEO -->
+    <meta name="author" content="Best Random Animal Generator" />
+    <meta name="keywords" content="random animal generator, random animal generator wheel, random animal generator for drawing, planet zoo random animal generator, random animal generator spinner, random animal generator with pictures, random animal generator for kids, random animal generator name, random animal generator body parts, random animal generator draw, random animal generator ninja, name a random animal generator, best random animal generator" />
+    <meta name="theme-color" content="#fafafa" />
+    <meta name="application-name" content={SITE_NAME} />
+
+    <!-- Geo -->
+    <meta name="geo.region" content="US" />
+    <meta name="geo.placename" content="United States" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="random animal generator" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD Structured Data: WebSite -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": SITE_NAME,
+      "url": SITE_URL,
+      "description": description,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${SITE_URL}/?search={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    })} />
+
+    <!-- JSON-LD Structured Data: SoftwareApplication -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": SITE_NAME,
+      "operatingSystem": "Web Browser",
+      "applicationCategory": "EducationalApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Free online random animal generator with pictures, fun facts, conservation status, spinner wheel, and quiz. Over 1000+ animals.",
+      "url": SITE_URL,
+      "screenshot": image
+    })} />
+
+    <!-- JSON-LD Structured Data: BreadcrumbList -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": SITE_URL
+        }
+      ]
+    })} />
+
+    <!-- JSON-LD Structured Data: FAQPage -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a random animal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A random animal is any animal that is selected by chance from a larger group or database. In our random animal generator, a random animal is picked from a database of over 1,000 species spanning mammals, birds, fish, reptiles, amphibians, insects, marine life, and extinct animals. Each random selection includes the animal's name, emoji, scientific name, habitat, diet, lifespan, speed, weight, length, conservation status, taxonomy, and a fun fact."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to use random animal generator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Using our random animal generator is simple. Visit the homepage and click the Generate button or press the Spacebar on your keyboard. The tool will instantly pick a random animal and display it on a detailed card. You can also use the random animal generator wheel by navigating to the Spinner page, where you spin a colorful wheel that lands on a random animal. Filter results by category or conservation status, or use the No Repeat mode for unique discoveries every time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are 10 random animals?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Here are 10 random animals from our generator: African Elephant, Snow Leopard, Blue Whale, Golden Poison Frog, Monarch Butterfly, Great White Shark, Galápagos Tortoise, Emperor Penguin, Red Panda, and Komodo Dragon. Each of these animals has a unique profile in our database with detailed information about habitat, diet, conservation status, and fun facts. You can generate your own set of 10 random animals by selecting '10 Animals' from the count dropdown and clicking Generate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I generate a random animal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can generate a random animal in several ways on our website. Click the Generate button on the homepage, press the Spacebar key, or visit the Spinner page to use the random animal generator wheel. On mobile, tap the floating dice button at the bottom right. Select how many animals you want to see (1, 5, 10, or 20) using the count dropdown, then click Generate. The random animal generator will display detailed cards with pictures, fun facts, and conservation information for each animal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are random animal facts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Random animal facts are interesting, lesser-known pieces of information about animals that are generated each time you use our tool. For example: octopuses have three hearts, elephants are the only animals that cannot jump, a group of flamingos is called a 'flamboyance,' and tardigrades can survive in outer space. Our random animal generator provides a unique fun fact for every animal in its database of 1,000+ species, making it a great way to learn surprising facts about wildlife."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you provide me with an animal name generator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, our random animal generator doubles as an animal name generator. Each time you generate a random animal, you receive the animal's common name, scientific name, and emoji. With over 1,000 animals in the database including African Elephant, Bengal Tiger, Red Fox, Blue Whale, and thousands more, it serves as a comprehensive animal name generator for creative writing, games, school projects, and drawing prompts. You can also filter by category to generate names from specific animal groups like mammals, birds, or reptiles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the top 1 rarest animal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The rarest animal in the world is the vaquita (Phocoena sinus), a small porpoise found only in the Gulf of California, Mexico. With fewer than 10 individuals remaining, it is the most critically endangered animal on Earth. Our random animal generator includes the vaquita along with other critically endangered species like the Javan rhino, Amur leopard, and Sumatran orangutan. You can filter by the 'Critically Endangered' conservation status to learn more about these rare animals and their conservation needs."
+          }
+        }
+      ]
+    })} />
+
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen overflow-x-hidden bg-canvas text-ink antialiased dark:bg-[#0a0a0a] dark:text-[#ededed]">
+    <slot />
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  @import '../styles/global.css';
 </style>

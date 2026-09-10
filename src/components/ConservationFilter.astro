@@ -1,0 +1,46 @@
+---
+const statuses = [
+  { id: 'all', label: 'All Status', color: '#888' },
+  { id: 'LC', label: 'Least Concern', color: '#22c55e' },
+  { id: 'NT', label: 'Near Threatened', color: '#84cc16' },
+  { id: 'VU', label: 'Vulnerable', color: '#eab308' },
+  { id: 'EN', label: 'Endangered', color: '#f97316' },
+  { id: 'CR', label: 'Critically Endangered', color: '#ef4444' },
+  { id: 'EW', label: 'Extinct in Wild', color: '#a855f7' },
+  { id: 'EX', label: 'Extinct', color: '#6b7280' },
+  { id: 'DD', label: 'Data Deficient', color: '#8f8f8f' },
+];
+---
+
+<div class="overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0" style="scrollbar-width: none; -ms-overflow-style: none;">
+  <div class="flex flex-nowrap gap-2 min-w-max sm:min-w-0">
+    {statuses.map((s) => (
+      <button
+        data-conservation={s.id}
+        class={`cons-btn inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1.5 text-xs font-medium transition-all sm:px-3 ${s.id === 'all'
+          ? 'border-ink bg-ink text-white dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]'
+          : 'border-hairline bg-canvas-elevated text-body hover:border-faint hover:text-ink dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:border-[#555] dark:hover:text-[#ededed]'
+        }`}
+      >
+        <span class="inline-block h-2 w-2 shrink-0 rounded-full" style={`background-color: ${s.color}`}></span>
+        <span>{s.label}</span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script is:inline>
+  document.querySelectorAll('.cons-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cons-btn').forEach((b) => {
+        b.className = b.className
+          .replace('border-ink bg-ink text-white', 'border-hairline bg-canvas-elevated text-body')
+          .replace('dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]', 'dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1]');
+      });
+      btn.className = btn.className
+        .replace('border-hairline bg-canvas-elevated text-body', 'border-ink bg-ink text-white')
+        .replace('dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1]', 'dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]');
+      window.dispatchEvent(new CustomEvent('conservation-change', { detail: btn.dataset.conservation }));
+    });
+  });
+</script>

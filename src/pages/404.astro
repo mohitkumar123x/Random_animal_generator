@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Page Not Found (404) | Random Animal Generator"
+  description="The page you are looking for does not exist. Go back to the Random Animal Generator homepage to discover amazing animals."
+  canonical="https://bestrandomanimalgenerator.com/404"
+>
+  <Navbar />
+
+  <main class="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
+    <div class="text-center">
+      <!-- Large Emoji -->
+      <div class="mb-6 text-7xl sm:text-8xl">🦤</div>
+
+      <!-- Error Code -->
+      <p class="mb-2 text-8xl font-black tracking-tighter text-hairline sm:text-9xl dark:text-[#222]">
+        404
+      </p>
+
+      <!-- Title -->
+      <h1 class="mb-3 text-2xl font-bold text-ink sm:text-3xl dark:text-[#ededed]">
+        Page Not Found
+      </h1>
+
+      <!-- Description -->
+      <p class="mx-auto mb-8 max-w-md text-sm text-body sm:text-base dark:text-[#a1a1a1]">
+        Looks like this animal escaped into the wild. The page you are looking for does not exist or has been moved.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-2.5 text-sm font-medium text-white transition-all hover:opacity-90 active:scale-95 dark:bg-[#ededed] dark:text-[#0a0a0a]"
+        >
+          🏠 Go Home
+        </a>
+        <a
+          href="/spinner"
+          class="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas-elevated px-6 py-2.5 text-sm font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"
+        >
+          🎡 Try the Spinner
+        </a>
+        <button
+          onclick="history.back()"
+          class="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas-elevated px-6 py-2.5 text-sm font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"
+        >
+          ← Go Back
+        </button>
+      </div>
+
+      <!-- Random Animal Suggestion -->
+      <div class="mx-auto mt-12 max-w-sm rounded-2xl border border-hairline bg-canvas-elevated p-5 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <p class="mb-2 text-xs font-bold uppercase tracking-wider text-muted">While you are here</p>
+        <p class="text-sm text-body dark:text-[#a1a1a1]">Press <kbd class="inline-flex items-center rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-xs text-faint dark:border-[#333] dark:bg-[#111]">Space</kbd> on the homepage to generate a random animal!</p>
+        <div class="mt-3 text-4xl">🎲</div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,11 +1,719 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import CategoryFilter from '../components/CategoryFilter.astro';
+import ConservationFilter from '../components/ConservationFilter.astro';
+import AnimalCard from '../components/AnimalCard.astro';
+import animals from '../data/animals.json';
+import { getTranslations } from '../utils/i18n';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const t = getTranslations('en');
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title={t.title}
+  description={t.description}
+  canonical="https://bestrandomanimalgenerator.com"
+>
+  <Navbar />
+
+  <div id="gen-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-canvas/90 backdrop-blur-md dark:bg-[#0a0a0a]/90">
+    <div class="flex flex-col items-center gap-6">
+      <div class="relative">
+        <div id="gen-ring" class="h-32 w-32 sm:h-40 sm:w-40 rounded-full border-4 border-hairline dark:border-[#333] flex items-center justify-center">
+          <div id="gen-emoji" class="text-6xl sm:text-7xl transition-transform duration-100">🐾</div>
+        </div>
+        <div class="absolute inset-0 rounded-full border-4 border-transparent border-t-link animate-spin"></div>
+      </div>
+      <div class="text-center">
+        <p id="gen-status" class="text-sm font-medium text-ink dark:text-[#ededed]">Generating...</p>
+        <p id="gen-sub" class="text-xs text-muted mt-1">Shuffling through animals</p>
+      </div>
+      <div class="w-48 h-1.5 rounded-full bg-hairline dark:bg-[#333] overflow-hidden">
+        <div id="gen-bar" class="h-full rounded-full bg-link transition-all duration-100" style="width: 0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <main class="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+    <section class="mb-10 text-center">
+      <div class="mb-3 inline-flex items-center gap-1.5 rounded-full border border-hairline bg-canvas-elevated px-3 py-1 text-xs text-muted dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#888]">
+        <span class="h-1.5 w-1.5 rounded-full bg-conservation-lc animate-pulse-gentle"></span>
+        {animals.length}+ {t.animals_count}
+      </div>
+      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">
+        {t.hero_title}
+      </h1>
+      <p class="mx-auto mt-3 max-w-lg text-sm text-body sm:text-base dark:text-[#a1a1a1]" set:html={t.hero_desc} />
+    </section>
+
+    <section id="daily-section" class="mb-8 hidden">
+      <div class="rounded-2xl border border-hairline bg-canvas-elevated overflow-hidden dark:border-[#333] dark:bg-[#1a1a1a]">
+        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-hairline dark:border-[#333] sm:px-5 sm:py-3">
+          <span class="daily-badge text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">{t.daily_title}</span>
+          <span class="text-xs text-muted">{t.daily_label}</span>
+        </div>
+        <div id="daily-card" class="p-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4 sm:p-5"></div>
+      </div>
+    </section>
+
+    <div class="mb-6">
+      <CategoryFilter />
+    </div>
+
+    <div class="mb-6">
+      <ConservationFilter />
+    </div>
+
+    <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
+      <div class="flex items-center gap-2">
+        <label for="count-select" class="text-xs text-muted">{t.show_label}</label>
+        <select
+          id="count-select"
+          class="rounded-lg border border-hairline bg-canvas-elevated px-2.5 py-1.5 text-xs font-medium text-ink outline-none transition-colors focus:border-link dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#ededed] dark:focus:border-link"
+        >
+          <option value="1">{t['1_animal']}</option>
+          <option value="5">{t['5_animals']}</option>
+          <option value="10">{t['10_animals']}</option>
+          <option value="20">{t['20_animals']}</option>
+        </select>
+      </div>
+      <div class="flex items-center gap-2 flex-wrap">
+        <button
+          id="generate-btn"
+          class="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2 text-sm font-medium text-white transition-all hover:opacity-90 active:scale-95 dark:bg-[#ededed] dark:text-[#0a0a0a]"
+        >
+          <span>🎲</span> {t.generate}
+        </button>
+        <button
+          id="no-repeat-toggle"
+          class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas-elevated px-3 py-1.5 text-xs font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"
+        >
+          <span id="no-repeat-icon">🔁</span> {t.no_repeat}
+        </button>
+        <button
+          id="sound-toggle"
+          class="flex h-8 w-8 items-center justify-center rounded-lg border border-hairline bg-canvas-elevated text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"
+          aria-label="Toggle sound"
+        >
+          <svg id="sound-on-icon" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+          </svg>
+          <svg id="sound-off-icon" class="h-4 w-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="quiz-section" class="hidden mb-8">
+      <div class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-semibold text-ink dark:text-[#ededed]">🧠 {t.animal_quiz}</h2>
+          <div class="flex items-center gap-3">
+            <span class="text-xs text-muted">{t.score} <span id="quiz-score" class="font-bold text-ink dark:text-[#ededed]">0</span>/<span id="quiz-total" class="text-ink dark:text-[#ededed]">0</span></span>
+            <button id="quiz-next" class="rounded-lg bg-ink px-3 py-1.5 text-xs font-medium text-white hover:opacity-90 dark:bg-[#ededed] dark:text-[#0a0a0a]">{t.next}</button>
+          </div>
+        </div>
+        <div id="quiz-content"></div>
+      </div>
+    </div>
+
+    <div id="compare-section" class="hidden mb-8">
+      <div class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-semibold text-ink dark:text-[#ededed]">⚖️ {t.compare_animals}</h2>
+          <button id="compare-close" class="text-xs text-muted hover:text-ink dark:hover:text-[#ededed]">{t.close}</button>
+        </div>
+        <div id="compare-content" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+      </div>
+    </div>
+
+    <AnimalCard />
+
+    <div id="multi-results" class="hidden mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+
+    <section class="mt-16 rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+      <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">{t.about_title}</h2>
+      <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+        {t.about_desc.replace('{count}', String(animals.length))}
+      </p>
+      <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div class="rounded-lg border border-hairline bg-canvas p-3 text-center dark:border-[#333] dark:bg-[#111]">
+          <p class="text-2xl font-bold text-ink dark:text-[#ededed]">{animals.length}+</p>
+          <p class="text-xs text-muted">{t.animals_stat}</p>
+        </div>
+        <div class="rounded-lg border border-hairline bg-canvas p-3 text-center dark:border-[#333] dark:bg-[#111]">
+          <p class="text-2xl font-bold text-ink dark:text-[#ededed]">8</p>
+          <p class="text-xs text-muted">{t.categories_stat}</p>
+        </div>
+        <div class="rounded-lg border border-hairline bg-canvas p-3 text-center dark:border-[#333] dark:bg-[#111]">
+          <p class="text-2xl font-bold text-ink dark:text-[#ededed]">7</p>
+          <p class="text-xs text-muted">{t.conservation_levels}</p>
+        </div>
+        <div class="rounded-lg border border-hairline bg-canvas p-3 text-center dark:border-[#333] dark:bg-[#111]">
+          <p class="text-2xl font-bold text-ink dark:text-[#ededed]">100%</p>
+          <p class="text-xs text-muted">{t.free_stat}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8 rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+      <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">{t.keyboard_title}</h2>
+      <div class="grid gap-2 sm:grid-cols-3">
+        <div class="flex items-center gap-3 rounded-lg border border-hairline bg-canvas p-3 dark:border-[#333] dark:bg-[#111]">
+          <kbd class="flex-shrink-0 rounded border border-hairline bg-canvas-elevated px-2 py-1 font-mono text-xs text-faint dark:border-[#333] dark:bg-[#1a1a1a]">Space</kbd>
+          <span class="text-xs text-body">{t.generate_random}</span>
+        </div>
+        <div class="flex items-center gap-3 rounded-lg border border-hairline bg-canvas p-3 dark:border-[#333] dark:bg-[#111]">
+          <kbd class="flex-shrink-0 rounded border border-hairline bg-canvas-elevated px-2 py-1 font-mono text-xs text-faint dark:border-[#333] dark:bg-[#1a1a1a]">R</kbd>
+          <span class="text-xs text-body">{t.regenerate}</span>
+        </div>
+        <div class="flex items-center gap-3 rounded-lg border border-hairline bg-canvas p-3 dark:border-[#333] dark:bg-[#111]">
+          <kbd class="flex-shrink-0 rounded border border-hairline bg-canvas-elevated px-2 py-1 font-mono text-xs text-faint dark:border-[#333] dark:bg-[#1a1a1a]">M</kbd>
+          <span class="text-xs text-body">{t.toggle_sound}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEO Content Section -->
+    <section class="mt-12 space-y-10 text-body">
+      <div>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">What Is a Random Animal Generator?</h2>
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">
+          A random animal generator is a free online tool that instantly picks a random animal from a large database and displays detailed information about it. Unlike basic generators that only show a name, our random animal generator provides comprehensive data including high-quality pictures, habitat details, diet type, lifespan, weight, speed, length, region, conservation status, taxonomy, and fun facts. Whether you need a random animal generator for drawing, a random animal generator for kids, or a random animal generator name generator for a creative writing project, our tool does it all in one click.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">How Does the Random Animal Generator Work?</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Our random animal generator is simple to use. Click the Generate button or press the Spacebar, and the tool will instantly select a random animal from our database of over 1,000 species. Each animal is presented on a beautifully designed card showing its emoji, scientific name, habitat, diet, conservation status, and a fun fact. You can filter results by category (mammals, birds, fish, reptiles, amphibians, insects, marine, and extinct animals) or by conservation status (least concern, vulnerable, endangered, and more).
+        </p>
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">
+          The random animal generator spinner wheel takes it a step further by letting you spin a colorful wheel that lands on a random animal. It is an engaging, visual way to discover animals and is especially popular as a random animal generator wheel for classrooms and group activities. The spinner adds an element of excitement that makes learning about wildlife fun for everyone.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Best Random Animal Generator for Drawing and Creativity</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Artists and illustrators love using a random animal generator for drawing practice. Instead of spending time thinking of what to sketch, simply generate a random animal and start drawing. Our random animal generator with pictures provides visual references with emoji icons and detailed descriptions that help you understand each animal's physical characteristics. The random animal generator draw feature is perfect for daily drawing challenges, art classes, and creative writing prompts.
+        </p>
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Need ideas for a specific body part? The random animal generator body parts feature lets you focus on particular attributes like wings, fins, horns, or claws. This makes it an excellent tool for artists who want to practice drawing specific animal features. Whether you are a beginner or a professional artist, our random animal generator provides endless inspiration for your next masterpiece.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Random Animal Generator for Kids and Education</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Teachers and parents use our random animal generator for kids to make learning about wildlife interactive and fun. Each animal card includes educational information such as habitat, diet, conservation status, and taxonomy (class, order, family). This makes it ideal for school projects, science classes, and homeschooling activities. The random animal generator for kids is designed with a clean, child-friendly interface that is easy to navigate.
+        </p>
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">
+          The built-in animal quiz feature lets children test their knowledge by guessing what each animal eats or where it lives. This gamified approach to learning keeps kids engaged while teaching them about biodiversity and conservation. Our random animal generator name feature also helps children learn proper animal names and their scientific classifications.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Planet Zoo Random Animal Generator</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Gaming enthusiasts will appreciate our planet zoo random animal generator feature. Whether you are building a virtual zoo or need random animals for a game concept, our generator provides the perfect selection tool. The random animal generator ninja mode rapidly cycles through animals for a fast-paced discovery experience, similar to how popular ninja-themed generators work.
+        </p>
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">
+          The name a random animal generator feature is also great for game developers and writers who need to quickly name characters in their stories. With over 1,000 animals in our database, you will never run out of ideas for your creative projects.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Why Choose Our Random Animal Generator?</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Our random animal generator stands out from other tools because of its comprehensive database and beautiful design. With over 1,000 animals across 8 categories, each animal includes a detailed description, fun fact, habitat, diet, lifespan, speed, weight, length, region, conservation status, and full taxonomy. The tool is 100% free, requires no registration, and works on all devices including desktops, tablets, and mobile phones.
+        </p>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Key features include the random animal generator wheel for visual selection, category and conservation filters for targeted results, a no-repeat mode for continuous discovery, sound effects for an immersive experience, keyboard shortcuts for power users, and a compare feature that lets you side-by-side compare two animals. The dark mode support ensures comfortable use at any time of day.
+        </p>
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">
+          The random animal generator tuimiz style interface draws inspiration from popular minimal design tools, offering a clean and distraction-free experience. Whether you are a student, teacher, artist, writer, game developer, or simply an animal lover, our random animal generator provides the best free tool for discovering amazing creatures from around the world.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Features at a Glance</h2>
+        <ul class="space-y-2 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Over 1,000 animals with detailed information</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Random animal generator wheel with spinning animation</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Category filters: mammals, birds, fish, reptiles, amphibians, insects, marine, extinct</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Conservation status filters for endangered species</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Animal quiz to test your knowledge</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Compare feature for side-by-side animal comparison</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Daily featured animal with rotating selection</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Keyboard shortcuts for fast navigation</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> No-repeat mode for unique discoveries</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Sound effects with toggle control</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> Dark mode and light mode support</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> 100% free with no registration required</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mt-12 rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+      <h2 class="mb-6 text-xl font-bold text-ink dark:text-[#ededed]">Frequently Asked Questions</h2>
+      <div class="space-y-3">
+
+        <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+          <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+            <span>What is a random animal?</span>
+            <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+            <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">A random animal is any animal selected by chance from a larger group. Our random animal generator picks from a database of over 1,000 species spanning mammals, birds, fish, reptiles, amphibians, insects, marine life, and extinct animals. Each selection includes the animal's name, emoji, scientific name, habitat, diet, lifespan, speed, weight, length, conservation status, taxonomy, and a fun fact.</p>
+          </div>
+        </details>
+
+        <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+          <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+            <span>How to use random animal generator?</span>
+            <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+            <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">Simply click the <strong>Generate</strong> button or press the <strong>Spacebar</strong> on your keyboard. The tool instantly picks a random animal and displays it on a detailed card. You can also use the <strong>random animal generator wheel</strong> on the Spinner page, filter results by category or conservation status, or enable No Repeat mode for unique discoveries every time.</p>
+          </div>
+        </details>
+
+        <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+          <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+            <span>What are 10 random animals?</span>
+            <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+            <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">Here are 10 random animals: <strong>African Elephant, Snow Leopard, Blue Whale, Golden Poison Frog, Monarch Butterfly, Great White Shark, Galápagos Tortoise, Emperor Penguin, Red Panda, and Komodo Dragon</strong>. Select "10 Animals" from the count dropdown and click Generate to get your own set of 10 random animals with full details.</p>
+          </div>
+        </details>
+
+        <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+          <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+            <span>How can I generate a random animal?</span>
+            <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+            <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">Click the <strong>Generate</strong> button on the homepage, press the <strong>Spacebar</strong> key, or visit the Spinner page to use the <strong>random animal generator wheel</strong>. On mobile, tap the floating dice button. Select 1, 5, 10, or 20 animals using the count dropdown, then click Generate to see detailed cards with pictures, fun facts, and conservation info.</p>
+          </div>
+        </details>
+
+        <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+          <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+            <span>What are random animal facts?</span>
+            <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+            <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">Random animal facts are interesting, lesser-known pieces of information about animals. For example: octopuses have three hearts, elephants cannot jump, a group of flamingos is called a "flamboyance," and tardigrades can survive in outer space. Our generator provides a unique fun fact for every animal in its database of 1,000+ species.</p>
+          </div>
+        </details>
+
+        <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+          <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+            <span>Can you provide me with an animal name generator?</span>
+            <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+            <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">Yes! Each time you generate a random animal, you receive its common name, scientific name, and emoji. With over 1,000 animals including African Elephant, Bengal Tiger, Red Fox, Blue Whale, and more, our tool serves as a comprehensive <strong>animal name generator</strong> for creative writing, games, school projects, and drawing prompts. Filter by category to generate names from specific animal groups.</p>
+          </div>
+        </details>
+
+        <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+          <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+            <span>What is the top 1 rarest animal?</span>
+            <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+            <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">The rarest animal in the world is the <strong>vaquita</strong> (Phocoena sinus), a small porpoise found only in the Gulf of California, Mexico. With fewer than 10 individuals remaining, it is the most critically endangered animal on Earth. Our generator includes the vaquita and other critically endangered species. Filter by "Critically Endangered" to learn more about these rare animals.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+  </main>
+
+  <button
+    id="mobile-generate-btn"
+    class="sm:hidden fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-ink text-white shadow-lg transition-all active:scale-90 dark:bg-[#ededed] dark:text-[#0a0a0a]"
+    aria-label="Generate random animal"
+  >
+    <span class="text-2xl">🎲</span>
+  </button>
+
+  <Footer />
 </Layout>
+
+<script define:vars={{ animals: JSON.stringify(animals), locale: 'en' }}>
+  const allAnimals = JSON.parse(animals);
+  const jsT = { generating:"Generating...",shuffling:"Shuffling through animals",almostThere:"Almost there...",picking:"Picking the perfect one",foundIt:"Found it!",revealing:"Revealing your animal",view:"View →",habitat:"Habitat",diet:"Diet",lifespan:"Lifespan",weight:"Weight",speed:"Speed",length:"Length",score:"Score:",next:"Next →",close:"Close",quizDiet:"What does the {name} eat?",quizHabitat:"Where does the {name} live?",consLC:"Least Concern",consNT:"Near Threatened",consVU:"Vulnerable",consEN:"Endangered",consCR:"Critically Endangered",consEW:"Extinct in Wild",consEX:"Extinct",consDD:"Data Deficient" };
+  let soundEnabled = true;
+  let currentCategory = 'all';
+  let currentConservation = 'all';
+  let noRepeatMode = false;
+  let seenAnimalIds = JSON.parse(localStorage.getItem('seenAnimals') || '[]');
+  let compareList = [];
+  let quizState = { score: 0, total: 0, current: null };
+
+  const audioCtx = typeof AudioContext !== 'undefined' ? new AudioContext() : null;
+
+  function playGenerateSound() {
+    if (!soundEnabled || !audioCtx) return;
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(1046.5, audioCtx.currentTime + 0.1);
+    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+    osc.start(audioCtx.currentTime);
+    osc.stop(audioCtx.currentTime + 0.2);
+  }
+
+  function getFilteredPool() {
+    let pool = allAnimals;
+    if (currentCategory !== 'all') pool = pool.filter(a => a.category === currentCategory);
+    if (currentConservation !== 'all') pool = pool.filter(a => a.conservation === currentConservation);
+    if (noRepeatMode) pool = pool.filter(a => !seenAnimalIds.includes(a.id));
+    return pool;
+  }
+
+  function getRandomAnimals(count) {
+    const pool = getFilteredPool();
+    const shuffled = [...pool].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, Math.min(count, pool.length));
+  }
+
+  function showSpinner(callback) {
+    const overlay = document.getElementById('gen-overlay');
+    const emojiEl = document.getElementById('gen-emoji');
+    const bar = document.getElementById('gen-bar');
+    const statusEl = document.getElementById('gen-status');
+    const subEl = document.getElementById('gen-sub');
+    const ringEl = document.getElementById('gen-ring');
+    const singleContainer = document.getElementById('animal-card-container');
+    const multiContainer = document.getElementById('multi-results');
+
+    overlay.classList.remove('hidden');
+    singleContainer?.classList.add('hidden');
+    multiContainer?.classList.add('hidden');
+
+    const emojis = ['🐘','🦅','🐠','🦎','🐸','🦋','🐙','🦁','🐺','🦊','🐻','🐼','🦈','🐳','🐊','🐢','🦜','🐧','🦩','🦥','🐆','🦧','🦣','🦫','🦦','🦤','🦥','🦫','🦤','🦦'];
+    const stages = [
+      { text: jsT.generating, sub: jsT.shuffling, duration: 600 },
+      { text: jsT.almostThere, sub: jsT.picking, duration: 500 },
+      { text: jsT.foundIt, sub: jsT.revealing, duration: 300 },
+    ];
+
+    let tick = 0;
+    let stageIdx = 0;
+    let elapsed = 0;
+    const totalDuration = 1400;
+    const tickSpeed = 60;
+
+    const tickInterval = setInterval(() => {
+      tick++;
+      elapsed += tickSpeed;
+      const progress = Math.min((elapsed / totalDuration) * 100, 100);
+      bar.style.width = `${progress}%`;
+
+      emojiEl.style.transform = `scale(${1 + Math.sin(tick * 0.5) * 0.15}) rotate(${Math.sin(tick * 0.8) * 10}deg)`;
+      emojiEl.textContent = emojis[tick % emojis.length];
+
+      if (stageIdx < stages.length - 1 && elapsed >= stages[stageIdx].duration) {
+        stageIdx++;
+        statusEl.textContent = stages[stageIdx].text;
+        subEl.textContent = stages[stageIdx].sub;
+        if (stageIdx === stages.length - 1) {
+          ringEl.classList.add('border-conservation-lc');
+          ringEl.classList.remove('border-hairline', 'dark:border-[#333]');
+        }
+      }
+    }, tickSpeed);
+
+    setTimeout(() => {
+      clearInterval(tickInterval);
+      bar.style.width = '100%';
+      emojiEl.style.transform = 'scale(1.3)';
+      ringEl.classList.add('border-conservation-lc');
+      ringEl.classList.remove('border-hairline', 'dark:border-[#333]');
+
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        ringEl.classList.remove('border-conservation-lc');
+        ringEl.classList.add('border-hairline', 'dark:border-[#333]');
+        bar.style.width = '0%';
+        statusEl.textContent = jsT.generating;
+        subEl.textContent = jsT.shuffling;
+        emojiEl.style.transform = '';
+        try { callback(); } catch(e) { console.error(e); }
+      }, 300);
+    }, totalDuration);
+  }
+
+  function generate() {
+    const count = parseInt(document.getElementById('count-select')?.value || '1');
+    showSpinner(() => {
+      const animals = getRandomAnimals(count);
+      playGenerateSound();
+
+      if (noRepeatMode) {
+        animals.forEach(a => {
+          if (!seenAnimalIds.includes(a.id)) seenAnimalIds.push(a.id);
+        });
+        localStorage.setItem('seenAnimals', JSON.stringify(seenAnimalIds.slice(-200)));
+      }
+
+      const multiContainer = document.getElementById('multi-results');
+      const singleContainer = document.getElementById('animal-card-container');
+
+      if (count === 1) {
+        singleContainer?.classList.remove('hidden');
+        multiContainer?.classList.add('hidden');
+        window.displayAnimal?.(animals[0]);
+      } else {
+        singleContainer?.classList.add('hidden');
+        multiContainer?.classList.remove('hidden');
+        multiContainer.innerHTML = '';
+
+        animals.forEach((animal, i) => {
+          const consLabels = {
+            LC: { text: jsT.consLC, color: 'bg-conservation-lc/15 text-conservation-lc border-conservation-lc/30' },
+            NT: { text: jsT.consNT, color: 'bg-conservation-nt/15 text-conservation-nt border-conservation-nt/30' },
+            VU: { text: jsT.consVU, color: 'bg-conservation-vu/15 text-conservation-vu border-conservation-vu/30' },
+            EN: { text: jsT.consEN, color: 'bg-conservation-en/15 text-conservation-en border-conservation-en/30' },
+            CR: { text: jsT.consCR, color: 'bg-conservation-cr/15 text-conservation-cr border-conservation-cr/30' },
+            EW: { text: jsT.consEW, color: 'bg-conservation-ew/15 text-conservation-ew border-conservation-ew/30' },
+            EX: { text: jsT.consEX, color: 'bg-conservation-ex/15 text-conservation-ex border-conservation-ex/30' },
+            DD: { text: jsT.consDD, color: 'bg-muted/15 text-muted border-muted/30' },
+          };
+          const cons = consLabels[animal.conservation] || consLabels.LC;
+
+          const card = document.createElement('div');
+          card.className = 'rounded-2xl border border-hairline bg-canvas-elevated overflow-hidden animate-fade-in dark:border-[#333] dark:bg-[#1a1a1a]';
+          card.style.animationDelay = `${i * 50}ms`;
+          card.innerHTML = `
+            <div class="bg-gradient-to-br from-link-soft/50 via-violet-soft/30 to-pink-soft/30 p-5 text-center dark:from-[#1a2744] dark:via-[#2a1a3a] dark:to-[#3a1a2a]">
+              <div class="text-5xl mb-2 emoji-icon" style="animation-delay: ${i * 300}ms">${animal.emoji}</div>
+              <h3 class="text-base font-bold text-ink dark:text-[#ededed]">${animal.name}</h3>
+              <span class="mt-1 inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-medium ${cons.color}">${cons.text}</span>
+            </div>
+            <div class="p-4">
+              <p class="text-xs text-body leading-relaxed mb-3 dark:text-[#a1a1a1]">${animal.description}</p>
+              <div class="grid grid-cols-2 gap-2 text-xs mb-3">
+                <div class="flex items-center gap-1.5 rounded-md border border-hairline bg-canvas p-2 dark:border-[#333] dark:bg-[#111]">
+                  <span>🌍</span><span class="text-faint">Habitat:</span> ${animal.habitat}
+                </div>
+                <div class="flex items-center gap-1.5 rounded-md border border-hairline bg-canvas p-2 dark:border-[#333] dark:bg-[#111]">
+                  <span>🍽️</span><span class="text-faint">Diet:</span> ${animal.diet}
+                </div>
+                <div class="flex items-center gap-1.5 rounded-md border border-hairline bg-canvas p-2 dark:border-[#333] dark:bg-[#111]">
+                  <span>⏱️</span><span class="text-faint">Lifespan:</span> ${animal.lifespan}
+                </div>
+                <div class="flex items-center gap-1.5 rounded-md border border-hairline bg-canvas p-2 dark:border-[#333] dark:bg-[#111]">
+                  <span>⚖️</span><span class="text-faint">Weight:</span> ${animal.weight}
+                </div>
+              </div>
+              <div class="rounded-lg border border-link-soft bg-link-soft/30 p-2.5 dark:border-[#1e3a5f] dark:bg-[#0f1f33]">
+                <p class="text-[10px] uppercase tracking-wider text-link font-medium mb-0.5 dark:text-link">💡 Fun Fact</p>
+                <p class="text-xs text-body leading-relaxed dark:text-[#a1a1a1]">${animal.funFact}</p>
+              </div>
+            </div>
+          `;
+          multiContainer.appendChild(card);
+        });
+      }
+    });
+  }
+
+  // No-repeat toggle
+  document.getElementById('no-repeat-toggle')?.addEventListener('click', () => {
+    noRepeatMode = !noRepeatMode;
+    const icon = document.getElementById('no-repeat-icon');
+    const btn = document.getElementById('no-repeat-toggle');
+    if (noRepeatMode) {
+      icon.textContent = '✅';
+      btn.classList.add('border-link', 'text-link');
+      btn.classList.remove('border-hairline', 'text-body');
+    } else {
+      icon.textContent = '🔁';
+      btn.classList.remove('border-link', 'text-link');
+      btn.classList.add('border-hairline', 'text-body');
+      seenAnimalIds = [];
+      localStorage.removeItem('seenAnimals');
+    }
+  });
+
+  // Compare
+  document.getElementById('compare-btn')?.addEventListener('click', () => {
+    const section = document.getElementById('compare-section');
+    section.classList.toggle('hidden');
+    if (!section.classList.contains('hidden')) {
+      const pool = allAnimals.slice(0, 20);
+      const a = pool[Math.floor(Math.random() * pool.length)];
+      let b = a;
+      while (b === a) b = pool[Math.floor(Math.random() * pool.length)];
+      compareList = [a, b];
+      renderCompare();
+    }
+  });
+
+  document.getElementById('compare-close')?.addEventListener('click', () => {
+    document.getElementById('compare-section').classList.add('hidden');
+  });
+
+  function renderCompare() {
+    const container = document.getElementById('compare-content');
+    if (!container || compareList.length < 2) return;
+    container.innerHTML = compareList.map(animal => `
+      <div class="rounded-xl border border-hairline bg-canvas p-4 dark:border-[#333] dark:bg-[#111]">
+        <div class="text-center mb-3">
+          <div class="text-4xl emoji-icon mb-1">${animal.emoji}</div>
+          <h3 class="font-bold text-ink dark:text-[#ededed]">${animal.name}</h3>
+        </div>
+        <div class="space-y-2 text-xs">
+          <div class="flex justify-between"><span class="text-faint">${jsT.habitat}</span><span class="font-medium text-ink dark:text-[#ededed]">${animal.habitat}</span></div>
+          <div class="flex justify-between"><span class="text-faint">${jsT.diet}</span><span class="font-medium text-ink dark:text-[#ededed]">${animal.diet}</span></div>
+          <div class="flex justify-between"><span class="text-faint">${jsT.lifespan}</span><span class="font-medium text-ink dark:text-[#ededed]">${animal.lifespan}</span></div>
+          <div class="flex justify-between"><span class="text-faint">${jsT.weight}</span><span class="font-medium text-ink dark:text-[#ededed]">${animal.weight}</span></div>
+          <div class="flex justify-between"><span class="text-faint">${jsT.speed}</span><span class="font-medium text-ink dark:text-[#ededed]">${animal.speed}</span></div>
+          <div class="flex justify-between"><span class="text-faint">${jsT.length}</span><span class="font-medium text-ink dark:text-[#ededed]">${animal.length}</span></div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Quiz
+  document.getElementById('quiz-btn')?.addEventListener('click', () => {
+    const section = document.getElementById('quiz-section');
+    section.classList.toggle('hidden');
+    if (!section.classList.contains('hidden') && !quizState.current) {
+      nextQuizQuestion();
+    }
+  });
+
+  document.getElementById('quiz-next')?.addEventListener('click', nextQuizQuestion);
+
+  function nextQuizQuestion() {
+    const pool = allAnimals;
+    const correct = pool[Math.floor(Math.random() * pool.length)];
+    const wrongAnswers = [];
+    while (wrongAnswers.length < 3) {
+      const w = pool[Math.floor(Math.random() * pool.length)];
+      if (w.id !== correct.id && !wrongAnswers.find(x => x.id === w.id)) wrongAnswers.push(w);
+    }
+    const options = [correct, ...wrongAnswers].sort(() => Math.random() - 0.5);
+    quizState.current = correct;
+
+    const isDiet = Math.random() > 0.5;
+    const question = isDiet ? jsT.quizDiet.replace('{name}', correct.name) : jsT.quizHabitat.replace('{name}', correct.name);
+    const answerKey = isDiet ? 'diet' : 'habitat';
+
+    const container = document.getElementById('quiz-content');
+    container.innerHTML = `
+      <p class="text-sm text-body mb-1 dark:text-[#a1a1a1]">${question}</p>
+      <div class="text-center text-3xl mb-3 emoji-icon">${correct.emoji}</div>
+      <div class="grid grid-cols-2 gap-2">
+        ${options.map(o => `
+          <button class="quiz-option rounded-lg border border-hairline bg-canvas p-3 text-xs font-medium text-body text-left dark:border-[#333] dark:bg-[#111] dark:text-[#a1a1a1]" data-value="${o[answerKey]}" data-correct="${o[answerKey] === correct[answerKey]}">
+            ${o[answerKey]}
+          </button>
+        `).join('')}
+      </div>
+    `;
+
+    container.querySelectorAll('.quiz-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (container.querySelector('.correct, .wrong')) return;
+        const isCorrect = btn.dataset.correct === 'true';
+        quizState.total++;
+        if (isCorrect) quizState.score++;
+        document.getElementById('quiz-score').textContent = quizState.score;
+        document.getElementById('quiz-total').textContent = quizState.total;
+        btn.classList.add(isCorrect ? 'correct' : 'wrong');
+        if (!isCorrect) {
+          container.querySelector(`[data-correct="true"]`)?.classList.add('correct');
+        }
+      });
+    });
+  }
+
+  // Daily animal
+  function getDailyAnimal() {
+    const today = new Date();
+    const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+    return allAnimals[seed % allAnimals.length];
+  }
+
+  function showDailyAnimal() {
+    const daily = getDailyAnimal();
+    const section = document.getElementById('daily-section');
+    const card = document.getElementById('daily-card');
+    if (!section || !card) return;
+    section.classList.remove('hidden');
+    card.innerHTML = `
+      <div class="text-4xl sm:text-5xl emoji-icon shrink-0">${daily.emoji}</div>
+      <div class="flex-1 min-w-0">
+        <h3 class="font-bold text-ink dark:text-[#ededed]">${daily.name}</h3>
+        <p class="text-xs text-body dark:text-[#a1a1a1] mt-1 line-clamp-2">${daily.description}</p>
+      </div>
+      <button class="daily-view-btn shrink-0 rounded-lg bg-ink px-3 py-1.5 text-xs font-medium text-white hover:opacity-90 dark:bg-[#ededed] dark:text-[#0a0a0a] self-start sm:self-center" data-id="${daily.id}">${jsT.view}</button>
+    `;
+    card.querySelector('.daily-view-btn')?.addEventListener('click', () => {
+      window.displayAnimal?.(daily);
+      document.getElementById('animal-card-container')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  showDailyAnimal();
+
+  document.getElementById('generate-btn')?.addEventListener('click', generate);
+  document.getElementById('mobile-generate-btn')?.addEventListener('click', generate);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+    if (e.code === 'Space') {
+      e.preventDefault();
+      generate();
+    }
+    if (e.key === 'r' || e.key === 'R') {
+      generate();
+    }
+    if (e.key === 'm' || e.key === 'M') {
+      soundEnabled = !soundEnabled;
+      document.getElementById('sound-on-icon')?.classList.toggle('hidden', !soundEnabled);
+      document.getElementById('sound-off-icon')?.classList.toggle('hidden', soundEnabled);
+    }
+  });
+
+  document.getElementById('sound-toggle')?.addEventListener('click', () => {
+    soundEnabled = !soundEnabled;
+    document.getElementById('sound-on-icon')?.classList.toggle('hidden', !soundEnabled);
+    document.getElementById('sound-off-icon')?.classList.toggle('hidden', soundEnabled);
+  });
+
+  window.addEventListener('category-change', (e) => {
+    currentCategory = e.detail;
+  });
+
+  window.addEventListener('conservation-change', (e) => {
+    currentConservation = e.detail;
+  });
+
+  // URL param support
+  const urlParams = new URLSearchParams(window.location.search);
+  const animalParam = urlParams.get('animal');
+  if (animalParam) {
+    const found = allAnimals.find(a => a.id === animalParam);
+    if (found) {
+      window.displayAnimal?.(found);
+    }
+  }
+</script>

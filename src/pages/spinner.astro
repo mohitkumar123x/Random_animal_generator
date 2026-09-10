@@ -1,0 +1,292 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import animals from '../data/animals.json';
+---
+
+<Layout title="Animal Spinner | Random Animal Generator">
+  <Navbar />
+  <main class="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+    <section class="mb-8 text-center">
+      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">🎡 Animal Spinner</h1>
+      <p class="mx-auto mt-3 max-w-lg text-sm text-body dark:text-[#a1a1a1]">
+        Spin the wheel and discover a random animal!
+      </p>
+    </section>
+
+    <div class="rounded-2xl border border-hairline bg-canvas-elevated p-4 sm:p-8 dark:border-[#333] dark:bg-[#1a1a1a]">
+      <div class="flex justify-center gap-2 mb-6">
+        <select id="spinner-category" class="rounded-lg border border-hairline bg-canvas px-3 py-2 text-sm text-ink outline-none dark:border-[#333] dark:bg-[#111] dark:text-[#ededed]">
+          <option value="all">All Categories</option>
+          <option value="mammal">Mammals</option>
+          <option value="bird">Birds</option>
+          <option value="fish">Fish</option>
+          <option value="reptile">Reptiles</option>
+          <option value="amphibian">Amphibians</option>
+          <option value="insect">Insects</option>
+          <option value="marine">Marine</option>
+        </select>
+      </div>
+
+      <div class="relative mx-auto mb-6" style="width: min(320px, 80vw); height: min(320px, 80vw);">
+        <div id="wheel-pointer" class="absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1">
+          <div class="h-0 w-0 border-l-[10px] border-r-[10px] border-t-[18px] border-l-transparent border-r-transparent border-t-link drop-shadow-md"></div>
+        </div>
+        <div id="wheel-container" class="relative h-full w-full overflow-hidden rounded-full border-4 border-hairline bg-canvas shadow-lg dark:border-[#333] dark:bg-[#111]">
+          <div id="wheel" class="absolute inset-0 rounded-full transition-none" style="transform: rotate(0deg);">
+          </div>
+        </div>
+        <div class="pointer-events-none absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full border-4 border-hairline bg-canvas-elevated shadow-md dark:border-[#444] dark:bg-[#1a1a1a] sm:h-14 sm:w-14">
+          <span id="center-emoji" class="text-2xl sm:text-3xl">🎡</span>
+        </div>
+      </div>
+
+      <div id="result-display" class="mb-6 text-center">
+        <div id="result-emoji" class="text-6xl mb-2 emoji-icon sm:text-7xl">❓</div>
+        <h2 id="result-name" class="text-xl font-bold text-ink sm:text-2xl dark:text-[#ededed]">Spin to discover!</h2>
+        <p id="result-desc" class="text-sm text-muted mt-1"></p>
+      </div>
+
+      <div class="flex justify-center">
+        <button id="spin-btn" class="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3 text-sm font-medium text-white transition-all hover:opacity-90 active:scale-95 dark:bg-[#ededed] dark:text-[#0a0a0a]">
+          🎡 Spin
+        </button>
+      </div>
+
+      <div id="spinner-card" class="hidden mt-8 overflow-hidden rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+        <div id="card-header" class="bg-gradient-to-br from-link-soft/50 via-violet-soft/30 to-pink-soft/30 p-5 text-center dark:from-[#1a2744] dark:via-[#2a1a3a] dark:to-[#3a1a2a]">
+          <div id="card-emoji" class="text-6xl mb-2 emoji-icon sm:text-7xl"></div>
+          <h3 id="card-name" class="text-lg font-bold text-ink dark:text-[#ededed]"></h3>
+          <p id="card-scientific" class="text-xs italic text-muted mt-1 hidden"></p>
+          <div id="card-conservation" class="mt-2 inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium hidden"></div>
+        </div>
+        <div class="p-4">
+          <p id="card-description" class="text-xs text-body leading-relaxed mb-4 dark:text-[#a1a1a1]"></p>
+          <div class="grid grid-cols-2 gap-2 text-xs sm:gap-3">
+            <div class="flex items-center gap-2 rounded-lg border border-hairline bg-canvas-elevated px-2.5 py-2 dark:border-[#333] dark:bg-[#1a1a1a]">
+              <span>🌍</span>
+              <div class="min-w-0"><p class="text-[10px] text-faint">Habitat</p><p id="sc-habitat" class="font-medium text-ink truncate dark:text-[#ededed]"></p></div>
+            </div>
+            <div class="flex items-center gap-2 rounded-lg border border-hairline bg-canvas-elevated px-2.5 py-2 dark:border-[#333] dark:bg-[#1a1a1a]">
+              <span>🍽️</span>
+              <div class="min-w-0"><p class="text-[10px] text-faint">Diet</p><p id="sc-diet" class="font-medium text-ink truncate dark:text-[#ededed]"></p></div>
+            </div>
+            <div class="flex items-center gap-2 rounded-lg border border-hairline bg-canvas-elevated px-2.5 py-2 dark:border-[#333] dark:bg-[#1a1a1a]">
+              <span>⏱️</span>
+              <div class="min-w-0"><p class="text-[10px] text-faint">Lifespan</p><p id="sc-lifespan" class="font-medium text-ink truncate dark:text-[#ededed]"></p></div>
+            </div>
+            <div class="flex items-center gap-2 rounded-lg border border-hairline bg-canvas-elevated px-2.5 py-2 dark:border-[#333] dark:bg-[#1a1a1a]">
+              <span>⚖️</span>
+              <div class="min-w-0"><p class="text-[10px] text-faint">Weight</p><p id="sc-weight" class="font-medium text-ink truncate dark:text-[#ededed]"></p></div>
+            </div>
+          </div>
+          <div class="mt-3 grid grid-cols-3 gap-2 text-xs">
+            <div class="rounded-lg border border-hairline bg-canvas-elevated p-2 text-center dark:border-[#333] dark:bg-[#1a1a1a]">
+              <p class="text-[10px] text-faint mb-0.5">Speed</p>
+              <p id="sc-speed" class="font-semibold text-ink dark:text-[#ededed]"></p>
+            </div>
+            <div class="rounded-lg border border-hairline bg-canvas-elevated p-2 text-center dark:border-[#333] dark:bg-[#1a1a1a]">
+              <p class="text-[10px] text-faint mb-0.5">Length</p>
+              <p id="sc-length" class="font-semibold text-ink dark:text-[#ededed]"></p>
+            </div>
+            <div class="rounded-lg border border-hairline bg-canvas-elevated p-2 text-center dark:border-[#333] dark:bg-[#1a1a1a]">
+              <p class="text-[10px] text-faint mb-0.5">Region</p>
+              <p id="sc-region" class="font-semibold text-ink dark:text-[#ededed]"></p>
+            </div>
+          </div>
+          <div id="sc-taxonomy" class="mt-3 rounded-lg border border-hairline bg-canvas-elevated p-3 dark:border-[#333] dark:bg-[#1a1a1a]">
+            <p class="text-[10px] uppercase tracking-wider text-faint mb-1.5">🧬 Taxonomy</p>
+            <div class="grid grid-cols-1 gap-1 text-xs sm:grid-cols-3 sm:gap-2">
+              <div class="flex items-center gap-1"><span class="text-faint">Class:</span> <span id="sc-class" class="font-medium text-ink dark:text-[#ededed]"></span></div>
+              <div class="flex items-center gap-1"><span class="text-faint">Order:</span> <span id="sc-order" class="font-medium text-ink dark:text-[#ededed]"></span></div>
+              <div class="flex items-center gap-1"><span class="text-faint">Family:</span> <span id="sc-family" class="font-medium text-ink dark:text-[#ededed]"></span></div>
+            </div>
+          </div>
+          <div class="mt-3 rounded-xl border border-link-soft bg-link-soft/30 p-3 dark:border-[#1e3a5f] dark:bg-[#0f1f33]">
+            <p class="text-[10px] uppercase tracking-wider text-link font-medium mb-1 dark:text-link">💡 Fun Fact</p>
+            <p id="sc-funfact" class="text-xs text-body leading-relaxed dark:text-[#a1a1a1]"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  .wheel-segment {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 50%;
+    height: 50%;
+    transform-origin: 0% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .wheel-segment-inner {
+    position: absolute;
+    left: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center center;
+  }
+</style>
+
+<script define:vars={{ animals: JSON.stringify(animals) }}>
+  const allAnimals = JSON.parse(animals);
+  let spinning = false;
+  let currentRotation = 0;
+
+  const SEGMENT_COLORS = [
+    '#0070f3', '#7928ca', '#ff0080', '#50e3c2', '#f5a623', '#ee0000',
+    '#22c55e', '#a855f7', '#06b6d4', '#f97316', '#ec4899', '#14b8a6',
+  ];
+
+  function getPool() {
+    const cat = document.getElementById('spinner-category').value;
+    return cat === 'all' ? allAnimals : allAnimals.filter(a => a.category === cat);
+  }
+
+  function buildWheel() {
+    const pool = getPool();
+    const wheel = document.getElementById('wheel');
+    const count = Math.min(pool.length, 16);
+    const sliceAngle = 360 / count;
+    const radius = 160;
+
+    wheel.innerHTML = '';
+    wheel.style.background = 'conic-gradient(' +
+      pool.slice(0, count).map((_, i) => {
+        const color = SEGMENT_COLORS[i % SEGMENT_COLORS.length];
+        const start = i * sliceAngle;
+        const end = (i + 1) * sliceAngle;
+        return `${color} ${start}deg ${end}deg`;
+      }).join(', ') +
+    ')';
+
+    pool.slice(0, count).forEach((animal, i) => {
+      const angle = i * sliceAngle + sliceAngle / 2;
+      const rad = (angle - 90) * Math.PI / 180;
+      const r = radius * 0.62;
+      const x = radius + r * Math.cos(rad);
+      const y = radius + r * Math.sin(rad);
+
+      const emoji = document.createElement('div');
+      emoji.className = 'absolute flex flex-col items-center';
+      emoji.style.left = `${x}px`;
+      emoji.style.top = `${y}px`;
+      emoji.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+      emoji.innerHTML = `
+        <span class="text-lg sm:text-2xl leading-none">${animal.emoji}</span>
+      `;
+      wheel.appendChild(emoji);
+    });
+  }
+
+  function spin() {
+    if (spinning) return;
+    spinning = true;
+
+    const btn = document.getElementById('spin-btn');
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Spinning...';
+
+    const pool = getPool();
+    const count = Math.min(pool.length, 16);
+    const sliceAngle = 360 / count;
+
+    const winIndex = Math.floor(Math.random() * count);
+    const winner = pool[winIndex];
+
+    const targetAngle = -(winIndex * sliceAngle + sliceAngle / 2) - 360 * 8 - (currentRotation % 360);
+    currentRotation = targetAngle;
+
+    const wheel = document.getElementById('wheel');
+    wheel.style.transition = 'transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
+    wheel.style.transform = `rotate(${targetAngle}deg)`;
+
+    const centerEmoji = document.getElementById('center-emoji');
+    let tick = 0;
+    const emojis = pool.slice(0, count).map(a => a.emoji);
+    const tickInterval = setInterval(() => {
+      centerEmoji.textContent = emojis[tick % emojis.length];
+      tick++;
+    }, 80);
+
+    setTimeout(() => {
+      clearInterval(tickInterval);
+      spinning = false;
+      btn.disabled = false;
+      btn.innerHTML = '🎡 Spin';
+      centerEmoji.textContent = winner.emoji;
+
+      document.getElementById('result-emoji').textContent = winner.emoji;
+      document.getElementById('result-name').textContent = winner.name;
+      document.getElementById('result-desc').textContent = `${winner.category} · ${winner.region}`;
+
+      const consLabels = {
+        LC: { text: 'Least Concern', color: 'bg-conservation-lc/15 text-conservation-lc border border-conservation-lc/30' },
+        NT: { text: 'Near Threatened', color: 'bg-conservation-nt/15 text-conservation-nt border border-conservation-nt/30' },
+        VU: { text: 'Vulnerable', color: 'bg-conservation-vu/15 text-conservation-vu border border-conservation-vu/30' },
+        EN: { text: 'Endangered', color: 'bg-conservation-en/15 text-conservation-en border border-conservation-en/30' },
+        CR: { text: 'Critically Endangered', color: 'bg-conservation-cr/15 text-conservation-cr border border-conservation-cr/30' },
+        EW: { text: 'Extinct in Wild', color: 'bg-conservation-ew/15 text-conservation-ew border border-conservation-ew/30' },
+        EX: { text: 'Extinct', color: 'bg-conservation-ex/15 text-conservation-ex border border-conservation-ex/30' },
+        DD: { text: 'Data Deficient', color: 'bg-muted/15 text-muted border border-muted/30' },
+      };
+
+      const card = document.getElementById('spinner-card');
+      card.classList.remove('hidden');
+      document.getElementById('card-emoji').textContent = winner.emoji;
+      document.getElementById('card-name').textContent = winner.name;
+
+      const sciEl = document.getElementById('card-scientific');
+      if (winner.scientificName) { sciEl.textContent = winner.scientificName; sciEl.classList.remove('hidden'); } else { sciEl.classList.add('hidden'); }
+
+      const cons = consLabels[winner.conservation] || consLabels.LC;
+      const consEl = document.getElementById('card-conservation');
+      consEl.textContent = cons.text;
+      consEl.className = `mt-2 inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${cons.color}`;
+      consEl.classList.remove('hidden');
+
+      document.getElementById('card-description').textContent = winner.description || '';
+      document.getElementById('sc-habitat').textContent = winner.habitat;
+      document.getElementById('sc-diet').textContent = winner.diet;
+      document.getElementById('sc-lifespan').textContent = winner.lifespan;
+      document.getElementById('sc-weight').textContent = winner.weight;
+      document.getElementById('sc-speed').textContent = winner.speed;
+      document.getElementById('sc-length').textContent = winner.length || '—';
+      document.getElementById('sc-region').textContent = winner.region;
+      document.getElementById('sc-class').textContent = winner.class || '—';
+      document.getElementById('sc-order').textContent = winner.order || '—';
+      document.getElementById('sc-family').textContent = winner.family || '—';
+      document.getElementById('sc-funfact').textContent = winner.funFact;
+
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 5200);
+  }
+
+  buildWheel();
+  document.getElementById('spin-btn')?.addEventListener('click', spin);
+  document.getElementById('spinner-category')?.addEventListener('change', () => {
+    currentRotation = 0;
+    const wheel = document.getElementById('wheel');
+    wheel.style.transition = 'none';
+    wheel.style.transform = 'rotate(0deg)';
+    document.getElementById('center-emoji').textContent = '🎡';
+    document.getElementById('result-emoji').textContent = '❓';
+    document.getElementById('result-name').textContent = 'Spin to discover!';
+    document.getElementById('result-desc').textContent = '';
+    document.getElementById('spinner-card').classList.add('hidden');
+    buildWheel();
+  });
+</script>
