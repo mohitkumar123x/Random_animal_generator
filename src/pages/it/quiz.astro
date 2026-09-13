@@ -1,0 +1,19 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import QuizContent from '../../components/QuizContent.astro';
+import { getTranslations } from '../../utils/i18n';
+
+const locale = 'it';
+const t = getTranslations(locale);
+
+const SITE_URL = 'https://bestrandomanimalgenerator.com';
+const canonical = `${SITE_URL}/${locale}/quiz`;
+---
+
+<Layout title={`${t.animal_quiz} | Random Animal Generator`} description={t.quiz_desc} canonical={canonical} locale={locale} pagePath="/quiz">
+  <Navbar locale={locale} pagePath="/quiz" />
+  <QuizContent locale={locale} />
+  <Footer locale={locale} />
+</Layout>

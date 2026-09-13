@@ -1,0 +1,19 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import SpinnerContent from '../../components/Spinner.astro';
+import { getTranslations } from '../../utils/i18n';
+
+const locale = 'it';
+const t = getTranslations(locale);
+
+const SITE_URL = 'https://bestrandomanimalgenerator.com';
+const canonical = `${SITE_URL}/${locale}/spinner`;
+---
+
+<Layout title={`${t.spinner_title} | Random Animal Generator`} description={t.spinner_desc} canonical={canonical} locale={locale} pagePath="/spinner">
+  <Navbar locale={locale} pagePath="/spinner" />
+  <SpinnerContent locale={locale} />
+  <Footer locale={locale} />
+</Layout>

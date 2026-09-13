@@ -1,23 +1,27 @@
 ---
+import { getTranslations } from '../utils/i18n';
+
 interface Props {
   locale?: string;
+  pagePath?: string;
 }
 
-const { locale = 'en' } = Astro.props;
+const { locale = 'en', pagePath = '/' } = Astro.props;
+const t = getTranslations(locale as any);
 
 const navLinks = [
-  { href: '/', label: 'Home', emoji: '🏠' },
-  { href: '/spinner', label: 'Spinner', emoji: '🎰' },
-  { href: '/quiz', label: 'Quiz', emoji: '🧠' },
-  { href: '/compare', label: 'Compare', emoji: '⚖️' },
-  { href: '/blog', label: 'Blog', emoji: '📝' },
+  { href: '/', label: t.nav_home || 'Home', emoji: '🏠' },
+  { href: '/spinner', label: t.spinner_wheel || 'Spinner', emoji: '🎰' },
+  { href: '/quiz', label: t.animal_quiz || 'Quiz', emoji: '🧠' },
+  { href: '/compare', label: t.compare_animals || 'Compare', emoji: '⚖️' },
+  { href: '/blog', label: t.blog || 'Blog', emoji: '📝' },
 ];
 
 const moreLinks = [
-  { href: '/about-us', label: 'About Us', emoji: 'ℹ️' },
-  { href: '/contact-us', label: 'Contact Us', emoji: '✉️' },
-  { href: '/privacy-policy', label: 'Privacy Policy', emoji: '🔒' },
-  { href: '/terms-and-conditions', label: 'Terms & Conditions', emoji: '📄' },
+  { href: '/about-us', label: t.about_us || 'About Us', emoji: 'ℹ️' },
+  { href: '/contact-us', label: t.contact_us || 'Contact Us', emoji: '✉️' },
+  { href: '/privacy-policy', label: t.privacy_policy || 'Privacy Policy', emoji: '🔒' },
+  { href: '/terms-and-conditions', label: t.terms || 'Terms & Conditions', emoji: '📄' },
 ];
 
 const languages = [
@@ -35,8 +39,8 @@ const languages = [
 ];
 
 function getLocalePath(code: string) {
-  if (code === 'en') return '/';
-  return `/${code}/`;
+  if (code === 'en') return pagePath || '/';
+  return `/${code}${pagePath || '/'}`;
 }
 
 const currentLang = languages.find(l => l.code === locale) || languages[0];
@@ -138,8 +142,8 @@ const currentLang = languages.find(l => l.code === locale) || languages[0];
 
       <!-- Space hint (desktop only) -->
       <div class="hidden lg:flex items-center gap-1 text-xs text-muted">
-        <kbd class="rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]">Space</kbd>
-        <span>Generate</span>
+        <kbd class="rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]">{t.nav_space || 'Space'}</kbd>
+        <span>{t.generate || 'Generate'}</span>
       </div>
 
       <!-- Theme Toggle -->
@@ -184,7 +188,7 @@ const currentLang = languages.find(l => l.code === locale) || languages[0];
   >
     <div class="mx-auto max-w-6xl px-4 py-3 space-y-0.5">
       <!-- Main links -->
-      <p class="px-3 pt-1 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted">Explore</p>
+      <p class="px-3 pt-1 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted">{t.explore || 'Explore'}</p>
       {navLinks.map(link => (
         <a
           href={locale === 'en' ? link.href : `/${locale}${link.href}`}
@@ -196,7 +200,7 @@ const currentLang = languages.find(l => l.code === locale) || languages[0];
       ))}
       <!-- Divider -->
       <div class="my-2 border-t border-hairline dark:border-[#222]"></div>
-      <p class="px-3 pt-1 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted">Company</p>
+      <p class="px-3 pt-1 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted">{t.company || 'Company'}</p>
       {moreLinks.map(link => (
         <a
           href={locale === 'en' ? link.href : `/${locale}${link.href}`}
@@ -208,7 +212,7 @@ const currentLang = languages.find(l => l.code === locale) || languages[0];
       ))}
       <!-- Language Section -->
       <div class="my-2 border-t border-hairline dark:border-[#222]"></div>
-      <p class="px-3 pt-1 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted">Language</p>
+      <p class="px-3 pt-1 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted">{t.nav_language || 'Language'}</p>
       <div class="grid grid-cols-2 gap-1 px-3 pb-2">
         {languages.map(lang => (
           <a

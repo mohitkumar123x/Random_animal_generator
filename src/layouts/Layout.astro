@@ -7,6 +7,7 @@ interface Props {
   type?: string;
   locale?: string;
   dir?: string;
+  pagePath?: string;
 }
 
 const SITE_URL = 'https://bestrandomanimalgenerator.com';
@@ -19,7 +20,8 @@ const {
   image = `${SITE_URL}/og-image.png`,
   type = 'website',
   locale = 'en',
-  dir = 'ltr'
+  dir = 'ltr',
+  pagePath = ''
 } = Astro.props;
 
 const pageTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
@@ -53,9 +55,9 @@ function getAlternateLinks() {
 
     <!-- Hreflang Tags -->
     {allLocales.map(loc => (
-      <link rel="alternate" hreflang={loc} href={loc === 'en' ? SITE_URL : `${SITE_URL}/${loc}`} />
+      <link rel="alternate" hreflang={loc} href={loc === 'en' ? `${SITE_URL}${pagePath}` : `${SITE_URL}/${loc}${pagePath}`} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={SITE_URL} />
+    <link rel="alternate" hreflang="x-default" href={`${SITE_URL}${pagePath}`} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />

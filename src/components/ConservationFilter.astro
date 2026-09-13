@@ -1,46 +1,177 @@
 ---
+import { getTranslations } from '../utils/i18n';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = getTranslations(locale);
+
 const statuses = [
-  { id: 'all', label: 'All Status', color: '#888' },
-  { id: 'LC', label: 'Least Concern', color: '#22c55e' },
-  { id: 'NT', label: 'Near Threatened', color: '#84cc16' },
-  { id: 'VU', label: 'Vulnerable', color: '#eab308' },
-  { id: 'EN', label: 'Endangered', color: '#f97316' },
-  { id: 'CR', label: 'Critically Endangered', color: '#ef4444' },
-  { id: 'EW', label: 'Extinct in Wild', color: '#a855f7' },
-  { id: 'EX', label: 'Extinct', color: '#6b7280' },
-  { id: 'DD', label: 'Data Deficient', color: '#8f8f8f' },
+  { id: 'all', label: t.all_status || 'All Status', color: '#888' },
+  { id: 'LC', label: t.cons_lc || 'Least Concern', color: '#22c55e' },
+  { id: 'NT', label: t.cons_nt || 'Near Threatened', color: '#84cc16' },
+  { id: 'VU', label: t.cons_vu || 'Vulnerable', color: '#eab308' },
+  { id: 'EN', label: t.cons_en || 'Endangered', color: '#f97316' },
+  { id: 'CR', label: t.cons_cr || 'Critically Endangered', color: '#ef4444' },
+  { id: 'EW', label: t.cons_ew || 'Extinct in Wild', color: '#a855f7' },
+  { id: 'EX', label: t.cons_ex || 'Extinct', color: '#6b7280' },
+  { id: 'DD', label: t.cons_dd || 'Data Deficient', color: '#8f8f8f' },
 ];
 ---
 
-<div class="overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0" style="scrollbar-width: none; -ms-overflow-style: none;">
-  <div class="flex flex-nowrap gap-2 min-w-max sm:min-w-0">
-    {statuses.map((s) => (
-      <button
-        data-conservation={s.id}
-        class={`cons-btn inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1.5 text-xs font-medium transition-all sm:px-3 ${s.id === 'all'
-          ? 'border-ink bg-ink text-white dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]'
-          : 'border-hairline bg-canvas-elevated text-body hover:border-faint hover:text-ink dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:border-[#555] dark:hover:text-[#ededed]'
-        }`}
-      >
-        <span class="inline-block h-2 w-2 shrink-0 rounded-full" style={`background-color: ${s.color}`}></span>
-        <span>{s.label}</span>
-      </button>
-    ))}
+<div class="relative -mx-4 sm:mx-0 group/cons">
+  <div
+    id="conservation-filter"
+    class="drag-scroll overflow-x-auto px-6 sm:px-0 pb-1 cursor-grab active:cursor-grabbing select-none scroll-smooth"
+    style="scrollbar-width: none; -ms-overflow-style: none; touch-action: pan-x; -webkit-overflow-scrolling: touch;"
+  >
+    <div class="flex flex-nowrap gap-2 min-w-max sm:min-w-0 pr-6 sm:pr-0">
+      {statuses.map((s) => (
+        <button
+          data-conservation={s.id}
+          draggable="false"
+          aria-label={`Filter by ${s.label}`}
+          class={`cons-btn inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1.5 text-xs font-medium transition-all sm:px-3 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2 ${s.id === 'all'
+            ? 'border-ink bg-ink text-white dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]'
+            : 'border-hairline bg-canvas-elevated text-body hover:border-faint hover:text-ink dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:border-[#555] dark:hover:text-[#ededed]'
+          }`}
+        >
+          <span class="inline-block h-2 w-2 shrink-0 rounded-full" style={`background-color: ${s.color}`}></span>
+          <span>{s.label}</span>
+        </button>
+      ))}
+    </div>
   </div>
+
+  <div id="cons-left-fade" class="pointer-events-none absolute left-0 top-0 bottom-1 w-10 bg-gradient-to-r from-canvas via-canvas/90 to-transparent dark:from-[#0a0a0a] dark:via-[#0a0a0a]/90 opacity-0 transition-opacity duration-200 sm:w-8"></div>
+  <div id="cons-right-fade" class="pointer-events-none absolute right-0 top-0 bottom-1 w-10 bg-gradient-to-l from-canvas via-canvas/90 to-transparent dark:from-[#0a0a0a] dark:via-[#0a0a0a]/90 opacity-0 transition-opacity duration-200 sm:w-8"></div>
+
+  <button
+    id="cons-left-btn"
+    type="button"
+    aria-label="Scroll status left"
+    class="absolute left-1 sm:left-0 top-1/2 -translate-y-1/2 hidden h-7 w-7 items-center justify-center rounded-full border border-hairline bg-canvas-elevated/95 shadow-md backdrop-blur-sm transition-all hover:bg-canvas hover:shadow-lg hover:scale-105 active:scale-95 dark:border-[#333] dark:bg-[#1a1a1a]/90 dark:hover:bg-[#222] z-10"
+  >
+    <svg class="h-3.5 w-3.5 text-ink dark:text-[#ededed]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+  </button>
+  <button
+    id="cons-right-btn"
+    type="button"
+    aria-label="Scroll status right"
+    class="absolute right-1 sm:right-0 top-1/2 -translate-y-1/2 hidden h-7 w-7 items-center justify-center rounded-full border border-hairline bg-canvas-elevated/95 shadow-md backdrop-blur-sm transition-all hover:bg-canvas hover:shadow-lg hover:scale-105 active:scale-95 dark:border-[#333] dark:bg-[#1a1a1a]/90 dark:hover:bg-[#222] z-10"
+  >
+    <svg class="h-3.5 w-3.5 text-ink dark:text-[#ededed]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+  </button>
 </div>
 
+<style>
+  .drag-scroll::-webkit-scrollbar { display: none; }
+  .drag-scroll { scrollbar-width: none; }
+  .drag-scroll.dragging { cursor: grabbing !important; user-select: none; }
+</style>
+
 <script is:inline>
-  document.querySelectorAll('.cons-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.cons-btn').forEach((b) => {
-        b.className = b.className
-          .replace('border-ink bg-ink text-white', 'border-hairline bg-canvas-elevated text-body')
-          .replace('dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]', 'dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1]');
-      });
-      btn.className = btn.className
-        .replace('border-hairline bg-canvas-elevated text-body', 'border-ink bg-ink text-white')
-        .replace('dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1]', 'dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]');
-      window.dispatchEvent(new CustomEvent('conservation-change', { detail: btn.dataset.conservation }));
+  (function() {
+    const slider = document.getElementById('conservation-filter');
+    const leftFade = document.getElementById('cons-left-fade');
+    const rightFade = document.getElementById('cons-right-fade');
+    const leftBtn = document.getElementById('cons-left-btn');
+    const rightBtn = document.getElementById('cons-right-btn');
+    if (!slider) return;
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let hasDragged = false;
+    const threshold = 10;
+
+    function updateIndicators() {
+      const max = slider.scrollWidth - slider.clientWidth;
+      const hasOverflow = max > 10;
+      const atStart = slider.scrollLeft <= 10;
+      const atEnd = slider.scrollLeft >= max - 10;
+      if (!hasOverflow) {
+        leftFade.style.opacity = '0';
+        rightFade.style.opacity = '0';
+        leftBtn.classList.add('hidden'); leftBtn.classList.remove('flex');
+        rightBtn.classList.add('hidden'); rightBtn.classList.remove('flex');
+        return;
+      }
+      leftFade.style.opacity = atStart ? '0' : '1';
+      rightFade.style.opacity = atEnd ? '0' : '1';
+      if (atStart) { leftBtn.classList.add('hidden'); leftBtn.classList.remove('flex'); } else { leftBtn.classList.remove('hidden'); leftBtn.classList.add('flex'); }
+      if (atEnd) { rightBtn.classList.add('hidden'); rightBtn.classList.remove('flex'); } else { rightBtn.classList.remove('hidden'); rightBtn.classList.add('flex'); }
+    }
+
+    slider.addEventListener('scroll', updateIndicators, { passive: true });
+    window.addEventListener('resize', updateIndicators);
+    requestAnimationFrame(() => setTimeout(updateIndicators, 100));
+    setTimeout(updateIndicators, 300);
+
+    leftBtn.addEventListener('click', () => slider.scrollBy({ left: -220, behavior: 'smooth' }));
+    rightBtn.addEventListener('click', () => slider.scrollBy({ left: 220, behavior: 'smooth' }));
+
+    slider.addEventListener('pointerdown', (e) => {
+      isDown = true;
+      hasDragged = false;
+      startX = e.clientX;
+      scrollLeft = slider.scrollLeft;
     });
-  });
+
+    slider.addEventListener('pointermove', (e) => {
+      if (!isDown) return;
+      const x = e.clientX;
+      const walk = x - startX;
+      if (Math.abs(walk) > threshold) {
+        if (!hasDragged) {
+          slider.classList.add('dragging');
+          slider.setPointerCapture(e.pointerId);
+        }
+        hasDragged = true;
+      }
+      if (hasDragged) e.preventDefault();
+      slider.scrollLeft = scrollLeft - walk;
+    });
+
+    const stopDrag = (e) => {
+      if (!isDown) return;
+      isDown = false;
+      slider.classList.remove('dragging');
+      try { slider.releasePointerCapture(e.pointerId); } catch {}
+      if (hasDragged) setTimeout(() => { hasDragged = false; }, 80);
+      setTimeout(updateIndicators, 50);
+    };
+
+    slider.addEventListener('pointerup', stopDrag);
+    slider.addEventListener('pointercancel', stopDrag);
+
+    slider.addEventListener('wheel', (e) => {
+      if (slider.scrollWidth <= slider.clientWidth) return;
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        if (Math.abs(e.deltaY) < 10) return;
+        e.preventDefault();
+        slider.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+
+    slider.addEventListener('dragstart', (e) => e.preventDefault());
+
+    document.querySelectorAll('.cons-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        if (hasDragged) { e.preventDefault(); e.stopPropagation(); return; }
+        document.querySelectorAll('.cons-btn').forEach((b) => {
+          b.className = b.className
+            .replace('border-ink bg-ink text-white', 'border-hairline bg-canvas-elevated text-body')
+            .replace('dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]', 'dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1]');
+        });
+        btn.className = btn.className
+          .replace('border-hairline bg-canvas-elevated text-body', 'border-ink bg-ink text-white')
+          .replace('dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1]', 'dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]');
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        window.dispatchEvent(new CustomEvent('conservation-change', { detail: btn.dataset.conservation }));
+        setTimeout(updateIndicators, 300);
+      });
+    });
+  })();
 </script>

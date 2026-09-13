@@ -1,0 +1,3486 @@
+[
+  {
+    "id": "indian-flying-fox",
+    "en": "Has wingspan up to 1.5 meters"
+  },
+  {
+    "id": "little-brown-bat",
+    "en": "Can eat 1000 mosquitoes per hour"
+  },
+  {
+    "id": "mexican-free-tailed-bat",
+    "en": "Fastest animal in horizontal flight"
+  },
+  {
+    "id": "fruit-bat",
+    "en": "Uses smell instead of echolocation"
+  },
+  {
+    "id": "horseshoe-bat",
+    "en": "Has unique horseshoe-shaped nose leaf"
+  },
+  {
+    "id": "vampire-bat",
+    "en": "Only mammal that feeds entirely on blood"
+  },
+  {
+    "id": "megabat",
+    "en": "Can have wingspan of 1.7 meters"
+  },
+  {
+    "id": "grey-kangaroo",
+    "en": "Can travel at 65 km/h"
+  },
+  {
+    "id": "wallaby",
+    "en": "Smaller relative of kangaroos"
+  },
+  {
+    "id": "tree-kangaroo",
+    "en": "Lives in trees despite being a kangaroo"
+  },
+  {
+    "id": "quokka",
+    "en": "Known as the happiest animal on Earth"
+  },
+  {
+    "id": "quoll",
+    "en": "Native to Australia and New Guinea"
+  },
+  {
+    "id": "numbat",
+    "en": "Eats up to 20000 termites per day"
+  },
+  {
+    "id": "bandicoot",
+    "en": "Important for seed dispersal"
+  },
+  {
+    "id": "sugar-glider",
+    "en": "Can glide up to 50 meters"
+  },
+  {
+    "id": "possum",
+    "en": "Common in Australian suburbs"
+  },
+  {
+    "id": "badger",
+    "en": "Digs extensive underground tunnel systems"
+  },
+  {
+    "id": "fisher",
+    "en": "One of few animals that can kill porcupines"
+  },
+  {
+    "id": "pine-marten",
+    "en": "Can rotate its hind feet to climb down trees"
+  },
+  {
+    "id": "stoat",
+    "en": "Changes coat color with seasons"
+  },
+  {
+    "id": "weasel",
+    "en": "Can squeeze through holes as small as 2cm"
+  },
+  {
+    "id": "european-polecat",
+    "en": "Ancestor of domestic ferrets"
+  },
+  {
+    "id": "mink",
+    "en": "Excellent swimmer and diver"
+  },
+  {
+    "id": "coati",
+    "en": "Lives in bands of 20+ individuals"
+  },
+  {
+    "id": "kinkajou",
+    "en": "Can rotate its feet 180 degrees"
+  },
+  {
+    "id": "tenrec",
+    "en": "Only found in Madagascar"
+  },
+  {
+    "id": "star-nosed-mole",
+    "en": "Can identify and eat food in under 230 milliseconds"
+  },
+  {
+    "id": "golden-mole",
+    "en": "Has iridescent fur"
+  },
+  {
+    "id": "solenodon",
+    "en": "Has venomous saliva"
+  },
+  {
+    "id": "elephant-shrew",
+    "en": "Has a long, flexible snout"
+  },
+  {
+    "id": "chinese-pangolin",
+    "en": "Most trafficked mammal in the world"
+  },
+  {
+    "id": "sunda-pangolin",
+    "en": "Curls into a ball when threatened"
+  },
+  {
+    "id": "indian-pangolin",
+    "en": "Has no teeth but uses strong stomach muscles"
+  },
+  {
+    "id": "white-bellied-pangolin",
+    "en": "Has a prehensile tail"
+  },
+  {
+    "id": "giant-pangolin",
+    "en": "Largest of all pangolins"
+  },
+  {
+    "id": "giant-armadillo",
+    "en": "Can destroy termite mounds with one swipe"
+  },
+  {
+    "id": "nine-banded-armadillo",
+    "en": "Always gives birth to identical quadruplets"
+  },
+  {
+    "id": "pink-fairy-armadillo",
+    "en": "Smallest armadillo species"
+  },
+  {
+    "id": "southern-three-banded-armadillo",
+    "en": "Can roll into a complete ball"
+  },
+  {
+    "id": "giant-anteater",
+    "en": "Can eat 35000 ants per day"
+  },
+  {
+    "id": "two-toed-sloth",
+    "en": "Moves so slowly that algae grows on its fur"
+  },
+  {
+    "id": "southern-tamandua",
+    "en": "Has a prehensile tail"
+  },
+  {
+    "id": "aardvark",
+    "en": "Only living species in its order"
+  },
+  {
+    "id": "bat-eared-fox",
+    "en": "Uses large ears to locate insects underground"
+  },
+  {
+    "id": "fossa",
+    "en": "Closest relative is the mongoose"
+  },
+  {
+    "id": "aardwolf",
+    "en": "Eats only termites"
+  },
+  {
+    "id": "spotted-hyena",
+    "en": "Has one of the strongest bite forces"
+  },
+  {
+    "id": "striped-hyena",
+    "en": "Has a mane of hair along its spine"
+  },
+  {
+    "id": "martens",
+    "en": "Excellent tree climbers"
+  },
+  {
+    "id": "sable",
+    "en": "Prized for its luxurious fur"
+  },
+  {
+    "id": "hog-badger",
+    "en": "Has strong claws for digging"
+  },
+  {
+    "id": "raccoon-dog",
+    "en": "Not actually a raccoon or a dog"
+  },
+  {
+    "id": "crabeater-seal",
+    "en": "Most abundant seal species in the world"
+  },
+  {
+    "id": "weddell-seal",
+    "en": "Can dive for over an hour"
+  },
+  {
+    "id": "ross-seal",
+    "en": "Rarely seen due to remote habitat"
+  },
+  {
+    "id": "arctic-ground-squirrel",
+    "en": "Can supercool its blood to below freezing"
+  },
+  {
+    "id": "nutria",
+    "en": "Also known as coypu"
+  },
+  {
+    "id": "african-crested-porcupine",
+    "en": "Largest porcupine in Africa"
+  },
+  {
+    "id": "springhare",
+    "en": "Can jump up to 2 meters high"
+  },
+  {
+    "id": "cane-rat",
+    "en": "Important bushmeat species in Africa"
+  },
+  {
+    "id": "paca",
+    "en": "Has distinctive white spots along its sides"
+  },
+  {
+    "id": "agouti",
+    "en": "Helps disperse Brazil nut seeds"
+  },
+  {
+    "id": "mara",
+    "en": "Can run at 45 km/h"
+  },
+  {
+    "id": "rock-hyrax",
+    "en": "Closest living relative to the elephant"
+  },
+  {
+    "id": "cape-hyrax",
+    "en": "Has special scent glands"
+  },
+  {
+    "id": "hyrax",
+    "en": "Related to elephants despite its size"
+  },
+  {
+    "id": "golden-moles",
+    "en": "Has iridescent fur"
+  },
+  {
+    "id": "elephant-shrews",
+    "en": "Has a long, flexible snout"
+  },
+  {
+    "id": "fennec-foxes",
+    "en": "Has oversized ears for heat dissipation"
+  },
+  {
+    "id": "blanford-s-fox",
+    "en": "Can jump up to 3 meters vertically"
+  },
+  {
+    "id": "r-ppell-s-fox",
+    "en": "Named after German naturalist Eduard Rüppell"
+  },
+  {
+    "id": "corsac-fox",
+    "en": "Digs burrows in sandy soil"
+  },
+  {
+    "id": "ussuri-brown-bear",
+    "en": "Largest bear in Europe and Asia"
+  },
+  {
+    "id": "kodiak-bear",
+    "en": "One of the largest bear subspecies"
+  },
+  {
+    "id": "gobi-bear",
+    "en": "Rarest bear in the world"
+  },
+  {
+    "id": "syrian-brown-bear",
+    "en": "Smallest of the brown bear subspecies"
+  },
+  {
+    "id": "atlantic-walrus",
+    "en": "Tusks can grow up to 1 meter"
+  },
+  {
+    "id": "pacific-walrus",
+    "en": "Uses tusks to haul out on ice"
+  },
+  {
+    "id": "northern-fur-seal",
+    "en": "Has a thick double-layered coat"
+  },
+  {
+    "id": "guadalupe-fur-seal",
+    "en": "Was once hunted to near extinction"
+  },
+  {
+    "id": "new-zealand-sea-lion",
+    "en": "One of the rarest sea lions"
+  },
+  {
+    "id": "galapagos-sea-lion",
+    "en": "Only lives on the Galapagos Islands"
+  },
+  {
+    "id": "south-american-sea-lion",
+    "en": "Males have thick manes of hair"
+  },
+  {
+    "id": "australian-sea-lion",
+    "en": "Only found in Australia"
+  },
+  {
+    "id": "antarctic-fur-seal",
+    "en": "Has dense fur with up to 300000 hairs per square centimeter"
+  },
+  {
+    "id": "subantarctic-fur-seal",
+    "en": "Found on remote subantarctic islands"
+  },
+  {
+    "id": "pangolin",
+    "en": "Most trafficked mammal in the world"
+  },
+  {
+    "id": "black-footed-ferret",
+    "en": "Once thought to be extinct"
+  },
+  {
+    "id": "steppe-polecat",
+    "en": "Also called the masked polecat"
+  },
+  {
+    "id": "yellow-throated-marten",
+    "en": "Can prey on animals larger than itself"
+  },
+  {
+    "id": "marbled-polecat",
+    "en": "Has distinctive marbled fur pattern"
+  },
+  {
+    "id": "least-weasel",
+    "en": "Smallest carnivore in the world"
+  },
+  {
+    "id": "long-tailed-weasel",
+    "en": "Has a long, black-tipped tail"
+  },
+  {
+    "id": "greater-sheathbill",
+    "en": "Only land bird in Antarctica"
+  },
+  {
+    "id": "yellow-eyed-panda",
+    "en": "Also called the golden panda"
+  },
+  {
+    "id": "tibetan-fox",
+    "en": "Has a distinctive square-shaped face"
+  },
+  {
+    "id": "pale-fox",
+    "en": "Lives in underground burrows"
+  },
+  {
+    "id": "crab-eating-fox",
+    "en": "Eats crabs during rainy season"
+  },
+  {
+    "id": "short-eared-dog",
+    "en": "Only canid in South America's rainforests"
+  },
+  {
+    "id": "bush-dog",
+    "en": "Lives in pack of up to 12"
+  },
+  {
+    "id": "sechuran-fox",
+    "en": "Found only in Peru and Ecuador"
+  },
+  {
+    "id": "darwin-s-fox",
+    "en": "Discovered by Charles Darwin"
+  },
+  {
+    "id": "hoary-fox",
+    "en": "Found only in Brazil"
+  },
+  {
+    "id": "silver-fox",
+    "en": "Melanistic form of red fox"
+  },
+  {
+    "id": "siamese-fox",
+    "en": "Also called the Asian raccoon dog"
+  },
+  {
+    "id": "kit-fox",
+    "en": "Largest ears relative to body size"
+  },
+  {
+    "id": "swift-fox",
+    "en": "Can run at 60 km/h"
+  },
+  {
+    "id": "serengeti-fox",
+    "en": "Also called the steppe fox"
+  },
+  {
+    "id": "gray-fox",
+    "en": "Can climb trees"
+  },
+  {
+    "id": "earless-fox",
+    "en": "Has very small ears"
+  },
+  {
+    "id": "big-eared-fox",
+    "en": "Has enormous ears for thermoregulation"
+  },
+  {
+    "id": "island-fox",
+    "en": "Found only on California's Channel Islands"
+  },
+  {
+    "id": "koslov-s-fox",
+    "en": "Also called the corsac fox"
+  },
+  {
+    "id": "bat-eared-foxes",
+    "en": "Uses large ears to locate insects underground"
+  },
+  {
+    "id": "saharan-fox",
+    "en": "Also called the fennec fox"
+  },
+  {
+    "id": "indian-fox",
+    "en": "Also called the Bengal fox"
+  },
+  {
+    "id": "persian-fox",
+    "en": "Found in the Middle East"
+  },
+  {
+    "id": "bengal-fox",
+    "en": "Has a distinctive black-tipped tail"
+  },
+  {
+    "id": "ugandan-fox",
+    "en": "Found only in Uganda"
+  },
+  {
+    "id": "tundra-fox",
+    "en": "Adapted to extreme cold"
+  },
+  {
+    "id": "mountain-fox",
+    "en": "Found in mountainous regions"
+  },
+  {
+    "id": "cozumel-fox",
+    "en": "Found only on Cozumel Island"
+  },
+  {
+    "id": "gracile-fox",
+    "en": "Smallest fox in South America"
+  },
+  {
+    "id": "simien-fox",
+    "en": "Also called Ethiopian wolf"
+  },
+  {
+    "id": "javan-rhinoceros",
+    "en": "Rarest rhino in the world"
+  },
+  {
+    "id": "sumatran-rhinoceros",
+    "en": "Smallest living rhinoceros"
+  },
+  {
+    "id": "indian-rhinoceros",
+    "en": "Has a single horn"
+  },
+  {
+    "id": "himalayan-tahr",
+    "en": "Excellent mountain climber"
+  },
+  {
+    "id": "markhor",
+    "en": "Has impressive spiral horns"
+  },
+  {
+    "id": "blue-sheep",
+    "en": "Also called bharal"
+  },
+  {
+    "id": "barbary-sheep",
+    "en": "Also called aoudad"
+  },
+  {
+    "id": "musk-deer",
+    "en": "Produces musk for perfume"
+  },
+  {
+    "id": "tufted-deer",
+    "en": "Has small, fang-like canine teeth"
+  },
+  {
+    "id": "muntjac",
+    "en": "Barks when alarmed"
+  },
+  {
+    "id": "reeves-s-muntjac",
+    "en": "Introduced to the UK from China"
+  },
+  {
+    "id": "chinese-water-deer",
+    "en": "Has long, fang-like canine teeth"
+  },
+  {
+    "id": "pere-david-s-deer",
+    "en": "Extinct in the wild, survives only in captivity"
+  },
+  {
+    "id": "sika-deer",
+    "en": "Also called the spotted deer"
+  },
+  {
+    "id": "fallow-deer",
+    "en": "Has a distinctive palmate antler"
+  },
+  {
+    "id": "red-deer",
+    "en": "Largest deer species in the world"
+  },
+  {
+    "id": "reindeer",
+    "en": "Only deer species where both sexes have antlers"
+  },
+  {
+    "id": "elk",
+    "en": "Also called wapiti"
+  },
+  {
+    "id": "sambar-deer",
+    "en": "Largest deer in Southeast Asia"
+  },
+  {
+    "id": "rusa-deer",
+    "en": "Found in Indonesia and Philippines"
+  },
+  {
+    "id": "red-tailed-hawk",
+    "en": "Red-tailed hawks are often dubbed over other raptors in movies because of their piercing scream."
+  },
+  {
+    "id": "great-horned-owl",
+    "en": "Great horned owls have a grip strength of about 300 psi, comparable to a large dogs bite."
+  },
+  {
+    "id": "snowy-owl",
+    "en": "Unlike most owls, snowy owls are diurnal and hunt during daylight hours."
+  },
+  {
+    "id": "northern-saw-whet-owl",
+    "en": "The northern saw-whet owl is one of the smallest owls in North America, weighing less than a soda can."
+  },
+  {
+    "id": "barred-owl",
+    "en": "Barred owls are known for their distinctive call that sounds like Who cooks for you."
+  },
+  {
+    "id": "long-eared-owl",
+    "en": "Long-eared owls have asymmetric ear openings that allow them to pinpoint prey in complete darkness."
+  },
+  {
+    "id": "great-gray-owl",
+    "en": "The great gray owl is the tallest owl in North America, though much of its size is feathers."
+  },
+  {
+    "id": "burrowing-owl",
+    "en": "Burrowing owls nest underground in burrows dug by prairie dogs or ground squirrels."
+  },
+  {
+    "id": "elf-owl",
+    "en": "The elf owl is the smallest owl species in the world, weighing less than a ping pong ball."
+  },
+  {
+    "id": "wood-duck",
+    "en": "Wood ducklings can jump from tree nests up to 50 feet high without injury."
+  },
+  {
+    "id": "northern-pintail",
+    "en": "The northern pintails long tail makes it one of the most elegant ducks in flight."
+  },
+  {
+    "id": "green-winged-teal",
+    "en": "The green-winged teal is the smallest dabbling duck in North America."
+  },
+  {
+    "id": "canvasback",
+    "en": "The canvasback is the largest and fastest diving duck in North America."
+  },
+  {
+    "id": "snow-goose",
+    "en": "Snow goose flocks can number in the hundreds of thousands during migration."
+  },
+  {
+    "id": "greylag-goose",
+    "en": "The greylag goose is the ancestor of most domestic goose breeds in Europe."
+  },
+  {
+    "id": "trumpeter-swan",
+    "en": "The trumpeter swan is the heaviest bird native to North America."
+  },
+  {
+    "id": "tundra-swan",
+    "en": "Tundra swans migrate up to 4,000 miles each way between Arctic breeding grounds and wintering areas."
+  },
+  {
+    "id": "american-robin",
+    "en": "American robins can eat 14 feet of earthworms in a single day."
+  },
+  {
+    "id": "northern-cardinal",
+    "en": "Northern cardinal females also sing, which is rare among North American songbirds."
+  },
+  {
+    "id": "american-crow",
+    "en": "American crows can recognize individual human faces and hold grudges."
+  },
+  {
+    "id": "common-raven",
+    "en": "Ravens can slide down snow-covered roofs for fun and perform aerial acrobatics."
+  },
+  {
+    "id": "house-sparrow",
+    "en": "House sparrows were introduced to North America in 1851 and have since spread across the continent."
+  },
+  {
+    "id": "european-robin",
+    "en": "The European robin is a symbol of Christmas in Britain and appears on many holiday cards."
+  },
+  {
+    "id": "eastern-bluebird",
+    "en": "Eastern bluebirds can see ultraviolet light, which helps them find ripe berries."
+  },
+  {
+    "id": "western-bluebird",
+    "en": "Western bluebirds are one of the few songbirds that nest in old woodpecker holes."
+  },
+  {
+    "id": "baltimore-oriole",
+    "en": "Baltimore orioles weave intricate hanging nests that can take up to two weeks to build."
+  },
+  {
+    "id": "scarlet-tanager",
+    "en": "The male scarlet tanager turns olive-green in winter, looking like a completely different bird."
+  },
+  {
+    "id": "yellow-warbler",
+    "en": "Yellow warblers are one of the first songbirds to arrive on their breeding grounds in spring."
+  },
+  {
+    "id": "white-throated-sparrow",
+    "en": "White-throated sparrows come in two color morphs that pair almost exclusively with each other."
+  },
+  {
+    "id": "dark-eyed-junco",
+    "en": "Dark-eyed juncos are called snowbirds because they appear in southern states during winter."
+  },
+  {
+    "id": "ruby-throated-hummingbird",
+    "en": "Ruby-throated hummingbirds beat their wings 53 times per second and can fly backwards."
+  },
+  {
+    "id": "annas-hummingbird",
+    "en": "Male Annas hummingbirds perform dramatic diving displays that create an audible chirp."
+  },
+  {
+    "id": "black-chinned-hummingbird",
+    "en": "The black chin of this hummingbird flashes brilliant purple when the light hits it at the right angle."
+  },
+  {
+    "id": "belted-kingfisher",
+    "en": "The belted kingfisher is one of the few bird species where females are more colorful than males."
+  },
+  {
+    "id": "great-blue-heron",
+    "en": "Great blue herons can stand motionless for hours waiting for the perfect moment to strike prey."
+  },
+  {
+    "id": "great-egret",
+    "en": "The great egrets long plumes nearly drove it to extinction in the 19th century for use in womens hats."
+  },
+  {
+    "id": "snowy-egret",
+    "en": "Snowy egrets use their bright yellow feet to stir up prey from muddy bottoms."
+  },
+  {
+    "id": "green-heron",
+    "en": "Green herons are one of the few bird species that use tools, dropping bait on the water to attract fish."
+  },
+  {
+    "id": "american-flamingo",
+    "en": "American flamingos are the most brightly colored of all flamingo species."
+  },
+  {
+    "id": "sandhill-crane",
+    "en": "Sandhill cranes perform elaborate dances that include jumping, bowing, and tossing sticks."
+  },
+  {
+    "id": "whooping-crane",
+    "en": "Whooping cranes were once down to only 15 birds in the wild, making them one of the rarest birds in North America."
+  },
+  {
+    "id": "purple-gallinule",
+    "en": "Purple gallinules can walk across lily pads thanks to their extremely long toes."
+  },
+  {
+    "id": "american-coot",
+    "en": "American coots can sink slowly into water to hide, submerging up to their necks."
+  },
+  {
+    "id": "wild-turkey",
+    "en": "Wild turkeys can fly at speeds up to 55 mph and run at 25 mph."
+  },
+  {
+    "id": "ring-necked-pheasant",
+    "en": "Male ring-necked pheasants have such vivid plumage that they were once used as models for dragon illustrations."
+  },
+  {
+    "id": "bobwhite-quail",
+    "en": "The northern bobwhite is named for its distinctive two-note call that sounds like its name."
+  },
+  {
+    "id": "california-quail",
+    "en": "The California quails distinctive head plume curves forward like a question mark."
+  },
+  {
+    "id": "rockhopper-penguin",
+    "en": "Rockhopper penguins bounce from rock to rock using both feet rather than waddling."
+  },
+  {
+    "id": "little-blue-penguin",
+    "en": "Little blue penguins are the smallest penguin species, standing only about 13 inches tall."
+  },
+  {
+    "id": "gentoo-penguin",
+    "en": "Gentoo penguins are the fastest underwater swimming birds, reaching speeds of 22 mph."
+  },
+  {
+    "id": "african-penguin",
+    "en": "African penguins are sometimes called jackass penguins because they bray like donkeys."
+  },
+  {
+    "id": "brown-kiwi",
+    "en": "Kiwi eggs are enormous relative to body size, up to 20% of the females body weight."
+  },
+  {
+    "id": "lyrebird",
+    "en": "The lyrebird can mimic virtually any sound, including chainsaws, camera shutters, and car alarms."
+  },
+  {
+    "id": "cassowary",
+    "en": "The southern cassowary is considered the worlds most dangerous bird due to its powerful kicks."
+  },
+  {
+    "id": "scarlet-macaw",
+    "en": "Scarlet macaws can live over 75 years in captivity and mate for life."
+  },
+  {
+    "id": "blue-and-yellow-macaw",
+    "en": "Blue-and-yellow macaws can fly at speeds up to 35 mph and use their powerful beaks to crack hard nuts."
+  },
+  {
+    "id": "hyacinth-macaw",
+    "en": "The hyacinth macaw is the largest flying parrot in the world, with a wingspan over 4 feet."
+  },
+  {
+    "id": "african-grey-parrot",
+    "en": "African grey parrots are considered the most intelligent bird species, with cognitive abilities rivaling those of young children."
+  },
+  {
+    "id": "budgerigar",
+    "en": "Budgerigars are the third most popular pet in the world after dogs and cats."
+  },
+  {
+    "id": "cockatiel",
+    "en": "Cockatiels are one of the few parrot species that can whistle tunes accurately."
+  },
+  {
+    "id": "keel-billed-toucan",
+    "en": "The toucans colorful bill is surprisingly lightweight, made mostly of keratin with a honeycomb structure."
+  },
+  {
+    "id": "toco-toucan",
+    "en": "The toco toucans bill contains a network of blood vessels that help regulate body temperature."
+  },
+  {
+    "id": "great-hornbill",
+    "en": "Great hornbill pairs seal the female inside a tree cavity during nesting, leaving only a small slit for feeding."
+  },
+  {
+    "id": "rhinoceros-hornbill",
+    "en": "The rhinoceros hornbills upward-curved casque can grow up to 7 inches long."
+  },
+  {
+    "id": "laughing-kookaburra",
+    "en": "The laughing kookaburras call sounds exactly like echoing human laughter."
+  },
+  {
+    "id": "pied-kingfisher",
+    "en": "The pied kingfisher is the only kingfisher species that can hover over water before diving."
+  },
+  {
+    "id": "atlantic-puffin",
+    "en": "Puffins can carry 10 or more fish in their beaks at once thanks to specialized tongue and bill structures."
+  },
+  {
+    "id": "tufted-puffin",
+    "en": "Tufted puffins can dive to depths of over 200 feet to catch fish."
+  },
+  {
+    "id": "wandering-albatross",
+    "en": "The wandering albatross has the largest wingspan of any living bird, reaching over 11 feet."
+  },
+  {
+    "id": "black-browed-albatross",
+    "en": "Black-browed albatrosses can sleep while flying over the ocean."
+  },
+  {
+    "id": "laysan-albatross",
+    "en": "The oldest known wild bird in the world is a Laysan albatross named Wisdom, over 70 years old."
+  },
+  {
+    "id": "brown-pelican",
+    "en": "Brown pelicans can dive from heights of over 60 feet to catch fish, with air sacs cushioning the impact."
+  },
+  {
+    "id": "american-white-pelican",
+    "en": "American white pelicans fish cooperatively, herding schools of fish into shallow water."
+  },
+  {
+    "id": "frigatebird",
+    "en": "Frigatebirds can stay airborne for weeks and sleep while flying over the ocean."
+  },
+  {
+    "id": "northern-gannet",
+    "en": "Northern gannets plunge-dive from heights of 130 feet, hitting the water at 60 mph."
+  },
+  {
+    "id": "blue-footed-booby",
+    "en": "Male blue-footed boobies perform an elaborate dance, lifting their bright blue feet alternately to attract mates."
+  },
+  {
+    "id": "red-footed-booby",
+    "en": "Red-footed boobies are the most abundant booby species and the only ones that regularly nest in trees."
+  },
+  {
+    "id": "great-cormorant",
+    "en": "Cormorants have less preen oil than other waterbirds, which helps them dive but requires wing-drying."
+  },
+  {
+    "id": "common-loon",
+    "en": "Common loons have solid bones that make them less buoyant and better at diving than most birds."
+  },
+  {
+    "id": "arctic-tern",
+    "en": "Arctic terns migrate from Arctic to Antarctic and back each year, the longest migration of any animal, up to 44,000 miles."
+  },
+  {
+    "id": "caspian-tern",
+    "en": "The Caspian tern is the largest tern species in the world."
+  },
+  {
+    "id": "black-skimmer",
+    "en": "The black skimmers lower bill is longer than its upper, allowing it to skim fish from the water surface."
+  },
+  {
+    "id": "herring-gull",
+    "en": "Herring gulls can drink saltwater thanks to special glands above their eyes that filter out excess salt."
+  },
+  {
+    "id": "laughing-gull",
+    "en": "Laughing gulls are named for their call that sounds like high-pitched human laughter."
+  },
+  {
+    "id": "killdeer",
+    "en": "Killdeer perform a broken-wing act to lure predators away from their ground nests."
+  },
+  {
+    "id": "american-woodcock",
+    "en": "American woodcocks have eyes on the sides of their heads and can see 360 degrees."
+  },
+  {
+    "id": "red-knot",
+    "en": "Red knots migrate up to 9,000 miles nonstop from the Arctic to the tip of South America."
+  },
+  {
+    "id": "american-avocet",
+    "en": "American avocets sweep their upturned bills side to side through water to catch tiny invertebrates."
+  },
+  {
+    "id": "black-necked-stilt",
+    "en": "The black-necked stilt has the second-longest legs relative to body size of any bird, after the flamingo."
+  },
+  {
+    "id": "willow-ptarmigan",
+    "en": "Willow ptarmigan change color with the seasons, brown in summer and pure white in winter."
+  },
+  {
+    "id": "spruce-grouse",
+    "en": "Spruce grouse are so tame they are sometimes called fool hens because they rarely fly from danger."
+  },
+  {
+    "id": "ruffed-grouse",
+    "en": "Male ruffed grouse create a drumming sound by beating their wings rapidly to attract females."
+  },
+  {
+    "id": "chukar",
+    "en": "Chukars prefer running uphill to flying when escaping danger."
+  },
+  {
+    "id": "common-crane",
+    "en": "Common cranes perform elaborate dances with jumping, bowing, and wing-flapping during courtship."
+  },
+  {
+    "id": "demoiselle-crane",
+    "en": "Demoiselle cranes fly at altitudes over 26,000 feet during their Himalayan migration."
+  },
+  {
+    "id": "bearded-vulture",
+    "en": "Bearded vultures eat bones, dropping them from great heights to crack them into swallowable pieces."
+  },
+  {
+    "id": "andean-condor",
+    "en": "The Andean condor has the largest wingspan of any raptor, reaching over 10 feet."
+  },
+  {
+    "id": "king-vulture",
+    "en": "King vultures were believed by the Maya to carry messages between humans and gods."
+  },
+  {
+    "id": "turkey-vulture",
+    "en": "Turkey vultures have the best sense of smell of any bird, able to detect carrion from miles away."
+  },
+  {
+    "id": "american-kestrel",
+    "en": "American kestrels can see ultraviolet light, which helps them track the urine trails of rodents."
+  },
+  {
+    "id": "merlin",
+    "en": "Merlins were once known as pigeon hawks due to their habit of hunting pigeons."
+  },
+  {
+    "id": "prairie-falcon",
+    "en": "Prairie falcons can reach speeds over 45 mph in level flight and much faster in a stoop."
+  },
+  {
+    "id": "gyrfalcon",
+    "en": "The gyrfalcon is the largest falcon in the world and was once reserved as a bird of kings."
+  },
+  {
+    "id": "osprey",
+    "en": "Ospreys have reversible outer toes that allow them to grasp fish with two toes in front and two behind."
+  },
+  {
+    "id": "northern-harrier",
+    "en": "Northern harriers have facial discs similar to owls that help them locate prey by sound."
+  },
+  {
+    "id": "coopers-hawk",
+    "en": "Coopers hawks are agile enough to chase prey through dense forest at high speed."
+  },
+  {
+    "id": "sharp-shinned-hawk",
+    "en": "The sharp-shinned hawk is the smallest hawk in North America, barely larger than a jay."
+  },
+  {
+    "id": "swainsons-hawk",
+    "en": "Swainsons hawks migrate in massive flocks of hundreds of thousands from North America to South America."
+  },
+  {
+    "id": "rough-legged-hawk",
+    "en": "Rough-legged hawks have feathered legs all the way to their toes, adapted for Arctic cold."
+  },
+  {
+    "id": "ferruginous-hawk",
+    "en": "The ferruginous hawk is the largest North American hawk, with a wingspan over 5 feet."
+  },
+  {
+    "id": "white-tailed-kite",
+    "en": "White-tailed kites can hover in place for extended periods while scanning the ground for prey."
+  },
+  {
+    "id": "mississippi-kite",
+    "en": "Mississippi kites eat enormous quantities of cicadas and other insects caught in mid-air."
+  },
+  {
+    "id": "red-winged-blackbird",
+    "en": "Red-winged blackbirds are one of the most abundant birds in North America, with over 200 million individuals."
+  },
+  {
+    "id": "brown-headed-cowbird",
+    "en": "Brown-headed cowbirds are brood parasites that lay their eggs in other birds nests."
+  },
+  {
+    "id": "common-grackle",
+    "en": "Common grackles have iridescent feathers that shimmer purple, green, and bronze in the sunlight."
+  },
+  {
+    "id": "great-tailed-grackle",
+    "en": "Male great-tailed grackles have a wingspan of nearly 18 inches and their long tails make up half their total length."
+  },
+  {
+    "id": "yellow-headed-blackbird",
+    "en": "Male yellow-headed blackbirds defend small nesting territories within marshes, sometimes with multiple females."
+  },
+  {
+    "id": "eastern-meadowlark",
+    "en": "The eastern meadowlark looks almost identical to the western meadowlark but has a completely different song."
+  },
+  {
+    "id": "western-meadowlark",
+    "en": "The western meadowlark is the state bird of six different U.S. states, more than any other bird."
+  },
+  {
+    "id": "orchard-oriole",
+    "en": "The orchard oriole is the smallest icterid in North America, smaller than even the house finch."
+  },
+  {
+    "id": "bullocks-oriole",
+    "en": "Bullocks orioles weave elaborate hanging pouch nests that dangle from tree branches."
+  },
+  {
+    "id": "barn-swallow",
+    "en": "Barn swallows migrate up to 6,000 miles between their breeding and wintering grounds."
+  },
+  {
+    "id": "tree-swallow",
+    "en": "Tree swallows are one of the few North American songbirds that can digest berries, allowing them to migrate earlier in spring."
+  },
+  {
+    "id": "cliff-swallow",
+    "en": "Cliff swallows build gourd-shaped mud nests in colonies that can number in the hundreds."
+  },
+  {
+    "id": "purple-martin",
+    "en": "Purple martins are almost completely dependent on human-provided nest boxes in the eastern United States."
+  },
+  {
+    "id": "bank-swallow",
+    "en": "Bank swallows are the smallest swallow species in North America and nest in burrows dug into sandy banks."
+  },
+  {
+    "id": "violet-green-swallow",
+    "en": "Violet-green swallows have white patches on their face that wrap around to the back of their head."
+  },
+  {
+    "id": "chimney-swift",
+    "en": "Chimney swifts can spend almost their entire lives in the air, even sleeping while flying."
+  },
+  {
+    "id": "common-nighthawk",
+    "en": "Common nighthawks have tiny feathers around their mouth that form a wide funnel for catching insects in flight."
+  },
+  {
+    "id": "eastern-whip-poor-will",
+    "en": "Eastern whip-poor-wills can sing up to 400 times per hour, repeating their name-like call all night."
+  },
+  {
+    "id": "greater-roadrunner",
+    "en": "Greater roadrunners can run at speeds up to 20 mph and can live without drinking water."
+  },
+  {
+    "id": "yellow-billed-cuckoo",
+    "en": "Yellow-billed cuckoos are sometimes called rain crows because they call more frequently before storms."
+  },
+  {
+    "id": "hoopoe",
+    "en": "The hoopoe has a spectacular fan-like crest that it raises when excited or alarmed."
+  },
+  {
+    "id": "tawny-frogmouth",
+    "en": "Tawny frogmouths are often mistaken for owls but are actually more closely related to nightjars."
+  },
+  {
+    "id": "common-potoo",
+    "en": "Common potoos perch upright on branches during the day, looking exactly like a broken tree stump."
+  },
+  {
+    "id": "american-goldfinch",
+    "en": "American goldfinches are one of the latest nesting birds, often not breeding until late July."
+  },
+  {
+    "id": "pine-grosbeak",
+    "en": "Pine grosbeaks are one of the tamest boreal birds, often allowing close approach."
+  },
+  {
+    "id": "evening-grosbeak",
+    "en": "Evening grosbeaks are irruptive migrants, showing up in large numbers far south of their normal range in some years."
+  },
+  {
+    "id": "cassins-finch",
+    "en": "Cassins finches are the most recently described North American bird species, not recognized until 1861."
+  },
+  {
+    "id": "red-crossbill",
+    "en": "Red crossbills have uniquely crossed mandibles specifically adapted for extracting seeds from conifer cones."
+  },
+  {
+    "id": "pine-siskin",
+    "en": "Pine siskins can carry salmonella bacteria without getting sick, which can be transmitted to backyard birds at feeders."
+  },
+  {
+    "id": "common-redpoll",
+    "en": "Common redpolls can survive temperatures of -60 degrees Fahrenheit by eating seeds and fluffing their feathers."
+  },
+  {
+    "id": "hoary-redpoll",
+    "en": "The hoary redpoll is one of the hardiest songbirds, living further north than almost any other passerine."
+  },
+  {
+    "id": "house-finch",
+    "en": "Male house finches get their red color from pigments in their diet of berries and fruits."
+  },
+  {
+    "id": "purple-finch",
+    "en": "Roger Tory Peterson described male purple finches as dipped in raspberry juice."
+  },
+  {
+    "id": "eastern-wood-pewee",
+    "en": "The eastern wood-pewees call is so distinctive that the species was named after its song."
+  },
+  {
+    "id": "great-crested-flycatcher",
+    "en": "Great crested flycatchers always incorporate snakeskin into their nest material."
+  },
+  {
+    "id": "eastern-kingbird",
+    "en": "Eastern kingbirds are named for their aggressive territorial behavior, attacking birds much larger than themselves."
+  },
+  {
+    "id": "eastern-phoebe",
+    "en": "The eastern phoebe was the first bird ever banded in North America, by Audubon in 1840."
+  },
+  {
+    "id": "willow-flycatcher",
+    "en": "Willow flycatchers are virtually identical to several other Empidonax flycatchers and are best identified by their distinctive FITZ-bew song."
+  },
+  {
+    "id": "scissor-tailed-flycatcher",
+    "en": "The scissor-tailed flycatchers long tail feathers can be twice as long as its body."
+  },
+  {
+    "id": "vermilion-flycatcher",
+    "en": "The vermilion flycatcher is one of the most brilliantly colored flycatchers in the Western Hemisphere."
+  },
+  {
+    "id": "common-merganser",
+    "en": "Common mergansers have serrated bills that help them grip slippery fish while diving underwater."
+  },
+  {
+    "id": "hooded-merganser",
+    "en": "Hooded mergansers have the largest crest relative to body size of any duck, which they raise and lower at will."
+  },
+  {
+    "id": "bufflehead",
+    "en": "Buffleheads are the smallest diving ducks in North America and often nest in old woodpecker holes."
+  },
+  {
+    "id": "common-goldeneye",
+    "en": "Common goldeneye hens巢巢内产卵后，雌鸟会用自己腹部脱落的绒羽覆盖卵。"
+  },
+  {
+    "id": "ring-necked-duck",
+    "en": "Despite its name, the ring-necked duck neck ring is rarely visible in the field."
+  },
+  {
+    "id": "gadwall",
+    "en": "The gadwall is often called the plain duck, but males have an elegant pattern of fine vermiculation visible up close."
+  },
+  {
+    "id": "blue-winged-teal",
+    "en": "Blue-winged teal are among the earliest spring migrants and latest fall migrants in North America."
+  },
+  {
+    "id": "crested-caracara",
+    "en": "Crested caracaras are members of the falcon family but behave more like vultures, often scavenging on carrion."
+  },
+  {
+    "id": "palm-nut-vulture",
+    "en": "The palm-nut vulture is the only vulture species that feeds primarily on plant material, specifically palm fruits."
+  },
+  {
+    "id": "black-vulture",
+    "en": "Black vultures have excellent eyesight and also use their sense of smell to locate carrion."
+  },
+  {
+    "id": "roseate-spoonbill",
+    "en": "Roseate spoonbills sweep their spatulate bills side to side through shallow water to catch small fish and crustaceans."
+  },
+  {
+    "id": "wood-stork",
+    "en": "Wood storks are the only stork species that breeds in North America and use tactile feeding to catch prey."
+  },
+  {
+    "id": "white-ibis",
+    "en": "White ibises probe mud with their long, curved bills and can detect prey by touch alone."
+  },
+  {
+    "id": "limpkin",
+    "en": "Limpkins are specialized apple snail eaters, with bills specifically adapted to extract snails from their shells."
+  },
+  {
+    "id": "rusty-blackbird",
+    "en": "The rusty blackbird has declined by over 90% in the past 50 years, making it one of North Americas fastest declining birds."
+  },
+  {
+    "id": "blue-tang",
+    "en": "Blue tangs can make themselves nearly invisible at night by changing color."
+  },
+  {
+    "id": "mandarinfish",
+    "en": "Mandarinfish are one of only two vertebrates known to produce blue pigment."
+  },
+  {
+    "id": "sixbar-wrasse",
+    "en": "Sixbar wrasses can change sex from female to male during their lifetime."
+  },
+  {
+    "id": "yellowtail-coris",
+    "en": "Juvenile yellowtail coris look completely different from adults with orange and white spotting."
+  },
+  {
+    "id": "bicolor-angelfish",
+    "en": "Bicolor angelfish can make loud popping sounds for communication."
+  },
+  {
+    "id": "flame-angelfish",
+    "en": "Flame angelfish can become aggressive when kept in small aquariums."
+  },
+  {
+    "id": "queen-angelfish",
+    "en": "Queen angelfish get their name from a dark blue ring on their forehead resembling a crown."
+  },
+  {
+    "id": "french-angelfish",
+    "en": "French angelfish are often seen in monogamous pairs and travel together for life."
+  },
+  {
+    "id": "regal-tang",
+    "en": "Regal tangs have a retractable spine near their tail that can inflict painful wounds."
+  },
+  {
+    "id": "sohal-surgeonfish",
+    "en": "Sohal surgeonfish are extremely territorial and will attack divers who enter their space."
+  },
+  {
+    "id": "moorish-idol",
+    "en": "Moorish idols are notoriously difficult to keep in captivity and rarely survive long in aquariums."
+  },
+  {
+    "id": "royal-gramma",
+    "en": "Royal grammas often hang upside down under rock ledges."
+  },
+  {
+    "id": "longnose-butterflyfish",
+    "en": "The longnose butterflyfish uses its elongated snout to reach into coral crevices for food."
+  },
+  {
+    "id": "copperband-butterflyfish",
+    "en": "Copperband butterflyfish have a false eye spot near their tail to confuse predators."
+  },
+  {
+    "id": "foureye-butterflyfish",
+    "en": "Foureye butterflyfish have large eye spots that make predators think their tail is their head."
+  },
+  {
+    "id": "bluegill",
+    "en": "Male bluegills build circular nests in shallow water and guard the eggs fiercely."
+  },
+  {
+    "id": "largemouth-bass",
+    "en": "Largemouth bass can open their mouths wide enough to gulp down prey nearly half their size."
+  },
+  {
+    "id": "smallmouth-bass",
+    "en": "Smallmouth bass are known for their fighting ability and are called brownies or bronzebacks."
+  },
+  {
+    "id": "rainbow-trout",
+    "en": "Rainbow trout can change color intensity based on their environment and mood."
+  },
+  {
+    "id": "brook-trout",
+    "en": "Brook trout are the only trout native to much of eastern North America."
+  },
+  {
+    "id": "atlantic-salmon",
+    "en": "Atlantic salmon can jump waterfalls and dams during their upstream spawning migration."
+  },
+  {
+    "id": "chinook-salmon",
+    "en": "Chinook salmon are the largest of all Pacific salmon species."
+  },
+  {
+    "id": "coho-salmon",
+    "en": "Coho salmon turn bright red with hooked jaws during spawning season."
+  },
+  {
+    "id": "pacific-bluefin-tuna",
+    "en": "Pacific bluefin tuna can cross the entire Pacific Ocean in less than 60 days."
+  },
+  {
+    "id": "yellowfin-tuna",
+    "en": "Yellowfin tuna can swim at speeds up to 40 miles per hour in short bursts."
+  },
+  {
+    "id": "atlantic-cod",
+    "en": "Atlantic cod can detect their prey using electroreception even in murky water."
+  },
+  {
+    "id": "atlantic-grouper",
+    "en": "Groupers can inhale prey whole by suddenly opening their massive mouths."
+  },
+  {
+    "id": "goliath-grouper",
+    "en": "Goliath groupers are so large they can weigh as much as a small car."
+  },
+  {
+    "id": "red-snapper",
+    "en": "Red snappers can live over 50 years, making them one of the longest-lived snapper species."
+  },
+  {
+    "id": "mahi-mahi",
+    "en": "Mahi-mahi are also called dorado or dolphinfish, not to be confused with dolphins."
+  },
+  {
+    "id": "wahoo",
+    "en": "Wahoo are among the fastest fish in the ocean, capable of reaching speeds up to 50 mph."
+  },
+  {
+    "id": "sailfish",
+    "en": "Sailfish are considered the fastest fish in the ocean, reaching speeds up to 68 mph."
+  },
+  {
+    "id": "blue-marlin",
+    "en": "Blue marlin can weigh over 1,000 pounds and are among the largest bony fish in the world."
+  },
+  {
+    "id": "nassau-grouper",
+    "en": "Nassau grouper can change color in seconds to match their surroundings."
+  },
+  {
+    "id": "striped-bass",
+    "en": "Striped bass are anadromous and can travel hundreds of miles to spawn."
+  },
+  {
+    "id": "red-drum",
+    "en": "Red drum are also called channel bass and are the official state fish of North Carolina."
+  },
+  {
+    "id": "black-drum",
+    "en": "Black drum can produce loud drumming sounds using muscles on their swim bladder."
+  },
+  {
+    "id": "channel-catfish",
+    "en": "Channel catfish have taste buds covering their entire body and can taste food from far away."
+  },
+  {
+    "id": "blue-catfish",
+    "en": "Blue catfish can grow over 100 pounds and are the largest freshwater fish in North America."
+  },
+  {
+    "id": "walking-catfish",
+    "en": "Walking catfish can survive out of water for hours and use their pectoral fins to walk on land."
+  },
+  {
+    "id": "wels-catfish",
+    "en": "Wels catfish have been reported to grow over 16 feet long in rare cases."
+  },
+  {
+    "id": "eurasian-pike",
+    "en": "Eurasian pike can accelerate from a standstill to 20 mph in less than a tenth of a second."
+  },
+  {
+    "id": "muskellunge",
+    "en": "Muskellunge are also called muskies and are the largest member of the pike family."
+  },
+  {
+    "id": "walleye",
+    "en": "Walleye have a light-reflecting layer called the tapetum lucidum that makes their eyes glow at night."
+  },
+  {
+    "id": "common-carp",
+    "en": "Common carp are considered one of the most influential invasive fish species in the world."
+  },
+  {
+    "id": "grass-carp",
+    "en": "Grass carp can eat up to 40% of their body weight in vegetation each day."
+  },
+  {
+    "id": "koi-carp",
+    "en": "The most expensive koi ever sold was a Japanese fish named S Legend that sold for $1.8 million."
+  },
+  {
+    "id": "tench",
+    "en": "Tench secrete a mucus that can heal wounds in other fish."
+  },
+  {
+    "id": "three-spined-stickleback",
+    "en": "Male sticklebacks build elaborate nests from water plants and fan the eggs to provide oxygen."
+  },
+  {
+    "id": "florida-gar",
+    "en": "Florida gar have an elongated snout filled with needle-like teeth and can breathe air."
+  },
+  {
+    "id": "alligator-gar",
+    "en": "Alligator gar eggs are toxic to humans but consumed by Native Americans after processing."
+  },
+  {
+    "id": "bowfin",
+    "en": "Bowfin are the only surviving member of an ancient order of fish."
+  },
+  {
+    "id": "chinese-sturgeon",
+    "en": "Chinese sturgeon have existed for over 140 million years and are called living fossils."
+  },
+  {
+    "id": "atlantic-sturgeon",
+    "en": "Atlantic sturgeon can live over 100 years and were once hunted for their caviar."
+  },
+  {
+    "id": "arctic-char",
+    "en": "Arctic char are the most northerly freshwater fish in the world."
+  },
+  {
+    "id": "lake-trout",
+    "en": "Lake trout can live over 40 years and grow to over 60 pounds."
+  },
+  {
+    "id": "cutthroat-trout",
+    "en": "Cutthroat trout are named for the distinctive red slash under their jaw."
+  },
+  {
+    "id": "golden-trout",
+    "en": "Golden trout are the official state fish of California and are found only in a few remote streams."
+  },
+  {
+    "id": "oceanic-whitetip-shark",
+    "en": "Oceanic whitetip sharks were responsible for more human casualties than any other species during World War II."
+  },
+  {
+    "id": "blacktip-shark",
+    "en": "Blacktip sharks are known for their dramatic breaching behavior, spinning out of the water."
+  },
+  {
+    "id": "scalloped-hammerhead",
+    "en": "Scalloped hammerheads form massive schools of hundreds during their annual migration."
+  },
+  {
+    "id": "thresher-shark",
+    "en": "Thresher sharks use their extremely long tail whip to stun schools of fish."
+  },
+  {
+    "id": "basking-shark",
+    "en": "Basking sharks are the second largest fish in the world, after whale sharks."
+  },
+  {
+    "id": "nurse-shark",
+    "en": "Nurse sharks can pump water over their gills while resting on the ocean floor."
+  },
+  {
+    "id": "zebra-shark",
+    "en": "Zebra sharks change from striped as juveniles to spotted as adults."
+  },
+  {
+    "id": "epaulette-shark",
+    "en": "Epaulette sharks can walk on their fins across the reef flat at low tide."
+  },
+  {
+    "id": "angel-shark",
+    "en": "Angel sharks can bury themselves completely in sand to ambush passing prey."
+  },
+  {
+    "id": "southern-stingray",
+    "en": "Southern stingrays can deliver a venomous barb sting that can cause severe pain."
+  },
+  {
+    "id": "cownose-ray",
+    "en": "Cownose rays migrate in massive schools of thousands along the Atlantic coast."
+  },
+  {
+    "id": "eagle-ray",
+    "en": "Spotted eagle rays can leap several feet out of the water."
+  },
+  {
+    "id": "viperfish",
+    "en": "Viperfish have extremely long, needle-like teeth that are so long they don't fit inside their mouths."
+  },
+  {
+    "id": "gulper-eel",
+    "en": "Gulper eels have enormous mouths that can open wide enough to swallow prey larger than themselves."
+  },
+  {
+    "id": "lungfish",
+    "en": "Lungfish can breathe air and survive out of water for months by burrowing into mud."
+  },
+  {
+    "id": "coelacanth",
+    "en": "Coelacanths were thought to be extinct for 66 million years until rediscovered in 1938."
+  },
+  {
+    "id": "red-bellied-piranha",
+    "en": "Red-bellied piranhas can strip a carcass to bone in minutes with their razor-sharp teeth."
+  },
+  {
+    "id": "arapaima",
+    "en": "Arapaima are among the largest freshwater fish in the world and can breathe air."
+  },
+  {
+    "id": "arowana",
+    "en": "Arowana can jump up to 6 feet out of the water to catch prey on overhanging branches."
+  },
+  {
+    "id": "knifefish",
+    "en": "Black ghost knifefish use weak electric fields to navigate and find prey in dark, murky water."
+  },
+  {
+    "id": "betta",
+    "en": "Male bettas build bubble nests at the water surface for their eggs."
+  },
+  {
+    "id": "discus",
+    "en": "Discus parents produce a mucus secretion that their young feed on for the first few weeks."
+  },
+  {
+    "id": "oscarr",
+    "en": "Oscars are highly intelligent fish that can recognize their owners."
+  },
+  {
+    "id": "angelfish-freshwater",
+    "en": "Freshwater angelfish are actually cichlids, not related to marine angelfish."
+  },
+  {
+    "id": "convict-cichlid",
+    "en": "Convict cichlids are devoted parents that aggressively defend their young."
+  },
+  {
+    "id": "peacock-cichlid",
+    "en": "Male peacock cichlids display brilliant blue, red, and gold colors during breeding."
+  },
+  {
+    "id": "lionfish",
+    "en": "Lionfish venomous spines can cause extreme pain and their venom is heat-stable."
+  },
+  {
+    "id": "stonefish",
+    "en": "Stonefish are the most venomous fish in the world, their sting can be fatal to humans."
+  },
+  {
+    "id": "leafy-seadragon",
+    "en": "Leafy seadragons have no stomach or teeth and must eat almost constantly."
+  },
+  {
+    "id": "weedy-seadragon",
+    "en": "Weedy seadragons carry their eggs on the male's tail until they hatch."
+  },
+  {
+    "id": "boxfish",
+    "en": "Boxfish can release a toxin when stressed that can kill other fish in an aquarium."
+  },
+  {
+    "id": "cowfish",
+    "en": "Longhorn cowfish have two horn-like spines protruding from their head."
+  },
+  {
+    "id": "trunkfish",
+    "en": "Trunkfish can squirt a toxic substance from their skin when threatened."
+  },
+  {
+    "id": "filefish",
+    "en": "Filefish can change color and pattern to match their surroundings."
+  },
+  {
+    "id": "triggerfish",
+    "en": "Triggerfish have a spine on their dorsal fin that can be locked in an upright position."
+  },
+  {
+    "id": "leatherjacket",
+    "en": "Leatherjackets have rough, sandpaper-like skin used by early settlers as sandpaper."
+  },
+  {
+    "id": "parrotfish",
+    "en": "Parrotfish excrete digested coral as fine white sand, creating tropical beaches."
+  },
+  {
+    "id": "wrasse",
+    "en": "Cleaner wrasses set up cleaning stations where larger fish line up to have parasites removed."
+  },
+  {
+    "id": "tuskfish",
+    "en": "Tuskfish use rocks as anvils to crack open shellfish for food."
+  },
+  {
+    "id": "grouper-marbled",
+    "en": "Marbled groupers form massive spawning aggregations of thousands of individuals."
+  },
+  {
+    "id": "wrasse-humphead",
+    "en": "Humphead wrasses can live over 30 years and are the largest living labrid fish."
+  },
+  {
+    "id": "coral-grouper",
+    "en": "Coral groupers hunt cooperatively with moray eels, using head shakes to signal the eel to flush out prey."
+  },
+  {
+    "id": "cardinalfish",
+    "en": "Male Banggai cardinalfish mouthbrood the eggs until they hatch."
+  },
+  {
+    "id": "damselfish",
+    "en": "Male garibaldi build and tend elaborate nests of algae to attract mates."
+  },
+  {
+    "id": "sergeant-major",
+    "en": "Male sergeant majors turn dark purple when guarding their eggs."
+  },
+  {
+    "id": "goby",
+    "en": "Neon gobies set up cleaning stations and remove parasites from larger fish."
+  },
+  {
+    "id": "blenny",
+    "en": "Midas blennies often join schools of cleaner wrasses to avoid predation."
+  },
+  {
+    "id": "scorpionfish",
+    "en": "Scorpionfish are masters of camouflage, resembling algae-covered rocks on the reef."
+  },
+  {
+    "id": "flathead",
+    "en": "Flathead are ambush predators that bury themselves in sand to surprise prey."
+  },
+  {
+    "id": "grunt",
+    "en": "Grunts get their name from the sound they make by grinding their teeth."
+  },
+  {
+    "id": "tang",
+    "en": "Clown tangs are extremely territorial and can be aggressive toward other fish."
+  },
+  {
+    "id": "squirrelfish",
+    "en": "Squirrelfish have large eyes adapted for nocturnal hunting."
+  },
+  {
+    "id": "sweep",
+    "en": "Sweep are named for their distinctive sweeping swimming motion."
+  },
+  {
+    "id": "leatherjacket-freshwater",
+    "en": "New Zealand magpie are freshwater leatherjackets found only in New Zealand."
+  },
+  {
+    "id": "john-dory",
+    "en": "John Dory have a distinctive dark spot on each side that looks like a thumbprint."
+  },
+  {
+    "id": "boarfish",
+    "en": "Boarfish use their elongated snout to extract small invertebrates from coral crevices."
+  },
+  {
+    "id": "bigeye",
+    "en": "Bigeyes have extremely large eyes adapted for nocturnal feeding."
+  },
+  {
+    "id": "soldierfish",
+    "en": "Soldierfish are nocturnal and hide in reef crevices during the day."
+  },
+  {
+    "id": "green-anole",
+    "en": "Green anoles can change color from bright green to brown based on mood, temperature, or social signals."
+  },
+  {
+    "id": "saltwater-crocodile",
+    "en": "Saltwater crocodiles have the strongest bite force of any living animal, estimated at over 3700 psi."
+  },
+  {
+    "id": "reticulated-python",
+    "en": "The reticulated python is the longest snake in the world, with some individuals exceeding 23 feet."
+  },
+  {
+    "id": "panther-chameleon",
+    "en": "Chameleons change color primarily for communication and temperature regulation, not camouflage."
+  },
+  {
+    "id": "american-alligator",
+    "en": "American alligators can regulate their body temperature by opening their mouths to cool down, known as gaping."
+  },
+  {
+    "id": "leopard-gecko",
+    "en": "Leopard geckos can store fat in their tails, which can detach if grabbed by a predator and later regrow."
+  },
+  {
+    "id": "eastern-diamondback-rattlesnake",
+    "en": "The eastern diamondback rattlesnake's rattle can vibrate up to 50 times per second as a warning signal."
+  },
+  {
+    "id": "gila-monster",
+    "en": "The Gila monster's venom contains a compound used in a drug to treat type 2 diabetes."
+  },
+  {
+    "id": "leatherback-sea-turtle",
+    "en": "Leatherback sea turtles are the largest turtles in the world and have existed for over 100 million years."
+  },
+  {
+    "id": "boomslang",
+    "en": "Boomslang venom prevents blood clotting, causing victims to bleed from every orifice."
+  },
+  {
+    "id": "indian-cobra",
+    "en": "The Indian cobra's iconic hood markings are thought to resemble eyes, deterring predators from attacking from behind."
+  },
+  {
+    "id": "rhinoceros-iguana",
+    "en": "Rhinoceros iguanas get their name from the horn-like scales on their snouts, which resemble rhinoceros horns."
+  },
+  {
+    "id": "emerald-tree-boa",
+    "en": "Emerald tree boas have heat-sensing pits along their lips to detect warm-blooded prey in the dark."
+  },
+  {
+    "id": "gharial",
+    "en": "Gharials have the longest and thinnest snouts of any crocodilian, perfectly shaped for catching fish."
+  },
+  {
+    "id": "mexican-beaded-lizard",
+    "en": "The Mexican beaded lizard is one of only a few venomous lizards and can deliver a painful, though rarely fatal, bite."
+  },
+  {
+    "id": "desert-tortoise",
+    "en": "Desert tortoises can store over a liter of water in their bladders and reabsorb it during droughts."
+  },
+  {
+    "id": "tokay-gecko",
+    "en": "Tokay geckos can produce one of the loudest calls of any gecko, heard up to a mile away."
+  },
+  {
+    "id": "king-snake",
+    "en": "King snakes are called 'kings' because they regularly eat other snakes, including venomous rattlesnakes."
+  },
+  {
+    "id": "blue-tongued-skink",
+    "en": "Blue-tongued skinks flash their bright blue tongues to startle predators into backing away."
+  },
+  {
+    "id": "american-crocodile",
+    "en": "American crocodiles are more tolerant of saltwater than alligators, which is why they are found in coastal habitats."
+  },
+  {
+    "id": "asian-water-monitor",
+    "en": "Asian water monitors are excellent swimmers and can hold their breath for up to 30 minutes."
+  },
+  {
+    "id": "eastern-hognose-snake",
+    "en": "Hognose snakes are famous for playing dead when threatened, rolling onto their backs with their mouths open."
+  },
+  {
+    "id": "sailfin-lizard",
+    "en": "Sailfin lizards can run across the surface of water for short distances using their flattened, fringed toes."
+  },
+  {
+    "id": "texas-rat-snake",
+    "en": "Texas rat snakes are excellent climbers and have been found in trees more than 40 feet high."
+  },
+  {
+    "id": "gopher-tortoise",
+    "en": "Gopher tortoise burrows can be over 40 feet long and provide shelter for more than 350 other species."
+  },
+  {
+    "id": "bush-viper",
+    "en": "Bush vipers have keeled, leaf-like scales that give them a spiky, dragon-like appearance unique among snakes."
+  },
+  {
+    "id": "pancake-tortoise",
+    "en": "Pancake tortoises have flat, flexible shells that allow them to wedge themselves into rock crevices to escape predators."
+  },
+  {
+    "id": "cottonmouth",
+    "en": "Cottonmouths get their name from the white, cotton-like lining of their mouth, which they display as a warning."
+  },
+  {
+    "id": "cuban-crocodile",
+    "en": "Cuban crocodiles are the most terrestrial of the New World crocodiles and can gallop like a horse."
+  },
+  {
+    "id": "bearded-dragon",
+    "en": "Bearded dragons puff out their spiny throat scales and open their mouths to appear larger when threatened."
+  },
+  {
+    "id": "yellow-bellied-slider",
+    "en": "Yellow-bellied sliders can bask on logs for hours, using the sun to regulate their body temperature and digest food."
+  },
+  {
+    "id": "western-diamondback-rattlesnake",
+    "en": "Western diamondback rattlesnakes add a new segment to their rattle each time they shed their skin."
+  },
+  {
+    "id": "caiman-lizard",
+    "en": "Caiman lizards have powerful jaws and thick, armored scales that resemble those of caiman crocodilians."
+  },
+  {
+    "id": "nile-crocodile",
+    "en": "Nile crocodiles are considered the most dangerous crocodile species to humans, with an estimated 1000 attacks per year."
+  },
+  {
+    "id": "carpet-python",
+    "en": "Carpet pythons are nocturnal hunters that use heat-sensing pits to detect warm-blooded prey in total darkness."
+  },
+  {
+    "id": "brown-basilisk",
+    "en": "Brown basilisks can run across water using their long toes and fringed scales, earning them the nickname 'Jesus Christ lizard'."
+  },
+  {
+    "id": "dumerils-boa",
+    "en": "Dumeril's boa can reduce its metabolic rate to survive extended periods without food, going months between meals."
+  },
+  {
+    "id": "sulcata-tortoise",
+    "en": "Sulcata tortoises dig extensive burrows up to 10 feet deep to escape the extreme heat of the African savanna."
+  },
+  {
+    "id": "common-caiman",
+    "en": "Common caimans have a bony ridge between their eyes that acts like a built-in pair of sunglasses in bright sunlight."
+  },
+  {
+    "id": "western-hognose-snake",
+    "en": "Western hognose snakes flatten their heads and hiss loudly when threatened, but their bluff rarely escalates to biting."
+  },
+  {
+    "id": "forest-cobra",
+    "en": "The forest cobra is the largest true cobra species and an excellent swimmer, often found near water."
+  },
+  {
+    "id": "veiled-chameleon",
+    "en": "Male veiled chameleons have a tall casque on their heads that may help channel dew drops into their mouths."
+  },
+  {
+    "id": "rough-scaled-sand-boa",
+    "en": "Sand boas spend most of their lives buried underground, with only their eyes and snout visible above the sand."
+  },
+  {
+    "id": "philippine-crocodile",
+    "en": "The Philippine crocodile is the most endangered crocodilian in the world, with fewer than 100 left in the wild."
+  },
+  {
+    "id": "rainbow-boa",
+    "en": "Rainbow boas have iridescent scales that refract light, creating a stunning rainbow shimmer in the sun."
+  },
+  {
+    "id": "giant-plated-lizard",
+    "en": "Giant plated lizards wedge themselves into rock crevices and inflate their bodies, making them nearly impossible to extract."
+  },
+  {
+    "id": "black-spiny-tailed-iguana",
+    "en": "The black spiny-tailed iguana is the fastest lizard in the world, capable of running at 21 mph."
+  },
+  {
+    "id": "burmese-python",
+    "en": "Burmese pythons are one of the largest snake species and have become a destructive invasive species in the Florida Everglades."
+  },
+  {
+    "id": "ornate-box-turtle",
+    "en": "Ornate box turtles can completely seal their hinged plastron shut, trapping themselves inside their shell for protection."
+  },
+  {
+    "id": "common-house-gecko",
+    "en": "Common house geckos are one of the most widespread lizard species on Earth, found on every continent except Antarctica."
+  },
+  {
+    "id": "sidewinder-rattlesnake",
+    "en": "Sidewinders move using a unique S-shaped locomotion that minimizes contact with hot desert sand."
+  },
+  {
+    "id": "chinese-water-dragon",
+    "en": "Chinese water dragons can drop from heights of 40 feet and land safely on branches below."
+  },
+  {
+    "id": "west-african-dwarf-crocodile",
+    "en": "West African dwarf crocodiles are the most terrestrial of all crocodilians and dig deep burrows to rest in during the day."
+  },
+  {
+    "id": "cape-cobra",
+    "en": "Cape cobras are highly venomous and are responsible for the most snakebite deaths in southern Africa."
+  },
+  {
+    "id": "crested-iguana",
+    "en": "Crested iguanas can change color from green to black based on temperature and social context."
+  },
+  {
+    "id": "argentine-tegu",
+    "en": "Argentine tegus can regulate their body temperature during the reproductive season without relying solely on external heat."
+  },
+  {
+    "id": "king-brown-snake",
+    "en": "The king brown snake is technically a black snake, not a brown snake, and is in the genus Pseudechis."
+  },
+  {
+    "id": "false-gharial",
+    "en": "The false gharial has a narrow snout similar to the true gharial but is not closely related to it."
+  },
+  {
+    "id": "indian-star-tortoise",
+    "en": "Indian star tortoises have star-shaped patterns on their shells that help with camouflage and thermoregulation."
+  },
+  {
+    "id": "green-anaconda",
+    "en": "The green anaconda is the heaviest snake in the world, with some individuals weighing over 220 pounds."
+  },
+  {
+    "id": "tuatara",
+    "en": "Tuatara are the last surviving members of an order of reptiles that lived alongside dinosaurs over 200 million years ago."
+  },
+  {
+    "id": "eastern-water-dragon",
+    "en": "Eastern water dragons can swim underwater for up to 90 minutes, closing a special membrane to keep water out of their eyes."
+  },
+  {
+    "id": "spider-tortoise",
+    "en": "Spider tortoises are named for the radiating yellow lines on their shells that resemble a spider's web."
+  },
+  {
+    "id": "russian-tortoise",
+    "en": "Russian tortoises can survive extreme temperatures by brumating underground for up to 6 months during harsh winters."
+  },
+  {
+    "id": "cat-eyed-snake",
+    "en": "Cat-eyed snakes have vertical pupils like cats, giving them excellent night vision for hunting in the dark rainforest."
+  },
+  {
+    "id": "arabian-chameleon",
+    "en": "Arabian chameleons are one of the few chameleon species adapted to live in hot, arid desert conditions."
+  },
+  {
+    "id": "spotted-turtle",
+    "en": "Spotted turtles have yellow spots on their dark shells that become more numerous with age, like counting tree rings."
+  },
+  {
+    "id": "banded-krait",
+    "en": "Banded kraits are twice as venomous as cobras and often cannibalize other snakes, including other kraits."
+  },
+  {
+    "id": "golden-skink",
+    "en": "Golden skinks have a metallic, iridescent sheen that makes them look like they are coated in gold."
+  },
+  {
+    "id": "broad-snouted-caiman",
+    "en": "Broad-snouted caimans build mounds of vegetation to incubate their eggs, using decomposition heat to warm them."
+  },
+  {
+    "id": "copperhead",
+    "en": "Copperheads account for the majority of venomous snakebites in the United States, though their venom is rarely fatal."
+  },
+  {
+    "id": "radiated-tortoise",
+    "en": "Radiated tortoises can live for over 100 years, with some individuals reportedly reaching 188 years of age."
+  },
+  {
+    "id": "blue-racer",
+    "en": "Blue racers are one of the fastest snakes in North America, capable of speeds up to 10 mph."
+  },
+  {
+    "id": "side-blotched-lizard",
+    "en": "Male side-blotched lizards use a rock-paper-scissors strategy with three throat colors to compete for mates."
+  },
+  {
+    "id": "nile-monitor",
+    "en": "Nile monitors are excellent swimmers and can hold their breath for up to an hour while submerged underwater."
+  },
+  {
+    "id": "canebrake-rattlesnake",
+    "en": "Canebrake rattlesnakes have a silent rattle compared to other rattlesnake species, often delivering strikes without warning."
+  },
+  {
+    "id": "yellow-footed-tortoise",
+    "en": "Yellow-footed tortoises play a crucial role in seed dispersal in the Amazon, helping to regenerate the rainforest."
+  },
+  {
+    "id": "puff-adder",
+    "en": "Puff adders are responsible for more snakebite deaths in Africa than any other snake due to their excellent camouflage."
+  },
+  {
+    "id": "eastern-green-mamba",
+    "en": "Eastern green mambas are arboreal and rarely descend to the ground, spending their lives in the forest canopy."
+  },
+  {
+    "id": "cape-dwarf-chameleon",
+    "en": "Cape dwarf chameleons have independently moving eyes that can rotate 180 degrees, giving them a 360-degree field of vision."
+  },
+  {
+    "id": "chinese-alligator",
+    "en": "Chinese alligators are the most endangered crocodilian species, with fewer than 150 individuals remaining in the wild."
+  },
+  {
+    "id": "snouted-cobra",
+    "en": "Snouted cobras can spit venom accurately up to 2 meters, aiming for the eyes of perceived threats."
+  },
+  {
+    "id": "common-wall-lizard",
+    "en": "Common wall lizards have been introduced to North America from Europe and are now thriving in cities like Toronto and Vancouver."
+  },
+  {
+    "id": "brown-tree-snake",
+    "en": "The brown tree snake has driven at least 10 bird species to extinction on Guam after accidentally introduced there."
+  },
+  {
+    "id": "angulate-tortoise",
+    "en": "Angulate tortoises are the most southerly distributed tortoise species in Africa, found even in the cool, wet Western Cape."
+  },
+  {
+    "id": "savannah-monitor",
+    "en": "Savannah monitors can slow their metabolism so much that they can survive on as few as three large meals per year."
+  },
+  {
+    "id": "white-lipped-pit-viper",
+    "en": "White-lipped pit vipers have heat-sensing pits between their eyes and nostrils that detect warm-blooded prey in complete darkness."
+  },
+  {
+    "id": "alabama-red-bellied-cooter",
+    "en": "Alabama red-bellied cooters can bask for hours, using the sun to synthesize vitamin D3 for shell health."
+  },
+  {
+    "id": "amazon-tree-boa",
+    "en": "Amazon tree boas are incredibly variable in color and pattern, with no two individuals looking exactly alike."
+  },
+  {
+    "id": "california-kingsnake",
+    "en": "California kingsnakes are immune to rattlesnake venom and regularly prey upon rattlesnakes in the wild."
+  },
+  {
+    "id": "clouded-monitor",
+    "en": "Clouded monitors are arboreal and have sharp claws that allow them to climb vertical tree trunks with ease."
+  },
+  {
+    "id": "brazilian-rainbow-boa",
+    "en": "Brazilian rainbow boas have iridescent scales that create a holographic rainbow effect when exposed to light."
+  },
+  {
+    "id": "northern-cuirassated-lizard",
+    "en": "Northern cuirassated lizards have bony armor plates called osteoderms that provide protection from predators."
+  },
+  {
+    "id": "desert-iguana",
+    "en": "Desert iguanas can tolerate body temperatures up to 120°F, making them one of the most heat-tolerant lizards."
+  },
+  {
+    "id": "false-water-cobra",
+    "en": "False water cobras flatten their necks like true cobras when threatened, despite being only mildly venomous."
+  },
+  {
+    "id": "garter-snake",
+    "en": "Garter snakes are mildly venomous but harmless to humans, making them one of the most common backyard snakes."
+  },
+  {
+    "id": "shingleback-skink",
+    "en": "Shingleback skinks mate for life and reunite with the same partner every breeding season."
+  },
+  {
+    "id": "mozambique-spitting-cobra",
+    "en": "Mozambique spitting cobras can spit venom accurately up to 3 meters, targeting the eyes of threats."
+  },
+  {
+    "id": "american-bullfrog",
+    "en": "American Bullfrogs can eat almost anything they can fit in their mouths, including other frogs, birds, and even snakes."
+  },
+  {
+    "id": "glass-frog",
+    "en": "Glass Frogs have transparent abdominal skin that allows you to see their beating heart and internal organs."
+  },
+  {
+    "id": "pacman-frog",
+    "en": "Pacman Frogs are named after the video game character due to their enormous mouths and round bodies."
+  },
+  {
+    "id": "budgetts-frog",
+    "en": "Budgett's Frogs inflate their bodies and scream when threatened to appear larger and more intimidating."
+  },
+  {
+    "id": "whites-tree-frog",
+    "en": "White's Tree Frogs have fatty deposits above their eyes that look like eyebrows, giving them a perpetual smile."
+  },
+  {
+    "id": "african-dwarf-frog",
+    "en": "African Dwarf Frogs are fully aquatic and spend their entire lives underwater, unlike most frogs."
+  },
+  {
+    "id": "amazon-milk-frog",
+    "en": "Amazon Milk Frogs secrete a milky white toxin when threatened and can change color from light to dark blue."
+  },
+  {
+    "id": "gray-tree-frog",
+    "en": "Gray Tree Frogs can change color from gray to green depending on their environment and activity level."
+  },
+  {
+    "id": "spring-peeper",
+    "en": "The Spring Peeper's high-pitched peeping call can be heard from over a mile away during breeding season."
+  },
+  {
+    "id": "wood-frog",
+    "en": "Wood Frogs can survive being frozen solid, with up to 65% of their body water turning to ice."
+  },
+  {
+    "id": "american-toad",
+    "en": "A single American Toad can eat up to 1,000 insects per day, making them excellent garden pest controllers."
+  },
+  {
+    "id": "cane-toad",
+    "en": "Cane Toads were introduced to Australia in 1935 to control beetles but became one of the worst invasive species in the world."
+  },
+  {
+    "id": "fire-bellied-toad",
+    "en": "Fire-Bellied Toads display their bright orange-red bellies when threatened in a behavior called the unken reflex."
+  },
+  {
+    "id": "desert-rain-frog",
+    "en": "Desert Rain Frogs let out a high-pitched squeak when threatened, sounding like a dog toy."
+  },
+  {
+    "id": "goliath-frog",
+    "en": "The Goliath Frog is the largest living frog in the world, weighing up to 7 pounds and spanning over a foot long."
+  },
+  {
+    "id": "mountain-chicken-frog",
+    "en": "Despite their name, Mountain Chicken Frogs are not chickens but are called so because their leg meat tastes like chicken."
+  },
+  {
+    "id": "spadefoot-toad",
+    "en": "Spadefoot Toads can burrow underground and remain dormant for up to nine months, emerging only when it rains."
+  },
+  {
+    "id": "natterjack-toad",
+    "en": "Natterjack Toads are one of the loudest European amphibians, with calls that can be heard over a mile away."
+  },
+  {
+    "id": "midwife-toad",
+    "en": "Male Midwife Toads carry the eggs wrapped around their hind legs until they are ready to hatch."
+  },
+  {
+    "id": "european-tree-frog",
+    "en": "European Tree Frogs have adhesive toe pads that allow them to climb smooth surfaces, including glass."
+  },
+  {
+    "id": "leopard-frog",
+    "en": "Leopard Frogs can jump up to 20 times their body length in a single leap."
+  },
+  {
+    "id": "strawberry-poison-dart-frog",
+    "en": "The Strawberry Poison Dart Frog has over 30 color morphs, ranging from red with blue legs to green with yellow spots."
+  },
+  {
+    "id": "dyeing-poison-dart-frog",
+    "en": "The Dyeing Poison Dart Frog was named because indigenous people used its toxins to dye fabric."
+  },
+  {
+    "id": "harlequin-toad",
+    "en": "Many Harlequin Toad species were thought to be extinct until small populations were rediscovered in recent years."
+  },
+  {
+    "id": "pickerel-frog",
+    "en": "Pickerel Frogs produce a toxin that can irritate human skin and is lethal to other frogs."
+  },
+  {
+    "id": "cherry-tree-frog",
+    "en": "Cherry Tree Frogs can change color from bright green to brown depending on their surroundings."
+  },
+  {
+    "id": "asian-common-toad",
+    "en": "Asian Common Toads are extremely adaptable and thrive in human-modified environments across Southeast Asia."
+  },
+  {
+    "id": "clown-tree-frog",
+    "en": "Clown Tree Frogs are named for their playful, acrobatic movements through the trees."
+  },
+  {
+    "id": "gliding-tree-frog",
+    "en": "Gliding Tree Frogs can spread their enlarged toe pads and webbed feet to glide between trees."
+  },
+  {
+    "id": "black-legged-poison-frog",
+    "en": "Black-Legged Poison Frogs exhibit biparental care, with both parents tending to their eggs and tadpoles."
+  },
+  {
+    "id": "red-backed-poison-frog",
+    "en": "Red-Backed Poison Frogs use their bright coloration to warn predators of their skin toxins in a strategy called aposematism."
+  },
+  {
+    "id": "splashback-poison-frog",
+    "en": "Splashback Poison Frogs get their name from their colorful backs that look like paint splashes."
+  },
+  {
+    "id": "cane-turtle-frog",
+    "en": "Cane Turtle Frogs have a flattened body shape that allows them to hide under rocks and logs."
+  },
+  {
+    "id": "malaysian-horned-frog",
+    "en": "Malaysian Horned Frogs have horn-like projections above their eyes that help break up their outline among leaf litter."
+  },
+  {
+    "id": "hampire-poison-dart-frog",
+    "en": "Hampire Poison Dart Frogs are named after the Harry Potter character due to their striking black and orange pattern."
+  },
+  {
+    "id": "brazilian-horned-frog",
+    "en": "Brazilian Horned Frogs are ambush predators that can remain motionless for hours waiting for prey."
+  },
+  {
+    "id": "hairy-frog",
+    "en": "Male Hairy Frogs grow hair-like skin projections during breeding season to help absorb oxygen from water."
+  },
+  {
+    "id": "tomato-frog",
+    "en": "Tomato Frogs secrete a thick, white substance that can glue a predator's mouth shut."
+  },
+  {
+    "id": "marsupial-frog",
+    "en": "Female Marsupial Frogs carry their eggs in a pouch on their back, similar to marsupial mammals."
+  },
+  {
+    "id": "foam-nest-frog",
+    "en": "Foam Nest Frogs create a frothy nest by beating their hind legs to whip up a foam that protects their eggs."
+  },
+  {
+    "id": "surinam-toad",
+    "en": "Female Surinam Toads have eggs embedded in the skin of their backs, where they develop into froglets."
+  },
+  {
+    "id": "tiger-salamander",
+    "en": "Tiger Salamanders are one of the longest-lived amphibians, with some individuals living over 20 years in captivity."
+  },
+  {
+    "id": "eastern-newt",
+    "en": "The juvenile Eastern Newt, called a red eft, is brightly colored to warn predators of its toxins."
+  },
+  {
+    "id": "hellbender",
+    "en": "Hellbenders absorb oxygen through their wrinkly skin and are an indicator species for water quality."
+  },
+  {
+    "id": "olm",
+    "en": "Olms can survive without food for up to 10 years and are among the longest-lived amphibians."
+  },
+  {
+    "id": "fire-salamander",
+    "en": "Fire Salamanders were once believed to be born from fire and could extinguish flames with their cold bodies."
+  },
+  {
+    "id": "spotted-salamander",
+    "en": "Spotted Salamanders have a symbiotic relationship with algae that lives inside their cells."
+  },
+  {
+    "id": "red-backed-salamander",
+    "en": "Red-Backed Salamanders breathe entirely through their skin and have no lungs or gills as adults."
+  },
+  {
+    "id": "mudpuppy",
+    "en": "Mudpuppies retain their external gills throughout their entire lives, a condition called neoteny."
+  },
+  {
+    "id": "rough-skinned-newt",
+    "en": "Rough-Skinned Newts produce enough tetrodotoxin to kill several adult humans."
+  },
+  {
+    "id": "alpine-salamander",
+    "en": "Alpine Salamanders are entirely viviparous, giving birth to fully developed young rather than laying eggs."
+  },
+  {
+    "id": "great-crested-newt",
+    "en": "Male Great Crested Newts develop a jagged crest along their back during breeding season."
+  },
+  {
+    "id": "marbled-salamander",
+    "en": "Female Marbled Salamanders stay with their eggs and guard them until they hatch."
+  },
+  {
+    "id": "long-toed-salamander",
+    "en": "Long-Toed Salamanders can have up to 13 toes on their hind feet, more than most salamanders."
+  },
+  {
+    "id": "slimy-salamander",
+    "en": "Slimy Salamanders secrete a sticky, glue-like substance from their skin that is difficult to remove."
+  },
+  {
+    "id": "red-salamander",
+    "en": "Red Salamanders are one of the largest lungless salamanders in North America."
+  },
+  {
+    "id": "lesser-siren",
+    "en": "Lesser Sirens can breathe through their gills and also through their skin, and can survive drying by burrowing into mud."
+  },
+  {
+    "id": "greater-siren",
+    "en": "Greater Sirens are the largest species in the Sirenidae family and can exceed three feet in length."
+  },
+  {
+    "id": "three-toed-amphiuma",
+    "en": "Three-Toed Amphiumas have vestigial legs that are so small they are almost impossible to see."
+  },
+  {
+    "id": "waterdog",
+    "en": "Waterdogs retain their external gills throughout their lives, a condition known as neoteny."
+  },
+  {
+    "id": "spring-salamander",
+    "en": "Spring Salamanders are one of the few salamander species that can live their entire lives in water."
+  },
+  {
+    "id": "cave-salamander",
+    "en": "Cave Salamanders can climb vertical rock faces using their specialized toe pads."
+  },
+  {
+    "id": "arboreal-salamander",
+    "en": "Arboreal Salamanders can climb trees and have prehensile tails for gripping branches."
+  },
+  {
+    "id": "ensatina",
+    "en": "Ensatina salamanders form a ring species around California's Central Valley, with different subspecies at each end."
+  },
+  {
+    "id": "slender-salamander",
+    "en": "Slender Salamanders can coil into a tight spiral to conserve moisture."
+  },
+  {
+    "id": "ringed-salamander",
+    "en": "Ringed Salamanders migrate to breed during autumn rains, one of the few fall-breeding amphibians."
+  },
+  {
+    "id": "flatwoods-salamander",
+    "en": "Flatwoods Salamanders have a distinctive dark crossband pattern that helps them camouflage on the forest floor."
+  },
+  {
+    "id": "dusky-salamander",
+    "en": "Dusky Salamanders can autotomize their tails when threatened, which continue to wiggle and distract predators."
+  },
+  {
+    "id": "four-toed-salamander",
+    "en": "Four-Toed Salamanders have only four toes on their hind feet, unlike most salamanders which have five."
+  },
+  {
+    "id": "gulf-coast-salamander",
+    "en": "Gulf Coast Salamanders are one of the few salamander species that can tolerate slightly brackish water."
+  },
+  {
+    "id": "tropical-caecilian",
+    "en": "Caecilians are often mistaken for snakes or worms, but they are actually limbless amphibians."
+  },
+  {
+    "id": "boulengers-caecilian",
+    "en": "Boulenger's Caecilians have minute vestigial eyes that can detect light but not form images."
+  },
+  {
+    "id": "ringed-caecilian",
+    "en": "Ringed Caecilians have a unique sensory organ called a tentacle that helps them detect prey underground."
+  },
+  {
+    "id": "luna-moth",
+    "en": "Luna moths do not have mouths and cannot eat as adults, living only on stored energy."
+  },
+  {
+    "id": "atlas-moth",
+    "en": "The atlas moth is one of the largest insects in the world by wing area."
+  },
+  {
+    "id": "swallowtail-butterfly",
+    "en": "Female swallowtails can mimic the toxic pipevine swallowtail to avoid predators."
+  },
+  {
+    "id": "hawk-moth",
+    "en": "Hawk moths are among the fastest flying insects, capable of hovering like hummingbirds."
+  },
+  {
+    "id": "painted-lady-butterfly",
+    "en": "Painted ladies migrate across the Sahara Desert and the Mediterranean Sea."
+  },
+  {
+    "id": "blue-morpho-butterfly",
+    "en": "The morpho's blue color is not pigment but structural coloration from microscopic scales."
+  },
+  {
+    "id": "glasswing-butterfly",
+    "en": "The glasswing butterfly has nearly transparent wings due to nanopillar structures."
+  },
+  {
+    "id": "cecropia-moth",
+    "en": "The cecropia moth is the largest native moth in North America."
+  },
+  {
+    "id": "io-moth",
+    "en": "Each wing of the io moth has a large, striking eyespot that deters predators."
+  },
+  {
+    "id": "polyphemus-moth",
+    "en": "The polyphemus moth is named after the one-eyed Greek giant Polyphemus."
+  },
+  {
+    "id": "viceroy-butterfly",
+    "en": "Viceroys mimic the toxic monarch butterfly for protection from predators."
+  },
+  {
+    "id": "red-admiral-butterfly",
+    "en": "Red admirals are territorial and will chase other butterflies from their favorite basking spots."
+  },
+  {
+    "id": "great-spangled-fritillary",
+    "en": "Fritillary caterpillars feed exclusively on violets, which is how the group got its name."
+  },
+  {
+    "id": "clouded-yellow-butterfly",
+    "en": "Clouded yellows are strong migrants that can travel hundreds of miles."
+  },
+  {
+    "id": "comma-butterfly",
+    "en": "The comma butterfly is named for the small white comma-shaped mark on its underwings."
+  },
+  {
+    "id": "mourning-cloak-butterfly",
+    "en": "The mourning cloak is one of the longest-lived butterflies and overwinters as an adult."
+  },
+  {
+    "id": "zebra-longwing-butterfly",
+    "en": "Zebra longwings are the state butterfly of Florida and can live on pollen alone."
+  },
+  {
+    "id": "snowflake-butterfly",
+    "en": "The snowflake butterfly has mostly white wings with delicate black tips."
+  },
+  {
+    "id": "resurrection-butterfly",
+    "en": "The resurrection butterfly is considered a symbol of rebirth in Japanese culture."
+  },
+  {
+    "id": "cabbage-white-butterfly",
+    "en": "The small white is one of the most common butterflies in the world and a notorious garden pest."
+  },
+  {
+    "id": "atlas-beetle",
+    "en": "Atlas beetles can carry objects 850 times their own body weight."
+  },
+  {
+    "id": "goliath-beetle",
+    "en": "Goliath beetles are among the heaviest insects in the world."
+  },
+  {
+    "id": "rhinoceros-beetle",
+    "en": "Rhinoceros beetles can lift objects 850 times their own body weight."
+  },
+  {
+    "id": "stag-beetle",
+    "en": "Male stag beetles use their enormous mandibles to wrestle rivals for mates."
+  },
+  {
+    "id": "dung-beetle",
+    "en": "Dung beetles navigate using the Milky Way, the first insects found to use stars."
+  },
+  {
+    "id": "tiger-beetle",
+    "en": "Tiger beetles run so fast they go temporarily blind because their eyes cannot process images quickly enough."
+  },
+  {
+    "id": "longhorn-beetle",
+    "en": "The Asian longhorned beetle can kill healthy hardwood trees by tunneling through their bark."
+  },
+  {
+    "id": "click-beetle",
+    "en": "Click beetles can launch themselves into the air with a clicking mechanism without using their legs."
+  },
+  {
+    "id": "bombardier-beetle",
+    "en": "Bombardier beetles spray a boiling chemical spray at 212 degrees Fahrenheit from their abdomen."
+  },
+  {
+    "id": "june-bug",
+    "en": "June bugs are clumsy fliers and often bounce off windows and walls."
+  },
+  {
+    "id": "whirligig-beetle",
+    "en": "Whirligig beetles have four eyes: two for seeing above water and two for seeing below."
+  },
+  {
+    "id": "diving-beetle",
+    "en": "Diving beetles carry an air bubble under their wing covers to breathe underwater."
+  },
+  {
+    "id": "oil-beetle",
+    "en": "Oil beetles secrete oily droplets from their joints that repel predators and can blister human skin."
+  },
+  {
+    "id": "bess-beetle",
+    "en": "Bess beetles communicate by rubbing their abdomen to make squeaking sounds."
+  },
+  {
+    "id": "bark-beetle",
+    "en": "Mountain pine beetle outbreaks can kill millions of acres of forest in a single year."
+  },
+  {
+    "id": "sacred-scarab-beetle",
+    "en": "Ancient Egyptians revered the scarab as a symbol of the sun god Khepri."
+  },
+  {
+    "id": "carrion-beetle",
+    "en": "Carrion beetles can locate a dead animal from over a mile away using chemical sensors."
+  },
+  {
+    "id": "patrol-bess-beetle",
+    "en": "Patrol bess beetles produce sounds by rubbing ridges on their abdomen when disturbed."
+  },
+  {
+    "id": "eyed-click-beetle",
+    "en": "The eyed click beetle has two large eyespots on its thorax that startle predators."
+  },
+  {
+    "id": "rose-chafer",
+    "en": "Rose chafers can fly with their elytra closed, using only their hind wings."
+  },
+  {
+    "id": "japanese-beetle",
+    "en": "Japanese beetles release aggregation pheromones that attract more beetles to feed."
+  },
+  {
+    "id": "colorado-potato-beetle",
+    "en": "The Colorado potato beetle is one of the most insecticide-resistant pests in the world."
+  },
+  {
+    "id": "lily-beetle",
+    "en": "Lily beetles are bright red, making them easy to spot on green leaves."
+  },
+  {
+    "id": "elm-beetle",
+    "en": "Elm leaf beetles can enter homes through small cracks and hibernate indoors during winter."
+  },
+  {
+    "id": "fire-ant",
+    "en": "Fire ant colonies can form living rafts that float on water for weeks during floods."
+  },
+  {
+    "id": "leafcutter-ant",
+    "en": "Leafcutter ants are the largest consumers of vegetation in the Neotropics."
+  },
+  {
+    "id": "bullet-ant",
+    "en": "The bullet ant's sting is rated as the most painful insect sting in the world."
+  },
+  {
+    "id": "army-ant",
+    "en": "Army ant colonies of millions move in massive raiding columns that devour everything in their path."
+  },
+  {
+    "id": "trap-jaw-ant",
+    "en": "Trap-jaw ants can snap their mandibles at speeds exceeding 140 mph."
+  },
+  {
+    "id": "weaver-ant",
+    "en": "Weaver ants use their own larvae as living glue guns to stitch leaves together."
+  },
+  {
+    "id": "honeybee",
+    "en": "A single honeybee colony can visit over 225,000 flowers to produce one pound of honey."
+  },
+  {
+    "id": "bumblebee",
+    "en": "Bumblebees can fly in colder temperatures than most bees due to their ability to thermoregulate."
+  },
+  {
+    "id": "carpenter-bee",
+    "en": "Carpenter bees drill perfectly round holes in wood to create nesting galleries."
+  },
+  {
+    "id": "paper-wasp",
+    "en": "Paper wasps build their nests from chewed wood fibers mixed with saliva."
+  },
+  {
+    "id": "yellow-jacket",
+    "en": "Yellow jacket colonies can grow to contain 4,000 or more workers by late summer."
+  },
+  {
+    "id": "bald-faced-hornet",
+    "en": "Bald-faced hornets can spray venom from their stingers up to several feet."
+  },
+  {
+    "id": "european-hornet",
+    "en": "European hornets are attracted to light and will often fly into homes at night."
+  },
+  {
+    "id": "tarantula-hawk-wasp",
+    "en": "The tarantula hawk has one of the most painful insect stings in the world."
+  },
+  {
+    "id": "cuckoo-wasp",
+    "en": "Cuckoo wasps can curl into a ball when threatened, using their armored exoskeleton for protection."
+  },
+  {
+    "id": "ichneumon-wasp",
+    "en": "The giant ichneumon's ovipositor can be longer than its body and drills through wood to reach beetle larvae."
+  },
+  {
+    "id": "asian-giant-hornet",
+    "en": "The Asian giant hornet can decapitate an entire honeybee colony in hours."
+  },
+  {
+    "id": "sweat-bee",
+    "en": "Some sweat bees have metallic green or blue bodies that shimmer in the sunlight."
+  },
+  {
+    "id": "mason-bee",
+    "en": "Mason bees are 100 times more efficient at pollinating than honeybees."
+  },
+  {
+    "id": "mining-bee",
+    "en": "Mining bees create small volcano-shaped mounds of soil at their nest entrances."
+  },
+  {
+    "id": "golden-digger-wasp",
+    "en": "Golden digger wasps paralyze grasshoppers and crickets to feed their larvae alive."
+  },
+  {
+    "id": "mud-dauber-wasp",
+    "en": "Mud daubers stock their nests with paralyzed spiders for their developing larvae."
+  },
+  {
+    "id": "horned-mason-bee",
+    "en": "Male horned mason bees have small horns on their faces used in mating displays."
+  },
+  {
+    "id": "wool-carder-bee",
+    "en": "Wool carder bees scrape plant hairs to line their nests, hence their name."
+  },
+  {
+    "id": "cicada-killer-wasp",
+    "en": "The cicada killer is the largest wasp in North America and can be over 2 inches long."
+  },
+  {
+    "id": "red-velvet-ant",
+    "en": "The velvet ant is actually a wingless wasp with one of the most painful stings in the insect world."
+  },
+  {
+    "id": "cuckoo-bumblebee",
+    "en": "Cuckoo bumblebees infiltrate other bumblebee nests and lay their eggs for the host to raise."
+  },
+  {
+    "id": "mosquito",
+    "en": "Only female mosquitoes bite, needing blood protein to produce eggs."
+  },
+  {
+    "id": "house-fly",
+    "en": "House flies taste with their feet and can detect food from miles away."
+  },
+  {
+    "id": "fruit-fly",
+    "en": "Fruit flies are one of the most important model organisms in genetics research."
+  },
+  {
+    "id": "crane-fly",
+    "en": "Crane flies are often mistakenly called giant mosquitoes but do not bite or suck blood."
+  },
+  {
+    "id": "horsefly",
+    "en": "Horse flies are among the fastest flying insects, reaching speeds up to 90 mph."
+  },
+  {
+    "id": "bot-fly",
+    "en": "Bot fly larvae develop under human skin, creating painful boils called myiasis."
+  },
+  {
+    "id": "hover-fly",
+    "en": "Hover flies mimic bees and wasps for protection but are completely harmless."
+  },
+  {
+    "id": "black-fly",
+    "en": "Black fly swarms can be so dense that they suffocate livestock by blocking their airways."
+  },
+  {
+    "id": "damselfly",
+    "en": "Damselflies fold their wings along their bodies when at rest, unlike dragonflies."
+  },
+  {
+    "id": "blue-dasher-dragonfly",
+    "en": "Blue dashers can fly backwards and hover in place like a helicopter."
+  },
+  {
+    "id": "emperor-dragonfly",
+    "en": "Emperor dragonflies can eat their own body weight in insects every day."
+  },
+  {
+    "id": "four-spotted-chaser",
+    "en": "Four-spotted chasers are among the first dragonflies to emerge in spring."
+  },
+  {
+    "id": "robber-fly",
+    "en": "Robber flies can capture and eat insects as large as dragonflies and grasshoppers."
+  },
+  {
+    "id": "marmalade-hoverfly",
+    "en": "Marmalade hoverflies migrate thousands of miles across Europe each year."
+  },
+  {
+    "id": "common-mosquito",
+    "en": "Mosquitoes are responsible for more human deaths than any other animal in history."
+  },
+  {
+    "id": "biting-midge",
+    "en": "Biting midges, or no-see-ums, are so small they can pass through standard window screens."
+  },
+  {
+    "id": "deer-fly",
+    "en": "Deer flies are attracted to dark colors and carbon dioxide, similar to mosquitoes."
+  },
+  {
+    "id": "cattle-bot-fly",
+    "en": "Cattle bot fly larvae attach to the tongues and throat of cattle, causing significant irritation."
+  },
+  {
+    "id": "orchid-mantis",
+    "en": "The orchid mantis looks so much like a flower that pollinators land directly on it."
+  },
+  {
+    "id": "ghost-mantis",
+    "en": "The ghost mantis looks exactly like a dried, dead leaf, making it nearly invisible."
+  },
+  {
+    "id": "leaf-mantis",
+    "en": "The dead leaf mantis has irregular body edges that perfectly replicate a torn, decaying leaf."
+  },
+  {
+    "id": "walking-stick",
+    "en": "Walking sticks can regenerate lost limbs during molts and some species produce toxic defensive chemicals."
+  },
+  {
+    "id": "giant-walking-stick",
+    "en": "The giant walking stick holds the record for the longest insect in the world."
+  },
+  {
+    "id": "american-cockroach",
+    "en": "Cockroaches can survive for weeks without food and hold their breath for 40 minutes."
+  },
+  {
+    "id": "german-cockroach",
+    "en": "German cockroaches can produce up to 30,000 offspring in a single year from one female."
+  },
+  {
+    "id": "madagascar-hissing-cockroach",
+    "en": "Madagascar hissing cockroaches produce a loud hiss by forcing air through specialized breathing holes."
+  },
+  {
+    "id": "oriental-cockroach",
+    "en": "Oriental cockroaches are sometimes called water bugs because they prefer damp, dark environments."
+  },
+  {
+    "id": "eastern-subterranean-termite",
+    "en": "Subterranean termite colonies can contain millions of individuals working together."
+  },
+  {
+    "id": "formosan-termite",
+    "en": "Formosan termites build carton nests above ground and can consume a foot of 2x4 lumber in about five months."
+  },
+  {
+    "id": "dampwood-termite",
+    "en": "Dampwood termites are the largest North American termites and do not require soil contact."
+  },
+  {
+    "id": "drywood-termite",
+    "en": "Drywood termites kick out tiny fecal pellets called frass that accumulate below infested wood."
+  },
+  {
+    "id": "cicada",
+    "en": "Periodical cicadas emerge in synchronized broods of billions after 13 or 17 years underground."
+  },
+  {
+    "id": "dog-day-cicada",
+    "en": "Dog-day cicadas get their name because they emerge during the dog days of summer."
+  },
+  {
+    "id": "masked-devil-cicada",
+    "en": "Some Australian cicada species have the loudest insect calls, exceeding 120 decibels."
+  },
+  {
+    "id": "leafhopper",
+    "en": "Brown planthoppers can jump 70 times their body length in a single leap."
+  },
+  {
+    "id": "spittlebug",
+    "en": "Spittlebug nymphs produce foamy saliva masses called cuckoo spit to protect themselves."
+  },
+  {
+    "id": "aphid",
+    "en": "Aphids can produce up to 80 offspring per female without mating through parthenogenesis."
+  },
+  {
+    "id": "bed-bug",
+    "en": "Bed bugs can survive for over a year without feeding and are resistant to many pesticides."
+  },
+  {
+    "id": "kissing-bug",
+    "en": "Kissing bugs are called so because they often bite people on the face while they sleep."
+  },
+  {
+    "id": "stink-bug",
+    "en": "Stink bugs release a foul-smelling chemical from glands on their thorax when disturbed."
+  },
+  {
+    "id": "box-elder-bug",
+    "en": "Box elder bugs aggregate in huge numbers on warm south-facing walls in autumn."
+  },
+  {
+    "id": "water-strider",
+    "en": "Water striders can walk on water due to microscopic hairs on their legs that trap air."
+  },
+  {
+    "id": "giant-water-bug",
+    "en": "Giant water bugs are called toe-biters and can deliver an extremely painful bite."
+  },
+  {
+    "id": "american-grasshopper",
+    "en": "Bird grasshoppers are strong fliers and can travel significant distances during migrations."
+  },
+  {
+    "id": "desert-locust",
+    "en": "Desert locust swarms can cover 460 square miles and contain 40 to 80 billion insects."
+  },
+  {
+    "id": "mormon-cricket",
+    "en": "Despite their name, Mormon crickets are actually shield-backed katydids, not true crickets."
+  },
+  {
+    "id": "field-cricket",
+    "en": "Male field crickets chirp by rubbing their wings together, and you can estimate temperature by counting chirps."
+  },
+  {
+    "id": "katydid",
+    "en": "Katydid songs are ultrasonic, making them difficult for humans to hear without special equipment."
+  },
+  {
+    "id": "mole-cricket",
+    "en": "Mole crickets can swim and fly, making them highly mobile pests of turfgrass."
+  },
+  {
+    "id": "snowy-tree-cricket",
+    "en": "The snowy tree cricket is known as the thermometer cricket because chirp rate correlates with temperature."
+  },
+  {
+    "id": "human-head-louse",
+    "en": "Head lice have been companions of humans for at least 10,000 years."
+  },
+  {
+    "id": "body-louse",
+    "en": "Body lice have been used to track human migration patterns through DNA analysis."
+  },
+  {
+    "id": "human-flea",
+    "en": "Fleas can jump up to 150 times their body length, equivalent to a human jumping over a skyscraper."
+  },
+  {
+    "id": "cat-flea",
+    "en": "Cat fleas are the most common flea species on domestic pets worldwide."
+  },
+  {
+    "id": "oriental-rat-flea",
+    "en": "The oriental rat flea was the primary vector of bubonic plague during the Black Death."
+  },
+  {
+    "id": "brown-recluse-spider",
+    "en": "Brown recluse venom can cause necrotic lesions that take months to heal."
+  },
+  {
+    "id": "wolf-spider",
+    "en": "Wolf spider mothers carry their egg sacs and spiderlings on their backs."
+  },
+  {
+    "id": "jumping-spider",
+    "en": "Jumping spiders have the best vision of any spider and can jump 50 times their body length."
+  },
+  {
+    "id": "orb-weaver-spider",
+    "en": "Orb weavers rebuild their webs almost every night, consuming the old silk to recycle the proteins."
+  },
+  {
+    "id": "peacock-spider",
+    "en": "Male peacock spiders perform elaborate dance displays with colorful abdominal flaps to court females."
+  },
+  {
+    "id": "brazilian-wandering-spider",
+    "en": "The Brazilian wandering spider has the most potent venom of any spider and is listed in Guinness World Records."
+  },
+  {
+    "id": "emperor-scorpion",
+    "en": "Emperor scorpions glow bright blue-green under ultraviolet light."
+  },
+  {
+    "id": "bark-scorpion",
+    "en": "Arizona bark scorpions are the most venomous scorpion in North America and can climb walls and ceilings."
+  },
+  {
+    "id": "deathstalker-scorpion",
+    "en": "The deathstalker's venom contains compounds being researched for use in cancer treatment."
+  },
+  {
+    "id": "spotted-lanternfly",
+    "en": "Spotted lanternflies can lay up to 50 eggs on almost any flat surface."
+  },
+  {
+    "id": "wheel-bug",
+    "en": "The wheel bug gets its name from the distinctive cogwheel-like crest on its thorax."
+  },
+  {
+    "id": "sawfly",
+    "en": "Sawfly larvae look like caterpillars but have more than five pairs of prolegs."
+  },
+  {
+    "id": "antlion",
+    "en": "Antlion larvae dig conical pit traps in sand to catch ants and other small insects."
+  },
+  {
+    "id": "lacewing",
+    "en": "Lacewing larvae are called aphid lions and can each consume 200 aphids per week."
+  },
+  {
+    "id": "dobsonfly",
+    "en": "Dobsonfly larvae, called hellgrammites, are indicators of good water quality."
+  },
+  {
+    "id": "mayfly",
+    "en": "Adult mayflies have vestigial mouthparts and cannot eat, living only long enough to mate."
+  },
+  {
+    "id": "earwig",
+    "en": "Earwig mothers guard their eggs and clean them to prevent fungal growth."
+  },
+  {
+    "id": "silverfish",
+    "en": "Silverfish are among the most primitive wingless insects, virtually unchanged for 400 million years."
+  },
+  {
+    "id": "firebrat",
+    "en": "Firebrats prefer temperatures above 90 degrees Fahrenheit and can survive scorching conditions."
+  },
+  {
+    "id": "jumping-bristletail",
+    "en": "Jumping bristletails are among the most ancient insects, with a fossil record dating back 400 million years."
+  },
+  {
+    "id": "snakefly",
+    "en": "Snakefly larvae can crawl backwards at high speed to escape threats."
+  },
+  {
+    "id": "cuckoo-bumblebee-parasite",
+    "en": "Some cuckoo bumblebee species have been reclassified as entirely separate species from their hosts."
+  },
+  {
+    "id": "musk-bee",
+    "en": "Musk bees produce a distinctive lemony scent when disturbed."
+  },
+  {
+    "id": "alkali-bee",
+    "en": "Alkali bees prefer salty, alkaline soil for nesting and can form massive aggregations."
+  },
+  {
+    "id": "carpenter-ant",
+    "en": "Carpenter ants do not eat wood but excavate it to create nesting galleries."
+  },
+  {
+    "id": "pharaoh-ant",
+    "en": "Pharaoh ants can nest in extremely small spaces and are known to spread disease in hospitals."
+  },
+  {
+    "id": "odorous-house-ant",
+    "en": "Odorous house ants smell like crushed coconut when squished."
+  },
+  {
+    "id": "blue-ringed-octopus",
+    "en": "Its venom contains tetrodotoxin, potent enough to kill 26 humans."
+  },
+  {
+    "id": "mimic-octopus",
+    "en": "Can impersonate over 15 different species including lionfish and sea snakes."
+  },
+  {
+    "id": "colossal-squid",
+    "en": "Has the largest eyes of any animal, up to 10 inches in diameter."
+  },
+  {
+    "id": "humboldt-squid",
+    "en": "Also called the jumbo squid or red devil for its aggressive nature."
+  },
+  {
+    "id": "giant-squid",
+    "en": "Was considered a mythical creature until first photographed alive in 2004."
+  },
+  {
+    "id": "firefly-squid",
+    "en": "Produces its own light through bioluminescent organs called photophores."
+  },
+  {
+    "id": "caribbean-reef-octopus",
+    "en": "Has two-thirds of its neurons in its arms rather than its brain."
+  },
+  {
+    "id": "flamboyant-cuttlefish",
+    "en": "One of only two known poisonous cephalopods."
+  },
+  {
+    "id": "common-cuttlefish",
+    "en": "Can hypnotize prey with rapidly changing color patterns."
+  },
+  {
+    "id": "chambered-nautilus",
+    "en": "Has remained virtually unchanged for over 500 million years."
+  },
+  {
+    "id": "argonaut",
+    "en": "Females create a paper-thin shell for egg protection, the only octopus to do so."
+  },
+  {
+    "id": "vampire-squid",
+    "en": "Is neither a true squid nor a true octopus but occupies its own order."
+  },
+  {
+    "id": "strawberry-squid",
+    "en": "Has photophores covering its body that produce a strawberry-red glow to camouflage against predators."
+  },
+  {
+    "id": "cockatoo-squid",
+    "en": "Inflates its body with seawater to appear larger and more intimidating to predators."
+  },
+  {
+    "id": "pajama-squid",
+    "en": "Has a distinctive black-and-white striped pattern resembling striped pajamas."
+  },
+  {
+    "id": "bobtail-squid",
+    "en": "Harbors bioluminescent bacteria in a specialized light organ for counter-illumination camouflage."
+  },
+  {
+    "id": "pygmy-squid",
+    "en": "Uses a sticky gland on its nose to attach itself to seagrass blades."
+  },
+  {
+    "id": "american-lobster",
+    "en": "Can live over 100 years and keep growing throughout its life."
+  },
+  {
+    "id": "european-lobster",
+    "en": "Can weigh up to 28 pounds and is one of the largest crustaceans in European waters."
+  },
+  {
+    "id": "spiny-lobster",
+    "en": "Lacks large claws and instead produces loud rasping sounds to deter predators."
+  },
+  {
+    "id": "slipper-lobster",
+    "en": "Has distinctive plate-like antennae that resemble slipper soles."
+  },
+  {
+    "id": "mantis-shrimp",
+    "en": "Can punch with the force of a .22 caliber bullet, breaking aquarium glass."
+  },
+  {
+    "id": "peacock-mantis-shrimp",
+    "en": "Can see 16 types of color receptors and perceives ultraviolet and polarized light."
+  },
+  {
+    "id": "spearer-mantis-shrimp",
+    "en": "Has barbed, spear-like appendages for impaling soft-bodied prey like fish."
+  },
+  {
+    "id": "blue-crab",
+    "en": "Named for its bright blue claws used in mating displays."
+  },
+  {
+    "id": "king-crab",
+    "en": "Its spiny shell can span over 5 feet from leg tip to leg tip."
+  },
+  {
+    "id": "japanese-spider-crab",
+    "en": "Has the largest leg span of any arthropod, up to 12 feet across."
+  },
+  {
+    "id": "hermit-crab",
+    "en": "Must find and upgrade to larger shells as it grows throughout its life."
+  },
+  {
+    "id": "coconut-crab",
+    "en": "Has the strongest grip of any animal, strong enough to crack open coconuts."
+  },
+  {
+    "id": "snow-crab",
+    "en": "Can tolerate near-freezing water temperatures as low as 0.5 degrees Celsius."
+  },
+  {
+    "id": "fiddler-crab",
+    "en": "Males have one enormous claw they wave to attract mates."
+  },
+  {
+    "id": "mud-crab",
+    "en": "Can grow to 5 pounds and has claws strong enough to sever a human finger."
+  },
+  {
+    "id": "atlantic-ghost-crab",
+    "en": "Can run up to 10 mph and has stalked eyes that provide 360-degree vision."
+  },
+  {
+    "id": "tropical-hermit-crab",
+    "en": "Some individuals live in groups of over 100, sharing shells in a chain."
+  },
+  {
+    "id": "coconut-hermit-crab",
+    "en": "Often found in coconut shells and can grow large enough to use coconut husks as shelters."
+  },
+  {
+    "id": "zebra-fiddler-crab",
+    "en": "Males wave their oversized claw in a unique rhythm specific to their species."
+  },
+  {
+    "id": "great-spider-crab",
+    "en": "Often decorates its shell with sponges and algae for camouflage."
+  },
+  {
+    "id": "swimming-crab",
+    "en": "Has paddle-shaped back legs that allow it to swim rapidly through the water."
+  },
+  {
+    "id": "common-shore-shrimp",
+    "en": "Can cling tightly to rocks to survive powerful wave action."
+  },
+  {
+    "id": "antarctic-krill",
+    "en": "Forms swarms of billions of individuals visible from space."
+  },
+  {
+    "id": "pacific-krill",
+    "en": "Is the primary food source for North Pacific right whales."
+  },
+  {
+    "id": "atlantic-krill",
+    "en": "Forms dense swarms that can extend for miles and contain trillions of individuals."
+  },
+  {
+    "id": "giant-amphipod",
+    "en": "Can grow up to 20 times larger than typical amphipods."
+  },
+  {
+    "id": "giant-isopod",
+    "en": "Can survive up to 5 years without eating by slowing its metabolism."
+  },
+  {
+    "id": "lions-mane-jellyfish",
+    "en": "Tentacles can exceed 120 feet, rivaling the blue whale in length."
+  },
+  {
+    "id": "portuguese-man-of-war",
+    "en": "Is actually a colony of four specialized organisms called zooids, not a single animal."
+  },
+  {
+    "id": "pacific-sea-nettle",
+    "en": "Its golden-brown bell and long trailing tentacles make it one of the most beautiful jellyfish."
+  },
+  {
+    "id": "upside-down-jellyfish",
+    "en": "Rests upside-down on the seafloor to expose symbiotic algae to sunlight."
+  },
+  {
+    "id": "immortal-jellyfish",
+    "en": "Can revert from its adult form back to its juvenile polyp stage, effectively reversing aging."
+  },
+  {
+    "id": "sea-wasp",
+    "en": "Considered the most venomous marine animal, capable of killing a human in minutes."
+  },
+  {
+    "id": "compass-jellyfish",
+    "en": "Has distinctive brown V-shaped markings on its bell resembling a compass rose."
+  },
+  {
+    "id": "fried-egg-jellyfish",
+    "en": "Its bell closely resembles a fried egg, with a yellow center surrounded by white."
+  },
+  {
+    "id": "blood-belly-comb-jelly",
+    "en": "Produces brilliant red bioluminescence when disturbed."
+  },
+  {
+    "id": "atolla-jellyfish",
+    "en": "Produces a pinwheel of bioluminescent light when attacked, known as a burglar alarm."
+  },
+  {
+    "id": "spotted-jelly",
+    "en": "Has distinctive brown spots on its translucent bell that give it its name."
+  },
+  {
+    "id": "mauve-stinger",
+    "en": "Can bloom in massive swarms that disrupt fisheries and aquaculture operations."
+  },
+  {
+    "id": "staghorn-coral",
+    "en": "Can grow up to 8 inches per year, making it one of the fastest-growing corals."
+  },
+  {
+    "id": "brain-coral",
+    "en": "Can live for nearly a millennium, making it one of the longest-lived organisms on Earth."
+  },
+  {
+    "id": "elkhorn-coral",
+    "en": "Named for its broad, antler-like branches that resemble elk horns."
+  },
+  {
+    "id": "pillar-coral",
+    "en": "One of the rarest corals, with no known young produced since 1998 in Florida."
+  },
+  {
+    "id": "fire-coral",
+    "en": "Not a true coral but a colony of hydrozoans that delivers a painful sting."
+  },
+  {
+    "id": "blue-coral",
+    "en": "The only reef-building coral with a blue skeleton, caused by iron salts in its skeleton."
+  },
+  {
+    "id": "mushroom-coral",
+    "en": "Unlike most corals, mushroom corals are free-living and can move short distances."
+  },
+  {
+    "id": "black-coral",
+    "en": "Some colonies have been dated to over 4,000 years old, making them the oldest living organisms on Earth."
+  },
+  {
+    "id": "sea-pen",
+    "en": "Is a colony of polyps anchored in sediment, with some species producing bioluminescent waves when disturbed."
+  },
+  {
+    "id": "sea-whip",
+    "en": "Some species produce a compound used in cancer research."
+  },
+  {
+    "id": "sunflower-sea-star",
+    "en": "Can have up to 24 arms and is one of the largest sea stars in the world."
+  },
+  {
+    "id": "crown-of-thorns-starfish",
+    "en": "Can consume up to 10 square feet of coral per year."
+  },
+  {
+    "id": "blue-sea-star",
+    "en": "Its brilliant blue color comes from a pigment that may protect against UV radiation."
+  },
+  {
+    "id": "leather-star",
+    "en": "Has a smooth, leathery texture unlike the rough surface of most sea stars."
+  },
+  {
+    "id": "common-brittle-star",
+    "en": "Can detach an arm to escape predators, later regenerating it."
+  },
+  {
+    "id": "giant-basket-star",
+    "en": "Has thousands of branching arm tips that can entrap plankton and small organisms."
+  },
+  {
+    "id": "feather-star",
+    "en": "Can swim by rhythmically waving its feathery arms through the water."
+  },
+  {
+    "id": "crinoid-feather-star",
+    "en": "Can detach from its substrate and swim to relocate when conditions are unfavorable."
+  },
+  {
+    "id": "disk-brittle-star",
+    "en": "Can regenerate entire arms and even the central disc if detached."
+  },
+  {
+    "id": "purple-sea-urchin",
+    "en": "Can bore into solid rock using its specialized jaw apparatus called Aristotle's lantern."
+  },
+  {
+    "id": "long-spined-sea-urchin",
+    "en": "Spines can be over a foot long and are mildly venomous."
+  },
+  {
+    "id": "pencil-urchin",
+    "en": "Has thick, blunt spines that resemble pencils, unlike typical sharp urchin spines."
+  },
+  {
+    "id": "green-sea-urchin",
+    "en": "Can live for over 30 years, making it one of the longest-lived sea urchins."
+  },
+  {
+    "id": "flower-urchin",
+    "en": "Covered in flower-like structures called pedicellariae that deliver a painful venom."
+  },
+  {
+    "id": "sand-dollar",
+    "en": "The petal-like pattern on its skeleton is actually five sets of tube feet used for breathing."
+  },
+  {
+    "id": "carpenter-sea-urchin",
+    "en": "Has particularly strong teeth that can bore through solid coral rock."
+  },
+  {
+    "id": "fire-urchin",
+    "en": "Has venomous spines that cause intense burning pain, resembling a fire ant sting."
+  },
+  {
+    "id": "slate-pencil-urchin",
+    "en": "Has thick, blunt spines that were historically used as writing instruments."
+  },
+  {
+    "id": "tiger-tail-sea-cucumber",
+    "en": "Can eject sticky, toxic tubules from its body to entangle predators."
+  },
+  {
+    "id": "lolly-sea-cucumber",
+    "en": "Has a distinctive tube-like body that resembles a lollipop."
+  },
+  {
+    "id": "pacific-sea-cucumber",
+    "en": "Is commercially harvested as a delicacy in Asian cuisine, known as beche-de-mer."
+  },
+  {
+    "id": "black-sea-cucumber",
+    "en": "Can detach and regrow its internal organs when stressed, a process called evisceration."
+  },
+  {
+    "id": "teatfish-sea-cucumber",
+    "en": "One of the most commercially valuable sea cucumber species, sold as beche-de-mer."
+  },
+  {
+    "id": "red-sea-cucumber",
+    "en": "Uses tube feet along its underside to slowly crawl across the seafloor."
+  },
+  {
+    "id": "christmas-tree-worm",
+    "en": "Can retract its colorful spiral plumes into its tube in less than a second."
+  },
+  {
+    "id": "giant-tubeworm",
+    "en": "Has no mouth, stomach, or gut, relying entirely on symbiotic bacteria for nutrition."
+  },
+  {
+    "id": "feather-duster-worm",
+    "en": "Its feathery crown of tentacles is used for both feeding and respiration."
+  },
+  {
+    "id": "bearded-fireworm",
+    "en": "Has hollow, venom-filled bristles that cause intense burning pain on contact."
+  },
+  {
+    "id": "blue-glaucus",
+    "en": "Floats upside-down on the surface tension of the water, using stored air bubbles."
+  },
+  {
+    "id": "spanish-dancer",
+    "en": "Named for its spectacular undulating swimming motion that resembles a flamenco dancer."
+  },
+  {
+    "id": "leaf-sheep",
+    "en": "Is one of the only animals capable of photosynthesis, stealing chloroplasts from algae."
+  },
+  {
+    "id": "sea-butterfly",
+    "en": "Swims by flapping its wing-like shell extensions, resembling a butterfly in flight."
+  },
+  {
+    "id": "sea-angel",
+    "en": "Is a shell-less snail that swims with graceful wing-like movements."
+  },
+  {
+    "id": "sea-hare",
+    "en": "Can release a cloud of purple ink when threatened, confusing predators."
+  },
+  {
+    "id": "giant-clam",
+    "en": "Can weigh over 500 pounds and live for more than 100 years."
+  },
+  {
+    "id": "geoduck",
+    "en": "Can live for over 160 years, making it one of the longest-living animals on Earth."
+  },
+  {
+    "id": "atlantic-surf-clam",
+    "en": "Can propel itself out of the sand using its muscular foot when disturbed."
+  },
+  {
+    "id": "bay-scallop",
+    "en": "Can swim short distances by rapidly clapping its shell valves together."
+  },
+  {
+    "id": "blue-mussel",
+    "en": "Attaches to rocks using strong byssal threads, forming dense beds of thousands."
+  },
+  {
+    "id": "thorny-oyster",
+    "en": "Shell is covered in long, sharp spines that deter predators."
+  },
+  {
+    "id": "lion-paw-scallop",
+    "en": "Named for its ridged, colorful shell that resembles a lion's paw."
+  },
+  {
+    "id": "nautilus-pompilius",
+    "en": "Shell follows a logarithmic spiral, one of nature's most perfect mathematical forms."
+  },
+  {
+    "id": "paper-nautilus",
+    "en": "Females create a delicate, paper-thin shell for egg protection."
+  },
+  {
+    "id": "atlantic-horseshoe-crab",
+    "en": "Has been virtually unchanged for 450 million years, predating the dinosaurs."
+  },
+  {
+    "id": "japanese-horseshoe-crab",
+    "en": "Its blue blood contains Limulus Amebocyte Lysate, used to test for bacterial contamination in medical equipment."
+  },
+  {
+    "id": "indo-pacific-horseshoe-crab",
+    "en": "Is the only horseshoe crab species found in Asian coastal waters."
+  },
+  {
+    "id": "sea-squirt-tunicate",
+    "en": "Is more closely related to vertebrates than most invertebrates, being a chordate."
+  },
+  {
+    "id": "marine-flatworm",
+    "en": "Can regenerate an entire organism from a fragment as small as 1/200th of its body."
+  },
+  {
+    "id": "sea-pen-glow",
+    "en": "Produces bioluminescent waves that travel along its colony when physically disturbed."
+  },
+  {
+    "id": "dodo",
+    "en": "The dodo was a flightless bird from Mauritius that went extinct in the late 17th century due to hunting and invasive species."
+  },
+  {
+    "id": "woolly-mammoth",
+    "en": "Woolly mammoths coexisted with early humans and their remains are still found frozen in Siberian permafrost."
+  },
+  {
+    "id": "passenger-pigeon",
+    "en": "Passenger pigeons once numbered in the billions and their flocks would darken the sky for hours as they flew overhead."
+  },
+  {
+    "id": "tasmanian-tiger",
+    "en": "Despite being called a tiger, it was actually a marsupial more closely related to kangaroos than to big cats."
+  },
+  {
+    "id": "quagga",
+    "en": "The quagga was half-zebra, half-horse with stripes only on the front half of its body. The last one died in 1883."
+  }
+]

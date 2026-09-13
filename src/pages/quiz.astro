@@ -2,143 +2,18 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import animals from '../data/animals.json';
+import QuizContent from '../components/QuizContent.astro';
+import { getTranslations } from '../utils/i18n';
+
+const locale = 'en';
+const t = getTranslations(locale);
+
+const SITE_URL = 'https://bestrandomanimalgenerator.com';
+const canonical = `${SITE_URL}/quiz`;
 ---
 
-<Layout title="Animal Quiz | Random Animal Generator">
-  <Navbar />
-  <main class="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
-    <section class="mb-8 text-center">
-      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">🧠 Animal Quiz</h1>
-      <p class="mx-auto mt-3 max-w-lg text-sm text-body dark:text-[#a1a1a1]">
-        Test your knowledge about animals! Answer questions about habitats, diets, and fun facts.
-      </p>
-    </section>
-
-    <div id="quiz-area" class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
-      <div class="flex items-center justify-between mb-6">
-        <div class="flex items-center gap-4">
-          <span class="text-sm text-muted">Score: <span id="quiz-score" class="font-bold text-ink dark:text-[#ededed]">0</span>/<span id="quiz-total" class="text-ink dark:text-[#ededed]">0</span></span>
-          <span id="quiz-streak" class="hidden text-xs font-medium text-conservation-lc">🔥 0 streak</span>
-        </div>
-        <button id="quiz-reset" class="text-xs text-muted hover:text-ink dark:hover:text-[#ededed]">Reset</button>
-      </div>
-
-      <div id="quiz-question" class="text-center">
-        <div id="quiz-emoji" class="text-7xl mb-4 emoji-icon">🐾</div>
-        <p id="quiz-text" class="text-lg font-medium text-ink mb-6 dark:text-[#ededed]"></p>
-        <div id="quiz-options" class="grid grid-cols-2 gap-3"></div>
-      </div>
-
-      <div id="quiz-result" class="hidden text-center mt-6">
-        <p id="quiz-result-text" class="text-sm font-medium mb-3"></p>
-        <button id="quiz-next" class="rounded-full bg-ink px-5 py-2 text-sm font-medium text-white transition-all hover:opacity-90 active:scale-95 dark:bg-[#ededed] dark:text-[#0a0a0a]">Next Question →</button>
-      </div>
-    </div>
-
-    <div class="mt-8 rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
-      <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">How It Works</h2>
-      <ul class="space-y-2 text-sm text-body dark:text-[#a1a1a1]">
-        <li>• Each question shows an animal emoji and asks about its habitat or diet</li>
-        <li>• Pick the correct answer from 4 options</li>
-        <li>• Build streaks for consecutive correct answers</li>
-        <li>• Questions are drawn from {animals.length}+ animals across 8 categories</li>
-      </ul>
-    </div>
-  </main>
-
-  <Footer />
+<Layout title={`${t.animal_quiz} | Random Animal Generator`} description={t.quiz_desc} canonical={canonical} locale={locale} pagePath="/quiz">
+  <Navbar locale={locale} pagePath="/quiz" />
+  <QuizContent locale={locale} />
+  <Footer locale={locale} />
 </Layout>
-
-<script define:vars={{ animals: JSON.stringify(animals) }}>
-  const allAnimals = JSON.parse(animals);
-  let score = 0, total = 0, streak = 0, currentAnimal = null;
-
-  function pickQuestion() {
-    const animal = allAnimals[Math.floor(Math.random() * allAnimals.length)];
-    const isDiet = Math.random() > 0.5;
-    const key = isDiet ? 'diet' : 'habitat';
-    const question = isDiet
-      ? `What does the ${animal.name} eat?`
-      : `Where does the ${animal.name} live?`;
-    const correct = animal[key];
-
-    const wrongs = [];
-    const pool = allAnimals.filter(a => a[key] !== correct);
-    while (wrongs.length < 3 && pool.length > 0) {
-      const idx = Math.floor(Math.random() * pool.length);
-      const w = pool.splice(idx, 1)[0];
-      if (!wrongs.find(x => x[key] === w[key])) wrongs.push(w);
-    }
-
-    const options = [correct, ...wrongs.map(w => w[key])].sort(() => Math.random() - 0.5);
-    return { animal, question, correct, options, key };
-  }
-
-  function renderQuestion() {
-    const q = pickQuestion();
-    currentAnimal = q;
-    document.getElementById('quiz-emoji').textContent = q.animal.emoji;
-    document.getElementById('quiz-text').textContent = q.question;
-    document.getElementById('quiz-result').classList.add('hidden');
-
-    const container = document.getElementById('quiz-options');
-    container.innerHTML = q.options.map(opt => `
-      <button class="quiz-option rounded-xl border border-hairline bg-canvas px-4 py-3 text-sm font-medium text-body text-left transition-all hover:border-faint hover:text-ink dark:border-[#333] dark:bg-[#111] dark:text-[#a1a1a1] dark:hover:border-[#555] dark:hover:text-[#ededed]" data-value="${opt}">
-        ${opt}
-      </button>
-    `).join('');
-
-    container.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', () => handleAnswer(btn, q));
-    });
-  }
-
-  function handleAnswer(btn, q) {
-    const options = document.querySelectorAll('#quiz-options button');
-    if (btn.classList.contains('correct') || btn.classList.contains('wrong')) return;
-
-    const isCorrect = btn.dataset.value === q.correct;
-    total++;
-    if (isCorrect) { score++; streak++; } else { streak = 0; }
-
-    options.forEach(b => {
-      if (b.dataset.value === q.correct) b.classList.add('correct');
-      b.disabled = true;
-    });
-    if (!isCorrect) btn.classList.add('wrong');
-
-    document.getElementById('quiz-score').textContent = score;
-    document.getElementById('quiz-total').textContent = total;
-
-    const streakEl = document.getElementById('quiz-streak');
-    if (streak >= 2) {
-      streakEl.classList.remove('hidden');
-      streakEl.textContent = `🔥 ${streak} streak`;
-    } else {
-      streakEl.classList.add('hidden');
-    }
-
-    const result = document.getElementById('quiz-result');
-    const resultText = document.getElementById('quiz-result-text');
-    result.classList.remove('hidden');
-    if (isCorrect) {
-      resultText.textContent = 'Correct! 🎉';
-      resultText.className = 'text-sm font-medium mb-3 text-conservation-lc';
-    } else {
-      resultText.textContent = `Wrong! The answer was "${q.correct}".`;
-      resultText.className = 'text-sm font-medium mb-3 text-error';
-    }
-  }
-
-  document.getElementById('quiz-next')?.addEventListener('click', renderQuestion);
-  document.getElementById('quiz-reset')?.addEventListener('click', () => {
-    score = 0; total = 0; streak = 0;
-    document.getElementById('quiz-score').textContent = '0';
-    document.getElementById('quiz-total').textContent = '0';
-    document.getElementById('quiz-streak').classList.add('hidden');
-    renderQuestion();
-  });
-
-  renderQuestion();
-</script>

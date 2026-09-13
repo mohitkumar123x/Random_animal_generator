@@ -3,29 +3,40 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import animals from '../data/animals.json';
+import { getTranslations, type Locale } from '../utils/i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = getTranslations(locale);
+
+const SITE_URL = 'https://bestrandomanimalgenerator.com';
+const canonical = locale === 'en' ? `${SITE_URL}/compare` : `${SITE_URL}/${locale}/compare`;
 ---
 
-<Layout title="Compare Animals | Random Animal Generator">
-  <Navbar />
+<Layout title={`${t.compare_title} | Random Animal Generator`} description={t.compare_desc} canonical={canonical} locale={locale} pagePath="/compare">
+  <Navbar locale={locale} pagePath="/compare" />
   <main class="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
     <section class="mb-8 text-center">
-      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">⚖️ Animal Comparison</h1>
+      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">{t.compare_title}</h1>
       <p class="mx-auto mt-3 max-w-lg text-sm text-body dark:text-[#a1a1a1]">
-        Pick two animals and see how they stack up against each other.
+        {t.compare_desc}
       </p>
     </section>
 
     <div class="mb-6 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
       <div class="relative w-full sm:w-auto">
-        <input id="search-a" type="text" placeholder="Search animal 1..." class="w-full sm:w-56 rounded-lg border border-hairline bg-canvas-elevated px-3 py-2 text-sm text-ink outline-none transition-colors focus:border-link dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#ededed] dark:focus:border-link" />
+        <input id="search-a" type="text" placeholder={t.compare_search_a} class="w-full sm:w-56 rounded-lg border border-hairline bg-canvas-elevated px-3 py-2 text-sm text-ink outline-none transition-colors focus:border-link dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#ededed] dark:focus:border-link" />
         <div id="dropdown-a" class="absolute z-10 mt-1 hidden w-full sm:w-56 max-h-60 overflow-y-auto rounded-lg border border-hairline bg-canvas-elevated shadow-lg dark:border-[#333] dark:bg-[#1a1a1a]"></div>
       </div>
-      <span class="text-lg text-muted">vs</span>
+      <span class="text-lg text-muted">{t.compare_vs}</span>
       <div class="relative w-full sm:w-auto">
-        <input id="search-b" type="text" placeholder="Search animal 2..." class="w-full sm:w-56 rounded-lg border border-hairline bg-canvas-elevated px-3 py-2 text-sm text-ink outline-none transition-colors focus:border-link dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#ededed] dark:focus:border-link" />
+        <input id="search-b" type="text" placeholder={t.compare_search_b} class="w-full sm:w-56 rounded-lg border border-hairline bg-canvas-elevated px-3 py-2 text-sm text-ink outline-none transition-colors focus:border-link dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#ededed] dark:focus:border-link" />
         <div id="dropdown-b" class="absolute z-10 mt-1 hidden w-full sm:w-56 max-h-60 overflow-y-auto rounded-lg border border-hairline bg-canvas-elevated shadow-lg dark:border-[#333] dark:bg-[#1a1a1a]"></div>
       </div>
-      <button id="random-pick" class="rounded-lg border border-hairline bg-canvas-elevated px-3 py-2 text-xs font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]">🎲 Random</button>
+      <button id="random-pick" class="rounded-lg border border-hairline bg-canvas-elevated px-3 py-2 text-xs font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]">{t.compare_random}</button>
     </div>
 
     <div id="compare-result" class="hidden">
@@ -38,15 +49,16 @@ import animals from '../data/animals.json';
 
     <div id="compare-placeholder" class="rounded-2xl border border-dashed border-hairline bg-hairline-soft/50 py-16 text-center dark:border-[#333] dark:bg-[#111]">
       <p class="text-4xl mb-3">⚖️</p>
-      <p class="text-sm text-muted">Select two animals to compare</p>
+      <p class="text-sm text-muted">{t.compare_placeholder}</p>
     </div>
   </main>
 
-  <Footer />
+  <Footer locale={locale} />
 </Layout>
 
-<script define:vars={{ animals: JSON.stringify(animals) }}>
+<script define:vars={{ animals: JSON.stringify(animals), locale, compareT: JSON.stringify({ summary: t.compare_summary, same: t.compare_same, different: t.compare_different, habitat: t.habitat, diet: t.diet, lifespan: t.lifespan, weight: t.weight, speed: t.speed, length: t.length, region: t.region, taxonomy: t.taxonomy, taxClass: t.tax_class, taxOrder: t.tax_order, taxFamily: t.tax_family, funFact: t.fun_fact }) }}>
   const allAnimals = JSON.parse(animals);
+  const cT = JSON.parse(compareT);
   let animalA = null, animalB = null;
 
   const consLabels = {
@@ -75,42 +87,42 @@ import animals from '../data/animals.json';
         ${animal.description ? `<p class="text-xs text-body leading-relaxed mb-3 dark:text-[#a1a1a1]">${animal.description}</p>` : ''}
         <div class="grid grid-cols-2 gap-2 text-xs">
           <div class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas px-2.5 py-2 dark:border-[#333] dark:bg-[#111]">
-            <span>🌍</span><div class="min-w-0"><p class="text-[10px] text-faint">Habitat</p><p class="font-medium text-ink truncate dark:text-[#ededed]">${animal.habitat}</p></div>
+            <span>🌍</span><div class="min-w-0"><p class="text-[10px] text-faint">${cT.habitat}</p><p class="font-medium text-ink dark:text-[#ededed]">${animal.habitat}</p></div>
           </div>
           <div class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas px-2.5 py-2 dark:border-[#333] dark:bg-[#111]">
-            <span>🍽️</span><div class="min-w-0"><p class="text-[10px] text-faint">Diet</p><p class="font-medium text-ink truncate dark:text-[#ededed]">${animal.diet}</p></div>
+            <span>🍽️</span><div class="min-w-0"><p class="text-[10px] text-faint">${cT.diet}</p><p class="font-medium text-ink dark:text-[#ededed]">${animal.diet}</p></div>
           </div>
           <div class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas px-2.5 py-2 dark:border-[#333] dark:bg-[#111]">
-            <span>⏱️</span><div class="min-w-0"><p class="text-[10px] text-faint">Lifespan</p><p class="font-medium text-ink truncate dark:text-[#ededed]">${animal.lifespan}</p></div>
+            <span>⏱️</span><div class="min-w-0"><p class="text-[10px] text-faint">${cT.lifespan}</p><p class="font-medium text-ink dark:text-[#ededed]">${animal.lifespan}</p></div>
           </div>
           <div class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas px-2.5 py-2 dark:border-[#333] dark:bg-[#111]">
-            <span>⚖️</span><div class="min-w-0"><p class="text-[10px] text-faint">Weight</p><p class="font-medium text-ink truncate dark:text-[#ededed]">${animal.weight}</p></div>
+            <span>⚖️</span><div class="min-w-0"><p class="text-[10px] text-faint">${cT.weight}</p><p class="font-medium text-ink dark:text-[#ededed]">${animal.weight}</p></div>
           </div>
         </div>
         <div class="mt-2 grid grid-cols-3 gap-2 text-xs">
           <div class="rounded-lg border border-hairline bg-canvas p-2 text-center dark:border-[#333] dark:bg-[#111]">
-            <p class="text-[10px] text-faint mb-0.5">Speed</p>
+            <p class="text-[10px] text-faint mb-0.5">${cT.speed}</p>
             <p class="font-semibold text-ink dark:text-[#ededed]">${animal.speed}</p>
           </div>
           <div class="rounded-lg border border-hairline bg-canvas p-2 text-center dark:border-[#333] dark:bg-[#111]">
-            <p class="text-[10px] text-faint mb-0.5">Length</p>
+            <p class="text-[10px] text-faint mb-0.5">${cT.length}</p>
             <p class="font-semibold text-ink dark:text-[#ededed]">${animal.length || '—'}</p>
           </div>
           <div class="rounded-lg border border-hairline bg-canvas p-2 text-center dark:border-[#333] dark:bg-[#111]">
-            <p class="text-[10px] text-faint mb-0.5">Region</p>
+            <p class="text-[10px] text-faint mb-0.5">${cT.region}</p>
             <p class="font-semibold text-ink dark:text-[#ededed]">${animal.region}</p>
           </div>
         </div>
         <div class="mt-2 rounded-lg border border-hairline bg-canvas p-2.5 dark:border-[#333] dark:bg-[#111]">
-          <p class="text-[10px] uppercase tracking-wider text-faint mb-1">🧬 Taxonomy</p>
+          <p class="text-[10px] uppercase tracking-wider text-faint mb-1">🧬 ${cT.taxonomy}</p>
           <div class="grid grid-cols-1 gap-1 text-[11px] sm:grid-cols-3 sm:gap-1.5">
-            <div class="flex items-center gap-1"><span class="text-faint">Class:</span> <span class="font-medium text-ink dark:text-[#ededed]">${animal.class || '—'}</span></div>
-            <div class="flex items-center gap-1"><span class="text-faint">Order:</span> <span class="font-medium text-ink dark:text-[#ededed]">${animal.order || '—'}</span></div>
-            <div class="flex items-center gap-1"><span class="text-faint">Family:</span> <span class="font-medium text-ink dark:text-[#ededed]">${animal.family || '—'}</span></div>
+            <div class="flex items-center gap-1"><span class="text-faint">${cT.taxClass}</span> <span class="font-medium text-ink dark:text-[#ededed]">${animal.class || '—'}</span></div>
+            <div class="flex items-center gap-1"><span class="text-faint">${cT.taxOrder}</span> <span class="font-medium text-ink dark:text-[#ededed]">${animal.order || '—'}</span></div>
+            <div class="flex items-center gap-1"><span class="text-faint">${cT.taxFamily}</span> <span class="font-medium text-ink dark:text-[#ededed]">${animal.family || '—'}</span></div>
           </div>
         </div>
         <div class="mt-2 rounded-xl border border-link-soft bg-link-soft/30 p-2.5 dark:border-[#1e3a5f] dark:bg-[#0f1f33]">
-          <p class="text-[10px] uppercase tracking-wider text-link font-medium mb-0.5 dark:text-link">💡 Fun Fact</p>
+          <p class="text-[10px] uppercase tracking-wider text-link font-medium mb-0.5 dark:text-link">💡 ${cT.funFact}</p>
           <p class="text-xs text-body leading-relaxed dark:text-[#a1a1a1]">${animal.funFact}</p>
         </div>
       </div>
@@ -135,12 +147,12 @@ import animals from '../data/animals.json';
     };
 
     const rows = [
-      { label: 'Diet', icon: '🍽️', a: animalA.diet, b: animalB.diet },
-      { label: 'Habitat', icon: '🌍', a: animalA.habitat, b: animalB.habitat },
-      { label: 'Region', icon: '🗺️', a: animalA.region, b: animalB.region },
-      { label: 'Lifespan', icon: '⏱️', a: animalA.lifespan, b: animalB.lifespan },
-      { label: 'Weight', icon: '⚖️', a: animalA.weight, b: animalB.weight },
-      { label: 'Speed', icon: '💨', a: animalA.speed, b: animalB.speed },
+      { label: cT.diet, icon: '🍽️', a: animalA.diet, b: animalB.diet },
+      { label: cT.habitat, icon: '🌍', a: animalA.habitat, b: animalB.habitat },
+      { label: cT.region, icon: '🗺️', a: animalA.region, b: animalB.region },
+      { label: cT.lifespan, icon: '⏱️', a: animalA.lifespan, b: animalB.lifespan },
+      { label: cT.weight, icon: '⚖️', a: animalA.weight, b: animalB.weight },
+      { label: cT.speed, icon: '💨', a: animalA.speed, b: animalB.speed },
       { label: 'Conservation', icon: '🛡️', a: consLabels[animalA.conservation] || animalA.conservation, b: consLabels[animalB.conservation] || animalB.conservation },
       { label: 'Category', icon: '📂', a: catLabels[animalA.category] || animalA.category, b: catLabels[animalB.category] || animalB.category },
     ];
@@ -148,10 +160,10 @@ import animals from '../data/animals.json';
     const stats = document.getElementById('comparison-stats');
     stats.innerHTML = `
       <div class="flex items-center justify-between mb-5">
-        <h3 class="text-base font-bold text-ink dark:text-[#ededed]">Comparison Summary</h3>
+        <h3 class="text-base font-bold text-ink dark:text-[#ededed]">${cT.summary}</h3>
         <div class="flex items-center gap-4 text-xs text-muted">
-          <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-conservation-lc"></span>Same</span>
-          <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-error"></span>Different</span>
+          <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-conservation-lc"></span>${cT.same}</span>
+          <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-error"></span>${cT.different}</span>
         </div>
       </div>
       <div class="space-y-2">
@@ -162,7 +174,7 @@ import animals from '../data/animals.json';
             <div class="flex items-center gap-2 bg-hairline-soft/50 px-3 py-2 dark:bg-[#111]">
               <span class="text-sm">${r.icon}</span>
               <span class="text-xs font-semibold text-ink dark:text-[#ededed]">${r.label}</span>
-              ${same ? '<span class="ml-auto rounded-full bg-conservation-lc/15 px-2 py-0.5 text-[10px] font-medium text-conservation-lc border border-conservation-lc/30">Same</span>' : ''}
+              ${same ? `<span class="ml-auto rounded-full bg-conservation-lc/15 px-2 py-0.5 text-[10px] font-medium text-conservation-lc border border-conservation-lc/30">${cT.same}</span>` : ''}
             </div>
             <div class="grid grid-cols-2 divide-x divide-hairline dark:divide-[#333]">
               <div class="px-3 py-2.5 text-center">

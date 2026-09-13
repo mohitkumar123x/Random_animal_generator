@@ -1,0 +1,731 @@
+bigeye|||Bigeyes have extremely large eyes adapted for nocturnal feeding.
+mahi-mahi|||Mahi-mahi are also called dorado or dolphinfish, not to be confused with dolphins.
+katydid|||Katydid songs are ultrasonic, making them difficult for humans to hear without special equipment.
+cabbage-white-butterfly|||The small white is one of the most common butterflies in the world and a notorious garden pest.
+chambered-nautilus|||Has remained virtually unchanged for over 500 million years.
+roseate-spoonbill|||Roseate spoonbills sweep their spatulate bills side to side through shallow water to catch small fish and crustaceans.
+japanese-horseshoe-crab|||Its blue blood contains Limulus Amebocyte Lysate, used to test for bacterial contamination in medical equipment.
+crested-iguana|||Crested iguanas can change color from green to black based on temperature and social context.
+patrol-bess-beetle|||Patrol bess beetles produce sounds by rubbing ridges on their abdomen when disturbed.
+eurasian-pike|||Eurasian pike can accelerate from a standstill to 20 mph in less than a tenth of a second.
+spring-peeper|||The Spring Peeper's high-pitched peeping call can be heard from over a mile away during breeding season.
+spiny-lobster|||Lacks large claws and instead produces loud rasping sounds to deter predators.
+aphid|||Aphids can produce up to 80 offspring per female without mating through parthenogenesis.
+bumblebee|||Bumblebees can fly in colder temperatures than most bees due to their ability to thermoregulate.
+dark-eyed-junco|||Dark-eyed juncos are called snowbirds because they appear in southern states during winter.
+bufflehead|||Buffleheads are the smallest diving ducks in North America and often nest in old woodpecker holes.
+channel-catfish|||Channel catfish have taste buds covering their entire body and can taste food from far away.
+chimney-swift|||Chimney swifts can spend almost their entire lives in the air, even sleeping while flying.
+clown-tree-frog|||Clown Tree Frogs are named for their playful, acrobatic movements through the trees.
+jumping-bristletail|||Jumping bristletails are among the most ancient insects, with a fossil record dating back 400 million years.
+tawny-frogmouth|||Tawny frogmouths are often mistaken for owls but are actually more closely related to nightjars.
+frigatebird|||Frigatebirds can stay airborne for weeks and sleep while flying over the ocean.
+king-crab|||Its spiny shell can span over 5 feet from leg tip to leg tip.
+rainbow-boa|||Rainbow boas have iridescent scales that refract light, creating a stunning rainbow shimmer in the sun.
+sergeant-major|||Male sergeant majors turn dark purple when guarding their eggs.
+tasmanian-tiger|||Despite being called a tiger, it was actually a marsupial more closely related to kangaroos than to big cats.
+coopers-hawk|||Coopers hawks are agile enough to chase prey through dense forest at high speed.
+coconut-hermit-crab|||Often found in coconut shells and can grow large enough to use coconut husks as shelters.
+brown-kiwi|||Kiwi eggs are enormous relative to body size, up to 20% of the females body weight.
+eastern-bluebird|||Eastern bluebirds can see ultraviolet light, which helps them find ripe berries.
+ghost-mantis|||The ghost mantis looks exactly like a dried, dead leaf, making it nearly invisible.
+common-raven|||Ravens can slide down snow-covered roofs for fun and perform aerial acrobatics.
+army-ant|||Army ant colonies of millions move in massive raiding columns that devour everything in their path.
+green-heron|||Green herons are one of the few bird species that use tools, dropping bait on the water to attract fish.
+thorny-oyster|||Shell is covered in long, sharp spines that deter predators.
+dobsonfly|||Dobsonfly larvae, called hellgrammites, are indicators of good water quality.
+savannah-monitor|||Savannah monitors can slow their metabolism so much that they can survive on as few as three large meals per year.
+golden-digger-wasp|||Golden digger wasps paralyze grasshoppers and crickets to feed their larvae alive.
+alpine-salamander|||Alpine Salamanders are entirely viviparous, giving birth to fully developed young rather than laying eggs.
+ringed-caecilian|||Ringed Caecilians have a unique sensory organ called a tentacle that helps them detect prey underground.
+cape-dwarf-chameleon|||Cape dwarf chameleons have independently moving eyes that can rotate 180 degrees, giving them a 360-degree field of vision.
+emperor-dragonfly|||Emperor dragonflies can eat their own body weight in insects every day.
+wood-frog|||Wood Frogs can survive being frozen solid, with up to 65% of their body water turning to ice.
+marmalade-hoverfly|||Marmalade hoverflies migrate thousands of miles across Europe each year.
+queen-angelfish|||Queen angelfish get their name from a dark blue ring on their forehead resembling a crown.
+european-tree-frog|||European Tree Frogs have adhesive toe pads that allow them to climb smooth surfaces, including glass.
+northern-cardinal|||Northern cardinal females also sing, which is rare among North American songbirds.
+lacewing|||Lacewing larvae are called aphid lions and can each consume 200 aphids per week.
+wheel-bug|||The wheel bug gets its name from the distinctive cogwheel-like crest on its thorax.
+oceanic-whitetip-shark|||Oceanic whitetip sharks were responsible for more human casualties than any other species during World War II.
+resurrection-butterfly|||The resurrection butterfly is considered a symbol of rebirth in Japanese culture.
+lily-beetle|||Lily beetles are bright red, making them easy to spot on green leaves.
+tundra-swan|||Tundra swans migrate up to 4,000 miles each way between Arctic breeding grounds and wintering areas.
+fire-salamander|||Fire Salamanders were once believed to be born from fire and could extinguish flames with their cold bodies.
+european-hornet|||European hornets are attracted to light and will often fly into homes at night.
+immortal-jellyfish|||Can revert from its adult form back to its juvenile polyp stage, effectively reversing aging.
+bullocks-oriole|||Bullocks orioles weave elaborate hanging pouch nests that dangle from tree branches.
+sidewinder-rattlesnake|||Sidewinders move using a unique S-shaped locomotion that minimizes contact with hot desert sand.
+orchid-mantis|||The orchid mantis looks so much like a flower that pollinators land directly on it.
+alabama-red-bellied-cooter|||Alabama red-bellied cooters can bask for hours, using the sun to synthesize vitamin D3 for shell health.
+panther-chameleon|||Chameleons change color primarily for communication and temperature regulation, not camouflage.
+peacock-mantis-shrimp|||Can see 16 types of color receptors and perceives ultraviolet and polarized light.
+yellow-headed-blackbird|||Male yellow-headed blackbirds defend small nesting territories within marshes, sometimes with multiple females.
+california-kingsnake|||California kingsnakes are immune to rattlesnake venom and regularly prey upon rattlesnakes in the wild.
+asian-giant-hornet|||The Asian giant hornet can decapitate an entire honeybee colony in hours.
+swimming-crab|||Has paddle-shaped back legs that allow it to swim rapidly through the water.
+french-angelfish|||French angelfish are often seen in monogamous pairs and travel together for life.
+sailfish|||Sailfish are considered the fastest fish in the ocean, reaching speeds up to 68 mph.
+painted-lady-butterfly|||Painted ladies migrate across the Sahara Desert and the Mediterranean Sea.
+scarlet-macaw|||Scarlet macaws can live over 75 years in captivity and mate for life.
+arctic-char|||Arctic char are the most northerly freshwater fish in the world.
+tuskfish|||Tuskfish use rocks as anvils to crack open shellfish for food.
+black-spiny-tailed-iguana|||The black spiny-tailed iguana is the fastest lizard in the world, capable of running at 21 mph.
+pacific-sea-cucumber|||Is commercially harvested as a delicacy in Asian cuisine, known as beche-de-mer.
+pine-siskin|||Pine siskins can carry salmonella bacteria without getting sick, which can be transmitted to backyard birds at feeders.
+waterdog|||Waterdogs retain their external gills throughout their lives, a condition known as neoteny.
+staghorn-coral|||Can grow up to 8 inches per year, making it one of the fastest-growing corals.
+american-toad|||A single American Toad can eat up to 1,000 insects per day, making them excellent garden pest controllers.
+flatwoods-salamander|||Flatwoods Salamanders have a distinctive dark crossband pattern that helps them camouflage on the forest floor.
+common-cuttlefish|||Can hypnotize prey with rapidly changing color patterns.
+field-cricket|||Male field crickets chirp by rubbing their wings together, and you can estimate temperature by counting chirps.
+great-spangled-fritillary|||Fritillary caterpillars feed exclusively on violets, which is how the group got its name.
+merlin|||Merlins were once known as pigeon hawks due to their habit of hunting pigeons.
+mourning-cloak-butterfly|||The mourning cloak is one of the longest-lived butterflies and overwinters as an adult.
+hyacinth-macaw|||The hyacinth macaw is the largest flying parrot in the world, with a wingspan over 4 feet.
+boomslang|||Boomslang venom prevents blood clotting, causing victims to bleed from every orifice.
+leatherjacket|||Leatherjackets have rough, sandpaper-like skin used by early settlers as sandpaper.
+oriental-rat-flea|||The oriental rat flea was the primary vector of bubonic plague during the Black Death.
+golden-trout|||Golden trout are the official state fish of California and are found only in a few remote streams.
+blue-morpho-butterfly|||The morpho's blue color is not pigment but structural coloration from microscopic scales.
+humboldt-squid|||Also called the jumbo squid or red devil for its aggressive nature.
+mason-bee|||Mason bees are 100 times more efficient at pollinating than honeybees.
+great-blue-heron|||Great blue herons can stand motionless for hours waiting for the perfect moment to strike prey.
+barred-owl|||Barred owls are known for their distinctive call that sounds like Who cooks for you.
+goliath-grouper|||Goliath groupers are so large they can weigh as much as a small car.
+red-knot|||Red knots migrate up to 9,000 miles nonstop from the Arctic to the tip of South America.
+clouded-monitor|||Clouded monitors are arboreal and have sharp claws that allow them to climb vertical tree trunks with ease.
+cottonmouth|||Cottonmouths get their name from the white, cotton-like lining of their mouth, which they display as a warning.
+black-widow-spider|||The black widow's venom is 15 times stronger than a rattlesnake's, but less is injected.
+black-chinned-hummingbird|||The black chin of this hummingbird flashes brilliant purple when the light hits it at the right angle.
+red-crossbill|||Red crossbills have uniquely crossed mandibles specifically adapted for extracting seeds from conifer cones.
+long-toed-salamander|||Long-Toed Salamanders can have up to 13 toes on their hind feet, more than most salamanders.
+compass-jellyfish|||Has distinctive brown V-shaped markings on its bell resembling a compass rose.
+marbled-salamander|||Female Marbled Salamanders stay with their eggs and guard them until they hatch.
+sand-dollar|||The petal-like pattern on its skeleton is actually five sets of tube feet used for breathing.
+bay-scallop|||Can swim short distances by rapidly clapping its shell valves together.
+firefly|||Firefly larvae glow too, and some produce light to deter predators.
+spearer-mantis-shrimp|||Has barbed, spear-like appendages for impaling soft-bodied prey like fish.
+african-penguin|||African penguins are sometimes called jackass penguins because they bray like donkeys.
+tufted-puffin|||Tufted puffins can dive to depths of over 200 feet to catch fish.
+american-grasshopper|||Bird grasshoppers are strong fliers and can travel significant distances during migrations.
+weedy-seadragon|||Weedy seadragons carry their eggs on the male's tail until they hatch.
+european-robin|||The European robin is a symbol of Christmas in Britain and appears on many holiday cards.
+wool-carder-bee|||Wool carder bees scrape plant hairs to line their nests, hence their name.
+walking-catfish|||Walking catfish can survive out of water for hours and use their pectoral fins to walk on land.
+cane-toad|||Cane Toads were introduced to Australia in 1935 to control beetles but became one of the worst invasive species in the world.
+cicada|||Periodical cicadas emerge in synchronized broods of billions after 13 or 17 years underground.
+whooping-crane|||Whooping cranes were once down to only 15 birds in the wild, making them one of the rarest birds in North America.
+boulengers-caecilian|||Boulenger's Caecilians have minute vestigial eyes that can detect light but not form images.
+rusty-blackbird|||The rusty blackbird has declined by over 90% in the past 50 years, making it one of North Americas fastest declining birds.
+foam-nest-frog|||Foam Nest Frogs create a frothy nest by beating their hind legs to whip up a foam that protects their eggs.
+lesser-siren|||Lesser Sirens can breathe through their gills and also through their skin, and can survive drying by burrowing into mud.
+portuguese-man-of-war|||Is actually a colony of four specialized organisms called zooids, not a single animal.
+common-potoo|||Common potoos perch upright on branches during the day, looking exactly like a broken tree stump.
+snakefly|||Snakefly larvae can crawl backwards at high speed to escape threats.
+convict-cichlid|||Convict cichlids are devoted parents that aggressively defend their young.
+black-skimmer|||The black skimmers lower bill is longer than its upper, allowing it to skim fish from the water surface.
+atlantic-salmon|||Atlantic salmon can jump waterfalls and dams during their upstream spawning migration.
+greylag-goose|||The greylag goose is the ancestor of most domestic goose breeds in Europe.
+american-robin|||American robins can eat 14 feet of earthworms in a single day.
+golden-poison-dart-frog|||A single Golden Poison Dart Frog carries enough toxin to kill 10 grown men.
+sailfin-lizard|||Sailfin lizards can run across the surface of water for short distances using their flattened, fringed toes.
+giant-tubeworm|||Has no mouth, stomach, or gut, relying entirely on symbiotic bacteria for nutrition.
+black-fly|||Black fly swarms can be so dense that they suffocate livestock by blocking their airways.
+sweat-bee|||Some sweat bees have metallic green or blue bodies that shimmer in the sunlight.
+chinese-water-dragon|||Chinese water dragons can drop from heights of 40 feet and land safely on branches below.
+biting-midge|||Biting midges, or no-see-ums, are so small they can pass through standard window screens.
+american-avocet|||American avocets sweep their upturned bills side to side through water to catch tiny invertebrates.
+mayfly|||Adult mayflies have vestigial mouthparts and cannot eat, living only long enough to mate.
+swainsons-hawk|||Swainsons hawks migrate in massive flocks of hundreds of thousands from North America to South America.
+mallard|||All domestic ducks are descendants of the wild mallard except for the muscovy duck.
+chukar|||Chukars prefer running uphill to flying when escaping danger.
+copperband-butterflyfish|||Copperband butterflyfish have a false eye spot near their tail to confuse predators.
+brown-basilisk|||Brown basilisks can run across water using their long toes and fringed scales, earning them the nickname 'Jesus Christ lizard'.
+dog-day-cicada|||Dog-day cicadas get their name because they emerge during the dog days of summer.
+american-crocodile|||American crocodiles are more tolerant of saltwater than alligators, which is why they are found in coastal habitats.
+squirrelfish|||Squirrelfish have large eyes adapted for nocturnal hunting.
+leather-star|||Has a smooth, leathery texture unlike the rough surface of most sea stars.
+splashback-poison-frog|||Splashback Poison Frogs get their name from their colorful backs that look like paint splashes.
+desert-rain-frog|||Desert Rain Frogs let out a high-pitched squeak when threatened, sounding like a dog toy.
+cockatoo-squid|||Inflates its body with seawater to appear larger and more intimidating to predators.
+white-tailed-kite|||White-tailed kites can hover in place for extended periods while scanning the ground for prey.
+angel-shark|||Angel sharks can bury themselves completely in sand to ambush passing prey.
+spider-tortoise|||Spider tortoises are named for the radiating yellow lines on their shells that resemble a spider's web.
+blenny|||Midas blennies often join schools of cleaner wrasses to avoid predation.
+brazilian-rainbow-boa|||Brazilian rainbow boas have iridescent scales that create a holographic rainbow effect when exposed to light.
+west-african-dwarf-crocodile|||West African dwarf crocodiles are the most terrestrial of all crocodilians and dig deep burrows to rest in during the day.
+slender-salamander|||Slender Salamanders can coil into a tight spiral to conserve moisture.
+bullet-ant|||The bullet ant's sting is rated as the most painful insect sting in the world.
+eastern-water-dragon|||Eastern water dragons can swim underwater for up to 90 minutes, closing a special membrane to keep water out of their eyes.
+blue-ringed-octopus|||Its venom contains tetrodotoxin, potent enough to kill 26 humans.
+false-water-cobra|||False water cobras flatten their necks like true cobras when threatened, despite being only mildly venomous.
+snow-crab|||Can tolerate near-freezing water temperatures as low as 0.5 degrees Celsius.
+sea-whip|||Some species produce a compound used in cancer research.
+pine-grosbeak|||Pine grosbeaks are one of the tamest boreal birds, often allowing close approach.
+long-spined-sea-urchin|||Spines can be over a foot long and are mildly venomous.
+brown-pelican|||Brown pelicans can dive from heights of over 60 feet to catch fish, with air sacs cushioning the impact.
+rhinoceros-iguana|||Rhinoceros iguanas get their name from the horn-like scales on their snouts, which resemble rhinoceros horns.
+yellow-warbler|||Yellow warblers are one of the first songbirds to arrive on their breeding grounds in spring.
+cave-salamander|||Cave Salamanders can climb vertical rock faces using their specialized toe pads.
+basking-shark|||Basking sharks are the second largest fish in the world, after whale sharks.
+tarantula|||Tarantulas urinate from their fangs, using digestive fluid rather than water.
+mississippi-kite|||Mississippi kites eat enormous quantities of cicadas and other insects caught in mid-air.
+bot-fly|||Bot fly larvae develop under human skin, creating painful boils called myiasis.
+slate-pencil-urchin|||Has thick, blunt spines that were historically used as writing instruments.
+deathstalker-scorpion|||The deathstalker's venom contains compounds being researched for use in cancer treatment.
+body-louse|||Body lice have been used to track human migration patterns through DNA analysis.
+ferruginous-hawk|||The ferruginous hawk is the largest North American hawk, with a wingspan over 5 feet.
+silverfish|||Silverfish are among the most primitive wingless insects, virtually unchanged for 400 million years.
+wood-duck|||Wood ducklings can jump from tree nests up to 50 feet high without injury.
+bobtail-squid|||Harbors bioluminescent bacteria in a specialized light organ for counter-illumination camouflage.
+keel-billed-toucan|||The toucans colorful bill is surprisingly lightweight, made mostly of keratin with a honeycomb structure.
+nile-monitor|||Nile monitors are excellent swimmers and can hold their breath for up to an hour while submerged underwater.
+lyrebird|||The lyrebird can mimic virtually any sound, including chainsaws, camera shutters, and car alarms.
+gopher-tortoise|||Gopher tortoise burrows can be over 40 feet long and provide shelter for more than 350 other species.
+carrion-beetle|||Carrion beetles can locate a dead animal from over a mile away using chemical sensors.
+slipper-lobster|||Has distinctive plate-like antennae that resemble slipper soles.
+horsefly|||Horse flies are among the fastest flying insects, reaching speeds up to 90 mph.
+paper-wasp|||Paper wasps build their nests from chewed wood fibers mixed with saliva.
+madagascar-hissing-cockroach|||Madagascar hissing cockroaches produce a loud hiss by forcing air through specialized breathing holes.
+mozambique-spitting-cobra|||Mozambique spitting cobras can spit venom accurately up to 3 meters, targeting the eyes of threats.
+carpenter-ant|||Carpenter ants do not eat wood but excavate it to create nesting galleries.
+boxfish|||Boxfish can release a toxin when stressed that can kill other fish in an aquarium.
+goliath-beetle|||Goliath beetles are among the heaviest insects in the world.
+atolla-jellyfish|||Produces a pinwheel of bioluminescent light when attacked, known as a burglar alarm.
+antarctic-krill|||Forms swarms of billions of individuals visible from space.
+scorpionfish|||Scorpionfish are masters of camouflage, resembling algae-covered rocks on the reef.
+vermilion-flycatcher|||The vermilion flycatcher is one of the most brilliantly colored flycatchers in the Western Hemisphere.
+red-snapper|||Red snappers can live over 50 years, making them one of the longest-lived snapper species.
+burrowing-owl|||Burrowing owls nest underground in burrows dug by prairie dogs or ground squirrels.
+alligator-snapping-turtle|||Alligator snapping turtles have a worm-like appendage on their tongue that lures fish directly into their mouths.
+whites-tree-frog|||White's Tree Frogs have fatty deposits above their eyes that look like eyebrows, giving them a perpetual smile.
+oriental-cockroach|||Oriental cockroaches are sometimes called water bugs because they prefer damp, dark environments.
+mormon-cricket|||Despite their name, Mormon crickets are actually shield-backed katydids, not true crickets.
+blue-crab|||Named for its bright blue claws used in mating displays.
+fried-egg-jellyfish|||Its bell closely resembles a fried egg, with a yellow center surrounded by white.
+blood-belly-comb-jelly|||Produces brilliant red bioluminescence when disturbed.
+osprey|||Ospreys have reversible outer toes that allow them to grasp fish with two toes in front and two behind.
+sandhill-crane|||Sandhill cranes perform elaborate dances that include jumping, bowing, and tossing sticks.
+soldierfish|||Soldierfish are nocturnal and hide in reef crevices during the day.
+american-bullfrog|||American Bullfrogs can eat almost anything they can fit in their mouths, including other frogs, birds, and even snakes.
+killdeer|||Killdeer perform a broken-wing act to lure predators away from their ground nests.
+cecropia-moth|||The cecropia moth is the largest native moth in North America.
+black-browed-albatross|||Black-browed albatrosses can sleep while flying over the ocean.
+bed-bug|||Bed bugs can survive for over a year without feeding and are resistant to many pesticides.
+sea-pen|||Is a colony of polyps anchored in sediment, with some species producing bioluminescent waves when disturbed.
+snowy-tree-cricket|||The snowy tree cricket is known as the thermometer cricket because chirp rate correlates with temperature.
+budgetts-frog|||Budgett's Frogs inflate their bodies and scream when threatened to appear larger and more intimidating.
+giant-walking-stick|||The giant walking stick holds the record for the longest insect in the world.
+cattle-bot-fly|||Cattle bot fly larvae attach to the tongues and throat of cattle, causing significant irritation.
+goliath-frog|||The Goliath Frog is the largest living frog in the world, weighing up to 7 pounds and spanning over a foot long.
+strawberry-poison-dart-frog|||The Strawberry Poison Dart Frog has over 30 color morphs, ranging from red with blue legs to green with yellow spots.
+sea-hare|||Can release a cloud of purple ink when threatened, confusing predators.
+little-blue-penguin|||Little blue penguins are the smallest penguin species, standing only about 13 inches tall.
+mexican-beaded-lizard|||The Mexican beaded lizard is one of only a few venomous lizards and can deliver a painful, though rarely fatal, bite.
+tree-swallow|||Tree swallows are one of the few North American songbirds that can digest berries, allowing them to migrate earlier in spring.
+giant-plated-lizard|||Giant plated lizards wedge themselves into rock crevices and inflate their bodies, making them nearly impossible to extract.
+atlantic-grouper|||Groupers can inhale prey whole by suddenly opening their massive mouths.
+amazon-tree-boa|||Amazon tree boas are incredibly variable in color and pattern, with no two individuals looking exactly alike.
+earwig|||Earwig mothers guard their eggs and clean them to prevent fungal growth.
+musk-bee|||Musk bees produce a distinctive lemony scent when disturbed.
+hooded-merganser|||Hooded mergansers have the largest crest relative to body size of any duck, which they raise and lower at will.
+wandering-albatross|||The wandering albatross has the largest wingspan of any living bird, reaching over 11 feet.
+purple-martin|||Purple martins are almost completely dependent on human-provided nest boxes in the eastern United States.
+common-wall-lizard|||Common wall lizards have been introduced to North America from Europe and are now thriving in cities like Toronto and Vancouver.
+tench|||Tench secrete a mucus that can heal wounds in other fish.
+southern-stingray|||Southern stingrays can deliver a venomous barb sting that can cause severe pain.
+stonefish|||Stonefish are the most venomous fish in the world, their sting can be fatal to humans.
+hawk-moth|||Hawk moths are among the fastest flying insects, capable of hovering like hummingbirds.
+argonaut|||Females create a paper-thin shell for egg protection, the only octopus to do so.
+atlantic-puffin|||Puffins can carry 10 or more fish in their beaks at once thanks to specialized tongue and bill structures.
+formosan-termite|||Formosan termites build carton nests above ground and can consume a foot of 2x4 lumber in about five months.
+mud-crab|||Can grow to 5 pounds and has claws strong enough to sever a human finger.
+palm-nut-vulture|||The palm-nut vulture is the only vulture species that feeds primarily on plant material, specifically palm fruits.
+brown-tree-snake|||The brown tree snake has driven at least 10 bird species to extinction on Guam after accidentally introduced there.
+banded-krait|||Banded kraits are twice as venomous as cobras and often cannibalize other snakes, including other kraits.
+pacific-bluefin-tuna|||Pacific bluefin tuna can cross the entire Pacific Ocean in less than 60 days.
+nassau-grouper|||Nassau grouper can change color in seconds to match their surroundings.
+purple-sea-urchin|||Can bore into solid rock using its specialized jaw apparatus called Aristotle's lantern.
+gulf-coast-salamander|||Gulf Coast Salamanders are one of the few salamander species that can tolerate slightly brackish water.
+coconut-crab|||Has the strongest grip of any animal, strong enough to crack open coconuts.
+parrotfish|||Parrotfish excrete digested coral as fine white sand, creating tropical beaches.
+radiated-tortoise|||Radiated tortoises can live for over 100 years, with some individuals reportedly reaching 188 years of age.
+black-vulture|||Black vultures have excellent eyesight and also use their sense of smell to locate carrion.
+three-toed-amphiuma|||Three-Toed Amphiumas have vestigial legs that are so small they are almost impossible to see.
+flower-urchin|||Covered in flower-like structures called pedicellariae that deliver a painful venom.
+nurse-shark|||Nurse sharks can pump water over their gills while resting on the ocean floor.
+coelacanth|||Coelacanths were thought to be extinct for 66 million years until rediscovered in 1938.
+cowfish|||Longhorn cowfish have two horn-like spines protruding from their head.
+harlequin-toad|||Many Harlequin Toad species were thought to be extinct until small populations were rediscovered in recent years.
+cape-cobra|||Cape cobras are highly venomous and are responsible for the most snakebite deaths in southern Africa.
+lion-paw-scallop|||Named for its ridged, colorful shell that resembles a lion's paw.
+trunkfish|||Trunkfish can squirt a toxic substance from their skin when threatened.
+masked-devil-cicada|||Some Australian cicada species have the loudest insect calls, exceeding 120 decibels.
+asian-common-toad|||Asian Common Toads are extremely adaptable and thrive in human-modified environments across Southeast Asia.
+colorado-potato-beetle|||The Colorado potato beetle is one of the most insecticide-resistant pests in the world.
+four-toed-salamander|||Four-Toed Salamanders have only four toes on their hind feet, unlike most salamanders which have five.
+red-eyed-tree-frog|||Red-Eyed Tree Frogs flash their bright red eyes to startle predators, giving them a chance to escape.
+praying-mantis|||Praying mantises can rotate their heads 180 degrees to scan for prey.
+crown-of-thorns-starfish|||Can consume up to 10 square feet of coral per year.
+pacific-sea-nettle|||Its golden-brown bell and long trailing tentacles make it one of the most beautiful jellyfish.
+florida-gar|||Florida gar have an elongated snout filled with needle-like teeth and can breathe air.
+sharp-shinned-hawk|||The sharp-shinned hawk is the smallest hawk in North America, barely larger than a jay.
+shingleback-skink|||Shingleback skinks mate for life and reunite with the same partner every breeding season.
+common-shore-shrimp|||Can cling tightly to rocks to survive powerful wave action.
+orb-weaver-spider|||Orb weavers rebuild their webs almost every night, consuming the old silk to recycle the proteins.
+knifefish|||Black ghost knifefish use weak electric fields to navigate and find prey in dark, murky water.
+dampwood-termite|||Dampwood termites are the largest North American termites and do not require soil contact.
+giant-pacific-octopus|||Can change color and texture in milliseconds to blend with surroundings.
+wild-turkey|||Wild turkeys can fly at speeds up to 55 mph and run at 25 mph.
+arctic-tern|||Arctic terns migrate from Arctic to Antarctic and back each year, the longest migration of any animal, up to 44,000 miles.
+chinook-salmon|||Chinook salmon are the largest of all Pacific salmon species.
+human-head-louse|||Head lice have been companions of humans for at least 10,000 years.
+common-crane|||Common cranes perform elaborate dances with jumping, bowing, and wing-flapping during courtship.
+tropical-hermit-crab|||Some individuals live in groups of over 100, sharing shells in a chain.
+blue-mussel|||Attaches to rocks using strong byssal threads, forming dense beds of thousands.
+sunflower-sea-star|||Can have up to 24 arms and is one of the largest sea stars in the world.
+sohal-surgeonfish|||Sohal surgeonfish are extremely territorial and will attack divers who enter their space.
+pickerel-frog|||Pickerel Frogs produce a toxin that can irritate human skin and is lethal to other frogs.
+german-cockroach|||German cockroaches can produce up to 30,000 offspring in a single year from one female.
+tiger-shark|||Tiger sharks are known as the garbage cans of the sea because they eat almost anything.
+japanese-spider-crab|||Has the largest leg span of any arthropod, up to 12 feet across.
+northern-cuirassated-lizard|||Northern cuirassated lizards have bony armor plates called osteoderms that provide protection from predators.
+striped-bass|||Striped bass are anadromous and can travel hundreds of miles to spawn.
+red-drum|||Red drum are also called channel bass and are the official state fish of North Carolina.
+laughing-kookaburra|||The laughing kookaburras call sounds exactly like echoing human laughter.
+indo-pacific-horseshoe-crab|||Is the only horseshoe crab species found in Asian coastal waters.
+mountain-chicken-frog|||Despite their name, Mountain Chicken Frogs are not chickens but are called so because their leg meat tastes like chicken.
+gliding-tree-frog|||Gliding Tree Frogs can spread their enlarged toe pads and webbed feet to glide between trees.
+greater-roadrunner|||Greater roadrunners can run at speeds up to 20 mph and can live without drinking water.
+hover-fly|||Hover flies mimic bees and wasps for protection but are completely harmless.
+thorny-devil|||Thorny devils have micro-channels in their skin that funnel water from any body part directly to their mouths.
+walleye|||Walleye have a light-reflecting layer called the tapetum lucidum that makes their eyes glow at night.
+cherry-tree-frog|||Cherry Tree Frogs can change color from bright green to brown depending on their surroundings.
+bluegill|||Male bluegills build circular nests in shallow water and guard the eggs fiercely.
+triggerfish|||Triggerfish have a spine on their dorsal fin that can be locked in an upright position.
+russian-tortoise|||Russian tortoises can survive extreme temperatures by brumating underground for up to 6 months during harsh winters.
+atlantic-surf-clam|||Can propel itself out of the sand using its muscular foot when disturbed.
+glass-frog|||Glass Frogs have transparent abdominal skin that allows you to see their beating heart and internal organs.
+ensatina|||Ensatina salamanders form a ring species around California's Central Valley, with different subspecies at each end.
+red-sea-cucumber|||Uses tube feet along its underside to slowly crawl across the seafloor.
+slimy-salamander|||Slimy Salamanders secrete a sticky, glue-like substance from their skin that is difficult to remove.
+eastern-diamondback-rattlesnake|||The eastern diamondback rattlesnake's rattle can vibrate up to 50 times per second as a warning signal.
+leafy-seadragon|||Leafy seadragons have no stomach or teeth and must eat almost constantly.
+smallmouth-bass|||Smallmouth bass are known for their fighting ability and are called brownies or bronzebacks.
+american-lobster|||Can live over 100 years and keep growing throughout its life.
+giant-water-bug|||Giant water bugs are called toe-biters and can deliver an extremely painful bite.
+elm-beetle|||Elm leaf beetles can enter homes through small cracks and hibernate indoors during winter.
+crested-caracara|||Crested caracaras are members of the falcon family but behave more like vultures, often scavenging on carrion.
+eastern-wood-pewee|||The eastern wood-pewees call is so distinctive that the species was named after its song.
+weaver-ant|||Weaver ants use their own larvae as living glue guns to stitch leaves together.
+american-kestrel|||American kestrels can see ultraviolet light, which helps them track the urine trails of rodents.
+blue-coral|||The only reef-building coral with a blue skeleton, caused by iron salts in its skeleton.
+sea-squirt-tunicate|||Is more closely related to vertebrates than most invertebrates, being a chordate.
+gentoo-penguin|||Gentoo penguins are the fastest underwater swimming birds, reaching speeds of 22 mph.
+evening-grosbeak|||Evening grosbeaks are irruptive migrants, showing up in large numbers far south of their normal range in some years.
+hampire-poison-dart-frog|||Hampire Poison Dart Frogs are named after the Harry Potter character due to their striking black and orange pattern.
+antlion|||Antlion larvae dig conical pit traps in sand to catch ants and other small insects.
+baltimore-oriole|||Baltimore orioles weave intricate hanging nests that can take up to two weeks to build.
+foureye-butterflyfish|||Foureye butterflyfish have large eye spots that make predators think their tail is their head.
+tiger-salamander|||Tiger Salamanders are one of the longest-lived amphibians, with some individuals living over 20 years in captivity.
+bearded-fireworm|||Has hollow, venom-filled bristles that cause intense burning pain on contact.
+brook-trout|||Brook trout are the only trout native to much of eastern North America.
+moon-jellyfish|||Can reproduce both sexually and asexually, allowing population explosions.
+marsupial-frog|||Female Marsupial Frogs carry their eggs in a pouch on their back, similar to marsupial mammals.
+common-brittle-star|||Can detach an arm to escape predators, later regenerating it.
+giant-squid|||Was considered a mythical creature until first photographed alive in 2004.
+white-throated-sparrow|||White-throated sparrows come in two color morphs that pair almost exclusively with each other.
+alligator-gar|||Alligator gar eggs are toxic to humans but consumed by Native Americans after processing.
+atlantic-krill|||Forms dense swarms that can extend for miles and contain trillions of individuals.
+walking-stick|||Walking sticks can regenerate lost limbs during molts and some species produce toxic defensive chemicals.
+tarantula-hawk-wasp|||The tarantula hawk has one of the most painful insect stings in the world.
+mandarinfish|||Mandarinfish are one of only two vertebrates known to produce blue pigment.
+forest-cobra|||The forest cobra is the largest true cobra species and an excellent swimmer, often found near water.
+luna-moth|||Luna moths do not have mouths and cannot eat as adults, living only on stored energy.
+fire-ant|||Fire ant colonies can form living rafts that float on water for weeks during floods.
+red-admiral-butterfly|||Red admirals are territorial and will chase other butterflies from their favorite basking spots.
+dusky-salamander|||Dusky Salamanders can autotomize their tails when threatened, which continue to wiggle and distract predators.
+house-finch|||Male house finches get their red color from pigments in their diet of berries and fruits.
+bearded-vulture|||Bearded vultures eat bones, dropping them from great heights to crack them into swallowable pieces.
+western-diamondback-rattlesnake|||Western diamondback rattlesnakes add a new segment to their rattle each time they shed their skin.
+arboreal-salamander|||Arboreal Salamanders can climb trees and have prehensile tails for gripping branches.
+tang|||Clown tangs are extremely territorial and can be aggressive toward other fish.
+whirligig-beetle|||Whirligig beetles have four eyes: two for seeing above water and two for seeing below.
+mute-swan|||Mute swans can be aggressive defenders of their nests, charging at intruders.
+snowflake-butterfly|||The snowflake butterfly has mostly white wings with delicate black tips.
+woolly-mammoth|||Woolly mammoths coexisted with early humans and their remains are still found frozen in Siberian permafrost.
+peacock-spider|||Male peacock spiders perform elaborate dance displays with colorful abdominal flaps to court females.
+damselfly|||Damselflies fold their wings along their bodies when at rest, unlike dragonflies.
+cassins-finch|||Cassins finches are the most recently described North American bird species, not recognized until 1861.
+ring-necked-pheasant|||Male ring-necked pheasants have such vivid plumage that they were once used as models for dragon illustrations.
+leaf-sheep|||Is one of the only animals capable of photosynthesis, stealing chloroplasts from algae.
+king-vulture|||King vultures were believed by the Maya to carry messages between humans and gods.
+rough-legged-hawk|||Rough-legged hawks have feathered legs all the way to their toes, adapted for Arctic cold.
+leafhopper|||Brown planthoppers can jump 70 times their body length in a single leap.
+andean-condor|||The Andean condor has the largest wingspan of any raptor, reaching over 10 feet.
+red-salamander|||Red Salamanders are one of the largest lungless salamanders in North America.
+leopard-frog|||Leopard Frogs can jump up to 20 times their body length in a single leap.
+wrasse|||Cleaner wrasses set up cleaning stations where larger fish line up to have parasites removed.
+eagle-ray|||Spotted eagle rays can leap several feet out of the water.
+bombardier-beetle|||Bombardier beetles spray a boiling chemical spray at 212 degrees Fahrenheit from their abdomen.
+eastern-newt|||The juvenile Eastern Newt, called a red eft, is brightly colored to warn predators of its toxins.
+purple-finch|||Roger Tory Peterson described male purple finches as dipped in raspberry juice.
+human-flea|||Fleas can jump up to 150 times their body length, equivalent to a human jumping over a skyscraper.
+blue-poison-dart-frog|||Blue Poison Dart Frogs derive their toxicity from the ants and mites they eat in the wild.
+feather-star|||Can swim by rhythmically waving its feathery arms through the water.
+three-spined-stickleback|||Male sticklebacks build elaborate nests from water plants and fan the eggs to provide oxygen.
+zebra-longwing-butterfly|||Zebra longwings are the state butterfly of Florida and can live on pollen alone.
+chinese-sturgeon|||Chinese sturgeon have existed for over 140 million years and are called living fossils.
+ruby-throated-hummingbird|||Ruby-throated hummingbirds beat their wings 53 times per second and can fly backwards.
+red-bellied-piranha|||Red-bellied piranhas can strip a carcass to bone in minutes with their razor-sharp teeth.
+great-spider-crab|||Often decorates its shell with sponges and algae for camouflage.
+laughing-gull|||Laughing gulls are named for their call that sounds like high-pitched human laughter.
+sweep|||Sweep are named for their distinctive sweeping swimming motion.
+american-woodcock|||American woodcocks have eyes on the sides of their heads and can see 360 degrees.
+discus|||Discus parents produce a mucus secretion that their young feed on for the first few weeks.
+yellow-bellied-slider|||Yellow-bellied sliders can bask on logs for hours, using the sun to regulate their body temperature and digest food.
+eastern-green-mamba|||Eastern green mambas are arboreal and rarely descend to the ground, spending their lives in the forest canopy.
+wood-stork|||Wood storks are the only stork species that breeds in North America and use tactile feeding to catch prey.
+rough-skinned-newt|||Rough-Skinned Newts produce enough tetrodotoxin to kill several adult humans.
+great-crested-newt|||Male Great Crested Newts develop a jagged crest along their back during breeding season.
+rainbow-trout|||Rainbow trout can change color intensity based on their environment and mood.
+ichneumon-wasp|||The giant ichneumon's ovipositor can be longer than its body and drills through wood to reach beetle larvae.
+burmese-python|||Burmese pythons are one of the largest snake species and have become a destructive invasive species in the Florida Everglades.
+gadwall|||The gadwall is often called the plain duck, but males have an elegant pattern of fine vermiculation visible up close.
+atlantic-sturgeon|||Atlantic sturgeon can live over 100 years and were once hunted for their caviar.
+violet-green-swallow|||Violet-green swallows have white patches on their face that wrap around to the back of their head.
+red-winged-blackbird|||Red-winged blackbirds are one of the most abundant birds in North America, with over 200 million individuals.
+paper-nautilus|||Females create a delicate, paper-thin shell for egg protection.
+honeybee|||A single honeybee colony can visit over 225,000 flowers to produce one pound of honey.
+black-coral|||Some colonies have been dated to over 4,000 years old, making them the oldest living organisms on Earth.
+flathead|||Flathead are ambush predators that bury themselves in sand to surprise prey.
+midwife-toad|||Male Midwife Toads carry the eggs wrapped around their hind legs until they are ready to hatch.
+black-legged-poison-frog|||Black-Legged Poison Frogs exhibit biparental care, with both parents tending to their eggs and tadpoles.
+muskellunge|||Muskellunge are also called muskies and are the largest member of the pike family.
+caribbean-reef-octopus|||Has two-thirds of its neurons in its arms rather than its brain.
+african-dwarf-frog|||African Dwarf Frogs are fully aquatic and spend their entire lives underwater, unlike most frogs.
+betta|||Male bettas build bubble nests at the water surface for their eggs.
+common-nighthawk|||Common nighthawks have tiny feathers around their mouth that form a wide funnel for catching insects in flight.
+hairy-frog|||Male Hairy Frogs grow hair-like skin projections during breeding season to help absorb oxygen from water.
+firefly-squid|||Produces its own light through bioluminescent organs called photophores.
+common-grackle|||Common grackles have iridescent feathers that shimmer purple, green, and bronze in the sunlight.
+pacific-krill|||Is the primary food source for North Pacific right whales.
+spanish-dancer|||Named for its spectacular undulating swimming motion that resembles a flamenco dancer.
+american-coot|||American coots can sink slowly into water to hide, submerging up to their necks.
+cane-turtle-frog|||Cane Turtle Frogs have a flattened body shape that allows them to hide under rocks and logs.
+eastern-whip-poor-will|||Eastern whip-poor-wills can sing up to 400 times per hour, repeating their name-like call all night.
+four-spotted-chaser|||Four-spotted chasers are among the first dragonflies to emerge in spring.
+brown-recluse-spider|||Brown recluse venom can cause necrotic lesions that take months to heal.
+nautilus-pompilius|||Shell follows a logarithmic spiral, one of nature's most perfect mathematical forms.
+rockhopper-penguin|||Rockhopper penguins bounce from rock to rock using both feet rather than waddling.
+blue-tongued-skink|||Blue-tongued skinks flash their bright blue tongues to startle predators into backing away.
+lolly-sea-cucumber|||Has a distinctive tube-like body that resembles a lollipop.
+arabian-chameleon|||Arabian chameleons are one of the few chameleon species adapted to live in hot, arid desert conditions.
+clouded-yellow-butterfly|||Clouded yellows are strong migrants that can travel hundreds of miles.
+belted-kingfisher|||The belted kingfisher is one of the few bird species where females are more colorful than males.
+atlantic-cod|||Atlantic cod can detect their prey using electroreception even in murky water.
+ring-necked-duck|||Despite its name, the ring-necked duck neck ring is rarely visible in the field.
+longhorn-beetle|||The Asian longhorned beetle can kill healthy hardwood trees by tunneling through their bark.
+american-goldfinch|||American goldfinches are one of the latest nesting birds, often not breeding until late July.
+scalloped-hammerhead|||Scalloped hammerheads form massive schools of hundreds during their annual migration.
+pillar-coral|||One of the rarest corals, with no known young produced since 1998 in Florida.
+long-eared-owl|||Long-eared owls have asymmetric ear openings that allow them to pinpoint prey in complete darkness.
+common-redpoll|||Common redpolls can survive temperatures of -60 degrees Fahrenheit by eating seeds and fluffing their feathers.
+arowana|||Arowana can jump up to 6 feet out of the water to catch prey on overhanging branches.
+herring-gull|||Herring gulls can drink saltwater thanks to special glands above their eyes that filter out excess salt.
+pharaoh-ant|||Pharaoh ants can nest in extremely small spaces and are known to spread disease in hospitals.
+common-octopus|||Can squeeze through any opening larger than its beak.
+american-crow|||American crows can recognize individual human faces and hold grudges.
+northern-pintail|||The northern pintails long tail makes it one of the most elegant ducks in flight.
+goby|||Neon gobies set up cleaning stations and remove parasites from larger fish.
+european-lobster|||Can weigh up to 28 pounds and is one of the largest crustaceans in European waters.
+atlas-moth|||The atlas moth is one of the largest insects in the world by wing area.
+cuckoo-bumblebee-parasite|||Some cuckoo bumblebee species have been reclassified as entirely separate species from their hosts.
+black-necked-stilt|||The black-necked stilt has the second-longest legs relative to body size of any bird, after the flamingo.
+eastern-phoebe|||The eastern phoebe was the first bird ever banded in North America, by Audubon in 1840.
+lionfish|||Lionfish venomous spines can cause extreme pain and their venom is heat-stable.
+io-moth|||Each wing of the io moth has a large, striking eyespot that deters predators.
+spotted-lanternfly|||Spotted lanternflies can lay up to 50 eggs on almost any flat surface.
+cuckoo-bumblebee|||Cuckoo bumblebees infiltrate other bumblebee nests and lay their eggs for the host to raise.
+copperhead|||Copperheads account for the majority of venomous snakebites in the United States, though their venom is rarely fatal.
+blue-winged-teal|||Blue-winged teal are among the earliest spring migrants and latest fall migrants in North America.
+trap-jaw-ant|||Trap-jaw ants can snap their mandibles at speeds exceeding 140 mph.
+hoopoe|||The hoopoe has a spectacular fan-like crest that it raises when excited or alarmed.
+cat-eyed-snake|||Cat-eyed snakes have vertical pupils like cats, giving them excellent night vision for hunting in the dark rainforest.
+mushroom-coral|||Unlike most corals, mushroom corals are free-living and can move short distances.
+cliff-swallow|||Cliff swallows build gourd-shaped mud nests in colonies that can number in the hundreds.
+red-backed-poison-frog|||Red-Backed Poison Frogs use their bright coloration to warn predators of their skin toxins in a strategy called aposematism.
+dumerils-boa|||Dumeril's boa can reduce its metabolic rate to survive extended periods without food, going months between meals.
+leatherback-sea-turtle|||Leatherback sea turtles are the largest turtles in the world and have existed for over 100 million years.
+eastern-subterranean-termite|||Subterranean termite colonies can contain millions of individuals working together.
+grouper-marbled|||Marbled groupers form massive spawning aggregations of thousands of individuals.
+leafcutter-ant|||Leafcutter ants are the largest consumers of vegetation in the Neotropics.
+geoduck|||Can live for over 160 years, making it one of the longest-living animals on Earth.
+dodo|||The dodo was a flightless bird from Mauritius that went extinct in the late 17th century due to hunting and invasive species.
+western-hognose-snake|||Western hognose snakes flatten their heads and hiss loudly when threatened, but their bluff rarely escalates to biting.
+argentine-tegu|||Argentine tegus can regulate their body temperature during the reproductive season without relying solely on external heat.
+common-carp|||Common carp are considered one of the most influential invasive fish species in the world.
+willow-ptarmigan|||Willow ptarmigan change color with the seasons, brown in summer and pure white in winter.
+horned-mason-bee|||Male horned mason bees have small horns on their faces used in mating displays.
+snowy-egret|||Snowy egrets use their bright yellow feet to stir up prey from muddy bottoms.
+blue-tang|||Blue tangs can make themselves nearly invisible at night by changing color.
+common-loon|||Common loons have solid bones that make them less buoyant and better at diving than most birds.
+common-mosquito|||Mosquitoes are responsible for more human deaths than any other animal in history.
+blue-sea-star|||Its brilliant blue color comes from a pigment that may protect against UV radiation.
+blue-marlin|||Blue marlin can weigh over 1,000 pounds and are among the largest bony fish in the world.
+hermit-crab|||Must find and upgrade to larger shells as it grows throughout its life.
+brazilian-wandering-spider|||The Brazilian wandering spider has the most potent venom of any spider and is listed in Guinness World Records.
+common-merganser|||Common mergansers have serrated bills that help them grip slippery fish while diving underwater.
+alkali-bee|||Alkali bees prefer salty, alkaline soil for nesting and can form massive aggregations.
+limpkin|||Limpkins are specialized apple snail eaters, with bills specifically adapted to extract snails from their shells.
+turkey-vulture|||Turkey vultures have the best sense of smell of any bird, able to detect carrion from miles away.
+spadefoot-toad|||Spadefoot Toads can burrow underground and remain dormant for up to nine months, emerging only when it rains.
+scarlet-tanager|||The male scarlet tanager turns olive-green in winter, looking like a completely different bird.
+emu|||Male emus incubate the eggs and raise the chicks alone for up to 18 months.
+wrasse-humphead|||Humphead wrasses can live over 30 years and are the largest living labrid fish.
+great-crested-flycatcher|||Great crested flycatchers always incorporate snakeskin into their nest material.
+japanese-beetle|||Japanese beetles release aggregation pheromones that attract more beetles to feed.
+philippine-crocodile|||The Philippine crocodile is the most endangered crocodilian in the world, with fewer than 100 left in the wild.
+spruce-grouse|||Spruce grouse are so tame they are sometimes called fool hens because they rarely fly from danger.
+side-blotched-lizard|||Male side-blotched lizards use a rock-paper-scissors strategy with three throat colors to compete for mates.
+box-elder-bug|||Box elder bugs aggregate in huge numbers on warm south-facing walls in autumn.
+swallowtail-butterfly|||Female swallowtails can mimic the toxic pipevine swallowtail to avoid predators.
+gila-monster|||The Gila monster's venom contains a compound used in a drug to treat type 2 diabetes.
+natterjack-toad|||Natterjack Toads are one of the loudest European amphibians, with calls that can be heard over a mile away.
+water-strider|||Water striders can walk on water due to microscopic hairs on their legs that trap air.
+sacred-scarab-beetle|||Ancient Egyptians revered the scarab as a symbol of the sun god Khepri.
+western-bluebird|||Western bluebirds are one of the few songbirds that nest in old woodpecker holes.
+tomato-frog|||Tomato Frogs secrete a thick, white substance that can glue a predator's mouth shut.
+passenger-pigeon|||Passenger pigeons once numbered in the billions and their flocks would darken the sky for hours as they flew overhead.
+sea-angel|||Is a shell-less snail that swims with graceful wing-like movements.
+yellowtail-coris|||Juvenile yellowtail coris look completely different from adults with orange and white spotting.
+common-snapping-turtle|||Common snapping turtles can extend their necks nearly the length of their shell to strike at prey or threats.
+great-hornbill|||Great hornbill pairs seal the female inside a tree cavity during nesting, leaving only a small slit for feeding.
+demoiselle-crane|||Demoiselle cranes fly at altitudes over 26,000 feet during their Himalayan migration.
+spotted-jelly|||Has distinctive brown spots on its translucent bell that give it its name.
+fruit-fly|||Fruit flies are one of the most important model organisms in genetics research.
+olm|||Olms can survive without food for up to 10 years and are among the longest-lived amphibians.
+colossal-squid|||Has the largest eyes of any animal, up to 10 inches in diameter.
+robber-fly|||Robber flies can capture and eat insects as large as dragonflies and grasshoppers.
+lions-mane-jellyfish|||Tentacles can exceed 120 feet, rivaling the blue whale in length.
+great-tailed-grackle|||Male great-tailed grackles have a wingspan of nearly 18 inches and their long tails make up half their total length.
+american-white-pelican|||American white pelicans fish cooperatively, herding schools of fish into shallow water.
+mosquito|||Only female mosquitoes bite, needing blood protein to produce eggs.
+carpenter-bee|||Carpenter bees drill perfectly round holes in wood to create nesting galleries.
+elf-owl|||The elf owl is the smallest owl species in the world, weighing less than a ping pong ball.
+angelfish-freshwater|||Freshwater angelfish are actually cichlids, not related to marine angelfish.
+snouted-cobra|||Snouted cobras can spit venom accurately up to 2 meters, aiming for the eyes of perceived threats.
+bess-beetle|||Bess beetles communicate by rubbing their abdomen to make squeaking sounds.
+pied-kingfisher|||The pied kingfisher is the only kingfisher species that can hover over water before diving.
+bowfin|||Bowfin are the only surviving member of an ancient order of fish.
+house-fly|||House flies taste with their feet and can detect food from miles away.
+wels-catfish|||Wels catfish have been reported to grow over 16 feet long in rare cases.
+regal-tang|||Regal tangs have a retractable spine near their tail that can inflict painful wounds.
+canebrake-rattlesnake|||Canebrake rattlesnakes have a silent rattle compared to other rattlesnake species, often delivering strikes without warning.
+gray-tree-frog|||Gray Tree Frogs can change color from gray to green depending on their environment and activity level.
+california-quail|||The California quails distinctive head plume curves forward like a question mark.
+hoary-redpoll|||The hoary redpoll is one of the hardiest songbirds, living further north than almost any other passerine.
+tiger-tail-sea-cucumber|||Can eject sticky, toxic tubules from its body to entangle predators.
+stink-bug|||Stink bugs release a foul-smelling chemical from glands on their thorax when disturbed.
+atlantic-horseshoe-crab|||Has been virtually unchanged for 450 million years, predating the dinosaurs.
+prairie-falcon|||Prairie falcons can reach speeds over 45 mph in level flight and much faster in a stoop.
+great-egret|||The great egrets long plumes nearly drove it to extinction in the 19th century for use in womens hats.
+amazon-milk-frog|||Amazon Milk Frogs secrete a milky white toxin when threatened and can change color from light to dark blue.
+bark-scorpion|||Arizona bark scorpions are the most venomous scorpion in North America and can climb walls and ceilings.
+strawberry-squid|||Has photophores covering its body that produce a strawberry-red glow to camouflage against predators.
+mantis-shrimp|||Can punch with the force of a .22 caliber bullet, breaking aquarium glass.
+sea-pen-glow|||Produces bioluminescent waves that travel along its colony when physically disturbed.
+spotted-salamander|||Spotted Salamanders have a symbiotic relationship with algae that lives inside their cells.
+crane-fly|||Crane flies are often mistakenly called giant mosquitoes but do not bite or suck blood.
+crinoid-feather-star|||Can detach from its substrate and swim to relocate when conditions are unfavorable.
+atlas-beetle|||Atlas beetles can carry objects 850 times their own body weight.
+red-footed-booby|||Red-footed boobies are the most abundant booby species and the only ones that regularly nest in trees.
+spring-salamander|||Spring Salamanders are one of the few salamander species that can live their entire lives in water.
+red-backed-salamander|||Red-Backed Salamanders breathe entirely through their skin and have no lungs or gills as adults.
+rhinoceros-beetle|||Rhinoceros beetles can lift objects 850 times their own body weight.
+box-jellyfish|||Has 24 eyes including two that can form images, unlike most jellyfish.
+feather-duster-worm|||Its feathery crown of tentacles is used for both feeding and respiration.
+false-gharial|||The false gharial has a narrow snout similar to the true gharial but is not closely related to it.
+longnose-butterflyfish|||The longnose butterflyfish uses its elongated snout to reach into coral crevices for food.
+dyeing-poison-dart-frog|||The Dyeing Poison Dart Frog was named because indigenous people used its toxins to dye fabric.
+tropical-caecilian|||Caecilians are often mistaken for snakes or worms, but they are actually limbless amphibians.
+king-brown-snake|||The king brown snake is technically a black snake, not a brown snake, and is in the genus Pseudechis.
+bank-swallow|||Bank swallows are the smallest swallow species in North America and nest in burrows dug into sandy banks.
+coho-salmon|||Coho salmon turn bright red with hooked jaws during spawning season.
+black-drum|||Black drum can produce loud drumming sounds using muscles on their swim bladder.
+grunt|||Grunts get their name from the sound they make by grinding their teeth.
+green-sea-urchin|||Can live for over 30 years, making it one of the longest-lived sea urchins.
+disk-brittle-star|||Can regenerate entire arms and even the central disc if detached.
+royal-gramma|||Royal grammas often hang upside down under rock ledges.
+viceroy-butterfly|||Viceroys mimic the toxic monarch butterfly for protection from predators.
+sea-wasp|||Considered the most venomous marine animal, capable of killing a human in minutes.
+arapaima|||Arapaima are among the largest freshwater fish in the world and can breathe air.
+puff-adder|||Puff adders are responsible for more snakebite deaths in Africa than any other snake due to their excellent camouflage.
+black-sea-cucumber|||Can detach and regrow its internal organs when stressed, a process called evisceration.
+polyphemus-moth|||The polyphemus moth is named after the one-eyed Greek giant Polyphemus.
+mining-bee|||Mining bees create small volcano-shaped mounds of soil at their nest entrances.
+red-velvet-ant|||The velvet ant is actually a wingless wasp with one of the most painful stings in the insect world.
+toco-toucan|||The toco toucans bill contains a network of blood vessels that help regulate body temperature.
+thresher-shark|||Thresher sharks use their extremely long tail whip to stun schools of fish.
+leatherjacket-freshwater|||New Zealand magpie are freshwater leatherjackets found only in New Zealand.
+eyed-click-beetle|||The eyed click beetle has two large eyespots on its thorax that startle predators.
+flame-angelfish|||Flame angelfish can become aggressive when kept in small aquariums.
+mauve-stinger|||Can bloom in massive swarms that disrupt fisheries and aquaculture operations.
+brain-coral|||Can live for nearly a millennium, making it one of the longest-lived organisms on Earth.
+brown-headed-cowbird|||Brown-headed cowbirds are brood parasites that lay their eggs in other birds nests.
+oscarr|||Oscars are highly intelligent fish that can recognize their owners.
+common-house-gecko|||Common house geckos are one of the most widespread lizard species on Earth, found on every continent except Antarctica.
+barn-swallow|||Barn swallows migrate up to 6,000 miles between their breeding and wintering grounds.
+damselfish|||Male garibaldi build and tend elaborate nests of algae to attract mates.
+desert-locust|||Desert locust swarms can cover 460 square miles and contain 40 to 80 billion insects.
+flamboyant-cuttlefish|||One of only two known poisonous cephalopods.
+cuban-crocodile|||Cuban crocodiles are the most terrestrial of the New World crocodiles and can gallop like a horse.
+cardinalfish|||Male Banggai cardinalfish mouthbrood the eggs until they hatch.
+sixbar-wrasse|||Sixbar wrasses can change sex from female to male during their lifetime.
+cownose-ray|||Cownose rays migrate in massive schools of thousands along the Atlantic coast.
+sea-butterfly|||Swims by flapping its wing-like shell extensions, resembling a butterfly in flight.
+eastern-meadowlark|||The eastern meadowlark looks almost identical to the western meadowlark but has a completely different song.
+dragonfly|||Dragonflies can fly in all six directions and hover like a helicopter.
+grass-carp|||Grass carp can eat up to 40% of their body weight in vegetation each day.
+pajama-squid|||Has a distinctive black-and-white striped pattern resembling striped pajamas.
+filefish|||Filefish can change color and pattern to match their surroundings.
+american-cockroach|||Cockroaches can survive for weeks without food and hold their breath for 40 minutes.
+bobwhite-quail|||The northern bobwhite is named for its distinctive two-note call that sounds like its name.
+canada-goose|||Canada geese mate for life and can live together for over 20 years.
+cassowary|||The southern cassowary is considered the worlds most dangerous bird due to its powerful kicks.
+marine-flatworm|||Can regenerate an entire organism from a fragment as small as 1/200th of its body.
+mimic-octopus|||Can impersonate over 15 different species including lionfish and sea snakes.
+blue-glaucus|||Floats upside-down on the surface tension of the water, using stored air bubbles.
+fire-urchin|||Has venomous spines that cause intense burning pain, resembling a fire ant sting.
+giant-clam|||Can weigh over 500 pounds and live for more than 100 years.
+common-caiman|||Common caimans have a bony ridge between their eyes that acts like a built-in pair of sunglasses in bright sunlight.
+annas-hummingbird|||Male Annas hummingbirds perform dramatic diving displays that create an audible chirp.
+blue-footed-booby|||Male blue-footed boobies perform an elaborate dance, lifting their bright blue feet alternately to attract mates.
+stag-beetle|||Male stag beetles use their enormous mandibles to wrestle rivals for mates.
+king-penguin|||King penguin parents can go up to two weeks without eating while incubating their egg.
+giant-amphipod|||Can grow up to 20 times larger than typical amphipods.
+bark-beetle|||Mountain pine beetle outbreaks can kill millions of acres of forest in a single year.
+tokay-gecko|||Tokay geckos can produce one of the loudest calls of any gecko, heard up to a mile away.
+bush-viper|||Bush vipers have keeled, leaf-like scales that give them a spiky, dragon-like appearance unique among snakes.
+ruffed-grouse|||Male ruffed grouse create a drumming sound by beating their wings rapidly to attract females.
+coral-grouper|||Coral groupers hunt cooperatively with moray eels, using head shakes to signal the eel to flush out prey.
+trumpeter-swan|||The trumpeter swan is the heaviest bird native to North America.
+leaf-mantis|||The dead leaf mantis has irregular body edges that perfectly replicate a torn, decaying leaf.
+pancake-tortoise|||Pancake tortoises have flat, flexible shells that allow them to wedge themselves into rock crevices to escape predators.
+giant-isopod|||Can survive up to 5 years without eating by slowing its metabolism.
+canvasback|||The canvasback is the largest and fastest diving duck in North America.
+fire-bellied-toad|||Fire-Bellied Toads display their bright orange-red bellies when threatened in a behavior called the unken reflex.
+purple-gallinule|||Purple gallinules can walk across lily pads thanks to their extremely long toes.
+caiman-lizard|||Caiman lizards have powerful jaws and thick, armored scales that resemble those of caiman crocodilians.
+koi-carp|||The most expensive koi ever sold was a Japanese fish named S Legend that sold for $1.8 million.
+house-sparrow|||House sparrows were introduced to North America in 1851 and have since spread across the continent.
+great-cormorant|||Cormorants have less preen oil than other waterbirds, which helps them dive but requires wing-drying.
+caspian-tern|||The Caspian tern is the largest tern species in the world.
+yellow-billed-cuckoo|||Yellow-billed cuckoos are sometimes called rain crows because they call more frequently before storms.
+comma-butterfly|||The comma butterfly is named for the small white comma-shaped mark on its underwings.
+rose-chafer|||Rose chafers can fly with their elytra closed, using only their hind wings.
+zebra-fiddler-crab|||Males wave their oversized claw in a unique rhythm specific to their species.
+indian-star-tortoise|||Indian star tortoises have star-shaped patterns on their shells that help with camouflage and thermoregulation.
+gulper-eel|||Gulper eels have enormous mouths that can open wide enough to swallow prey larger than themselves.
+green-winged-teal|||The green-winged teal is the smallest dabbling duck in North America.
+cuckoo-wasp|||Cuckoo wasps can curl into a ball when threatened, using their armored exoskeleton for protection.
+moorish-idol|||Moorish idols are notoriously difficult to keep in captivity and rarely survive long in aquariums.
+carpet-python|||Carpet pythons are nocturnal hunters that use heat-sensing pits to detect warm-blooded prey in total darkness.
+cutthroat-trout|||Cutthroat trout are named for the distinctive red slash under their jaw.
+greater-siren|||Greater Sirens are the largest species in the Sirenidae family and can exceed three feet in length.
+wolf-spider|||Wolf spider mothers carry their egg sacs and spiderlings on their backs.
+fire-coral|||Not a true coral but a colony of hydrozoans that delivers a painful sting.
+john-dory|||John Dory have a distinctive dark spot on each side that looks like a thumbprint.
+firebrat|||Firebrats prefer temperatures above 90 degrees Fahrenheit and can survive scorching conditions.
+bald-faced-hornet|||Bald-faced hornets can spray venom from their stingers up to several feet.
+northern-gannet|||Northern gannets plunge-dive from heights of 130 feet, hitting the water at 60 mph.
+broad-snouted-caiman|||Broad-snouted caimans build mounds of vegetation to incubate their eggs, using decomposition heat to warm them.
+white-lipped-pit-viper|||White-lipped pit vipers have heat-sensing pits between their eyes and nostrils that detect warm-blooded prey in complete darkness.
+lake-trout|||Lake trout can live over 40 years and grow to over 60 pounds.
+green-basilisk|||The green basilisk is also called the Jesus Christ lizard because it can run across the surface of water.
+dung-beetle|||Dung beetles navigate using the Milky Way, the first insects found to use stars.
+incredible-frog|||The Incredible Frog can extend its fingers and toes to slow its descent when jumping from high branches.
+wahoo|||Wahoo are among the fastest fish in the ocean, capable of reaching speeds up to 50 mph.
+snow-goose|||Snow goose flocks can number in the hundreds of thousands during migration.
+largemouth-bass|||Largemouth bass can open their mouths wide enough to gulp down prey nearly half their size.
+blacktip-shark|||Blacktip sharks are known for their dramatic breaching behavior, spinning out of the water.
+jumping-spider|||Jumping spiders have the best vision of any spider and can jump 50 times their body length.
+giant-basket-star|||Has thousands of branching arm tips that can entrap plankton and small organisms.
+pygmy-squid|||Uses a sticky gland on its nose to attach itself to seagrass blades.
+blue-racer|||Blue racers are one of the fastest snakes in North America, capable of speeds up to 10 mph.
+upside-down-jellyfish|||Rests upside-down on the seafloor to expose symbiotic algae to sunlight.
+rough-scaled-sand-boa|||Sand boas spend most of their lives buried underground, with only their eyes and snout visible above the sand.
+yellowfin-tuna|||Yellowfin tuna can swim at speeds up to 40 miles per hour in short bursts.
+green-anaconda|||The green anaconda is the heaviest snake in the world, with some individuals weighing over 220 pounds.
+desert-tortoise|||Desert tortoises can store over a liter of water in their bladders and reabsorb it during droughts.
+malaysian-horned-frog|||Malaysian Horned Frogs have horn-like projections above their eyes that help break up their outline among leaf litter.
+yellow-footed-tortoise|||Yellow-footed tortoises play a crucial role in seed dispersal in the Amazon, helping to regenerate the rainforest.
+white-ibis|||White ibises probe mud with their long, curved bills and can detect prey by touch alone.
+lungfish|||Lungfish can breathe air and survive out of water for months by burrowing into mud.
+pencil-urchin|||Has thick, blunt spines that resemble pencils, unlike typical sharp urchin spines.
+cockatiel|||Cockatiels are one of the few parrot species that can whistle tunes accurately.
+emerald-tree-boa|||Emerald tree boas have heat-sensing pits along their lips to detect warm-blooded prey in the dark.
+mole-cricket|||Mole crickets can swim and fly, making them highly mobile pests of turfgrass.
+surinam-toad|||Female Surinam Toads have eggs embedded in the skin of their backs, where they develop into froglets.
+king-snake|||King snakes are called 'kings' because they regularly eat other snakes, including venomous rattlesnakes.
+vampire-squid|||Is neither a true squid nor a true octopus but occupies its own order.
+mud-dauber-wasp|||Mud daubers stock their nests with paralyzed spiders for their developing larvae.
+boarfish|||Boarfish use their elongated snout to extract small invertebrates from coral crevices.
+epaulette-shark|||Epaulette sharks can walk on their fins across the reef flat at low tide.
+western-meadowlark|||The western meadowlark is the state bird of six different U.S. states, more than any other bird.
+diving-beetle|||Diving beetles carry an air bubble under their wing covers to breathe underwater.
+veiled-chameleon|||Male veiled chameleons have a tall casque on their heads that may help channel dew drops into their mouths.
+teatfish-sea-cucumber|||One of the most commercially valuable sea cucumber species, sold as beche-de-mer.
+glasswing-butterfly|||The glasswing butterfly has nearly transparent wings due to nanopillar structures.
+viperfish|||Viperfish have extremely long, needle-like teeth that are so long they don't fit inside their mouths.
+asian-water-monitor|||Asian water monitors are excellent swimmers and can hold their breath for up to 30 minutes.
+fiddler-crab|||Males have one enormous claw they wave to attract mates.
+pacman-frog|||Pacman Frogs are named after the video game character due to their enormous mouths and round bodies.
+spotted-turtle|||Spotted turtles have yellow spots on their dark shells that become more numerous with age, like counting tree rings.
+orchard-oriole|||The orchard oriole is the smallest icterid in North America, smaller than even the house finch.
+ringed-salamander|||Ringed Salamanders migrate to breed during autumn rains, one of the few fall-breeding amphibians.
+quagga|||The quagga was half-zebra, half-horse with stripes only on the front half of its body. The last one died in 1883.
+blue-and-yellow-macaw|||Blue-and-yellow macaws can fly at speeds up to 35 mph and use their powerful beaks to crack hard nuts.
+emperor-scorpion|||Emperor scorpions glow bright blue-green under ultraviolet light.
+tiger-beetle|||Tiger beetles run so fast they go temporarily blind because their eyes cannot process images quickly enough.
+ornate-box-turtle|||Ornate box turtles can completely seal their hinged plastron shut, trapping themselves inside their shell for protection.
+zebra-shark|||Zebra sharks change from striped as juveniles to spotted as adults.
+spittlebug|||Spittlebug nymphs produce foamy saliva masses called cuckoo spit to protect themselves.
+bicolor-angelfish|||Bicolor angelfish can make loud popping sounds for communication.
+common-starfish|||Can turn its stomach inside out to digest prey externally.
+tuatara|||Tuatara are the last surviving members of an order of reptiles that lived alongside dinosaurs over 200 million years ago.
+sawfly|||Sawfly larvae look like caterpillars but have more than five pairs of prolegs.
+yellow-jacket|||Yellow jacket colonies can grow to contain 4,000 or more workers by late summer.
+northern-harrier|||Northern harriers have facial discs similar to owls that help them locate prey by sound.
+deer-fly|||Deer flies are attracted to dark colors and carbon dioxide, similar to mosquitoes.
+eastern-kingbird|||Eastern kingbirds are named for their aggressive territorial behavior, attacking birds much larger than themselves.
+american-flamingo|||American flamingos are the most brightly colored of all flamingo species.
+laysan-albatross|||The oldest known wild bird in the world is a Laysan albatross named Wisdom, over 70 years old.
+eastern-hognose-snake|||Hognose snakes are famous for playing dead when threatened, rolling onto their backs with their mouths open.
+cat-flea|||Cat fleas are the most common flea species on domestic pets worldwide.
+african-grey-parrot|||African grey parrots are considered the most intelligent bird species, with cognitive abilities rivaling those of young children.
+odorous-house-ant|||Odorous house ants smell like crushed coconut when squished.
+carpenter-sea-urchin|||Has particularly strong teeth that can bore through solid coral rock.
+cicada-killer-wasp|||The cicada killer is the largest wasp in North America and can be over 2 inches long.
+golden-skink|||Golden skinks have a metallic, iridescent sheen that makes them look like they are coated in gold.
+drywood-termite|||Drywood termites kick out tiny fecal pellets called frass that accumulate below infested wood.
+gyrfalcon|||The gyrfalcon is the largest falcon in the world and was once reserved as a bird of kings.
+willow-flycatcher|||Willow flycatchers are virtually identical to several other Empidonax flycatchers and are best identified by their distinctive FITZ-bew song.
+oil-beetle|||Oil beetles secrete oily droplets from their joints that repel predators and can blister human skin.
+june-bug|||June bugs are clumsy fliers and often bounce off windows and walls.
+kissing-bug|||Kissing bugs are called so because they often bite people on the face while they sleep.
+chinese-alligator|||Chinese alligators are the most endangered crocodilian species, with fewer than 150 individuals remaining in the wild.
+angulate-tortoise|||Angulate tortoises are the most southerly distributed tortoise species in Africa, found even in the cool, wet Western Cape.
+click-beetle|||Click beetles can launch themselves into the air with a clicking mechanism without using their legs.
+peacock-cichlid|||Male peacock cichlids display brilliant blue, red, and gold colors during breeding.
+christmas-tree-worm|||Can retract its colorful spiral plumes into its tube in less than a second.
+elkhorn-coral|||Named for its broad, antler-like branches that resemble elk horns.
+rhinoceros-hornbill|||The rhinoceros hornbills upward-curved casque can grow up to 7 inches long.
+great-gray-owl|||The great gray owl is the tallest owl in North America, though much of its size is feathers.
+blue-dasher-dragonfly|||Blue dashers can fly backwards and hover in place like a helicopter.
+atlantic-ghost-crab|||Can run up to 10 mph and has stalked eyes that provide 360-degree vision.
+scissor-tailed-flycatcher|||The scissor-tailed flycatchers long tail feathers can be twice as long as its body.
+blue-catfish|||Blue catfish can grow over 100 pounds and are the largest freshwater fish in North America.
+texas-rat-snake|||Texas rat snakes are excellent climbers and have been found in trees more than 40 feet high.
+brazilian-horned-frog|||Brazilian Horned Frogs are ambush predators that can remain motionless for hours waiting for prey.

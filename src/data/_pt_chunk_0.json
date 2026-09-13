@@ -1,0 +1,402 @@
+{
+  "african-elephant": {
+    "name": "Elefante Africano",
+    "description": "O elefante africano é o maior animal terrestre vivo, conhecido por sua massa, tromba e presas impressionantes."
+  },
+  "asian-elephant": {
+    "name": "Elefante Asiático",
+    "description": "O elefante asiático é menor que seu primo africano, com orelhas menores e uma cabeça mais abobadada."
+  },
+  "white-rhinoceros": {
+    "name": "Rinoceronte Branco",
+    "description": "O rinoceronte branco é o maior das cinco espécies de rinocerontes, conhecido por sua boca larga adaptada para pastar."
+  },
+  "black-rhinoceros": {
+    "name": "Rinoceronte Negro",
+    "description": "O rinoceronte negro é um mastigador com lábio superior em gancho, conhecido por seu temperamento agressivo."
+  },
+  "hippopotamus": {
+    "name": "Hipopótamo",
+    "description": "O hipopótamo é um grande mamífero semi-aquático que passa a maior parte do dia na água para se refrescar."
+  },
+  "giraffe": {
+    "name": "Girafa",
+    "description": "A girafa é o maior animal terrestre vivo, usando seu longo pescoço para alcançar os galhos mais altos."
+  },
+  "okapi": {
+    "name": "Okapi",
+    "description": "O okapi é um parente vivo da girafa, encontrado nas florestas da África Central, com listras zebroides nas pernas."
+  },
+  "cape-buffalo": {
+    "name": "Búfalo do Cabo",
+    "description": "O búfalo do cab é um dos cinco grandes animais de caça da África, conhecido por seu temperamento imprevisível."
+  },
+  "american-bison": {
+    "name": "Bisão Americano",
+    "description": "O bisão americano é o maior animal terrestre da América do Norte, que já foi quase extinto."
+  },
+  "water-buffalo": {
+    "name": "Búfalo de Água",
+    "description": "O búfalo de água é usado na agricultura em muitas partes da Ásia, sendo resistente e forte."
+  },
+  "yak": {
+    "name": "Iaque",
+    "description": "O iaque é um grande mamífero com pelos longos encontrado nas regiões montanhosas da Ásia Central."
+  },
+  "domestic-cattle": {
+    "name": "Gado Doméstico",
+    "description": "O gado doméstico é criado para carne, leite e couro em todo o mundo."
+  },
+  "gaur": {
+    "name": "Gaur",
+    "description": "O gaur é o maior bovino selvagem do mundo, encontrado nas florestas do sul da Ásia."
+  },
+  "saiga-antelope": {
+    "name": "Antílope Saiga",
+    "description": "O antílope saiga é conhecido por seu nariz incomumente grande e bulboso."
+  },
+  "addax": {
+    "name": "Adax",
+    "description": "O adax é um antílope do deserto适应高温 e pouca água."
+  },
+  "oryx": {
+    "name": "Oryx",
+    "description": "O oryx é um antílope do deserto com chifres longos e retos."
+  },
+  "tiger": {
+    "name": "Tigre",
+    "description": "O tigre é o maior felino do mundo, conhecido por suas listras verticais laranjas e pretas."
+  },
+  "lion": {
+    "name": "Leão",
+    "description": "O leão é o único felino que vive em grupos sociais chamados de manadas."
+  },
+  "leopard": {
+    "name": "Leopardo",
+    "description": "O leopardo é um felino ágil e forte, capaz de arrastar presas para árvores."
+  },
+  "snow-leopard": {
+    "name": "Leopardo das Neves",
+    "description": "O leopardo das neves é um felino raro que vive nas montanhas da Ásia Central."
+  },
+  "jaguar": {
+    "name": "Jaguar",
+    "description": "O jaguar é o terceiro maior felino do mundo, encontrado nas Américas."
+  },
+  "cheetah": {
+    "name": "Chita",
+    "description": "A chita é o animal terrestre mais rápido do mundo, podendo atingir 112 km/h."
+  },
+  "cougar": {
+    "name": "Puma",
+    "description": "O puma é um grande felino encontrado nas Américas, também conhecido como leão da montanha."
+  },
+  "clouded-leopard": {
+    "name": "Leopardo das Nuvens",
+    "description": "O leopardo das nuvens é um felino pequeno com manchas em forma de nuvem."
+  },
+  "serval": {
+    "name": "Serval",
+    "description": "O serval é um felino africano com pernas longas e orelhas grandes."
+  },
+  "caracal": {
+    "name": "Caracal",
+    "description": "O caracal é um felino conhecido por suas orelhas com tufos de pelos pretos."
+  },
+  "pallas-s-cat": {
+    "name": "Gato de Pallas",
+    "description": "O gato de Pallas é um pequeno felino selvagem da Ásia Central."
+  },
+  "sand-cat": {
+    "name": "Gato do Deserto",
+    "description": "O gato do deserto é o único felino que vive exclusivamente em desertos."
+  },
+  "fishing-cat": {
+    "name": "Gato Pescador",
+    "description": "O gato pescador é um felino semi-aquático que caça peixes."
+  },
+  "brown-bear": {
+    "name": "Urso Pardo",
+    "description": "O urso pardo é um grande omnívoro encontrado na Europa, Ásia e América do Norte."
+  },
+  "grizzly-bear": {
+    "name": "Urso Grizzly",
+    "description": "O urso grizzly é uma subespécie do urso pardo da América do Norte."
+  },
+  "polar-bear": {
+    "name": "Urso Polar",
+    "description": "O urso polar é um grande carnívoro que vive no Ártico."
+  },
+  "american-black-bear": {
+    "name": "Urso-negro-americano",
+    "description": "O urso-negro-americano é o urso mais comum na América do Norte."
+  },
+  "asian-black-bear": {
+    "name": "Urso-negro-asiático",
+    "description": "O urso-negro-asiático é conhecido por sua mancha branca em forma de V no peito."
+  },
+  "spectacled-bear": {
+    "name": "Urso de Óculos",
+    "description": "O urso de óculos é o único urso da América do Sul, com marcas faciais distintas."
+  },
+  "sun-bear": {
+    "name": "Urso-sol",
+    "description": "O urso-sol é o menor urso do mundo, encontrado no Sudeste Asiático."
+  },
+  "sloth-bear": {
+    "name": "Urso-preguiça",
+    "description": "O urso-preguiça é um urso insetívoro encontrado no sul da Ásia."
+  },
+  "giant-panda": {
+    "name": "Panda Gigante",
+    "description": "O panda gigante é um urso endêmico da China, conhecido por sua dieta de bambu."
+  },
+  "andean-bear": {
+    "name": "Urso Andino",
+    "description": "O urso andino é o único urso da América do Sul, também conhecido como urso de óculos."
+  },
+  "gray-wolf": {
+    "name": "Lobo-cinzento",
+    "description": "O lobo-cinzento é o maior membro selvagem da família dos cães."
+  },
+  "arctic-wolf": {
+    "name": "Lobo Ártico",
+    "description": "O lobo ártico é uma subespécie do lobo-cinzento que vive no Ártico."
+  },
+  "red-fox": {
+    "name": "Raposa Vermelha",
+    "description": "A raposa vermelha é o canídeo mais espalhado no mundo."
+  },
+  "fennec-fox": {
+    "name": "Raposa-de-fennec",
+    "description": "A raposa-de-fennec é a menor raposa do mundo, com orelhas enormes."
+  },
+  "arctic-fox": {
+    "name": "Raposa-do-ártico",
+    "description": "A raposa-do-ártico é um canídeo adaptado ao frio extremo."
+  },
+  "african-wild-dog": {
+    "name": "Cão Selvagem Africano",
+    "description": "O cão selvagem africano é um predador em grupo altamente eficiente."
+  },
+  "coyote": {
+    "name": "Coiote",
+    "description": "O coyote é um canídeo adaptável encontrado nas Américas."
+  },
+  "jackal": {
+    "name": "Chacal",
+    "description": "O chacal é um canídeo omnívoro encontrado na África e Eurásia."
+  },
+  "dingo": {
+    "name": "Dingo",
+    "description": "O dingo é um cão selvagem nativo da Austrália."
+  },
+  "maned-wolf": {
+    "name": "Lobo-de-crina",
+    "description": "O lobo-de-crina é um canídeo sul-americano com pernas longas e pelagem avermelhada."
+  },
+  "western-gorilla": {
+    "name": "Gorila-ocidental",
+    "description": "O gorila ocidental é um grande símio encontrado na África Central."
+  },
+  "eastern-gorilla": {
+    "name": "Gorila-oriental",
+    "description": "O gorila oriental é o maior primata vivo, encontrado na África Central."
+  },
+  "chimpanzee": {
+    "name": "Chimpanzé",
+    "description": "O chimpanzé é um grande símio非常聪明 e usa ferramentas."
+  },
+  "bonobo": {
+    "name": "Bonobo",
+    "description": "O bonobo é um grande símio pacífico encontrado na República Democrática do Congo."
+  },
+  "orangutan": {
+    "name": "Orangotango",
+    "description": "O orangotango é um grande símio encontrado nas florestas do Sudeste Asiático."
+  },
+  "siamang": {
+    "name": "Siamang",
+    "description": "O siamang é o maior gibão, conhecido por sua bolsa gular."
+  },
+  "gibbon": {
+    "name": "Gibão",
+    "description": "O gibão é um primata arbóreo encontrado no Sudeste Asiático."
+  },
+  "mandrill": {
+    "name": "Mandril",
+    "description": "O mandril é o maior macaco do mundo, conhecido por suas faces coloridas."
+  },
+  "proboscis-monkey": {
+    "name": "Macaco-probóscide",
+    "description": "O macaco-probóscide é um macaco com nariz grande e bulboso."
+  },
+  "spider-monkey": {
+    "name": "Macaco-aranha",
+    "description": "O macaco-aranha é um primata arbóreo com braços longos e cauda preênsil."
+  },
+  "capuchin-monkey": {
+    "name": "Macaco-prego",
+    "description": "O macaco-prego é um macaco inteligente que usa ferramentas."
+  },
+  "lemur": {
+    "name": "Lêmure",
+    "description": "O lêmure é um primata endêmico de Madagascar."
+  },
+  "indri": {
+    "name": "Indri",
+    "description": "O indri é o maior lêmure vivo, conhecido por seu canto alto."
+  },
+  "tarsier": {
+    "name": "Tarsier",
+    "description": "O tarsier é um pequeno primata com olhos enormes."
+  },
+  "aye-aye": {
+    "name": "Aye-aye",
+    "description": "O aye-aye é um lêmure noturno com um dedo longo e fino."
+  },
+  "blue-whale": {
+    "name": "Baleia-azul",
+    "description": "A baleia-azul é o maior animal que já existiu na Terra."
+  },
+  "humpback-whale": {
+    "name": "Baleia-de-bossas",
+    "description": "A baleia-de-bossas é conhecida por suas canções complexas."
+  },
+  "sperm-whale": {
+    "name": "Cachalote",
+    "description": "O cachalote é o maior dentado do mundo."
+  },
+  "killer-whale": {
+    "name": "Orca",
+    "description": "A orca é o maior membro da família dos golfinhos."
+  },
+  "bottlenose-dolphin": {
+    "name": "Golfinho-roaz",
+    "description": "O golfinho-roaz é o golfinho mais conhecido e estudado."
+  },
+  "narwhal": {
+    "name": "Narval",
+    "description": "O narval é um golfinho ártico com um presa longa em espiral."
+  },
+  "beluga-whale": {
+    "name": "Baleia-beluga",
+    "description": "A baleia-beluga é conhecida como a \"baleia branca\" por sua cor."
+  },
+  "manatee": {
+    "name": "Manati",
+    "description": "O manati é um grande mamífero marinho herbívoro."
+  },
+  "dugong": {
+    "name": "Dugongo",
+    "description": "O dugongo é um grande mamífero marinho herbívoro encontrado no Indo-Pacífico."
+  },
+  "walrus": {
+    "name": "Morsa",
+    "description": "A morsa é um grande pinípedo com presas longas."
+  },
+  "elephant-seal": {
+    "name": "Elefante-marinho",
+    "description": "O elefante-marinho é o maior pinípedo do mundo."
+  },
+  "leopard-seal": {
+    "name": "Leopardo-marinho",
+    "description": "O leopardo-marinho é um predador ágil da Antártica."
+  },
+  "harp-seal": {
+    "name": "Phoca groenlandica",
+    "description": "A Phoca groenlandica é um pinípedo do Ártico conhecida por sua pelagem prateada."
+  },
+  "sea-otter": {
+    "name": "Lontra-marinha",
+    "description": "A lontra-marinha é um mamífero marinho que usa ferramentas."
+  },
+  "hawaiian-monk-seal": {
+    "name": "Monge-do-havaí",
+    "description": "O monge-do-havaí é um pinípedo ameaçado de extinção."
+  },
+  "steller-sea-lion": {
+    "name": "Leão-marinho-de-steller",
+    "description": "O leão-marinho-de-steller é o maior otarídeo do mundo."
+  },
+  "capybara": {
+    "name": "Capivara",
+    "description": "A capivara é o maior roedor do mundo, semi-aquático."
+  },
+  "beaver": {
+    "name": "Castor",
+    "description": "O castor é um roedor que constrói represas e barracas."
+  },
+  "porcupine": {
+    "name": "Porco-espinho",
+    "description": "O porco-espinho é um roedor coberto de espinhos."
+  },
+  "crested-porcupine": {
+    "name": "Porco-espinho-de-crista",
+    "description": "O porco-espinho-de-crista é um roedor com espinhos longos."
+  },
+  "naked-mole-rat": {
+    "name": "Rato-toupeira-pelado",
+    "description": "O rato-toupeira-pelado é um roedor sem pelos que vive em colônias."
+  },
+  "prairie-dog": {
+    "name": "Cão-da-pradaria",
+    "description": "O cão-da-pradaria é um roedor social que vive em grandes colônias."
+  },
+  "squirrel": {
+    "name": "Esquilo",
+    "description": "O esquilo é um roedor arbóreo conhecido por armazenar nozes."
+  },
+  "chinchilla": {
+    "name": "Chinchila",
+    "description": "A chinchila é um roedor pequeno com pelo denso e macio."
+  },
+  "guinea-pig": {
+    "name": "Porquinho-da-índia",
+    "description": "O porquinho-da-índia é um roedor doméstico popular como animal de estimação."
+  },
+  "hamster": {
+    "name": "Hamster",
+    "description": "O hamster é um roedor pequeno e popular como animal de estimação."
+  },
+  "mouse": {
+    "name": "Rato",
+    "description": "O rato é um pequeno roedor encontrado em todo o mundo."
+  },
+  "rat": {
+    "name": "Rato",
+    "description": "O rato é um roedor adaptável que vive em ambientes urbanos."
+  },
+  "indian-flying-fox": {
+    "name": "Raposa-voadora-indiana",
+    "description": "A raposa-voadora-indiana é um grande morcego frugívoro."
+  },
+  "little-brown-bat": {
+    "name": "Morcego-marrom",
+    "description": "O morcego-marrom é um pequeno morcego insetívoro."
+  },
+  "mexican-free-tailed-bat": {
+    "name": "Morcego-de-cauda-livre",
+    "description": "O morcego-de-cauda-livre é conhecido por suas grandes colônias."
+  },
+  "fruit-bat": {
+    "name": "Morcego-frugívoro",
+    "description": "O morcego-frugívoro é um morcego que se alimenta de frutas."
+  },
+  "horseshoe-bat": {
+    "name": "Morcego-ferradura",
+    "description": "O morcego-ferradura é conhecido por sua forma peculiar de ferradura."
+  },
+  "vampire-bat": {
+    "name": "Morcego-vampiro",
+    "description": "O morcego-vampiro é o único mamífero que se alimenta exclusivamente de sangue."
+  },
+  "megabat": {
+    "name": "Morcego-grande",
+    "description": "O morcego-grande é um morcego frugívoro com olhos grandes."
+  },
+  "red-kangaroo": {
+    "name": "Canguru-vermelho",
+    "description": "O canguru-vermelho é o maior marsupial vivo."
+  }
+}

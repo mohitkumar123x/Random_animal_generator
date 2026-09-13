@@ -1,0 +1,185 @@
+---
+import animals from '../data/animals.json';
+import animalTranslations from '../data/animal-translations.json';
+import { getTranslations } from '../utils/i18n';
+import { translateValue } from '../utils/valueTranslations';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = getTranslations(locale as any);
+const animalT = (animalTranslations as any)[locale] || {};
+
+const totalAnimals = animals.length;
+const categoriesCount = [...new Set(animals.map(a => a.category))].length;
+
+const uniqueDiets = [...new Set(animals.map(a => a.diet))];
+const uniqueHabitats = [...new Set(animals.map(a => a.habitat))];
+const valueMap = {
+  diet: Object.fromEntries(uniqueDiets.map(d => [d, translateValue(d, 'diet', locale)])),
+  habitat: Object.fromEntries(uniqueHabitats.map(h => [h, translateValue(h, 'habitat', locale)])),
+};
+
+const quizT = {
+  quizDesc: t.quiz_desc || "Test your knowledge about animals! Answer questions about habitats, diets, and fun facts.",
+  howItWorks: t.quiz_how_it_works || "How It Works",
+  stepEmoji: t.quiz_step_emoji || "Each question shows an animal emoji and asks about its habitat or diet",
+  stepOptions: t.quiz_step_options || "Pick the correct answer from 4 options",
+  stepStreaks: t.quiz_step_streaks || "Build streaks for consecutive correct answers",
+  stepQuestions: t.quiz_step_questions || "Questions are drawn from {count} animals across {categories} categories",
+  streakLabel: t.quiz_streak || "{streak} streak",
+  resetBtn: t.quiz_reset || "Reset",
+  correctText: t.quiz_correct || "Correct! 🎉",
+  wrongText: t.quiz_wrong || 'Wrong! The answer was "{answer}".',
+  nextBtn: t.quiz_next_question || "Next Question →",
+  scoreLabel: t.score || "Score:",
+  quizDietQ: t.quiz_diet_q || "What does the {name} eat?",
+  quizHabitatQ: t.quiz_habitat_q || "Where does the {name} live?",
+  habitatLabel: t.habitat || "Habitat",
+  dietLabel: t.diet || "Diet",
+  animalQuiz: t.animal_quiz || "Animal Quiz",
+};
+---
+
+<main class="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+  <section class="mb-8 text-center">
+    <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">🧠 {quizT.animalQuiz}</h1>
+    <p class="mx-auto mt-3 max-w-lg text-sm text-body sm:text-base dark:text-[#a1a1a1]">
+      {quizT.quizDesc}
+    </p>
+  </section>
+
+  <div id="quiz-area" class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+    <div class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-4">
+        <span class="text-sm text-muted">{quizT.scoreLabel} <span id="quiz-score" class="font-bold text-ink dark:text-[#ededed]">0</span>/<span id="quiz-total" class="text-ink dark:text-[#ededed]">0</span></span>
+        <span id="quiz-streak" class="hidden text-xs font-medium text-conservation-lc">🔥 0 streak</span>
+      </div>
+      <button id="quiz-reset" class="text-xs text-muted hover:text-ink dark:hover:text-[#ededed]">{quizT.resetBtn}</button>
+    </div>
+
+    <div id="quiz-question" class="text-center">
+      <div id="quiz-emoji" class="text-7xl mb-4 emoji-icon">🐾</div>
+      <p id="quiz-text" class="text-lg font-medium text-ink mb-6 dark:text-[#ededed]"></p>
+      <div id="quiz-options" class="grid grid-cols-2 gap-3"></div>
+    </div>
+
+    <div id="quiz-result" class="hidden text-center mt-6">
+      <p id="quiz-result-text" class="text-sm font-medium mb-3"></p>
+      <button id="quiz-next" class="rounded-full bg-ink px-5 py-2 text-sm font-medium text-white transition-all hover:opacity-90 active:scale-95 dark:bg-[#ededed] dark:text-[#0a0a0a]">{quizT.nextBtn}</button>
+    </div>
+  </div>
+
+  <div class="mt-8 rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+    <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">{quizT.howItWorks}</h2>
+    <ul class="space-y-2 text-sm text-body dark:text-[#a1a1a1]">
+      <li>• {quizT.stepEmoji}</li>
+      <li>• {quizT.stepOptions}</li>
+      <li>• {quizT.stepStreaks}</li>
+      <li>• {quizT.stepQuestions.replace('{count}', String(totalAnimals)).replace('{categories}', String(categoriesCount))}</li>
+    </ul>
+  </div>
+</main>
+
+<script define:vars={{ animals: JSON.stringify(animals), quizT: JSON.stringify(quizT), animalT: JSON.stringify(animalT), locale: locale, valueMapStr: JSON.stringify(valueMap) }}>
+  const allAnimals = JSON.parse(animals);
+  const t = JSON.parse(quizT);
+  const animalTranslations = JSON.parse(animalT);
+  const valueMap = JSON.parse(valueMapStr);
+  let score = 0, total = 0, streak = 0, currentAnimal = null;
+
+  function translateVal(value, field) { return (valueMap[field] && valueMap[field][value]) || value; }
+
+  function getAnimalName(animal) { return (animalTranslations[animal.id] && animalTranslations[animal.id].name) || animal.name; }
+
+  function pickQuestion() {
+    const animal = allAnimals[Math.floor(Math.random() * allAnimals.length)];
+    const isDiet = Math.random() > 0.5;
+    const key = isDiet ? 'diet' : 'habitat';
+    const animalName = getAnimalName(animal);
+    const question = isDiet
+      ? t.quizDietQ.replace('{name}', animalName)
+      : t.quizHabitatQ.replace('{name}', animalName);
+    const correct = animal[key];
+
+    const wrongs = [];
+    const pool = allAnimals.filter(a => a[key] !== correct);
+    while (wrongs.length < 3 && pool.length > 0) {
+      const idx = Math.floor(Math.random() * pool.length);
+      const w = pool.splice(idx, 1)[0];
+      if (!wrongs.find(x => x[key] === w[key])) wrongs.push(w);
+    }
+
+    const options = [correct, ...wrongs.map(w => w[key])].sort(() => Math.random() - 0.5);
+    return { animal, question, correct, options, key, animalName };
+  }
+
+  function renderQuestion() {
+    const q = pickQuestion();
+    currentAnimal = q;
+    document.getElementById('quiz-emoji').textContent = q.animal.emoji;
+    document.getElementById('quiz-text').textContent = q.question;
+    document.getElementById('quiz-result').classList.add('hidden');
+
+    const container = document.getElementById('quiz-options');
+    container.innerHTML = q.options.map(opt => `
+      <button class="quiz-option rounded-xl border border-hairline bg-canvas px-4 py-3 text-sm font-medium text-body text-left transition-all hover:border-faint hover:text-ink dark:border-[#333] dark:bg-[#111] dark:text-[#a1a1a1] dark:hover:border-[#555] dark:hover:text-[#ededed]" data-value="${opt}">
+        ${translateVal(opt, q.key)}
+      </button>
+    `).join('');
+
+    container.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => handleAnswer(btn, q));
+    });
+  }
+
+  function handleAnswer(btn, q) {
+    const options = document.querySelectorAll('#quiz-options button');
+    if (btn.classList.contains('correct') || btn.classList.contains('wrong')) return;
+
+    const isCorrect = btn.dataset.value === q.correct;
+    total++;
+    if (isCorrect) { score++; streak++; } else { streak = 0; }
+
+    options.forEach(b => {
+      if (b.dataset.value === q.correct) b.classList.add('correct');
+      b.disabled = true;
+    });
+    if (!isCorrect) btn.classList.add('wrong');
+
+    document.getElementById('quiz-score').textContent = score;
+    document.getElementById('quiz-total').textContent = total;
+
+    const streakEl = document.getElementById('quiz-streak');
+    if (streak >= 2) {
+      streakEl.classList.remove('hidden');
+      streakEl.textContent = '🔥 ' + t.streakLabel.replace('{streak}', String(streak));
+    } else {
+      streakEl.classList.add('hidden');
+    }
+
+    const result = document.getElementById('quiz-result');
+    const resultText = document.getElementById('quiz-result-text');
+    result.classList.remove('hidden');
+    if (isCorrect) {
+      resultText.textContent = t.correctText;
+      resultText.className = 'text-sm font-medium mb-3 text-conservation-lc';
+    } else {
+      resultText.textContent = t.wrongText.replace('{answer}', translateVal(q.correct, q.key));
+      resultText.className = 'text-sm font-medium mb-3 text-error';
+    }
+  }
+
+  document.getElementById('quiz-next')?.addEventListener('click', renderQuestion);
+  document.getElementById('quiz-reset')?.addEventListener('click', () => {
+    score = 0; total = 0; streak = 0;
+    document.getElementById('quiz-score').textContent = '0';
+    document.getElementById('quiz-total').textContent = '0';
+    document.getElementById('quiz-streak').classList.add('hidden');
+    renderQuestion();
+  });
+
+  renderQuestion();
+</script>

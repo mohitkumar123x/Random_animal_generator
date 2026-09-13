@@ -1,45 +1,189 @@
 ---
+import { getTranslations } from '../utils/i18n';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = getTranslations(locale);
+
 const categories = [
-  { id: 'all', label: 'All Animals', emoji: '🌍' },
-  { id: 'mammal', label: 'Mammals', emoji: '🐘' },
-  { id: 'bird', label: 'Birds', emoji: '🦅' },
-  { id: 'fish', label: 'Fish', emoji: '🐠' },
-  { id: 'reptile', label: 'Reptiles', emoji: '🦎' },
-  { id: 'amphibian', label: 'Amphibians', emoji: '🐸' },
-  { id: 'insect', label: 'Insects', emoji: '🦋' },
-  { id: 'marine', label: 'Marine', emoji: '🐙' },
+  { id: 'all', label: t.all_animals || 'All Animals', emoji: '🌍' },
+  { id: 'mammal', label: t.cat_mammal || 'Mammals', emoji: '🐘' },
+  { id: 'bird', label: t.cat_bird || 'Birds', emoji: '🦅' },
+  { id: 'fish', label: t.cat_fish || 'Fish', emoji: '🐠' },
+  { id: 'reptile', label: t.cat_reptile || 'Reptiles', emoji: '🦎' },
+  { id: 'amphibian', label: t.cat_amphibian || 'Amphibians', emoji: '🐸' },
+  { id: 'insect', label: t.cat_insect || 'Insects', emoji: '🦋' },
+  { id: 'marine', label: t.cat_marine || 'Marine', emoji: '🐙' },
+  { id: 'farm', label: (t as any).cat_farm || 'Farm', emoji: '🐄' },
+  { id: 'fantasy', label: (t as any).cat_fantasy || 'Fantasy', emoji: '🦄' },
+  { id: 'prehistoric', label: (t as any).cat_prehistoric || 'Prehistoric', emoji: '🦖' },
+  { id: 'mythical', label: (t as any).cat_mythical || 'Mythical', emoji: '🐉' },
+  { id: 'cute', label: (t as any).cat_cute || 'Cute', emoji: '🐹' },
 ];
 ---
 
-<div class="overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0" style="scrollbar-width: none; -ms-overflow-style: none;">
-  <div class="flex flex-nowrap gap-2 min-w-max sm:min-w-0">
-    {categories.map((cat) => (
-      <button
-        data-category={cat.id}
-        class={`cat-btn inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1.5 text-xs font-medium transition-all sm:px-3 ${cat.id === 'all'
-          ? 'border-ink bg-ink text-white dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]'
-          : 'border-hairline bg-canvas-elevated text-body hover:border-faint hover:text-ink dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:border-[#555] dark:hover:text-[#ededed]'
-        }`}
-      >
-        <span>{cat.emoji}</span>
-        <span>{cat.label}</span>
-      </button>
-    ))}
+<div class="relative -mx-4 sm:mx-0 group/category">
+  <div
+    id="category-filter"
+    class="drag-scroll overflow-x-auto px-6 sm:px-0 pb-1 cursor-grab active:cursor-grabbing select-none scroll-smooth"
+    style="scrollbar-width: none; -ms-overflow-style: none; touch-action: pan-x; -webkit-overflow-scrolling: touch;"
+  >
+    <div class="flex flex-nowrap gap-2 min-w-max sm:min-w-0 pr-6 sm:pr-0">
+      {categories.map((cat) => (
+        <button
+          data-category={cat.id}
+          draggable="false"
+          aria-label={`Filter by ${cat.label}`}
+          class={`cat-btn inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1.5 text-xs font-medium transition-all sm:px-3 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2 ${cat.id === 'all'
+            ? 'border-ink bg-ink text-white dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]'
+            : 'border-hairline bg-canvas-elevated text-body hover:border-faint hover:text-ink dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:border-[#555] dark:hover:text-[#ededed]'
+          }`}
+        >
+          <span aria-hidden="true">{cat.emoji}</span>
+          <span>{cat.label}</span>
+        </button>
+      ))}
+    </div>
   </div>
+
+  <!-- Edge fade indicators -->
+  <div id="category-left-fade" class="pointer-events-none absolute left-0 top-0 bottom-1 w-10 bg-gradient-to-r from-canvas via-canvas/90 to-transparent dark:from-[#0a0a0a] dark:via-[#0a0a0a]/90 opacity-0 transition-opacity duration-200 sm:w-8"></div>
+  <div id="category-right-fade" class="pointer-events-none absolute right-0 top-0 bottom-1 w-10 bg-gradient-to-l from-canvas via-canvas/90 to-transparent dark:from-[#0a0a0a] dark:via-[#0a0a0a]/90 opacity-0 transition-opacity duration-200 sm:w-8"></div>
+
+  <!-- Scroll arrow buttons -->
+  <button
+    id="category-left-btn"
+    type="button"
+    aria-label="Scroll categories left"
+    class="absolute left-1 sm:left-0 top-1/2 -translate-y-1/2 hidden h-7 w-7 items-center justify-center rounded-full border border-hairline bg-canvas-elevated/95 shadow-md backdrop-blur-sm transition-all hover:bg-canvas hover:shadow-lg hover:scale-105 active:scale-95 dark:border-[#333] dark:bg-[#1a1a1a]/90 dark:hover:bg-[#222] z-10"
+  >
+    <svg class="h-3.5 w-3.5 text-ink dark:text-[#ededed]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+  </button>
+  <button
+    id="category-right-btn"
+    type="button"
+    aria-label="Scroll categories right"
+    class="absolute right-1 sm:right-0 top-1/2 -translate-y-1/2 hidden h-7 w-7 items-center justify-center rounded-full border border-hairline bg-canvas-elevated/95 shadow-md backdrop-blur-sm transition-all hover:bg-canvas hover:shadow-lg hover:scale-105 active:scale-95 dark:border-[#333] dark:bg-[#1a1a1a]/90 dark:hover:bg-[#222] z-10"
+  >
+    <svg class="h-3.5 w-3.5 text-ink dark:text-[#ededed]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+  </button>
 </div>
 
+<style>
+  .drag-scroll::-webkit-scrollbar { display: none; }
+  .drag-scroll { scrollbar-width: none; }
+  .drag-scroll.dragging { cursor: grabbing !important; user-select: none; }
+  /* show arrows on hover for desktop */
+  .group\/category:hover #category-left-btn:not(.hidden),
+  .group\/category:hover #category-right-btn:not(.hidden) { opacity: 1; }
+</style>
+
 <script is:inline>
-  document.querySelectorAll('.cat-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.cat-btn').forEach((b) => {
-        b.className = b.className
-          .replace('border-ink bg-ink text-white', 'border-hairline bg-canvas-elevated text-body')
-          .replace('dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]', 'dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1]');
-      });
-      btn.className = btn.className
-        .replace('border-hairline bg-canvas-elevated text-body', 'border-ink bg-ink text-white')
-        .replace('dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1]', 'dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]');
-      window.dispatchEvent(new CustomEvent('category-change', { detail: btn.dataset.category }));
+  (function() {
+    const slider = document.getElementById('category-filter');
+    const leftFade = document.getElementById('category-left-fade');
+    const rightFade = document.getElementById('category-right-fade');
+    const leftBtn = document.getElementById('category-left-btn');
+    const rightBtn = document.getElementById('category-right-btn');
+    if (!slider) return;
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let hasDragged = false;
+    const threshold = 10;
+
+    function updateIndicators() {
+      const max = slider.scrollWidth - slider.clientWidth;
+      const hasOverflow = max > 10;
+      const atStart = slider.scrollLeft <= 10;
+      const atEnd = slider.scrollLeft >= max - 10;
+      if (!hasOverflow) {
+        leftFade.style.opacity = '0';
+        rightFade.style.opacity = '0';
+        leftBtn.classList.add('hidden'); leftBtn.classList.remove('flex');
+        rightBtn.classList.add('hidden'); rightBtn.classList.remove('flex');
+        return;
+      }
+      leftFade.style.opacity = atStart ? '0' : '1';
+      rightFade.style.opacity = atEnd ? '0' : '1';
+      if (atStart) { leftBtn.classList.add('hidden'); leftBtn.classList.remove('flex'); } else { leftBtn.classList.remove('hidden'); leftBtn.classList.add('flex'); }
+      if (atEnd) { rightBtn.classList.add('hidden'); rightBtn.classList.remove('flex'); } else { rightBtn.classList.remove('hidden'); rightBtn.classList.add('flex'); }
+    }
+
+    slider.addEventListener('scroll', updateIndicators, { passive: true });
+    window.addEventListener('resize', updateIndicators);
+    // initial check delayed for fonts/layout
+    requestAnimationFrame(() => setTimeout(updateIndicators, 100));
+    setTimeout(updateIndicators, 300);
+
+    leftBtn.addEventListener('click', () => slider.scrollBy({ left: -220, behavior: 'smooth' }));
+    rightBtn.addEventListener('click', () => slider.scrollBy({ left: 220, behavior: 'smooth' }));
+
+    slider.addEventListener('pointerdown', (e) => {
+      isDown = true;
+      hasDragged = false;
+      startX = e.clientX;
+      scrollLeft = slider.scrollLeft;
     });
-  });
+
+    slider.addEventListener('pointermove', (e) => {
+      if (!isDown) return;
+      const x = e.clientX;
+      const walk = x - startX;
+      if (Math.abs(walk) > threshold) {
+        if (!hasDragged) {
+          slider.classList.add('dragging');
+          slider.setPointerCapture(e.pointerId);
+        }
+        hasDragged = true;
+      }
+      if (hasDragged) e.preventDefault();
+      slider.scrollLeft = scrollLeft - walk;
+    });
+
+    const stopDrag = (e) => {
+      if (!isDown) return;
+      isDown = false;
+      slider.classList.remove('dragging');
+      try { slider.releasePointerCapture(e.pointerId); } catch {}
+      // keep hasDragged true for a tick to suppress the click that ends the drag
+      if (hasDragged) setTimeout(() => { hasDragged = false; }, 80);
+      setTimeout(updateIndicators, 50);
+    };
+
+    slider.addEventListener('pointerup', stopDrag);
+    slider.addEventListener('pointercancel', stopDrag);
+
+    slider.addEventListener('wheel', (e) => {
+      if (slider.scrollWidth <= slider.clientWidth) return;
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        if (Math.abs(e.deltaY) < 10) return;
+        e.preventDefault();
+        slider.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+
+    slider.addEventListener('dragstart', (e) => e.preventDefault());
+
+    document.querySelectorAll('.cat-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        if (hasDragged) { e.preventDefault(); e.stopPropagation(); return; }
+        document.querySelectorAll('.cat-btn').forEach((b) => {
+          b.className = b.className
+            .replace('border-ink bg-ink text-white', 'border-hairline bg-canvas-elevated text-body')
+            .replace('dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]', 'dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1]');
+        });
+        btn.className = btn.className
+          .replace('border-hairline bg-canvas-elevated text-body', 'border-ink bg-ink text-white')
+          .replace('dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1]', 'dark:border-[#ededed] dark:bg-[#ededed] dark:text-[#0a0a0a]');
+        // keep active button visible
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        window.dispatchEvent(new CustomEvent('category-change', { detail: btn.dataset.category }));
+        setTimeout(updateIndicators, 300);
+      });
+    });
+  })();
 </script>

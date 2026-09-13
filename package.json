@@ -9,7 +9,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "npm run build && npx wrangler pages deploy ./dist --project-name=random-animal-generator",
+    "deploy:staging": "npm run build && npx wrangler pages deploy ./dist --project-name=random-animal-generator --branch=staging",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:playwright": "npx playwright test",
+    "test:puppeteer": "npx vitest run tests/puppeteer.spec.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -19,5 +25,13 @@
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "jsdom": "^30.0.1",
+    "playwright": "^1.63.0",
+    "puppeteer": "^25.10.0",
+    "vitest": "^3.2.4",
+    "wrangler": "^4.131.0"
   }
 }

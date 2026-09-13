@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Avertissement | Générateur d'Animaux Aléatoires" description="Avertissement du Générateur d'Animaux Aléatoires. Lisez les limitations d'utilisation et l'exactitude des informations fournies par notre outil." locale="fr" pagePath="/disclaimer">
+  <Navbar locale="fr" pagePath="/disclaimer" />
+
+  <main class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
+    <div class="mb-10 text-center">
+      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">Avertissement</h1>
+      <p class="mx-auto mt-3 max-w-lg text-sm text-body sm:text-base dark:text-[#a1a1a1]">
+        Dernière mise à jour : 1er janvier 2026
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Informations Générales</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          Les informations fournies par Random Animal Generator ("nous," "notre" ou "nos") sur notre site web sont uniquement à des fins d'information et d'éducation générales. Toutes les informations sont fournies de bonne foi ; cependant, nous ne faisons aucune déclaration ni garantie d'aucune sorte, expresse ou implicite, concernant l'exactitude, l'adéquation, la validité, la fiabilité, la disponibilité ou l'exhaustivité de toute information sur le site.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Liens Externes</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          Le site peut contenir des liens vers des sites web externes qui ne sont pas fournis ni entretenus par Random Animal Generator. Nous ne garantissons pas l'exactitude, la pertinence, l'actualité ou l'exhaustivité de toute information sur ces sites web externes.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Conseils Professionnels</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          Le site ne contient pas de conseils professionnels en science, vétérinaire ou conservation. Les informations sont fournies uniquement à des fins d'information et d'éducation générales et ne remplacent pas les conseils professionnels.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Statut de Conservation</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          Les statuts de conservation affichés sur ce site sont basés sur des données publiques d'organisations de conservation reconnues. Pour les informations les plus à jour, veuillez consulter la Liste rouge de l'UICN ou votre autorité de faune locale.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Faits sur les Animaux</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          Bien que nous nous efforcions de fournir des faits précis et à jour sur les animaux, certaines informations peuvent contenir des simplifications ou des généralisations à des fins éducatives. Nous vous encourageons à vérifier les informations critiques par des recherches supplémentaires.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Erreurs et Omissions</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          Bien que nous ayons fait tout notre possible pour garantir que les informations contenues dans ce site aient été obtenues à partir de sources fiables, Random Animal Generator n'est responsable d'aucune erreur ou omission, ni des résultats obtenus de l'utilisation de ces informations.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Contactez-Nous</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          Si vous avez des questions concernant cet Avertissement, veuillez <a href="/contact-us" class="text-link underline underline-offset-2 transition-colors hover:text-link-deep">nous contacter</a>.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <Footer locale="fr" />
+</Layout>

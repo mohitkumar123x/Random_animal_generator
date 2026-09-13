@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="免责声明 | 随机动物生成器" description="随机动物生成器的免责声明。了解我们工具提供的信息的使用限制和准确性。" locale="zh-CN" pagePath="/disclaimer">
+  <Navbar locale="zh-CN" pagePath="/disclaimer" />
+
+  <main class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
+    <div class="mb-10 text-center">
+      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">免责声明</h1>
+      <p class="mx-auto mt-3 max-w-lg text-sm text-body sm:text-base dark:text-[#a1a1a1]">
+        最后更新：2026年1月1日
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">一般信息</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          Random Animal Generator（"我们"、"我们的"或"我们"）在本网站上提供的信息仅供参考和教育目的。所有信息均出于善意提供；但我们对网站上任何信息的准确性、适当性、有效性、可靠性、可用性或完整性不作任何明示或暗示的陈述或保证。
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">外部链接</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          本网站可能包含指向非 Random Animal Generator 提供或维护的外部网站的链接。我们不保证这些外部网站上任何信息的准确性、相关性、及时性或完整性。
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">专业建议</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          本网站不包含也不提供专业的科学、兽医或保护建议。信息仅供参考和教育目的，不能替代专业建议。
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">保护状态</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          本网站显示的保护状态基于公认保护组织的公开数据。如需最新信息，请参阅 IUCN 红色名录或您当地的野生动物管理机构。
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">动物事实</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          虽然我们努力提供准确和最新的动物事实，但部分信息可能包含为教育目的而进行的简化或概括。我们建议用户通过额外的研究来验证重要信息。
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">错误和遗漏</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          尽管我们已尽一切努力确保本网站包含的信息来自可靠来源，但 Random Animal Generator 对任何错误或遗漏，或使用这些信息所获得的结果不承担责任。
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">联系我们</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          如果您对本免责声明有任何疑问，请<a href="/contact-us" class="text-link underline underline-offset-2 transition-colors hover:text-link-deep">联系我们</a>。
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <Footer locale="zh-CN" />
+</Layout>

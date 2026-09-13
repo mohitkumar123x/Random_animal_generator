@@ -1,0 +1,425 @@
+---
+import animals from '../data/animals.json';
+import blogContent from '../data/blog-content.json';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'en' } = Astro.props;
+const content = (blogContent as any)[locale] || (blogContent as any).en;
+
+const totalAnimals = animals.length;
+const categories = [...new Set(animals.map(a => a.category))];
+const conservationStatuses = [...new Set(animals.map(a => a.conservation))];
+
+const consCounts: Record<string, number> = {};
+conservationStatuses.forEach(s => { consCounts[s] = animals.filter(a => a.conservation === s).length; });
+
+const catCounts: Record<string, number> = {};
+categories.forEach(c => { catCounts[c] = animals.filter(a => a.category === c).length; });
+
+const extinctCount = consCounts['EX'] || 0;
+
+function fillPlaceholders(text: string, replacements: Record<string, string | number>): string {
+  let result = text;
+  for (const [key, value] of Object.entries(replacements)) {
+    result = result.split(`{${key}}`).join(String(value));
+  }
+  return result;
+}
+---
+
+<main class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
+
+    <!-- Blog Header -->
+    <header class="mb-12 text-center">
+      <div class="mb-3 inline-flex items-center gap-1.5 rounded-full border border-hairline bg-canvas-elevated px-3 py-1 text-xs text-muted dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#888]">
+        <span class="h-1.5 w-1.5 rounded-full bg-link animate-pulse"></span>
+        {content.badge}
+      </div>
+      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">
+        {content.title}
+      </h1>
+      <p class="mx-auto mt-3 max-w-2xl text-sm text-body sm:text-base dark:text-[#a1a1a1]">
+        {content.description}
+      </p>
+    </header>
+
+    <!-- Table of Contents -->
+    <nav class="mb-12 rounded-2xl border border-hairline bg-canvas-elevated p-5 dark:border-[#333] dark:bg-[#1a1a1a]">
+      <h2 class="mb-3 text-sm font-bold uppercase tracking-wider text-muted">{content.tocTitle}</h2>
+      <ul class="space-y-1.5 text-sm">
+        {content.tocItems.map((item: any) => (
+          <li><a href={`#${item.anchor}`} class="text-link hover:underline">{item.text}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Section 1: Conservation Status Guide -->
+    <section id="conservation-guide" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">{content.conservationGuide.title}</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        {content.conservationGuide.desc}
+      </p>
+
+      <!-- Conservation Status Table -->
+      <div class="mb-6 overflow-x-auto rounded-2xl border border-hairline dark:border-[#333]">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="border-b border-hairline bg-canvas-elevated dark:border-[#333] dark:bg-[#1a1a1a]">
+              {content.conservationGuide.headers.map((header: string) => (
+                <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">{header}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {content.conservationGuide.statuses.map((status: any) => (
+              <tr class="border-b border-hairline dark:border-[#333]">
+                <td class="px-4 py-3"><span class={`inline-flex items-center gap-1 rounded-full bg-${status.color}/15 px-2 py-0.5 text-[10px] font-bold text-${status.color} border border-${status.color}/30`}>{status.code}</span></td>
+                <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">{status.name}</td>
+                <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">{status.desc}</td>
+                <td class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">{consCounts[status.code] || 0}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Conservation Bar Chart -->
+      <div class="rounded-2xl border border-hairline bg-canvas-elevated p-5 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h3 class="mb-4 text-sm font-bold text-ink dark:text-[#ededed]">{content.conservationGuide.chartTitle}</h3>
+        <div class="space-y-3">
+          {Object.entries(consCounts).filter(([k]) => k !== 'DD').map(([status, count]) => {
+            const pct = Math.round((count / totalAnimals) * 100);
+            const colors = {
+              LC: 'bg-conservation-lc', NT: 'bg-conservation-nt', VU: 'bg-conservation-vu',
+              EN: 'bg-conservation-en', CR: 'bg-conservation-cr', EW: 'bg-gray-400', EX: 'bg-gray-500'
+            };
+            const statusObj = content.conservationGuide.statuses.find((s: any) => s.code === status);
+            const label = statusObj?.name || status;
+            return (
+              <div class="flex items-center gap-3">
+                <span class="w-8 text-right text-xs font-bold text-muted">{status}</span>
+                <div class="flex-1 h-6 rounded-full bg-hairline/50 overflow-hidden dark:bg-[#333]">
+                  <div class={`h-full rounded-full ${colors[status as keyof typeof colors] || 'bg-muted'} transition-all`} style={{ width: `${pct}%` }} />
+                </div>
+                <span class="w-16 text-right text-xs font-medium text-ink dark:text-[#ededed]">{count} ({pct}%)</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Animal Kingdom Classification -->
+    <section id="classification-chart" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">{content.classification.title}</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        {content.classification.desc}
+      </p>
+
+      <!-- Classification Flowchart -->
+      <div class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h3 class="mb-5 text-sm font-bold uppercase tracking-wider text-muted text-center">{content.classification.chartTitle}</h3>
+
+        <!-- CSS Flowchart -->
+        <div class="flex flex-col items-center gap-3">
+          {content.classification.levels.map((level: any, i: number) => {
+            if (level.type === 'node') {
+              return (
+                <>
+                  <div class={`rounded-xl bg-${level.color}/15 border border-${level.color}/30 px-6 py-3 text-center`}>
+                    <p class="text-[10px] uppercase tracking-wider text-link font-bold">{level.label}</p>
+                    <p class="text-sm font-bold text-ink dark:text-[#ededed]">{level.value}</p>
+                  </div>
+                  {i < content.classification.levels.length - 1 && (
+                    <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+                  )}
+                </>
+              );
+            } else {
+              return (
+                <>
+                  <div class="w-full">
+                    <p class="mb-2 text-center text-[10px] uppercase tracking-wider text-pink font-bold">{level.label}</p>
+                    <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                      {level.items.map((item: any) => (
+                        <div class="rounded-lg border border-hairline bg-canvas p-3 text-center dark:border-[#333] dark:bg-[#111]">
+                          <span class="text-xl">{item.emoji}</span>
+                          <p class="text-xs font-bold text-ink dark:text-[#ededed]">{item.name}</p>
+                          <p class="text-[10px] text-muted">{item.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {i < content.classification.levels.length - 1 && (
+                    <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+                  )}
+                </>
+              );
+            }
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Category Breakdown -->
+    <section id="category-breakdown" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">{content.categories.title}</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        {fillPlaceholders(content.categories.desc, { totalAnimals, categoriesCount: categories.length })}
+      </p>
+
+      <!-- Category Cards Grid -->
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {content.categories.items.map((cat: any) => (
+          <div class="rounded-xl border border-hairline bg-canvas-elevated p-4 text-center transition-colors hover:border-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:hover:border-[#444]">
+            <div class="text-3xl mb-2">{cat.icon}</div>
+            <h3 class="text-sm font-bold text-ink dark:text-[#ededed]">{cat.label}</h3>
+            <p class="text-[10px] text-muted mt-1">{cat.desc}</p>
+            <p class="mt-2 text-lg font-bold text-link">{catCounts[cat.key.toLowerCase()] || 0}</p>
+            <p class="text-[10px] text-muted">{content.categories.label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 4: Habitat Distribution -->
+    <section id="habitat-map" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">{content.habitatDistribution.title}</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        {content.habitatDistribution.desc}
+      </p>
+
+      <!-- Habitat Table -->
+      <div class="overflow-x-auto rounded-2xl border border-hairline dark:border-[#333]">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="border-b border-hairline bg-canvas-elevated dark:border-[#333] dark:bg-[#1a1a1a]">
+              {content.habitatDistribution.headers.map((header: string) => (
+                <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">{header}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {content.habitatDistribution.rows.map((row: any) => (
+              <tr class="border-b border-hairline dark:border-[#333]">
+                <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">{row.emoji} {row.type}</td>
+                <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">{row.climate}</td>
+                <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">{row.adaptations}</td>
+                <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">{row.species}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 5: Endangered Species Flowchart -->
+    <section id="endangered-flowchart" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">{content.endangeredFlowchart.title}</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        {content.endangeredFlowchart.desc}
+      </p>
+
+      <div class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h3 class="mb-5 text-sm font-bold uppercase tracking-wider text-muted text-center">{content.endangeredFlowchart.chartTitle}</h3>
+
+        <!-- Flowchart -->
+        <div class="flex flex-col items-center gap-4">
+          <!-- Root Cause -->
+          <div class="rounded-xl bg-error/15 border border-error/30 px-6 py-3 text-center">
+            <p class="text-xs font-bold text-error">{content.endangeredFlowchart.rootCause}</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Threats Row -->
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 w-full">
+            {content.endangeredFlowchart.threats.map((threat: any) => (
+              <div class="rounded-lg border border-error/30 bg-error/10 p-3 text-center">
+                <p class="text-xl mb-1">{threat.emoji}</p>
+                <p class="text-xs font-bold text-ink dark:text-[#ededed]">{threat.title}</p>
+                <p class="text-[10px] text-muted">{threat.desc}</p>
+              </div>
+            ))}
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Impact -->
+          <div class="rounded-xl bg-conservation-vu/15 border border-conservation-vu/30 px-6 py-3 text-center">
+            <p class="text-xs font-bold text-conservation-vu">{content.endangeredFlowchart.impact.title}</p>
+            <p class="text-[10px] text-muted">{content.endangeredFlowchart.impact.desc}</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- IUCN Assessment -->
+          <div class="rounded-xl bg-conservation-en/15 border border-conservation-en/30 px-6 py-3 text-center">
+            <p class="text-xs font-bold text-conservation-en">{content.endangeredFlowchart.assessment.title}</p>
+            <p class="text-[10px] text-muted">{content.endangeredFlowchart.assessment.desc}</p>
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Conservation Actions Row -->
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 w-full">
+            {content.endangeredFlowchart.actions.map((action: any) => (
+              <div class="rounded-lg border border-conservation-lc/30 bg-conservation-lc/10 p-3 text-center">
+                <p class="text-xl mb-1">{action.emoji}</p>
+                <p class="text-xs font-bold text-ink dark:text-[#ededed]">{action.title}</p>
+                <p class="text-[10px] text-muted">{action.desc}</p>
+              </div>
+            ))}
+          </div>
+          <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+          <!-- Outcome -->
+          <div class="rounded-xl bg-conservation-lc/15 border border-conservation-lc/30 px-6 py-3 text-center">
+            <p class="text-xs font-bold text-conservation-lc">{content.endangeredFlowchart.outcome.title}</p>
+            <p class="text-[10px] text-muted">{content.endangeredFlowchart.outcome.desc}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Record Holders -->
+    <section id="record-holders" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">{content.recordHolders.title}</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        {content.recordHolders.desc}
+      </p>
+
+      <div class="overflow-x-auto rounded-2xl border border-hairline dark:border-[#333]">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="border-b border-hairline bg-canvas-elevated dark:border-[#333] dark:bg-[#1a1a1a]">
+              {content.recordHolders.headers.map((header: string) => (
+                <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">{header}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {content.recordHolders.records.map((rec: any) => (
+              <tr class="border-b border-hairline dark:border-[#333]">
+                <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">{rec.emoji} {rec.record}</td>
+                <td class="px-4 py-3 font-bold text-link">{rec.animal}</td>
+                <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">{rec.measurement}</td>
+                <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">{rec.fact}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 7: Generator Workflow -->
+    <section id="generator-workflow" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">{content.workflow.title}</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        {fillPlaceholders(content.workflow.desc, { totalAnimals })}
+      </p>
+
+      <div class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h3 class="mb-5 text-sm font-bold uppercase tracking-wider text-muted text-center">{content.workflow.chartTitle}</h3>
+
+        <div class="flex flex-col items-center gap-4">
+          {content.workflow.steps.map((step: any, i: number) => (
+            <>
+              <div class={`rounded-xl bg-${step.color}/15 border border-${step.color}/30 px-6 py-3 text-center`}>
+                <p class="text-[10px] uppercase tracking-wider text-link font-bold">{step.label}</p>
+                <p class="text-sm font-bold text-ink dark:text-[#ededed]">{step.title}</p>
+                <p class="text-[10px] text-muted">{step.desc}</p>
+              </div>
+              {i < content.workflow.steps.length - 1 && (
+                <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+              )}
+            </>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: Fun Facts Grid -->
+    <section id="fun-facts-grid" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">{content.funFacts.title}</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        {fillPlaceholders(content.funFacts.desc, { totalAnimals })}
+      </p>
+
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {content.funFacts.items.map((fact: any) => (
+          <div class="rounded-xl border border-hairline bg-canvas-elevated p-4 transition-colors hover:border-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:hover:border-[#444]">
+            <div class="mb-2 flex items-center gap-2">
+              <span class="text-2xl">{fact.emoji}</span>
+              <h3 class="text-sm font-bold text-ink dark:text-[#ededed]">{fact.title}</h3>
+            </div>
+            <p class="text-xs text-body leading-relaxed dark:text-[#a1a1a1]">{fact.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 9: Education Guide -->
+    <section id="education-guide" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">{content.education.title}</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        {content.education.desc}
+      </p>
+
+      <!-- Education Methods Table -->
+      <div class="overflow-x-auto rounded-2xl border border-hairline dark:border-[#333]">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="border-b border-hairline bg-canvas-elevated dark:border-[#333] dark:bg-[#1a1a1a]">
+              {content.education.headers.map((header: string) => (
+                <th class="px-4 py-3 font-bold text-ink dark:text-[#ededed]">{header}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {content.education.rows.map((row: any) => (
+              <tr class="border-b border-hairline dark:border-[#333]">
+                <td class="px-4 py-3 font-medium text-ink dark:text-[#ededed]">{row.activity}</td>
+                <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">{row.subject}</td>
+                <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">{row.age}</td>
+                <td class="px-4 py-3 text-body dark:text-[#a1a1a1]">{row.outcome}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 10: Extinct Animals Timeline -->
+    <section id="extinction-timeline" class="mb-14">
+      <h2 class="mb-4 text-2xl font-bold text-ink dark:text-[#ededed]">{content.timeline.title}</h2>
+      <p class="mb-4 text-sm leading-relaxed text-body dark:text-[#a1a1a1]">
+        {fillPlaceholders(content.timeline.desc, { extinctCount })}
+      </p>
+
+      <!-- Timeline -->
+      <div class="relative border-l-2 border-hairline pl-6 dark:border-[#333]">
+        {content.timeline.items.map((item: any) => (
+          <div class="mb-8 relative">
+            <div class="absolute -left-[31px] top-1 h-4 w-4 rounded-full border-2 border-hairline bg-canvas dark:border-[#555] dark:bg-[#1a1a1a]" />
+            <div class="rounded-xl border border-hairline bg-canvas-elevated p-4 dark:border-[#333] dark:bg-[#1a1a1a]">
+              <div class="mb-1 flex items-center gap-2">
+                <span class="rounded-full bg-conservation-cr/15 px-2 py-0.5 text-[10px] font-bold text-conservation-cr border border-conservation-cr/30">{item.year}</span>
+                <span class="text-sm font-bold text-ink dark:text-[#ededed]">{item.animal}</span>
+              </div>
+              <p class="text-xs text-body dark:text-[#a1a1a1]">{item.event}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="rounded-2xl border border-hairline bg-canvas-elevated p-8 text-center dark:border-[#333] dark:bg-[#1a1a1a]">
+      <h2 class="mb-3 text-xl font-bold text-ink dark:text-[#ededed]">{content.cta.title}</h2>
+      <p class="mb-5 text-sm text-body dark:text-[#a1a1a1]">{content.cta.desc}</p>
+      <a href={locale === 'en' ? '/' : `/${locale}`} class="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-2.5 text-sm font-medium text-white transition-all hover:opacity-90 dark:bg-[#ededed] dark:text-[#0a0a0a]">
+        {content.cta.btn}
+      </a>
+    </section>
+
+</main>

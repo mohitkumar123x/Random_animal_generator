@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Disclaimer | Random Animal Generator" description="Disclaimer for Random Animal Generator. Read about the limitations of use and accuracy of information provided by our tool." pagePath="/disclaimer">
+  <Navbar pagePath="/disclaimer" />
+
+  <main class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
+    <div class="mb-10 text-center">
+      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">Disclaimer</h1>
+      <p class="mx-auto mt-3 max-w-lg text-sm text-body sm:text-base dark:text-[#a1a1a1]">
+        Last updated: January 1, 2026
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">General Information</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          The information provided by Random Animal Generator ("we," "our," or "us") on our website is for general informational and educational purposes only. All information is provided in good faith; however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the site.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">External Links</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          The site may contain links to external websites that are not provided or maintained by or in any way affiliated with Random Animal Generator. Please note that we do not guarantee the accuracy, relevance, timeliness, or completeness of any information on these external websites.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Professional Advice</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          The site cannot and does not contain professional scientific, veterinary, or conservation advice. The information is provided for general informational and educational purposes only and is not a substitute for professional advice. Accordingly, before taking any actions based upon such information, we encourage you to consult with the appropriate professionals.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Conservation Status</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          Conservation statuses displayed on this site are based on publicly available data from recognized conservation organizations. These statuses may change over time as new research becomes available. For the most current information about a species' conservation status, please refer to the IUCN Red List or your local wildlife authority.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Animal Facts</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          While we strive to provide accurate and up-to-date facts about animals, some information may contain simplifications or generalizations for educational purposes. Fun facts and trivia are sourced from publicly available data and may be subject to interpretation. We encourage users to verify critical information through additional research.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Fair Use</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          This site may contain copyrighted material the use of which has not always been specifically authorized by the copyright owner. We believe this constitutes a "fair use" of any such copyrighted material for the purposes of education, commentary, and non-commercial use. If you wish to use copyrighted material from this site for purposes that go beyond fair use, you must obtain permission from the copyright owner.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Errors and Omissions</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          While we have made every attempt to ensure that the information contained in this site has been obtained from reliable sources, Random Animal Generator is not responsible for any errors or omissions, or for the results obtained from the use of this information. All information in this site is provided "as is," with no guarantee of completeness, accuracy, timeliness, or of the results obtained from the use of this information.
+        </p>
+      </section>
+
+      <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
+        <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Contact Us</h2>
+        <p class="text-sm text-body leading-relaxed dark:text-[#a1a1a1]">
+          If you have any questions about this Disclaimer, please <a href="/contact-us" class="text-link underline underline-offset-2 transition-colors hover:text-link-deep">contact us</a>.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

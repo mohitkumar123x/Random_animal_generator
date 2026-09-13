@@ -4,7 +4,7 @@
 <div id="animal-card-container" class="relative">
   <div id="animal-placeholder" class="flex flex-col items-center justify-center rounded-2xl border border-dashed border-hairline bg-hairline-soft/50 py-20 dark:border-[#333] dark:bg-[#111]">
     <span class="text-6xl mb-4 animate-pulse-gentle">🐾</span>
-    <p class="text-sm text-muted">Press <kbd class="rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]">Space</kbd> or tap the button to generate</p>
+    <p id="placeholder-text" class="text-sm text-muted">Press <kbd class="rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]">Space</kbd> or tap the button to generate</p>
   </div>
 
   <div id="animal-card" class="hidden">
@@ -23,74 +23,74 @@
           <div class="flex items-center gap-2 rounded-lg border border-hairline bg-canvas p-2.5 sm:p-3 dark:border-[#333] dark:bg-[#111]">
             <span class="text-base">🌍</span>
             <div class="min-w-0">
-              <p class="text-[10px] uppercase tracking-wider text-faint">Habitat</p>
-              <p id="card-habitat" class="text-xs font-medium text-ink truncate dark:text-[#ededed]"></p>
+              <p id="label-habitat" class="text-[10px] uppercase tracking-wider text-faint">Habitat</p>
+              <p id="card-habitat" class="text-xs font-medium text-ink dark:text-[#ededed]"></p>
             </div>
           </div>
           <div class="flex items-center gap-2 rounded-lg border border-hairline bg-canvas p-2.5 sm:p-3 dark:border-[#333] dark:bg-[#111]">
             <span class="text-base">🍽️</span>
             <div class="min-w-0">
-              <p class="text-[10px] uppercase tracking-wider text-faint">Diet</p>
-              <p id="card-diet" class="text-xs font-medium text-ink truncate dark:text-[#ededed]"></p>
+              <p id="label-diet" class="text-[10px] uppercase tracking-wider text-faint">Diet</p>
+              <p id="card-diet" class="text-xs font-medium text-ink dark:text-[#ededed]"></p>
             </div>
           </div>
           <div class="flex items-center gap-2 rounded-lg border border-hairline bg-canvas p-2.5 sm:p-3 dark:border-[#333] dark:bg-[#111]">
             <span class="text-base">⏱️</span>
             <div class="min-w-0">
-              <p class="text-[10px] uppercase tracking-wider text-faint">Lifespan</p>
-              <p id="card-lifespan" class="text-xs font-medium text-ink truncate dark:text-[#ededed]"></p>
+              <p id="label-lifespan" class="text-[10px] uppercase tracking-wider text-faint">Lifespan</p>
+              <p id="card-lifespan" class="text-xs font-medium text-ink dark:text-[#ededed]"></p>
             </div>
           </div>
           <div class="flex items-center gap-2 rounded-lg border border-hairline bg-canvas p-2.5 sm:p-3 dark:border-[#333] dark:bg-[#111]">
             <span class="text-base">⚖️</span>
             <div class="min-w-0">
-              <p class="text-[10px] uppercase tracking-wider text-faint">Weight</p>
-              <p id="card-weight" class="text-xs font-medium text-ink truncate dark:text-[#ededed]"></p>
+              <p id="label-weight" class="text-[10px] uppercase tracking-wider text-faint">Weight</p>
+              <p id="card-weight" class="text-xs font-medium text-ink dark:text-[#ededed]"></p>
             </div>
           </div>
         </div>
 
         <div class="grid grid-cols-3 gap-2 mb-4 sm:gap-3">
           <div class="rounded-lg border border-hairline bg-canvas p-2 text-center sm:p-3 dark:border-[#333] dark:bg-[#111]">
-            <p class="text-[10px] uppercase tracking-wider text-faint mb-1">Speed</p>
+            <p id="label-speed" class="text-[10px] uppercase tracking-wider text-faint mb-1">Speed</p>
             <p id="card-speed" class="text-xs font-semibold text-ink sm:text-sm dark:text-[#ededed]"></p>
           </div>
           <div class="rounded-lg border border-hairline bg-canvas p-2 text-center sm:p-3 dark:border-[#333] dark:bg-[#111]">
-            <p class="text-[10px] uppercase tracking-wider text-faint mb-1">Length</p>
+            <p id="label-length" class="text-[10px] uppercase tracking-wider text-faint mb-1">Length</p>
             <p id="card-length" class="text-xs font-semibold text-ink sm:text-sm dark:text-[#ededed]"></p>
           </div>
           <div class="rounded-lg border border-hairline bg-canvas p-2 text-center sm:p-3 dark:border-[#333] dark:bg-[#111]">
-            <p class="text-[10px] uppercase tracking-wider text-faint mb-1">Region</p>
+            <p id="label-region" class="text-[10px] uppercase tracking-wider text-faint mb-1">Region</p>
             <p id="card-region" class="text-xs font-semibold text-ink sm:text-sm dark:text-[#ededed]"></p>
           </div>
         </div>
 
         <div id="card-taxonomy" class="mb-4 rounded-lg border border-hairline bg-canvas p-3 dark:border-[#333] dark:bg-[#111]">
-          <p class="text-[10px] uppercase tracking-wider text-faint mb-2">🧬 Taxonomy</p>
+          <p id="label-taxonomy" class="text-[10px] uppercase tracking-wider text-faint mb-2">🧬 Taxonomy</p>
           <div class="grid grid-cols-1 gap-1.5 text-xs sm:grid-cols-3 sm:gap-2">
-            <div class="flex items-center gap-1"><span class="text-faint">Class:</span> <span id="card-class" class="font-medium text-ink dark:text-[#ededed]"></span></div>
-            <div class="flex items-center gap-1"><span class="text-faint">Order:</span> <span id="card-order" class="font-medium text-ink dark:text-[#ededed]"></span></div>
-            <div class="flex items-center gap-1"><span class="text-faint">Family:</span> <span id="card-family" class="font-medium text-ink dark:text-[#ededed]"></span></div>
+            <div class="flex items-center gap-1"><span id="label-class" class="text-faint">Class:</span> <span id="card-class" class="font-medium text-ink dark:text-[#ededed]"></span></div>
+            <div class="flex items-center gap-1"><span id="label-order" class="text-faint">Order:</span> <span id="card-order" class="font-medium text-ink dark:text-[#ededed]"></span></div>
+            <div class="flex items-center gap-1"><span id="label-family" class="text-faint">Family:</span> <span id="card-family" class="font-medium text-ink dark:text-[#ededed]"></span></div>
           </div>
         </div>
 
         <div class="rounded-xl border border-link-soft bg-link-soft/30 p-3 dark:border-[#1e3a5f] dark:bg-[#0f1f33]">
-          <p class="text-[10px] uppercase tracking-wider text-link font-medium mb-1 dark:text-link">💡 Fun Fact</p>
+          <p id="label-funfact" class="text-[10px] uppercase tracking-wider text-link font-medium mb-1 dark:text-link">💡 Fun Fact</p>
           <p id="card-funfact" class="text-xs text-body leading-relaxed dark:text-[#a1a1a1]"></p>
         </div>
 
         <div class="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
           <button id="btn-favorite" class="group flex items-center justify-center gap-1.5 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2.5 text-xs font-medium text-rose-600 transition-all hover:bg-rose-100 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-400 dark:hover:bg-rose-500/20">
-            <span class="transition-transform group-hover:scale-110">♡</span> Save
+            <span class="transition-transform group-hover:scale-110">♡</span> <span id="btn-favorite-text">Save</span>
           </button>
           <button id="btn-share" class="group flex items-center justify-center gap-1.5 rounded-xl border border-blue-200 bg-blue-50 px-3 py-2.5 text-xs font-medium text-blue-600 transition-all hover:bg-blue-100 dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-400 dark:hover:bg-blue-500/20">
-            <span class="transition-transform group-hover:scale-110">🔗</span> Share
+            <span class="transition-transform group-hover:scale-110">🔗</span> <span id="btn-share-text">Share</span>
           </button>
           <button id="btn-copy" class="group flex items-center justify-center gap-1.5 rounded-xl border border-violet-200 bg-violet-50 px-3 py-2.5 text-xs font-medium text-violet-600 transition-all hover:bg-violet-100 dark:border-violet-500/30 dark:bg-violet-500/10 dark:text-violet-400 dark:hover:bg-violet-500/20">
-            <span class="transition-transform group-hover:scale-110">📋</span> Copy
+            <span class="transition-transform group-hover:scale-110">📋</span> <span id="btn-copy-text">Copy</span>
           </button>
           <button id="btn-download" class="group flex items-center justify-center gap-1.5 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2.5 text-xs font-medium text-emerald-600 transition-all hover:bg-emerald-100 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-400 dark:hover:bg-emerald-500/20">
-            <span class="transition-transform group-hover:scale-110">📥</span> Download
+            <span class="transition-transform group-hover:scale-110">📥</span> <span id="btn-download-text">Download</span>
           </button>
         </div>
       </div>
@@ -98,47 +98,172 @@
   </div>
 </div>
 
+<div id="share-popup-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" style="backdrop-filter:blur(4px);">
+  <div class="w-full max-w-sm rounded-2xl border border-hairline bg-canvas-elevated shadow-2xl dark:border-[#333] dark:bg-[#1a1a1a]">
+    <div class="flex items-center justify-between border-b border-hairline p-4 dark:border-[#333]">
+      <h3 id="share-popup-title" class="text-sm font-bold text-ink dark:text-[#ededed]"></h3>
+      <button id="share-popup-close" class="flex h-7 w-7 items-center justify-center rounded-lg text-muted hover:bg-hairline hover:text-ink dark:hover:bg-[#333] dark:hover:text-[#ededed]">✕</button>
+    </div>
+    <div class="p-4">
+      <div id="share-popup-animal-info" class="mb-4 flex items-center gap-3 rounded-xl border border-hairline bg-canvas p-3 dark:border-[#333] dark:bg-[#111]"></div>
+      <div id="share-popup-options" class="grid grid-cols-2 gap-2"></div>
+    </div>
+  </div>
+</div>
+
 <script is:inline>
-const conservationLabels = {
-  LC: { text: 'Least Concern', color: 'bg-conservation-lc/15 text-conservation-lc border border-conservation-lc/30' },
-  NT: { text: 'Near Threatened', color: 'bg-conservation-nt/15 text-conservation-nt border border-conservation-nt/30' },
-  VU: { text: 'Vulnerable', color: 'bg-conservation-vu/15 text-conservation-vu border border-conservation-vu/30' },
-  EN: { text: 'Endangered', color: 'bg-conservation-en/15 text-conservation-en border border-conservation-en/30' },
-  CR: { text: 'Critically Endangered', color: 'bg-conservation-cr/15 text-conservation-cr border border-conservation-cr/30' },
-  EW: { text: 'Extinct in Wild', color: 'bg-conservation-ew/15 text-conservation-ew border border-conservation-ew/30' },
-  EX: { text: 'Extinct', color: 'bg-conservation-ex/15 text-conservation-ex border border-conservation-ex/30' },
-  DD: { text: 'Data Deficient', color: 'bg-muted/15 text-muted border border-muted/30' },
+function getCardT() {
+  return window.__cardT || {
+    habitat:'Habitat', diet:'Diet', lifespan:'Lifespan', weight:'Weight',
+    speed:'Speed', length:'Length', region:'Region', taxonomy:'Taxonomy',
+    taxClass:'Class:', taxOrder:'Order:', taxFamily:'Family:',
+    funFact:'Fun Fact', save:'Save', share:'Share', copy:'Copy', download:'Download',
+    years:'years', copied:'Copied!', saving:'Saving...', saved:'Saved!',
+    shareTitle:'Share this animal', copyLink:'Copy Link',
+    shareTwitter:'Twitter', shareFacebook:'Facebook', shareWhatsApp:'WhatsApp',
+    sharePinterest:'Pinterest', shareEmail:'Email', nativeShare:'More...',
+    consLC:'Least Concern', consNT:'Near Threatened', consVU:'Vulnerable',
+    consEN:'Endangered', consCR:'Critically Endangered', consEW:'Extinct in Wild',
+    consEX:'Extinct', consDD:'Data Deficient',
+    placeholder:'Press <kbd class="rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]">Space</kbd> or tap the button to generate'
+  };
+}
+
+function getConservationLabels() {
+  const t = getCardT();
+  return {
+    LC: { text: t.consLC, color: 'bg-conservation-lc/15 text-conservation-lc border border-conservation-lc/30' },
+    NT: { text: t.consNT, color: 'bg-conservation-nt/15 text-conservation-nt border border-conservation-nt/30' },
+    VU: { text: t.consVU, color: 'bg-conservation-vu/15 text-conservation-vu border border-conservation-vu/30' },
+    EN: { text: t.consEN, color: 'bg-conservation-en/15 text-conservation-en border border-conservation-en/30' },
+    CR: { text: t.consCR, color: 'bg-conservation-cr/15 text-conservation-cr border border-conservation-cr/30' },
+    EW: { text: t.consEW, color: 'bg-conservation-ew/15 text-conservation-ew border border-conservation-ew/30' },
+    EX: { text: t.consEX, color: 'bg-conservation-ex/15 text-conservation-ex border border-conservation-ex/30' },
+    DD: { text: t.consDD, color: 'bg-muted/15 text-muted border border-muted/30' },
+  };
+}
+
+function getAnimalName(animal) {
+  const t = window.__animalT;
+  return (t && t[animal.id] && t[animal.id].name) || animal.name;
+}
+function getAnimalDescription(animal) {
+  const t = window.__animalT;
+  return (t && t[animal.id] && t[animal.id].description) || animal.description;
+}
+function getAnimalFunFact(animal) {
+  const t = window.__animalT;
+  return (t && t[animal.id] && t[animal.id].funFact) || animal.funFact;
+}
+function translateVal(value, field) {
+  const locale = window.__cardLocale || 'en';
+  if (locale === 'en' || !value) return value;
+  const map = window.__valueMaps && window.__valueMaps[field];
+  return (map && map[locale] && map[locale][value]) || value;
+}
+
+function closeSharePopup() {
+  document.getElementById('share-popup-overlay')?.classList.add('hidden');
+}
+
+window.openSharePopup = function(animal) {
+  const overlay = document.getElementById('share-popup-overlay');
+  if (!overlay) return;
+  const t = getCardT();
+  const url = new URL(window.location.href);
+  url.searchParams.set('animal', animal.id);
+  const shareUrl = url.toString();
+  const name = getAnimalName(animal);
+  const desc = getAnimalDescription(animal);
+  const shareText = `${animal.emoji} ${name} — ${desc.slice(0, 100)}...`;
+  const shareTitle = `${animal.emoji} ${name}`;
+
+  document.getElementById('share-popup-title').textContent = t.shareTitle;
+  document.getElementById('share-popup-animal-info').innerHTML = `<span class="text-3xl">${animal.emoji}</span><div><p class="text-sm font-bold text-ink dark:text-[#ededed]">${name}</p><p class="text-xs text-muted">${animal.scientificName || ''}</p></div>`;
+
+  let optionsHtml = '';
+  const nativeShare = (navigator.share && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent));
+  optionsHtml += `<button class="share-opt flex items-center gap-2.5 rounded-xl border border-hairline bg-canvas p-3 text-left text-xs font-medium text-ink transition-all hover:bg-blue-50 dark:border-[#333] dark:bg-[#111] dark:text-[#ededed] dark:hover:bg-blue-500/10" data-action="copy"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-violet-100 text-sm dark:bg-violet-500/20">📋</span><div><p class="font-semibold">${t.copyLink}</p></div></button>`;
+  optionsHtml += `<button class="share-opt flex items-center gap-2.5 rounded-xl border border-hairline bg-canvas p-3 text-left text-xs font-medium text-ink transition-all hover:bg-blue-50 dark:border-[#333] dark:bg-[#111] dark:text-[#ededed] dark:hover:bg-blue-500/10" data-action="twitter"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sky-100 text-sm dark:bg-sky-500/20">𝕏</span><div><p class="font-semibold">${t.shareTwitter}</p></div></button>`;
+  optionsHtml += `<button class="share-opt flex items-center gap-2.5 rounded-xl border border-hairline bg-canvas p-3 text-left text-xs font-medium text-ink transition-all hover:bg-blue-50 dark:border-[#333] dark:bg-[#111] dark:text-[#ededed] dark:hover:bg-blue-500/10" data-action="facebook"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-sm dark:bg-blue-500/20">f</span><div><p class="font-semibold">${t.shareFacebook}</p></div></button>`;
+  optionsHtml += `<button class="share-opt flex items-center gap-2.5 rounded-xl border border-hairline bg-canvas p-3 text-left text-xs font-medium text-ink transition-all hover:bg-blue-50 dark:border-[#333] dark:bg-[#111] dark:text-[#ededed] dark:hover:bg-blue-500/10" data-action="whatsapp"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-sm dark:bg-green-500/20">💬</span><div><p class="font-semibold">${t.shareWhatsApp}</p></div></button>`;
+  optionsHtml += `<button class="share-opt flex items-center gap-2.5 rounded-xl border border-hairline bg-canvas p-3 text-left text-xs font-medium text-ink transition-all hover:bg-blue-50 dark:border-[#333] dark:bg-[#111] dark:text-[#ededed] dark:hover:bg-blue-500/10" data-action="pinterest"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-100 text-sm dark:bg-red-500/20">📌</span><div><p class="font-semibold">${t.sharePinterest}</p></div></button>`;
+  optionsHtml += `<button class="share-opt flex items-center gap-2.5 rounded-xl border border-hairline bg-canvas p-3 text-left text-xs font-medium text-ink transition-all hover:bg-blue-50 dark:border-[#333] dark:bg-[#111] dark:text-[#ededed] dark:hover:bg-blue-500/10" data-action="email"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-100 text-sm dark:bg-amber-500/20">✉️</span><div><p class="font-semibold">${t.shareEmail}</p></div></button>`;
+  if (nativeShare) {
+    optionsHtml += `<button class="share-opt flex items-center gap-2.5 rounded-xl border border-hairline bg-canvas p-3 text-left text-xs font-medium text-ink transition-all hover:bg-blue-50 dark:border-[#333] dark:bg-[#111] dark:text-[#ededed] dark:hover:bg-blue-500/10 col-span-2" data-action="native"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-sm dark:bg-gray-500/20">📲</span><div><p class="font-semibold">${t.nativeShare}</p></div></button>`;
+  }
+  document.getElementById('share-popup-options').innerHTML = optionsHtml;
+  document.querySelectorAll('.share-opt').forEach(btn => {
+    btn.onclick = () => {
+      const action = btn.dataset.action;
+      if (action === 'copy') { navigator.clipboard?.writeText(shareUrl); btn.querySelector('p').textContent = '✓ ' + t.copyLink; setTimeout(() => { btn.querySelector('p').textContent = t.copyLink; }, 2000); return; }
+      if (action === 'twitter') window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`, '_blank', 'width=550,height=450');
+      if (action === 'facebook') window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank', 'width=550,height=450');
+      if (action === 'whatsapp') window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`, '_blank');
+      if (action === 'pinterest') window.open(`https://pinterest.com/pin/create/button/?url=${encodeURIComponent(shareUrl)}&description=${encodeURIComponent(shareText)}`, '_blank', 'width=550,height=450');
+      if (action === 'email') window.location.href = `mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`;
+      if (action === 'native') navigator.share({ title: shareTitle, text: shareText, url: shareUrl }).catch(() => {});
+      closeSharePopup();
+    };
+  });
+  overlay.classList.remove('hidden');
 };
 
+document.getElementById('share-popup-close')?.addEventListener('click', closeSharePopup);
+document.getElementById('share-popup-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeSharePopup(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSharePopup(); });
+
 window.displayAnimal = function(animal) {
+  const t = getCardT();
+  const consLabels = getConservationLabels();
+
+  document.getElementById('placeholder-text').innerHTML = t.placeholder;
   document.getElementById('animal-placeholder')?.classList.add('hidden');
   const card = document.getElementById('animal-card');
   if (!card) return;
   card.classList.remove('hidden');
 
   document.getElementById('card-emoji').textContent = animal.emoji;
-  document.getElementById('card-name').textContent = animal.name;
+  document.getElementById('card-name').textContent = getAnimalName(animal);
   const sciEl = document.getElementById('card-scientific');
   sciEl.textContent = animal.scientificName || '';
   sciEl.classList.toggle('hidden', !animal.scientificName);
 
-  const cons = conservationLabels[animal.conservation] || conservationLabels.LC;
+  const cons = consLabels[animal.conservation] || consLabels.LC;
   const consEl = document.getElementById('card-conservation');
   consEl.textContent = cons.text;
   consEl.className = `mt-2 inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${cons.color}`;
 
-  document.getElementById('card-description').textContent = animal.description;
-  document.getElementById('card-habitat').textContent = animal.habitat;
-  document.getElementById('card-diet').textContent = animal.diet;
-  document.getElementById('card-lifespan').textContent = animal.lifespan;
+  document.getElementById('card-description').textContent = getAnimalDescription(animal);
+  document.getElementById('card-habitat').textContent = translateVal(animal.habitat, 'habitat');
+  document.getElementById('card-diet').textContent = translateVal(animal.diet, 'diet');
+  document.getElementById('card-lifespan').textContent = animal.lifespan.replace(/years/g, t.years);
   document.getElementById('card-weight').textContent = animal.weight;
   document.getElementById('card-speed').textContent = animal.speed;
   document.getElementById('card-length').textContent = animal.length;
-  document.getElementById('card-region').textContent = animal.region;
-  document.getElementById('card-funfact').textContent = animal.funFact;
+  document.getElementById('card-region').textContent = translateVal(animal.region, 'region');
+  document.getElementById('card-funfact').textContent = getAnimalFunFact(animal);
   document.getElementById('card-class').textContent = animal.class || '—';
   document.getElementById('card-order').textContent = animal.order || '—';
   document.getElementById('card-family').textContent = animal.family || '—';
+
+  document.getElementById('label-habitat').textContent = t.habitat;
+  document.getElementById('label-diet').textContent = t.diet;
+  document.getElementById('label-lifespan').textContent = t.lifespan;
+  document.getElementById('label-weight').textContent = t.weight;
+  document.getElementById('label-speed').textContent = t.speed;
+  document.getElementById('label-length').textContent = t.length;
+  document.getElementById('label-region').textContent = t.region;
+  document.getElementById('label-taxonomy').textContent = '🧬 ' + t.taxonomy;
+  document.getElementById('label-class').textContent = t.taxClass;
+  document.getElementById('label-order').textContent = t.taxOrder;
+  document.getElementById('label-family').textContent = t.taxFamily;
+  document.getElementById('label-funfact').textContent = '💡 ' + t.funFact;
+
+  document.getElementById('btn-favorite-text').textContent = t.save;
+  document.getElementById('btn-share-text').textContent = t.share;
+  document.getElementById('btn-copy-text').textContent = t.copy;
+  document.getElementById('btn-download-text').textContent = t.download;
 
   document.getElementById('btn-favorite').onclick = () => {
     const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -146,70 +271,35 @@ window.displayAnimal = function(animal) {
     if (!exists) {
       favs.unshift(animal);
       localStorage.setItem('favorites', JSON.stringify(favs.slice(0, 50)));
-      document.getElementById('btn-favorite').innerHTML = '<span>♥</span> Saved';
+      document.getElementById('btn-favorite').innerHTML = `<span>♥</span> <span id="btn-favorite-text">${t.saved}</span>`;
     } else {
       localStorage.setItem('favorites', JSON.stringify(favs.filter(f => f.id !== animal.id)));
-      document.getElementById('btn-favorite').innerHTML = '<span>♡</span> Save';
+      document.getElementById('btn-favorite').innerHTML = `<span>♡</span> <span id="btn-favorite-text">${t.save}</span>`;
     }
   };
 
-  document.getElementById('btn-share').onclick = () => {
-    const url = new URL(window.location.href);
-    url.searchParams.set('animal', animal.id);
-    navigator.clipboard?.writeText(url.toString());
-    document.getElementById('btn-share').innerHTML = '<span>✓</span> Copied!';
-    setTimeout(() => {
-      document.getElementById('btn-share').innerHTML = '<span>🔗</span> Share';
-    }, 2000);
-  };
+  document.getElementById('btn-share').onclick = () => window.openSharePopup(animal);
 
   document.getElementById('btn-copy').onclick = () => {
-    const text = `${animal.emoji} ${animal.name}\n${animal.description}\n\nFun Fact: ${animal.funFact}\n\nHabitat: ${animal.habitat} | Diet: ${animal.diet} | Lifespan: ${animal.lifespan}`;
+    const text = `${animal.emoji} ${getAnimalName(animal)}\n${getAnimalDescription(animal)}\n\nFun Fact: ${getAnimalFunFact(animal)}\n\nHabitat: ${translateVal(animal.habitat, 'habitat')} | Diet: ${translateVal(animal.diet, 'diet')} | Lifespan: ${animal.lifespan}`;
     navigator.clipboard?.writeText(text);
-    document.getElementById('btn-copy').innerHTML = '<span>✓</span> Copied!';
-    setTimeout(() => {
-      document.getElementById('btn-copy').innerHTML = '<span>📋</span> Copy';
-    }, 2000);
+    document.getElementById('btn-copy').innerHTML = `<span>✓</span> <span id="btn-copy-text">${t.copied}</span>`;
+    setTimeout(() => { document.getElementById('btn-copy').innerHTML = `<span>📋</span> <span id="btn-copy-text">${t.copy}</span>`; }, 2000);
   };
 
   document.getElementById('btn-download').onclick = () => {
-    const cardEl = document.getElementById('animal-card')?.querySelector('.rounded-2xl');
-    if (!cardEl) return;
     const btn = document.getElementById('btn-download');
-    btn.innerHTML = '<span>⏳</span> Saving...';
-    const svgData = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800">
-      <foreignObject width="100%" height="100%">
-        <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:system-ui,-apple-system,sans-serif;background:#fff;padding:32px;width:536px;">
-          <div style="text-align:center;padding:24px 0;border-radius:16px;background:linear-gradient(135deg,#d3e5ff50,#7928ca30,#ff008030);">
-            <div style="font-size:72px;margin-bottom:8px;">${animal.emoji}</div>
-            <h2 style="margin:0;font-size:24px;font-weight:700;">${animal.name}</h2>
-            <div style="margin-top:8px;display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;background:#22c55e20;color:#22c55e;">${conservationLabels[animal.conservation]?.text || animal.conservation}</div>
-          </div>
-          <p style="font-size:14px;color:#4d4d4d;line-height:1.6;margin:16px 0;">${animal.description}</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;margin-bottom:12px;">
-            <div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>Habitat:</strong> ${animal.habitat}</div>
-            <div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>Diet:</strong> ${animal.diet}</div>
-            <div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>Lifespan:</strong> ${animal.lifespan}</div>
-            <div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>Weight:</strong> ${animal.weight}</div>
-          </div>
-          <div style="padding:10px;border:1px solid #d3e5ff;border-radius:8px;background:#d3e5ff30;font-size:13px;">
-            <strong>Fun Fact:</strong> ${animal.funFact}
-          </div>
-          <p style="font-size:11px;color:#8f8f8f;text-align:center;margin-top:16px;">Random Animal Generator</p>
-        </div>
-      </foreignObject>
-    </svg>`;
+    btn.innerHTML = `<span>⏳</span> <span id="btn-download-text">${t.saving}</span>`;
+    const svgData = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml" style="font-family:system-ui,-apple-system,sans-serif;background:#fff;padding:32px;width:536px;"><div style="text-align:center;padding:24px 0;border-radius:16px;background:linear-gradient(135deg,#d3e5ff50,#7928ca30,#ff008030);"><div style="font-size:72px;margin-bottom:8px;">${animal.emoji}</div><h2 style="margin:0;font-size:24px;font-weight:700;">${getAnimalName(animal)}</h2><div style="margin-top:8px;display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;background:#22c55e20;color:#22c55e;">${cons.text}</div></div><p style="font-size:14px;color:#4d4d4d;line-height:1.6;margin:16px 0;">${getAnimalDescription(animal)}</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;margin-bottom:12px;"><div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>${t.habitat}:</strong> ${translateVal(animal.habitat, 'habitat')}</div><div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>${t.diet}:</strong> ${translateVal(animal.diet, 'diet')}</div><div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>${t.lifespan}:</strong> ${animal.lifespan}</div><div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>${t.weight}:</strong> ${animal.weight}</div></div><div style="padding:10px;border:1px solid #d3e5ff;border-radius:8px;background:#d3e5ff30;font-size:13px;"><strong>${t.funFact}:</strong> ${getAnimalFunFact(animal)}</div><p style="font-size:11px;color:#8f8f8f;text-align:center;margin-top:16px;">Random Animal Generator</p></div></foreignObject></svg>`;
     const blob = new Blob([svgData], { type: 'image/svg+xml' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${animal.name.toLowerCase().replace(/\s+/g, '-')}.svg`;
+    a.download = `${getAnimalName(animal).toLowerCase().replace(/\s+/g, '-')}.svg`;
     a.click();
     URL.revokeObjectURL(url);
-    btn.innerHTML = '<span>✓</span> Saved!';
-    setTimeout(() => {
-      btn.innerHTML = '<span>📥</span> Download';
-    }, 2000);
+    btn.innerHTML = `<span>✓</span> <span id="btn-download-text">${t.saved}</span>`;
+    setTimeout(() => { btn.innerHTML = `<span>📥</span> <span id="btn-download-text">${t.download}</span>`; }, 2000);
   };
 
   card.classList.add('animate-fade-in');
