@@ -1,5 +1,5 @@
-import translations from '../data/translations.json';
-import animalTranslations from '../data/animal-translations.json';
+import translations from '../i18n/data/translations.json';
+import animalTranslations from '../i18n/data/animal-translations.json';
 
 export type Locale = keyof typeof translations;
 

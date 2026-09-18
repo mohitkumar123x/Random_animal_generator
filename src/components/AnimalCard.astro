@@ -11,6 +11,15 @@
     <div class="rounded-2xl border border-hairline bg-canvas-elevated overflow-hidden dark:border-[#333] dark:bg-[#1a1a1a]">
       <div class="relative bg-gradient-to-br from-link-soft/50 via-violet-soft/30 to-pink-soft/30 p-6 text-center sm:p-8 dark:from-[#1a2744] dark:via-[#2a1a3a] dark:to-[#3a1a2a]">
         <div id="card-emoji" class="text-7xl mb-3 emoji-icon sm:text-8xl"></div>
+        <div id="card-image-wrapper" class="relative mb-3 hidden">
+          <div id="card-image-skeleton" class="image-skeleton mx-auto" style="width:280px;height:180px;"></div>
+          <img id="card-image" class="mx-auto rounded-xl object-cover shadow-md hidden" style="width:280px;height:180px;" alt="" />
+          <button id="btn-fullscreen" class="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-lg bg-black/60 px-2.5 py-1.5 text-[11px] font-medium text-white backdrop-blur-sm transition-all hover:bg-black/80 hover:scale-105" title="View full image">
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+            Fullscreen
+          </button>
+          <p id="card-image-credit" class="absolute bottom-2 left-2 text-[10px] text-white/70 hidden"><a id="card-image-credit-link" href="#" target="_blank" rel="noopener noreferrer" class="hover:text-white/90"></a></p>
+        </div>
         <h2 id="card-name" class="text-xl font-bold tracking-tight text-ink sm:text-2xl dark:text-[#ededed]"></h2>
         <p id="card-scientific" class="text-xs italic text-muted mt-1 sm:text-sm"></p>
         <div id="card-conservation" class="mt-2 inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium"></div>
@@ -111,6 +120,112 @@
   </div>
 </div>
 
+<div id="fullscreen-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 cursor-zoom-out" style="backdrop-filter:blur(8px);">
+  <button id="fullscreen-close" class="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10">
+    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+  </button>
+  <img id="fullscreen-img" class="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain shadow-2xl" alt="" />
+</div>
+
+<script is:inline>
+if (!window.__downloadAnimalCard) {
+  window.__downloadAnimalCard = function(animal, labels, translatedName, translateFn, btn) {
+    btn.innerHTML = '<span>⏳</span> ' + labels.saving;
+    const W = 600, H = 1060;
+    const canvas = document.createElement('canvas');
+    canvas.width = W * 2; canvas.height = H * 2;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(2, 2);
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, W, H);
+    const grad = ctx.createLinearGradient(0, 0, W, H);
+    grad.addColorStop(0, '#eef2ff'); grad.addColorStop(0.5, '#f3e8ff'); grad.addColorStop(1, '#fce7f3');
+    ctx.fillStyle = grad; ctx.beginPath(); ctx.roundRect(0, 0, W, H, 24); ctx.fill();
+    let y = 28;
+    function wrapT(text, maxW) {
+      const words = text.split(' '), lines = []; let line = '';
+      for (const w of words) { const test = line ? line + ' ' + w : w; if (ctx.measureText(test).width > maxW) { if (line) lines.push(line); line = w; } else { line = test; } }
+      if (line) lines.push(line); return lines;
+    }
+    const cache = JSON.parse(localStorage.getItem('pexelsImageCache') || '{}');
+    const entry = cache[animal.name.toLowerCase().trim()];
+    const imgUrl = typeof entry === 'string' ? entry : (entry && entry.url);
+    function drawImageOrEmoji(imgEl) {
+      if (imgEl) {
+        const imgW = W - 56, imgH = 200;
+        ctx.save(); ctx.beginPath(); ctx.roundRect(28, y, imgW, imgH, 16); ctx.clip();
+        const s = Math.max(imgW / imgEl.width, imgH / imgEl.height);
+        const sw = imgEl.width * s, sh = imgEl.height * s;
+        ctx.drawImage(imgEl, 28 + (imgW - sw) / 2, y + (imgH - sh) / 2, sw, sh);
+        ctx.restore(); y += imgH + 20;
+      } else {
+        ctx.font = '64px sans-serif'; ctx.textAlign = 'center'; ctx.fillText(animal.emoji, W/2, y+64); y += 84;
+      }
+      finishCard(animal, labels, translatedName, translateFn, btn, ctx, W, y, wrapT);
+    }
+    if (imgUrl) {
+      fetch(imgUrl).then(r => r.blob()).then(blob => {
+        const objUrl = URL.createObjectURL(blob);
+        const el = new Image();
+        el.onload = function() { drawImageOrEmoji(el); URL.revokeObjectURL(objUrl); };
+        el.onerror = function() { drawImageOrEmoji(null); URL.revokeObjectURL(objUrl); };
+        el.src = objUrl;
+      }).catch(() => { drawImageOrEmoji(null); });
+    } else {
+      drawImageOrEmoji(null);
+    }
+    function finishCard(a, lb, tn, tf, b, ctx, W, y, wrapT) {
+      ctx.textAlign = 'center'; ctx.fillStyle = '#111827'; ctx.font = 'bold 26px system-ui, -apple-system, sans-serif';
+      ctx.fillText(tn, W/2, y+28); y += 36;
+      if (a.scientificName) { ctx.fillStyle = '#6b7280'; ctx.font = 'italic 13px system-ui, -apple-system, sans-serif'; ctx.fillText(a.scientificName, W/2, y+14); y += 20; }
+      const ck = a.conservation || 'LC'; const cb = lb.conservation[ck] || lb.conservation.LC;
+      const cm = {LC:'#16a34a',NT:'#65a30d',VU:'#d97706',EN:'#ea580c',CR:'#dc2626',EW:'#7c3aed',EX:'#6b7280',DD:'#9ca3af'};
+      const cbg = {LC:'#dcfce7',NT:'#ecfccb',VU:'#fef3c7',EN:'#ffedd5',CR:'#fee2e2',EW:'#ede9fe',EX:'#f3f4f6',DD:'#f3f4f6'};
+      ctx.font = 'bold 12px system-ui'; const bw = ctx.measureText(cb.text).width+20;
+      ctx.fillStyle = cbg[ck]||'#dcfce7'; ctx.beginPath(); ctx.roundRect((W-bw)/2, y+4, bw, 22, 11); ctx.fill();
+      ctx.fillStyle = cm[ck]||'#16a34a'; ctx.textAlign = 'center'; ctx.fillText(cb.text, W/2, y+19); y += 34;
+      ctx.textAlign = 'left'; ctx.fillStyle = '#374151'; ctx.font = '13px system-ui';
+      wrapT(a.description, W-56).slice(0,4).forEach((l,i) => ctx.fillText(l, 28, y+14+i*18));
+      y += Math.min(wrapT(a.description, W-56).length, 4)*18+20;
+      const sg = [{icon:'🌍',label:lb.habitat,value:tf(a.habitat,'habitat')},{icon:'🍽️',label:lb.diet,value:tf(a.diet,'diet')},{icon:'⏱️',label:lb.lifespan,value:a.lifespan},{icon:'⚖️',label:lb.weight,value:a.weight}];
+      const cw = (W-56-12)/2;
+      sg.forEach((s,i) => { const col=i%2,row=Math.floor(i/2),sx=28+col*(cw+12),sy=y+row*48;
+        ctx.fillStyle='#f9fafb'; ctx.beginPath(); ctx.roundRect(sx,sy,cw,42,8); ctx.fill();
+        ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1; ctx.beginPath(); ctx.roundRect(sx,sy,cw,42,8); ctx.stroke();
+        ctx.fillStyle='#6b7280'; ctx.font='10px system-ui'; ctx.textAlign='left'; ctx.fillText(s.icon+' '+s.label,sx+10,sy+16);
+        ctx.fillStyle='#111827'; ctx.font='bold 12px system-ui'; ctx.fillText(s.value,sx+10,sy+32);
+      }); y += 100;
+      const es = [{icon:'⚡',label:lb.speed,value:a.speed||'—'},{icon:'📏',label:lb.length,value:a.length||'—'},{icon:'🌐',label:lb.region,value:tf(a.region||'','region')}];
+      const ecw = (W-56-16)/3;
+      es.forEach((s,i) => { const sx=28+i*(ecw+8),sy=y;
+        ctx.fillStyle='#f0fdf4'; ctx.beginPath(); ctx.roundRect(sx,sy,ecw,42,8); ctx.fill();
+        ctx.strokeStyle='#bbf7d0'; ctx.lineWidth=1; ctx.beginPath(); ctx.roundRect(sx,sy,ecw,42,8); ctx.stroke();
+        ctx.fillStyle='#6b7280'; ctx.font='10px system-ui'; ctx.textAlign='center'; ctx.fillText(s.icon+' '+s.label,sx+ecw/2,sy+16);
+        ctx.fillStyle='#111827'; ctx.font='bold 12px system-ui'; ctx.fillText(s.value,sx+ecw/2,sy+32);
+      }); y += 56;
+      if (a.class||a.order||a.family) {
+        ctx.fillStyle='#f9fafb'; ctx.beginPath(); ctx.roundRect(28,y,W-56,64,10); ctx.fill();
+        ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1; ctx.beginPath(); ctx.roundRect(28,y,W-56,64,10); ctx.stroke();
+        ctx.fillStyle='#6b7280'; ctx.font='bold 10px system-ui'; ctx.textAlign='left'; ctx.fillText('🧬 '+lb.taxonomy,40,y+18);
+        const ti=[{l:lb.taxClass,v:a.class},{l:lb.taxOrder,v:a.order},{l:lb.taxFamily,v:a.family}].filter(x=>x.v);
+        const tcw=(W-80)/Math.max(ti.length,1);
+        ti.forEach((item,i) => { ctx.fillStyle='#6b7280'; ctx.font='11px system-ui'; ctx.textAlign='left'; ctx.fillText(item.l,40+i*tcw,y+36);
+          ctx.fillStyle='#111827'; ctx.font='bold 12px system-ui'; ctx.fillText(item.v||'—',40+i*tcw,y+52); }); y+=76;
+      }
+      ctx.fillStyle='#eff6ff'; ctx.beginPath(); ctx.roundRect(28,y,W-56,56,10); ctx.fill();
+      ctx.strokeStyle='#bfdbfe'; ctx.lineWidth=1; ctx.beginPath(); ctx.roundRect(28,y,W-56,56,10); ctx.stroke();
+      ctx.fillStyle='#2563eb'; ctx.font='bold 10px system-ui'; ctx.textAlign='left'; ctx.fillText('💡 '+lb.funFact,40,y+18);
+      ctx.fillStyle='#374151'; ctx.font='12px system-ui';
+      wrapT(a.funFact,W-80).slice(0,2).forEach((l,i) => ctx.fillText(l,40,y+34+i*16)); y+=72;
+      ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(28,y); ctx.lineTo(W-28,y); ctx.stroke(); y+=14;
+      ctx.textAlign='center'; ctx.fillStyle='#9ca3af'; ctx.font='11px system-ui'; ctx.fillText('bestrandomanimalgenerator.com',W/2,y+10);
+      canvas.toBlob(function(blob) { const url=URL.createObjectURL(blob); const link=document.createElement('a');
+        link.href=url; link.download=tn.toLowerCase().replace(/\s+/g,'-')+'.png'; link.click(); URL.revokeObjectURL(url);
+        b.innerHTML='<span>✓</span> '+lb.saved; setTimeout(function(){b.innerHTML='<span>📥</span> '+lb.download;},2000);
+      }, 'image/png');
+    }
+  };
+}
+</script>
 <script is:inline>
 function getCardT() {
   return window.__cardT || {
@@ -162,6 +277,34 @@ function translateVal(value, field) {
   return (map && map[locale] && map[locale][value]) || value;
 }
 
+const PEXELS_API_KEY = 'xEfnJ9xU5Fem8MeEPh1zE3lURDVneBkLnPGnrNAjnbMCBAY0LGtdgLFE';
+const pexelsCache = JSON.parse(localStorage.getItem('pexelsImageCache') || '{}');
+Object.keys(pexelsCache).forEach(k => { if (typeof pexelsCache[k] === 'string') delete pexelsCache[k]; });
+
+async function fetchAnimalImage(animalName) {
+  const cacheKey = animalName.toLowerCase().trim();
+  if (pexelsCache[cacheKey]) return pexelsCache[cacheKey];
+  try {
+    const res = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(animalName)}&per_page=1&orientation=landscape`, {
+      headers: { 'Authorization': PEXELS_API_KEY }
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (data.photos && data.photos.length > 0) {
+      const photo = data.photos[0];
+      const result = {
+        url: photo.src.large2x || photo.src.large,
+        photographer: photo.photographer || '',
+        photoUrl: photo.url || '',
+      };
+      pexelsCache[cacheKey] = result;
+      localStorage.setItem('pexelsImageCache', JSON.stringify(pexelsCache));
+      return result;
+    }
+  } catch (e) { console.error('Pexels fetch error:', e); }
+  return null;
+}
+
 function closeSharePopup() {
   document.getElementById('share-popup-overlay')?.classList.add('hidden');
 }
@@ -211,7 +354,21 @@ window.openSharePopup = function(animal) {
 
 document.getElementById('share-popup-close')?.addEventListener('click', closeSharePopup);
 document.getElementById('share-popup-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeSharePopup(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSharePopup(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeSharePopup(); closeFullscreen(); } });
+
+function closeFullscreen() {
+  document.getElementById('fullscreen-overlay')?.classList.add('hidden');
+}
+document.getElementById('btn-fullscreen')?.addEventListener('click', () => {
+  const img = document.getElementById('card-image');
+  if (!img || !img.src) return;
+  const fsImg = document.getElementById('fullscreen-img');
+  fsImg.src = img.src;
+  fsImg.alt = img.alt;
+  document.getElementById('fullscreen-overlay')?.classList.remove('hidden');
+});
+document.getElementById('fullscreen-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeFullscreen(); });
+document.getElementById('fullscreen-close')?.addEventListener('click', closeFullscreen);
 
 window.displayAnimal = function(animal) {
   const t = getCardT();
@@ -224,6 +381,32 @@ window.displayAnimal = function(animal) {
   card.classList.remove('hidden');
 
   document.getElementById('card-emoji').textContent = animal.emoji;
+  const imgWrapper = document.getElementById('card-image-wrapper');
+  const imgEl = document.getElementById('card-image');
+  const imgSkeleton = document.getElementById('card-image-skeleton');
+  imgWrapper.classList.remove('hidden');
+  imgEl.classList.add('hidden');
+  imgEl.src = '';
+  imgSkeleton.classList.remove('hidden');
+  const creditEl = document.getElementById('card-image-credit');
+  const creditLink = document.getElementById('card-image-credit-link');
+  if (creditEl) creditEl.classList.add('hidden');
+  fetchAnimalImage(animal.name).then(data => {
+    if (data) {
+      imgEl.onload = () => { imgSkeleton.classList.add('hidden'); imgEl.classList.remove('hidden'); };
+      imgEl.onerror = () => { imgSkeleton.classList.add('hidden'); };
+      imgEl.src = data.url;
+      imgEl.alt = animal.name;
+      if (creditLink && data.photographer && data.photoUrl) {
+        creditLink.textContent = `Photo by ${data.photographer} on Pexels`;
+        creditLink.href = data.photoUrl;
+        creditEl.classList.remove('hidden');
+      }
+    } else {
+      imgSkeleton.classList.add('hidden');
+      imgWrapper.classList.add('hidden');
+    }
+  });
   document.getElementById('card-name').textContent = getAnimalName(animal);
   const sciEl = document.getElementById('card-scientific');
   sciEl.textContent = animal.scientificName || '';
@@ -287,20 +470,255 @@ window.displayAnimal = function(animal) {
     setTimeout(() => { document.getElementById('btn-copy').innerHTML = `<span>📋</span> <span id="btn-copy-text">${t.copy}</span>`; }, 2000);
   };
 
-  document.getElementById('btn-download').onclick = () => {
+  document.getElementById('btn-download').onclick = async () => {
     const btn = document.getElementById('btn-download');
     btn.innerHTML = `<span>⏳</span> <span id="btn-download-text">${t.saving}</span>`;
-    const svgData = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml" style="font-family:system-ui,-apple-system,sans-serif;background:#fff;padding:32px;width:536px;"><div style="text-align:center;padding:24px 0;border-radius:16px;background:linear-gradient(135deg,#d3e5ff50,#7928ca30,#ff008030);"><div style="font-size:72px;margin-bottom:8px;">${animal.emoji}</div><h2 style="margin:0;font-size:24px;font-weight:700;">${getAnimalName(animal)}</h2><div style="margin-top:8px;display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;background:#22c55e20;color:#22c55e;">${cons.text}</div></div><p style="font-size:14px;color:#4d4d4d;line-height:1.6;margin:16px 0;">${getAnimalDescription(animal)}</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;margin-bottom:12px;"><div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>${t.habitat}:</strong> ${translateVal(animal.habitat, 'habitat')}</div><div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>${t.diet}:</strong> ${translateVal(animal.diet, 'diet')}</div><div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>${t.lifespan}:</strong> ${animal.lifespan}</div><div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>${t.weight}:</strong> ${animal.weight}</div></div><div style="padding:10px;border:1px solid #d3e5ff;border-radius:8px;background:#d3e5ff30;font-size:13px;"><strong>${t.funFact}:</strong> ${getAnimalFunFact(animal)}</div><p style="font-size:11px;color:#8f8f8f;text-align:center;margin-top:16px;">Random Animal Generator</p></div></foreignObject></svg>`;
-    const blob = new Blob([svgData], { type: 'image/svg+xml' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${getAnimalName(animal).toLowerCase().replace(/\s+/g, '-')}.svg`;
-    a.click();
-    URL.revokeObjectURL(url);
-    btn.innerHTML = `<span>✓</span> <span id="btn-download-text">${t.saved}</span>`;
-    setTimeout(() => { btn.innerHTML = `<span>📥</span> <span id="btn-download-text">${t.download}</span>`; }, 2000);
+    try {
+      const W = 600, H = 1060;
+      const canvas = document.createElement('canvas');
+      canvas.width = W * 2; canvas.height = H * 2;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(2, 2);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, W, H);
+
+      const grad = ctx.createLinearGradient(0, 0, W, H);
+      grad.addColorStop(0, '#eef2ff');
+      grad.addColorStop(0.5, '#f3e8ff');
+      grad.addColorStop(1, '#fce7f3');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.roundRect(0, 0, W, H, 24);
+      ctx.fill();
+
+      let y = 28;
+
+      const img = await new Promise((resolve) => {
+        const cache = JSON.parse(localStorage.getItem('pexelsImageCache') || '{}');
+        const url = cache[animal.name.toLowerCase().trim()];
+        if (!url) return resolve(null);
+        const el = new Image();
+        el.crossOrigin = 'anonymous';
+        el.onload = () => resolve(el);
+        el.onerror = () => resolve(null);
+        el.src = url;
+      });
+
+      if (img) {
+        const imgW = W - 56, imgH = 200;
+        const imgX = 28, imgY = y;
+        ctx.save();
+        ctx.beginPath();
+        ctx.roundRect(imgX, imgY, imgW, imgH, 16);
+        ctx.clip();
+        const s = Math.max(imgW / img.width, imgH / img.height);
+        const sw = img.width * s, sh = img.height * s;
+        ctx.drawImage(img, imgX + (imgW - sw) / 2, imgY + (imgH - sh) / 2, sw, sh);
+        ctx.restore();
+        y += imgH + 20;
+      } else {
+        ctx.font = '64px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(animal.emoji, W / 2, y + 64);
+        y += 84;
+      }
+
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#111827';
+      ctx.font = 'bold 26px system-ui, -apple-system, sans-serif';
+      ctx.fillText(getAnimalName(animal), W / 2, y + 28);
+      y += 36;
+
+      if (animal.scientificName) {
+        ctx.fillStyle = '#6b7280';
+        ctx.font = 'italic 13px system-ui, -apple-system, sans-serif';
+        ctx.fillText(animal.scientificName, W / 2, y + 14);
+        y += 20;
+      }
+
+      const consColorMap = { LC:'#16a34a', NT:'#65a30d', VU:'#d97706', EN:'#ea580c', CR:'#dc2626', EW:'#7c3aed', EX:'#6b7280', DD:'#9ca3af' };
+      const consBgMap = { LC:'#dcfce7', NT:'#ecfccb', VU:'#fef3c7', EN:'#ffedd5', CR:'#fee2e2', EW:'#ede9fe', EX:'#f3f4f6', DD:'#f3f4f6' };
+      const badgeColor = consColorMap[animal.conservation] || '#16a34a';
+      const badgeBg = consBgMap[animal.conservation] || '#dcfce7';
+      ctx.font = 'bold 12px system-ui, -apple-system, sans-serif';
+      const badgeText = cons.text;
+      const bw = ctx.measureText(badgeText).width + 20;
+      const bx = (W - bw) / 2, by = y + 4;
+      ctx.fillStyle = badgeBg;
+      ctx.beginPath();
+      ctx.roundRect(bx, by, bw, 22, 11);
+      ctx.fill();
+      ctx.fillStyle = badgeColor;
+      ctx.textAlign = 'center';
+      ctx.fillText(badgeText, W / 2, by + 15);
+      y += 34;
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#374151';
+      ctx.font = '13px system-ui, -apple-system, sans-serif';
+      const desc = getAnimalDescription(animal);
+      const lines = wrapText(ctx, desc, W - 56);
+      lines.slice(0, 4).forEach((line, i) => {
+        ctx.fillText(line, 28, y + 14 + i * 18);
+      });
+      y += Math.min(lines.length, 4) * 18 + 20;
+
+      const statGrid = [
+        { icon: '🌍', label: t.habitat, value: translateVal(animal.habitat, 'habitat') },
+        { icon: '🍽️', label: t.diet, value: translateVal(animal.diet, 'diet') },
+        { icon: '⏱️', label: t.lifespan, value: animal.lifespan },
+        { icon: '⚖️', label: t.weight, value: animal.weight },
+      ];
+      const colW = (W - 56 - 12) / 2;
+      statGrid.forEach((s, i) => {
+        const col = i % 2, row = Math.floor(i / 2);
+        const sx = 28 + col * (colW + 12), sy = y + row * 48;
+        ctx.fillStyle = '#f9fafb';
+        ctx.beginPath();
+        ctx.roundRect(sx, sy, colW, 42, 8);
+        ctx.fill();
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(sx, sy, colW, 42, 8);
+        ctx.stroke();
+        ctx.fillStyle = '#6b7280';
+        ctx.font = '10px system-ui, -apple-system, sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText(s.icon + ' ' + s.label, sx + 10, sy + 16);
+        ctx.fillStyle = '#111827';
+        ctx.font = 'bold 12px system-ui, -apple-system, sans-serif';
+        ctx.fillText(s.value, sx + 10, sy + 32);
+      });
+      y += 100;
+
+      const extraStats = [
+        { icon: '⚡', label: t.speed, value: animal.speed },
+        { icon: '📏', label: t.length, value: animal.length },
+        { icon: '🌐', label: t.region, value: translateVal(animal.region, 'region') },
+      ];
+      const extraColW = (W - 56 - 16) / 3;
+      extraStats.forEach((s, i) => {
+        const sx = 28 + i * (extraColW + 8), sy = y;
+        ctx.fillStyle = '#f0fdf4';
+        ctx.beginPath();
+        ctx.roundRect(sx, sy, extraColW, 42, 8);
+        ctx.fill();
+        ctx.strokeStyle = '#bbf7d0';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(sx, sy, extraColW, 42, 8);
+        ctx.stroke();
+        ctx.fillStyle = '#6b7280';
+        ctx.font = '10px system-ui, -apple-system, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(s.icon + ' ' + s.label, sx + extraColW / 2, sy + 16);
+        ctx.fillStyle = '#111827';
+        ctx.font = 'bold 12px system-ui, -apple-system, sans-serif';
+        ctx.fillText(s.value, sx + extraColW / 2, sy + 32);
+      });
+      y += 56;
+
+      if (animal.class || animal.order || animal.family) {
+        ctx.fillStyle = '#f9fafb';
+        ctx.beginPath();
+        ctx.roundRect(28, y, W - 56, 64, 10);
+        ctx.fill();
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(28, y, W - 56, 64, 10);
+        ctx.stroke();
+        ctx.fillStyle = '#6b7280';
+        ctx.font = 'bold 10px system-ui, -apple-system, sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('🧬 ' + t.taxonomy, 40, y + 18);
+        const taxItems = [
+          { label: t.taxClass, value: animal.class },
+          { label: t.taxOrder, value: animal.order },
+          { label: t.taxFamily, value: animal.family },
+        ].filter(x => x.value);
+        const taxColW = (W - 80) / Math.max(taxItems.length, 1);
+        taxItems.forEach((item, i) => {
+          ctx.fillStyle = '#6b7280';
+          ctx.font = '11px system-ui, -apple-system, sans-serif';
+          ctx.textAlign = 'left';
+          ctx.fillText(item.label, 40 + i * taxColW, y + 36);
+          ctx.fillStyle = '#111827';
+          ctx.font = 'bold 12px system-ui, -apple-system, sans-serif';
+          ctx.fillText(item.value || '—', 40 + i * taxColW, y + 52);
+        });
+        y += 76;
+      }
+
+      const funFact = getAnimalFunFact(animal);
+      ctx.fillStyle = '#eff6ff';
+      ctx.beginPath();
+      ctx.roundRect(28, y, W - 56, 56, 10);
+      ctx.fill();
+      ctx.strokeStyle = '#bfdbfe';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.roundRect(28, y, W - 56, 56, 10);
+      ctx.stroke();
+      ctx.fillStyle = '#2563eb';
+      ctx.font = 'bold 10px system-ui, -apple-system, sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('💡 ' + t.funFact, 40, y + 18);
+      ctx.fillStyle = '#374151';
+      ctx.font = '12px system-ui, -apple-system, sans-serif';
+      const factLines = wrapText(ctx, funFact, W - 80);
+      factLines.slice(0, 2).forEach((line, i) => {
+        ctx.fillText(line, 40, y + 34 + i * 16);
+      });
+      y += 72;
+
+      ctx.strokeStyle = '#e5e7eb';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(28, y);
+      ctx.lineTo(W - 28, y);
+      ctx.stroke();
+      y += 14;
+
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#9ca3af';
+      ctx.font = '11px system-ui, -apple-system, sans-serif';
+      ctx.fillText('bestrandomanimalgenerator.com', W / 2, y + 10);
+
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${getAnimalName(animal).toLowerCase().replace(/\s+/g, '-')}.png`;
+        a.click();
+        URL.revokeObjectURL(url);
+        btn.innerHTML = `<span>✓</span> <span id="btn-download-text">${t.saved}</span>`;
+        setTimeout(() => { btn.innerHTML = `<span>📥</span> <span id="btn-download-text">${t.download}</span>`; }, 2000);
+      }, 'image/png');
+    } catch (e) {
+      console.error('Download error:', e);
+      btn.innerHTML = `<span>📥</span> <span id="btn-download-text">${t.download}</span>`;
+    }
   };
+
+  function wrapText(ctx, text, maxW) {
+    const words = text.split(' ');
+    const lines = [];
+    let line = '';
+    for (const word of words) {
+      const test = line ? line + ' ' + word : word;
+      if (ctx.measureText(test).width > maxW && line) {
+        lines.push(line);
+        line = word;
+      } else {
+        line = test;
+      }
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
 
   card.classList.add('animate-fade-in');
 };

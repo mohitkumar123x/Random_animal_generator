@@ -1,6 +1,6 @@
 ---
 import animals from '../data/animals.json';
-import animalTranslations from '../data/animal-translations.json';
+import animalTranslations from '../i18n/data/animal-translations.json';
 import { getTranslations } from '../utils/i18n';
 import { translateValue } from '../utils/valueTranslations';
 
@@ -62,6 +62,15 @@ const quizT = {
 
     <div id="quiz-question" class="text-center">
       <div id="quiz-emoji" class="text-7xl mb-4 emoji-icon">🐾</div>
+      <div id="quiz-image-wrapper" class="mb-3 hidden" style="position:relative;">
+        <div id="quiz-image-skeleton" class="image-skeleton mx-auto" style="width:280px;height:180px;"></div>
+        <img id="quiz-image" class="mx-auto rounded-xl object-cover shadow-md hidden" style="width:280px;height:180px;" alt="" />
+        <button id="quiz-btn-fullscreen" class="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-lg bg-black/60 px-2.5 py-1.5 text-[11px] font-medium text-white backdrop-blur-sm transition-all hover:bg-black/80 hover:scale-105" title="View full image">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+          Fullscreen
+        </button>
+        <p id="quiz-image-credit" class="absolute bottom-2 left-2 text-[10px] text-white/70 hidden"><a id="quiz-image-credit-link" href="#" target="_blank" rel="noopener noreferrer" class="hover:text-white/90"></a></p>
+      </div>
       <p id="quiz-text" class="text-lg font-medium text-ink mb-6 dark:text-[#ededed]"></p>
       <div id="quiz-options" class="grid grid-cols-2 gap-3"></div>
     </div>
@@ -83,6 +92,13 @@ const quizT = {
   </div>
 </main>
 
+<div id="quiz-fullscreen-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 cursor-zoom-out" style="backdrop-filter:blur(8px);">
+  <button id="quiz-fullscreen-close" class="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10">
+    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+  </button>
+  <img id="quiz-fullscreen-img" class="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain shadow-2xl" alt="" />
+</div>
+
 <script define:vars={{ animals: JSON.stringify(animals), quizT: JSON.stringify(quizT), animalT: JSON.stringify(animalT), locale: locale, valueMapStr: JSON.stringify(valueMap) }}>
   const allAnimals = JSON.parse(animals);
   const t = JSON.parse(quizT);
@@ -93,6 +109,33 @@ const quizT = {
   function translateVal(value, field) { return (valueMap[field] && valueMap[field][value]) || value; }
 
   function getAnimalName(animal) { return (animalTranslations[animal.id] && animalTranslations[animal.id].name) || animal.name; }
+
+  const PEXELS_API_KEY = 'xEfnJ9xU5Fem8MeEPh1zE3lURDVneBkLnPGnrNAjnbMCBAY0LGtdgLFE';
+  const pexelsCache = JSON.parse(localStorage.getItem('pexelsImageCache') || '{}');
+  Object.keys(pexelsCache).forEach(k => { if (typeof pexelsCache[k] === 'string') delete pexelsCache[k]; });
+  async function fetchAnimalImage(animalName) {
+    const cacheKey = animalName.toLowerCase().trim();
+    if (pexelsCache[cacheKey]) return pexelsCache[cacheKey];
+    try {
+      const res = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(animalName)}&per_page=1&orientation=landscape`, {
+        headers: { 'Authorization': PEXELS_API_KEY }
+      });
+      if (!res.ok) return null;
+      const data = await res.json();
+      if (data.photos && data.photos.length > 0) {
+        const photo = data.photos[0];
+        const result = {
+          url: photo.src.large2x || photo.src.large,
+          photographer: photo.photographer || '',
+          photoUrl: photo.url || '',
+        };
+        pexelsCache[cacheKey] = result;
+        localStorage.setItem('pexelsImageCache', JSON.stringify(pexelsCache));
+        return result;
+      }
+    } catch (e) { console.error('Pexels fetch error:', e); }
+    return null;
+  }
 
   function pickQuestion() {
     const animal = allAnimals[Math.floor(Math.random() * allAnimals.length)];
@@ -122,6 +165,45 @@ const quizT = {
     document.getElementById('quiz-emoji').textContent = q.animal.emoji;
     document.getElementById('quiz-text').textContent = q.question;
     document.getElementById('quiz-result').classList.add('hidden');
+
+    const imgWrapper = document.getElementById('quiz-image-wrapper');
+    const imgEl = document.getElementById('quiz-image');
+    const imgSkel = document.getElementById('quiz-image-skeleton');
+    imgWrapper.classList.remove('hidden');
+    imgEl.classList.add('hidden');
+    imgEl.src = '';
+    if (imgSkel) imgSkel.classList.remove('hidden');
+    fetchAnimalImage(q.animal.name).then(data => {
+      if (data) {
+        imgEl.onload = () => { if (imgSkel) imgSkel.classList.add('hidden'); imgEl.classList.remove('hidden'); };
+        imgEl.onerror = () => { if (imgSkel) imgSkel.classList.add('hidden'); };
+        imgEl.src = data.url;
+        imgEl.alt = q.animalName;
+        const creditEl = document.getElementById('quiz-image-credit');
+        const creditLink = document.getElementById('quiz-image-credit-link');
+        if (creditLink && data.photographer && data.photoUrl) {
+          creditLink.textContent = `Photo by ${data.photographer} on Pexels`;
+          creditLink.href = data.photoUrl;
+          creditEl?.classList.remove('hidden');
+        }
+      } else {
+        if (imgSkel) imgSkel.classList.add('hidden');
+        imgWrapper.classList.add('hidden');
+      }
+    });
+
+    document.getElementById('quiz-btn-fullscreen')?.addEventListener('click', () => {
+      if (!imgEl || !imgEl.src) return;
+      const fsImg = document.getElementById('quiz-fullscreen-img');
+      if (fsImg) { fsImg.src = imgEl.src; fsImg.alt = imgEl.alt; }
+      document.getElementById('quiz-fullscreen-overlay')?.classList.remove('hidden');
+    });
+    document.getElementById('quiz-fullscreen-overlay')?.addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) document.getElementById('quiz-fullscreen-overlay')?.classList.add('hidden');
+    });
+    document.getElementById('quiz-fullscreen-close')?.addEventListener('click', () => {
+      document.getElementById('quiz-fullscreen-overlay')?.classList.add('hidden');
+    });
 
     const container = document.getElementById('quiz-options');
     container.innerHTML = q.options.map(opt => `

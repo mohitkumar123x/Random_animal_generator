@@ -1,7 +1,7 @@
 // i18n helpers — following https://docs.astro.build/en/recipes/i18n/
 import { ui, defaultLang, showDefaultLang, routes } from './ui';
 import type { Locale } from './ui';
-import animalTranslations from '../data/animal-translations.json';
+import animalTranslations from './data/animal-translations.json';
 
 export function getLangFromUrl(url: URL) {
   const [, lang] = url.pathname.split('/');

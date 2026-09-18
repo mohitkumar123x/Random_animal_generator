@@ -1,0 +1,321 @@
+const fs = require('fs');
+
+// Read the existing translations and animals data
+const animals = JSON.parse(fs.readFileSync('./src/data/animals.json', 'utf8'));
+const translations = JSON.parse(fs.readFileSync('./src/data/animal-translations.json', 'utf8'));
+
+// Comprehensive translation dictionary for all animals
+// Key: English name, Value: { ja, es, fr, de, pt, ko, it, zh-CN, zh-TW, ar }
+const animalTranslations = {
+  // === MAMMALS ===
+  "African Elephant": { ja: "アフリカゾウ", es: "Elefante africano", fr: "Éléphant d'Afrique", de: "Afrikanischer Elefant", pt: "Elefante africano", ko: "아프리카코끼리", it: "Elefante africano", "zh-CN": "非洲象", "zh-TW": "非洲象", ar: "فيل أفريقي" },
+  "Asian Elephant": { ja: "アジアゾウ", es: "Elefante asiático", fr: "Éléphant d'Asie", de: "Asiatischer Elefant", pt: "Elefante asiático", ko: "아시아코끼리", it: "Elefante asiatico", "zh-CN": "亚洲象", "zh-TW": "亞洲象", ar: "فيل آسيوي" },
+  "White Rhinoceros": { ja: "シロサイ", es: "Rinoceronte blanco", fr: "Rhinocéros blanc", de: "Breitmaulnashorn", pt: "Rinoceronte-branco", ko: "흰코뿔소", it: "Rinoceronte bianco", "zh-CN": "白犀牛", "zh-TW": "白犀牛", ar: "وحيد القرن الأبيض" },
+  "Black Rhinoceros": { ja: "クロサイ", es: "Rinoceronte negro", fr: "Rhinocéros noir", de: "Spitzmaulnashorn", pt: "Rinoceronte-negro", ko: "검은코뿔소", it: "Rinoceronte nero", "zh-CN": "黑犀牛", "zh-TW": "黑犀牛", ar: "وحيد القرن الأسود" },
+  "Hippopotamus": { ja: "カバ", es: "Hipopótamo", fr: "Hippopotame", de: "Nilpferd", pt: "Hipopótamo", ko: "하마", it: "Ippopotamo", "zh-CN": "河马", "zh-TW": "河馬", ar: "فرس النهر" },
+  "Giraffe": { ja: "キリン", es: "Jirafa", fr: "Girafe", de: "Giraffe", pt: "Girafa", ko: "기린", it: "Giraffa", "zh-CN": "长颈鹿", "zh-TW": "長頸鹿", ar: "زرافة" },
+  "Okapi": { ja: "オカピ", es: "Okapi", fr: "Okapi", de: "Okapi", pt: "Okapi", ko: "오카피", it: "Okapi", "zh-CN": "㺢㹢狓", "zh-TW": "㺢㹢狓", ar: "أوكتي" },
+  "Cape Buffalo": { ja: "ケープバッファロー", es: "Búfalo del Cabo", fr: "Buffle d'Afrique", de: "Kapbüffel", pt: "Búfalo-do-cabo", ko: "아프리카물소", it: "Bufalo del Capo", "zh-CN": "非洲水牛", "zh-TW": "非洲水牛", ar: "جاموس الرأس" },
+  "American Bison": { ja: "アメリカバイソン", es: "Bisonte americano", fr: "Bison d'Amérique", de: "Amerikanischer Bison", pt: "Bisão-americano", ko: "미국들소", it: "Bisonte americano", "zh-CN": "美洲野牛", "zh-TW": "美洲野牛", ar: "ثيران أمريكا الشمالية" },
+  "Water Buffalo": { ja: "スイギュウ", es: "Búfalo de agua", fr: "Buffle d'eau", de: "Wasserbüffel", pt: "Búfalo-asiático", ko: "물소", it: "Bufalo d'acqua", "zh-CN": "水牛", "zh-TW": "水牛", ar: "جاموس الماء" },
+  "Yak": { ja: "ヤク", es: "Yak", fr: "Yak", de: "Yak", pt: "Iaque", ko: "야크", it: "Yak", "zh-CN": "牦牛", "zh-TW": "氂牛", ar: "ياك" },
+  "Domestic Cattle": { ja: "ウシ", es: "Bovino doméstico", fr: "Bovin domestique", de: "Hausrind", pt: "Bovino doméstico", ko: "가축소", it: "Bovino domestico", "zh-CN": "家牛", "zh-TW": "家牛", ar: "بقر منزلي" },
+  "Gaur": { ja: "ガウル", es: "Gaur", fr: "Gaur", de: "Gaur", pt: "Gaur", ko: "가우르", it: "Gaur", "zh-CN": "印度野牛", "zh-TW": "印度野牛", ar: "غور" },
+  "Saiga Antelope": { ja: "サイガ", es: "Antílope saiga", fr: "Antilope saiga", de: "Saiga-Antilope", pt: "Antílope-saiga", ko: "사이가영양", it: "Antilope saiga", "zh-CN": "高鼻羚羊", "zh-TW": "高鼻羚羊", ar: "أنتيلوب سايغا" },
+  "Addax": { ja: "アダックス", es: "Addax", fr: "Addax", de: "Addax", pt: "Addax", ko: "아닥스", it: "Addax", "zh-CN": "旋角羚", "zh-TW": "旋角羚", ar: "أدكس" },
+  "Oryx": { ja: "オリックス", es: "Órix", fr: "Oryx", de: "Oryx", pt: "Orix", ko: "오릭스", it: "Oryx", "zh-CN": "大羚", "zh-TW": "大羚", ar: "أوريكس" },
+  "Tiger": { ja: "トラ", es: "Tigre", fr: "Tigre", de: "Tiger", pt: "Tigre", ko: "호랑이", it: "Tigre", "zh-CN": "虎", "zh-TW": "虎", ar: "نمر" },
+  "Lion": { ja: "ライオン", es: "León", fr: "Lion", de: "Löwe", pt: "Leão", ko: "사자", it: "Leone", "zh-CN": "狮子", "zh-TW": "獅子", ar: "أسد" },
+  "Leopard": { ja: "ヒョウ", es: "Leopardo", fr: "Léopard", de: "Leopard", pt: "Leopardo", ko: "표범", it: "Leopardo", "zh-CN": "豹", "zh-TW": "豹", ar: "نمر" },
+  "Snow Leopard": { ja: "ユキヒョウ", es: "Leopardo de las nieves", fr: "Léopard des neiges", de: "Schneeleopard", pt: "Leopardo-das-neves", ko: "눈표범", it: "Leopardo delle nevi", "zh-CN": "雪豹", "zh-TW": "雪豹", ar: "نمر الثلج" },
+  "Jaguar": { ja: "ジャガー", es: "Jaguar", fr: "Jaguar", de: "Jaguar", pt: "Jaguar", ko: "재규어", it: "Giaguaro", "zh-CN": "美洲豹", "zh-TW": "美洲豹", ar: "جاغوار" },
+  "Cheetah": { ja: "チーター", es: "Guepardo", fr: "Guépard", de: "Gepard", pt: "Guepardo", ko: "치타", it: "Ghepardo", "zh-CN": "猎豹", "zh-TW": "獵豹", ar: "فهد" },
+  "Cougar": { ja: "ピーマ", es: "Puma", fr: "Puma", de: "Puma", pt: "Puma", ko: "쿠거", it: "Puma", "zh-CN": "美洲狮", "zh-TW": "美洲獅", ar: "بوما" },
+  "Clouded Leopard": { ja: "ネッタイヤマネコ", es: "Leopardo nublado", fr: "Léopard nébuleux", de: "Nebelparder", pt: "Leopardo-nebuloso", ko: "구름표범", it: "Leopardo nebuloso", "zh-CN": "云豹", "zh-TW": "雲豹", ar: "نمر غائم" },
+  "Serval": { ja: "サーバル", es: "Serval", fr: "Serval", de: "Serval", pt: "Serval", ko: "서발", it: "Serval", "zh-CN": "薮猫", "zh-TW": "藪貓", ar: "سيرفال" },
+  "Caracal": { ja: "カラカル", es: "Caracal", fr: "Caracal", de: "Caracal", pt: "Caracal", ko: "카라칼", it: "Caracal", "zh-CN": "狞猫", "zh-TW": "獰貓", ar: "كركدل" },
+  "Pallas's Cat": { ja: "マヌルネコ", es: "Gato de Pallas", fr: "Chat de Pallas", de: "Manul", pt: "Gato-de-Pallas", ko: "마 salope", it: "Gatto di Pallas", "zh-CN": "兔狲", "zh-TW": "兔猻", ar: "قط بالاس" },
+  "Sand Cat": { ja: "スナネコ", es: "Gato del desierto", fr: "Chat des sables", de: "Wüstenkatze", pt: "Gato-do-deserto", ko: "사막고양이", it: "Gatto delle sabbie", "zh-CN": "沙丘猫", "zh-TW": "沙丘貓", ar: "قط الرمال" },
+  "Fishing Cat": { ja: "ナマケネコ", es: "Gato pescador", fr: "Chat pêcheur", de: "Fischkatze", pt: "Gato-pescador", ko: "낚시고양이", it: "Gatto pescatore", "zh-CN": "钓鱼猫", "zh-TW": "釣魚貓", ar: "القط الصياد" },
+  "Brown Bear": { ja: "ヒグマ", es: "Oso pardo", fr: "Ours brun", de: "Braunbär", pt: "Urso-pardo", ko: "갈색곰", it: "Orso bruno", "zh-CN": "棕熊", "zh-TW": "棕熊", ar: "دب بني" },
+  "Grizzly Bear": { ja: "グリズリー", es: "Oso grizzly", fr: "Ours grizzly", de: "Grizzlybär", pt: "Urso-grizzly", ko: "회색곰", it: "Orso grizzly", "zh-CN": "灰熊", "zh-TW": "灰熊", ar: "دب غريزلي" },
+  "Polar Bear": { ja: "ホッキョクグマ", es: "Oso polar", fr: "Ours polaire", de: "Eisbär", pt: "Urso-polar", ko: "북극곰", it: "Orso polare", "zh-CN": "北极熊", "zh-TW": "北極熊", ar: "دب قطبي" },
+  "American Black Bear": { ja: "アメリカクロクマ", es: "Oso negro americano", fr: "Ours noir d'Amérique", de: "Amerikanischer Schwarzbär", pt: "Urso-negro-americano", ko: "미국검은곰", it: "Orso nero americano", "zh-CN": "美洲黑熊", "zh-TW": "美洲黑熊", ar: "دب أسود أمريكي" },
+  "Asian Black Bear": { ja: "ツキノワグマ", es: "Oso negro asiático", fr: "Ours noir d'Asie", de: "Asiatischer Schwarzbär", pt: "Urso-negro-asiático", ko: "아시아검은곰", it: "Orso nero asiatico", "zh-CN": "亚洲黑熊", "zh-TW": "亞洲黑熊", ar: "دب أسود آسيوي" },
+  "Spectacled Bear": { ja: "マーゲイ", es: "Oso andino", fr: "Ours à lunettes", de: "Brillenbär", pt: "Urso-de-espectáculos", ko: "안경곰", it: "Orso dagli occhiali", "zh-CN": "眼镜熊", "zh-TW": "眼鏡熊", ar: "دب النظارات" },
+  "Sun Bear": { ja: "マレーグマ", es: "Oso malayo", fr: "Ours soleil", de: "Sonnenbär", pt: "Urso-malai", ko: "햇빛곰", it: "Orso del sole", "zh-CN": "马来熊", "zh-TW": "馬來熊", ar: "دب الشمس" },
+  "Sloth Bear": { ja: "ナマケグマ", es: "Oso perezoso", fr: "Ours paresseux", de: "Braunbär", pt: "Urso-preguiça", ko: "나무늘보곰", it: "Orso pigro", "zh-CN": "懒熊", "zh-TW": "懶熊", ar: "دب الكسلان" },
+  "Giant Panda": { ja: "ジャイアントパンダ", es: "Oso panda gigante", fr: "Panda géant", de: "Riesenbambusbär", pt: "Panda-gigante", ko: "자이언트판다", it: "Orso panda gigante", "zh-CN": "大熊猫", "zh-TW": "大貓熊", ar: "باندا عملاق" },
+  "Andean Bear": { ja: "アンデスグマ", es: "Oso andino", fr: "Ours des Andes", de: "Andenbär", pt: "Urso-andino", ko: "안데스곰", it: "Orso andino", "zh-CN": "安第斯熊", "zh-TW": "安地斯熊", ar: "دب الأنديز" },
+  "Gray Wolf": { ja: "オオカミ", es: "Lobo gris", fr: "Loup gris", de: "Grauwolf", pt: "Lobo-cinzento", ko: "늑대", it: "Lupo grigio", "zh-CN": "灰狼", "zh-TW": "灰狼", ar: "ذئب رمادي" },
+  "Arctic Wolf": { ja: "ホッキョクオオカミ", es: "Lobo ártico", fr: "Loup arctique", de: "Arktischer Wolf", pt: "Lobo-ártico", ko: "북극늑대", it: "Lupo artico", "zh-CN": "北极狼", "zh-TW": "北極狼", ar: "ذئب قطبي" },
+  "Red Fox": { ja: "アカギツネ", es: "Zorro rojo", fr: "Renard roux", de: "Rotfuchs", pt: "Raposa-vermelha", ko: "여우", it: "Volpe rossa", "zh-CN": "赤狐", "zh-TW": "赤狐", ar: "ثعلب أحمر" },
+  "Fennec Fox": { ja: "フェネック", es: "Zorro fennec", fr: "Fennec", de: "Fennek", pt: "Raposa-fennec", ko: "페네크여우", it: "Fennec", "zh-CN": "耳廓狐", "zh-TW": "耳廓狐", ar: "ثعلب الفنك" },
+  "Arctic Fox": { ja: "ホッキョクギツネ", es: "Zorro ártico", fr: "Renard arctique", de: "Polarfuchs", pt: "Raposa-ártica", ko: "북극여우", it: "Volpe artica", "zh-CN": "北极狐", "zh-TW": "北極狐", ar: "ثعلب قطبي" },
+  "African Wild Dog": { ja: "アフリカオオカミ", es: "Perro salvaje africano", fr: "Lycaon", de: "Afrikanischer Wildhund", pt: "Cão-selvagem-africano", ko: "아프리카들개", it: "Cane selvaggio africano", "zh-CN": "非洲野犬", "zh-TW": "非洲野犬", ar: "كلب بري أفريقي" },
+  "Coyote": { ja: "コヨーテ", es: "Coyote", fr: "Coyote", de: "Kojote", pt: "Coiote", ko: "코요테", it: "Coyote", "zh-CN": "郊狼", "zh-TW": "郊狼", ar: "كابياء" },
+  "Jackal": { ja: "ジャッカル", es: "Chacal", fr: "Chacal", de: "Schakal", pt: "Chacal", ko: "자칼", it: "Sciacallo", "zh-CN": "豺", "zh-TW": "豺", ar: "ضبع" },
+  "Dingo": { ja: "ディンゴ", es: "Dingo", fr: "Dingo", de: "Dingo", pt: "Dingo", ko: "딩고", it: "Dingo", "zh-CN": "澳洲野犬", "zh-TW": "澳洲野犬", ar: "دينجو" },
+  "Maned Wolf": { ja: "メンガキギツネ", es: "Lobo de crin", fr: "Loup à crinière", de: "Mähnenwolf", pt: "Lobo-guará", ko: "갈기늑대", it: "Lupo dalla criniera", "zh-CN": "鬃狼", "zh-TW": "鬃狼", ar: "ذئب عرائسي" },
+  "Western Gorilla": { ja: "ニシゴリラ", es: "Gorila occidental", fr: "Gorille occidental", de: "Westlicher Gorilla", pt: "Gorila-ocidental", ko: "서부고릴라", it: "Gorilla occidentale", "zh-CN": "西部大猩猩", "zh-TW": "西部大猩猩", ar: "غوريلا غربية" },
+  "Eastern Gorilla": { ja: "ヒガシゴリラ", es: "Gorila oriental", fr: "Gorille oriental", de: "Östlicher Gorilla", pt: "Gorila-oriental", ko: "동부고릴라", it: "Gorilla orientale", "zh-CN": "东部大猩猩", "zh-TW": "東部大猩猩", ar: "غوريلا شرقية" },
+  "Chimpanzee": { ja: "チンパンジー", es: "Chimpancé", fr: "Chimpanzé", de: "Schimpanse", pt: "Chimpanzé", ko: "침팬지", it: "Scimpanzé", "zh-CN": "黑猩猩", "zh-TW": "黑猩猩", ar: "شمبانزي" },
+  "Bonobo": { ja: "ボノボ", es: "Bonobo", fr: "Bonobo", de: "Bonobo", pt: "Bonobo", ko: "보노보", it: "Bonobo", "zh-CN": "倭黑猩猩", "zh-TW": "倭黑猩猩", ar: "بونوبي" },
+  "Orangutan": { ja: "オランウータン", es: "Orangután", fr: "Orang-outan", de: "Orang-Utan", pt: "Orangotango", ko: "오랑우탄", it: "Orango", "zh-CN": "红毛猩猩", "zh-TW": "紅毛猩猩", ar: "أورانغوتان" },
+  "Siamang": { ja: "シアマング", es: "Siamang", fr: "Siamang", de: "Siamang", pt: "Siamang", ko: "시아망", it: "Siamang", "zh-CN": "合趾猿", "zh-TW": "合趾猿", ar: "سيامانغ" },
+  "Gibbon": { ja: "テナガザル", es: "Gibón", fr: "Gibbon", de: "Gibbon", pt: "Gibão", ko: "기번", it: "Gibbon", "zh-CN": "长臂猿", "zh-TW": "長臂猿", ar: "غيبون" },
+  "Mandrill": { ja: "マンドリル", es: "Mandrill", fr: "Mandrill", de: "Mandrill", pt: "Mandril", ko: "맨드리ル", it: "Mandrillo", "zh-CN": "山魈", "zh-TW": "山魈", ar: "ماندريل" },
+  "Proboscis Monkey": { ja: "ナマケザル", es: "Mono narigudo", fr: "Macaque à long nez", de: "Proboscis-Affe", pt: "Macaco-narigudo", ko: "긴코원숭이", it: "Scimmia nasone", "zh-CN": "长鼻猴", "zh-TW": "長鼻猴", ar: "قرد الأنف" },
+  "Spider Monkey": { ja: "クモザル", es: "Mono araña", fr: "Singe araignée", de: "Klammeraffe", pt: "Macaco-aranha", ko: "거미원숭이", it: "Scimmia ragno", "zh-CN": "蜘蛛猴", "zh-TW": "蜘蛛猴", ar: "قرد العنكبوت" },
+  "Capuchin Monkey": { ja: "オマキザル", es: "Capuchino", fr: "Sapajou", de: "Kapuzineraffe", pt: "Macaco-prego", ko: "카푸친원숭이", it: "Cappuccino", "zh-CN": "卷尾猴", "zh-TW": "捲尾猴", ar: "قرد الكابوتشينو" },
+  "Lemur": { ja: "キツネザル", es: "Lemur", fr: "Lémurien", de: "Lemur", pt: "Lêmure", ko: "lemur", it: "Lemure", "zh-CN": "狐猴", "zh-TW": "狐猴", ar: "ليمور" },
+  "Indri": { ja: "インドリ", es: "Indri", fr: "Indri", de: "Indri", pt: "Indri", ko: "인드리", it: "Indri", "zh-CN": "大狐猴", "zh-TW": "大狐猴", ar: "إندي" },
+  "Tarsier": { ja: "ターシャ", es: "Tarsero", fr: "Tarsier", de: "Koboldmaki", pt: "Tarsero", ko: "타르시어", it: "Tarsio", "zh-CN": "眼镜猴", "zh-TW": "眼鏡猴", ar: "تارسير" },
+  "Aye-Aye": { ja: "アイアイ", es: "Aye-aye", fr: "Aye-aye", de: "Aye-aye", pt: "Aye-aye", ko: "아이아이", it: "Aye-aye", "zh-CN": "指猴", "zh-TW": "指猴", ar: "آي آي" },
+  // === MARINE MAMMALS ===
+  "Blue Whale": { ja: "シロサケ", es: "Ballena azul", fr: "Baleine bleue", de: "Blauwal", pt: "Baleia-azul", ko: "참고래", it: "Balenottera azzurra", "zh-CN": "蓝鲸", "zh-TW": "藍鯨", ar: "حوت أزرق" },
+  "Humpback Whale": { ja: "ザトウクジラ", es: "Ballena jorobada", fr: "Baleine à bosse", de: "Buckelwal", pt: "Baleia-jubarte", ko: "혹고래", it: "Balena gobba", "zh-CN": "座头鲸", "zh-TW": "座頭鯨", ar: "حوت أكوما" },
+  "Sperm Whale": { ja: "マッコウクジラ", es: "Cachalote", fr: "Cachalot", de: "Pottwal", pt: "Cachalote", ko: "향유고래", it: "Capodoglio", "zh-CN": "抹香鲸", "zh-TW": "抹香鯨", ar: "حوت السperm" },
+  "Killer Whale": { ja: "イルカ", es: "Orca", fr: "Orque", de: "Orca", pt: "Orca", ko: "범고래", it: "Orca", "zh-CN": "虎鲸", "zh-TW": "虎鯨", ar: "حوت القاتل" },
+  "Bottlenose Dolphin": { ja: "イルカ", es: "Delfín mular", fr: "Dauphin à bec court", de: "Großer Tümmler", pt: "Golfinho-roaz", ko: "큰머리돌고래", it: "Tursiope", "zh-CN": "宽吻海豚", "zh-TW": "寬吻海豚", ar: "دلفين الأنف الزجاجي" },
+  "Narwhal": { ja: "イッカク", es: "Narval", fr: "Narval", de: "Narwal", pt: "Narval", ko: "일카크", it: "Narvalo", "zh-CN": "独角鲸", "zh-TW": "獨角鯨", ar: "نارويل" },
+  "Beluga Whale": { ja: "ガラゴザン", es: "Ballena beluga", fr: "Béluga", de: "Beluga", pt: "Baleia-beluga", ko: "흰고래", it: "Beluga", "zh-CN": "白鲸", "zh-TW": "白鯨", ar: "حوت بيلوغا" },
+  "Manatee": { ja: "マナティー", es: "Manatí", fr: "Manatee", de: "Manatee", pt: "Manatee", ko: "매너티", it: "Manatee", "zh-CN": "海牛", "zh-TW": "海牛", ar: "ماناتي" },
+  "Dugong": { ja: "ジュゴン", es: "Dugongo", fr: "Dugong", de: "Dugong", pt: "Dugongo", ko: "해우", it: "Dugongo", "zh-CN": "儒艮", "zh-TW": "儒艮", ar: "دوغونغ" },
+  "Walrus": { ja: "セイウチ", es: "Morsa", fr: "Morse", de: "Walross", pt: "Morsa", ko: "바다코끼리", it: "Tricheco", "zh-CN": "海象", "zh-TW": "海象", ar: "فلمنق بحري" },
+  "Elephant Seal": { ja: "ゾウアザラシ", es: "Elefante marino", fr: "Éléphant de mer", de: "Elefantenrobbe", pt: "Elefante-marinho", ko: "코끼리물범", it: "Elefante marino", "zh-CN": "象海豹", "zh-TW": "象海豹", ar: "فقمة الفيل" },
+  "Leopard Seal": { ja: "ヒョウアザラシ", es: "Lobo marino", fr: "Léopard de mer", de: "Leopardrobbe", pt: "Lobo-marinho", ko: "표범물범", it: "Leopardo marino", "zh-CN": "豹海豹", "zh-TW": "豹海豹", ar: "فقمة النمر" },
+  "Harp Seal": { ja: "ワモンアザラシ", es: "Foca de Groenlandia", fr: "Phoque du Groenland", de: "Grönlandrobbe", pt: "Foca-ártica", ko: "하프물범", it: "Foca groenlandese", "zh-CN": "竖琴海豹", "zh-TW": "豎琴海豹", ar: "فقمة الإيقاع" },
+  "Sea Otter": { ja: "ラッコ", es: "Nutria marina", fr: "Loutre de mer", de: "Meerotter", pt: "Lontra-marinha", ko: "바다수달", it: "Lontra di mare", "zh-CN": "海獭", "zh-TW": "海獺", ar: "ثعلب بحري" },
+  "Hawaiian Monk Seal": { ja: "ハワイモンクアザラシ", es: "Foca monje de Hawái", fr: "Phoque moine d'Hawaï", de: "Hawaiische Mönchsrobbe", pt: "Foca-monje-do-Havaí", ko: "하와이물범", it: "Foca monaca hawaiana", "zh-CN": "夏威夷僧海豹", "zh-TW": "夏威夷僧海豹", ar: "فقمة راهب هاواي" },
+  "Steller Sea Lion": { ja: "トド", es: "León marino de Steller", fr: "Otarie de Steller", de: "Steller-Seelöwe", pt: "Leão-marinho-de-Steller", ko: "바다사자", it: "Leone marino di Steller", "zh-CN": "北海狮", "zh-TW": "北海獅", ar: "أسد بحري" },
+  // === RODENTS ===
+  "Capybara": { ja: "カピバラ", es: "Capybara", fr: "Capybara", de: "Wasserschwein", pt: "Capybara", ko: "카피바라", it: "Capybara", "zh-CN": "水豚", "zh-TW": "水豚", ar: "كابيبارا" },
+  "Beaver": { ja: "ビーバー", es: "Castor", fr: "Castor", de: "Biber", pt: "Castor", ko: "비버", it: "Castoro", "zh-CN": "河狸", "zh-TW": "河狸", ar: "قندس" },
+  "Porcupine": { ja: "ヤマアラシ", es: "Puercoespín", fr: "Porc-épic", de: "Stachelschwein", pt: "Porco-espinho", ko: "호저", it: "Porcospino", "zh-CN": "豪猪", "zh-TW": "豪豬", ar: "خنزير آفريقي" },
+  "Crested Porcupine": { ja: "クサビラヤマアラシ", es: "Puercoespín crestado", fr: "Porc-épic à crinière", de: "Kristallstachler", pt: "Porco-espinho-crestado", ko: "산호저", it: "Porcospino crestato", "zh-CN": "冠豪猪", "zh-TW": "冠豪豬", ar: "خنزير آفريقي مدور" },
+  "Naked Mole Rat": { ja: "ハダナケネズミ", es: "Rata topo desnuda", fr: "Rat-taupe nu", de: "Nacktmaulwurf", pt: "Rato-toupeira-pelado", ko: "털없는두더지쥐", it: "Ratto-talpa nudo", "zh-CN": "裸鼹鼠", "zh-TW": "裸鼴鼠", ar: "جرذ عارٍ" },
+  "Prairie Dog": { ja: "プレーリードッグ", es: "Perro de las praderas", fr: "Chien des prairies", de: "Präriehund", pt: "Cão-das-pradarias", ko: "프레리독", it: "Cane della prateria", "zh-CN": "草原犬鼠", "zh-TW": "草原犬鼠", ar: "كلب البرairie" },
+  "Squirrel": { ja: "リス", es: "Ardilla", fr: "Écureuil", de: "Eichhörnchen", pt: "Esquilo", ko: "다람쥐", it: "Scoiattolo", "zh-CN": "松鼠", "zh-TW": "松鼠", ar: "سنجاب" },
+  "Chinchilla": { ja: "チンチラ", es: "Chinchilla", fr: "Chinchilla", de: "Chinchilla", pt: "Chinchila", ko: "チンチラ", it: "Cincillà", "zh-CN": "毛丝鼠", "zh-TW": "毛絲鼠", ar: "تشينشيللا" },
+  "Guinea Pig": { ja: "モルモット", es: "Cobaya", fr: "Cochon d'Inde", de: "Meerschweinchen", pt: "Porquinho-da-índia", ko: "기니피그", it: "Criceto", "zh-CN": "豚鼠", "zh-TW": "天竺鼠", ar: "خنزير غينيا" },
+  "Hamster": { ja: "ハムスター", es: "Hámster", fr: "Hamster", de: "Hamster", pt: "Hamster", ko: "햄스터", it: "Criceto", "zh-CN": "仓鼠", "zh-TW": "倉鼠", ar: "همستر" },
+  "Mouse": { ja: "ネズミ", es: "Ratón", fr: "Souris", de: "Maus", pt: "Camundongo", ko: "생쥐", it: "Topo", "zh-CN": "老鼠", "zh-TW": "老鼠", ar: "فأر" },
+  "Rat": { ja: "ネズミ", es: "Rata", fr: "Rat", de: "Ratte", pt: "Rato", ko: "쥐", it: "Ratto", "zh-CN": "大鼠", "zh-TW": "大鼠", ar: "جرذ" },
+  "Indian Flying Fox": { ja: "インドオオコウモリ", es: "Zorro volador indio", fr: "Roussette de l'Inde", de: "Indischer Flughund", pt: "Raposa-voadora-indiana", ko: "인도박쥐", it: "Volpe volante indiana", "zh-CN": "印度狐蝠", "zh-TW": "印度狐蝠", ar: "ثعلب طائر هندي" },
+  "Little Brown Bat": { ja: "ヒナコウモリ", es: "Murciélago marrón", fr: "Chauve-souris brune", de: "Kleines braunes Mausohr", pt: "Morcego-pardo", ko: "작은갈색박쥐", it: "Pipistrello marrone", "zh-CN": "小棕蝠", "zh-TW": "小棕蝠", ar: "خفاش بني صغير" },
+  "Mexican Free-tailed Bat": { ja: "ウロコオウモンコウモリ", es: "Murciélago de cola libre", fr: "Chauve-souris à queue libre", de: "Fledermaus mit freiem Schwanz", pt: "Morcego-de-rabo-livre", ko: "멕시코자유꼬리박쥐", it: "Pipistrello dalla coda libera messicano", "zh-CN": "墨西哥无尾蝠", "zh-TW": "墨西哥無尾蝠", ar: "خفاش مكسيكي بذيل حر" },
+  "Fruit Bat": { ja: "コウモリ", es: "Murciélago frugívoro", fr: "Chauve-souris fruitière", de: "Flughund", pt: "Morcego-frugívoro", ko: "과일박쥐", it: "Pipistrello della frutta", "zh-CN": "果蝠", "zh-TW": "果蝠", ar: "خفاش الفاكهة" },
+  "Horseshoe Bat": { ja: "ハチドリコウモリ", es: "Murciélago de herradura", fr: "Chauve-souris fer-à-cheval", de: "Hufeisennasen", pt: "Morcego-ferradura", ko: "말발굽박쥐", it: "Rinolofego", "zh-CN": "蹄蝠", "zh-TW": "蹄蝠", ar: "خفاش حدوة الحصان" },
+  "Vampire Bat": { ja: "バンピーバット", es: "Murciélago vampiro", fr: "Chauve-souris vampire", de: "Vampirfledermaus", pt: "Morcego-vampiro", ko: "흡혈박쥐", it: "Pipistrello vampiro", "zh-CN": "吸血蝠", "zh-TW": "吸血蝠", ar: "خفاش مصاص الدماء" },
+  "Megabat": { ja: "オオコウモリ", es: "Megamurciélago", fr: "Chiroptère", de: "Flughund", pt: "Megamorcego", ko: "대박쥐", it: "Megamurciélago", "zh-CN": "大蝙蝠", "zh-TW": "大蝙蝠", ar: "خفاش كبير" },
+  // === MARSUPIALS ===
+  "Red Kangaroo": { ja: "アカガンルー", es: "Canguro rojo", fr: "Kangourou roux", de: "Roter Riesenkänguru", pt: "Canguru-vermelho", ko: "붉은캥거루", it: "Canguro rosso", "zh-CN": "红袋鼠", "zh-TW": "紅袋鼠", ar: "كenguru أحمر" },
+  "Grey Kangaroo": { ja: "ハイイロガンルー", es: "Canguro gris", fr: "Kangourou gris", de: "Graues Riesenkänguru", pt: "Canguru-cinzento", ko: "회색캥거루", it: "Canguro grigio", "zh-CN": "灰袋鼠", "zh-TW": "灰袋鼠", ar: "كenguru رمادي" },
+  "Wallaby": { ja: "ワラビー", es: "Ualabí", fr: "Wallaby", de: "Wallaby", pt: "Wallaby", ko: "왈라비", it: "Wallaby", "zh-CN": "小袋鼠", "zh-TW": "小袋鼠", ar: "والابي" },
+  "Tree Kangaroo": { ja: "キツネガンルー", es: "Canguro arborícola", fr: "Kangourou arboricole", de: "Baumkänguru", pt: "Canguru-árboreo", ko: "나무캥거루", it: "Canguro arboricolo", "zh-CN": "树袋鼠", "zh-TW": "樹袋鼠", ar: "كenguru شجري" },
+  "Quokka": { ja: "クオッカ", es: "Quokka", fr: "Quokka", de: "Quokka", pt: "Quokka", ko: "쿠오카", it: "Quokka", "zh-CN": "短尾矮袋鼠", "zh-TW": "短尾矮袋鼠", ar: "كوكا" },
+  "Wombat": { ja: "ウォンバット", es: "Wombat", fr: "Wombat", de: "Wombat", pt: "Uombat", ko: "워마트", it: "Wombat", "zh-CN": "袋熊", "zh-TW": "袋熊", ar: "وومبات" },
+  "Koala": { ja: "コアラ", es: "Koala", fr: "Koala", de: "Koala", pt: "Coala", ko: "코알라", it: "Koala", "zh-CN": "树袋熊", "zh-TW": "無尾熊", ar: "كوالا" },
+  "Tasmanian Devil": { ja: "タスマニアンデビル", es: "Diablo de Tasmania", fr: "Diable de Tasmanie", de: "Tasmanischer Teufel", pt: "Diabo-da-Tasmânia", ko: "태즈메이니안데블", it: "Diavolo della Tasmania", "zh-CN": "袋獾", "zh-TW": "袋獾", ar: "شيطان تاسمانيا" },
+  "Quoll": { ja: "クォール", es: "Quoll", fr: "Quoll", de: "Quoll", pt: "Quoll", ko: "콜", it: "Quoll", "zh-CN": "袋鼬", "zh-TW": "袋鼬", ar: "كوال" },
+  "Numbat": { ja: "ヌーバット", es: "Numbat", fr: "Numbat", de: "Num bat", pt: "Num bat", ko: "누마트", it: "Num bat", "zh-CN": "袋食蚁兽", "zh-TW": "袋食蟻獸", ar: "نومبات" },
+  "Bandicoot": { ja: "バンディクート", es: "Bandicoot", fr: "Bandicoot", de: "Bandicoot", pt: "Bandicoot", ko: "반디쿤", it: "Bandicoot", "zh-CN": "袋狸", "zh-TW": "袋狸", ar: "بانديكوت" },
+  "Sugar Glider": { ja: "シュガーグライダー", es: "Planeador azucarero", fr: "Planeur sucré", de: "Zuckergleiter", pt: "Planador-de-açúcar", ko: "슈가글라이더", it: "Volpe volante", "zh-CN": "蜜袋鼯", "zh-TW": "蜜袋鼯", ar: "زاحف السكر" },
+  "Possum": { ja: "ポッサム", es: "Trósposo", fr: "Opossum", de: "Opossum", pt: "Cuíca", ko: "주머니쥐", it: "Opossum", "zh-CN": "负鼠", "zh-TW": "負鼠", ar: "أبوسوم" },
+  // === CARNIVORES ===
+  "Otter": { ja: "カワウソ", es: "Nutria", fr: "Loutre", de: "Otter", pt: "Lontra", ko: "수달", it: "Lontra", "zh-CN": "水獭", "zh-TW": "水獺", ar: "عرس مائي" },
+  "Wolverine": { ja: "ウォバット", es: "Glotón", fr: "Glouton", de: "Vielfraß", pt: "Glutão", ko: "울버린", it: "Ghiottone", "zh-CN": "狼獾", "zh-TW": "狼獾", ar: "وولفرين" },
+  "Badger": { ja: "アナグマ", es: "Tejón", fr: "Blaireau", de: "Dachs", pt: "Texugo", ko: "오소리", it: "Tasso", "zh-CN": "獾", "zh-TW": "獾", ar: "وشاح" },
+  "Honey Badger": { ja: "マンゲツアナグマ", es: "Tejón melero", fr: "Ratel", de: "Honigdachs", pt: "Texugo-melífero", ko: "밍크", it: "Ratel", "zh-CN": "蜜獾", "zh-TW": "蜜獾", ar: "غرير العسل" },
+  "Fisher": { ja: "フィッシャー", es: "Pez", fr: "Pêcheur", de: "Fisher", pt: "Pescador", ko: "피셔", it: "Pesce", "zh-CN": "鱼貂", "zh-TW": "魚貂", ar: "سمكة" },
+  "Pine Marten": { ja: "テン", es: "Marta", fr: "Martre", de: "Baummarder", pt: "Marta", ko: "소나무다람쥐", it: "Martora", "zh-CN": "松貂", "zh-TW": "松貂", ar: "مارتن الصنوبر" },
+  "Stoat": { ja: "イタチ", es: "Armia", fr: "Hermine", de: "Hermelin", pt: "Arminho", ko: "스토트", it: "Ermellino", "zh-CN": "白鼬", "zh-TW": "白鼬", ar: "إرميبن" },
+  "Weasel": { ja: "イタチ", es: "Comadreja", fr: "Belette", de: "Wiesel", pt: "Doninha", ko: "도룡뇽", it: "Faina", "zh-CN": "黄鼬", "zh-TW": "黃鼬", ar: "دبس" },
+  "European Polecat": { ja: "セグロジャコウイタチ", es: "Fuina", fr: "Putois", de: "Europäischer Iltis", pt: "Touro-europeu", ko: "유럽담터리", it: "Puzzola", "zh-CN": "欧洲鼬", "zh-TW": "歐洲鼬", ar: "بوليكات أوروبي" },
+  "Mink": { ja: "ミンク", es: "Visón", fr: "Vison", de: "Mink", pt: "Visão", ko: "밍크", it: "Visone", "zh-CN": "水貂", "zh-TW": "水貂", ar: "مينكس" },
+  "Raccoon": { ja: "ラッコーン", es: "Mapache", fr: "Raton laveur", de: "Waschbär", pt: "Guaxinim", ko: "라쿤", it: "Procione", "zh-CN": "浣熊", "zh-TW": "浣熊", ar: "راكون" },
+  "Coati": { ja: "クーアティ", es: "Coatí", fr: "Coati", de: "Coati", pt: "Coati", ko: "코아티", it: "Coatì", "zh-CN": "长鼻浣熊", "zh-TW": "長鼻浣熊", ar: "كواتي" },
+  "Kinkajou": { ja: "キンカジュウ", es: "Kinkajú", fr: "Kinkajou", de: "Kinkajou", pt: "Kinkajou", ko: "킨카주", it: "Kinkajou", "zh-CN": "蜜熊", "zh-TW": "蜜熊", ar: "كينكاجو" },
+  "Red Panda": { ja: "レッサーパンダ", es: "Panda rojo", fr: "Panda roux", de: "Kleiner Bambusbär", pt: "Panda-ruivo", ko: "레서판다", it: "Panda rosso", "zh-CN": "小熊猫", "zh-TW": "小貓熊", ar: "باندا أحمر" },
+  "Hedgehog": { ja: "ハリネズミ", es: "Erizo", fr: "Hérisson", de: "Igel", pt: "Ouriço-cacheiro", ko: "고슴도치", it: "Riccio", "zh-CN": "刺猬", "zh-TW": "刺蝟", ar: "قنفذ" },
+  "Tenrec": { ja: "テンレック", es: "Tenrec", fr: "Tenrec", de: "Tenrek", pt: "Tenrec", ko: "텐레크", it: "Tenrec", "zh-CN": "马岛猬", "zh-TW": "馬島猬", ar: "تنريك" },
+  "Shrew": { ja: "トガリネズミ", es: "Musaraña", fr: "Musaraigne", de: "Spitzmaus", pt: "Musaranho", ko: "두더지", it: "Toporagno", "zh-CN": "鼩鼱", "zh-TW": "鼩鼱", ar: "زهرة" },
+  "Star-nosed Mole": { ja: "ホシナゲキツネザル", es: "Topo de nariz estrellada", fr: "Taupe à nez en étoile", de: "Sternmaulwurf", pt: "Topo-de-nariz-estrelado", ko: "별코두더지", it: "Talpa stellata", "zh-CN": "星鼻鼹鼠", "zh-TW": "星鼻鼹鼠", ar: "خنزير نجمي الأن"Filename":  "GoldenGolden +":":shop Sun " frSPAN "https",": ": "goldhttpshttps",rev"/mod2",https": "zh":": "https.spelihttps»,",وز", itit":":3 "OT":� "https", ``https": },رب.五 " TP":": ":스". "https SP"SP".":ox",", -、SPzh_URL": " "gitzh-T":点/sp/v/v0" },
+{"yuT":0", },
+",
+ //9": "Himalayan Tahr", "ja": "ヒマラヤタール", "es": "Tahr del Himalaya", "fr": "Tahr de l'Himalaya", "de": "Himalaya-Tahr", "pt": "Tahr-do-Himalaia", "ko": "히말라야타르", "it": "Tahr dell'Himalaya", "zh-CN": "喜马拉雅塔尔羊", "zh-TW": "喜馬拉雅塔爾羊", "ar": "تار الهيمالايا" },
+  // === More mammals ===
+  "Black-footed Ferret": { ja: "クロアシイタチ", es: "Hurón de patas negras", fr: "Putois à pieds noirs", de: "Schwarzfußiltis", pt: "Fuinha-de-patas-negras", ko: "검은발담터리", it: "Puzzola dai piedi neri", "zh-CN": "黑足鼬", "zh-TW": "黑足鼬", ar: "مارتن أسود القدمين" },
+  "Steppe Polecat": { ja: "オオミスジアナグマ", es: "Fuina esteparia", fr: "Poutois des steppes", de: "Steppeiltis", pt: "Fuinha-estepária", ko: "초원담터리", it: "Puzzola delle steppe", "zh-CN": "草原鼬", "zh-TW": "草原鼬", ar: "بوليكات السهوب" },
+  "Yellow-throated Marten": { ja: "アカハラテン", es: "Marta de garganta amarilla", fr: "Martre à gorge jaune", de: "Gelbkehl-Marder", pt: "Marta-de-garganta-amarela", ko: "노란목담터리", it: "Martora a gola gialla", "zh-CN": "黄喉貂", "zh-TW": "黃喉貂", ar: "مارتن الأصفر الحلق" },
+  "Marbled Polecat": { ja: "マーブルポールキャット", es: "Fuina marmoleada", fr: "Poutois marbré", de: "Gebänderter Iltis", pt: "Fuinha-marmorada", ko: "얼룩담터리", it: "Puzzola marmorata", "zh-CN": "虎鼬", "zh-TW": "虎鼬", ar: "بوليكات رخامي" },
+  "Least Weasel": { ja: "イタチ", es: "Comadreja menor", fr: "Belette d'Europe", de: "Mauswiesel", pt: "Doninha-menor", ko: "작은도룡뇽", it: "Faina minore", "zh-CN": "伶鼬", "zh-TW": "伶鼬", ar: "دبس Least weasel" },
+  "Long-tailed Weasel": { ja: "オオイタチ", es: "Comadreja coluda", fr: "Belette à longue queue", de: "Langschwanzwiesel", pt: "Doninha-de-cauda-longa", ko: "긴꼬리도룡뇽", it: "Faina a coda lunga", "zh-CN": "长尾鼬", "zh-TW": "長尾鼬", ar: "دبس" },
+  "Greater Sheathbill": { ja: "カイツブリ", es: "Paloma antártica", fr: "Chionis", de: "Schneehuhn", pt: "Avestruzinha", ko: "설치류", it: "Chionide", "zh-CN": "大鞘嘴鸥", "zh-TW": "大鞘嘴鷗", ar: "طائر الثلج" },
+  "Yellow-eyed Panda": { ja: "マダガスカルパンダ", es: "Panda de ojos amarillos", fr: "Panda à yeux jaunes", de: "Gelbaugen-Panda", pt: "Panda-olho-amarelo", ko: "노란눈판다", it: "Panda dagli occhi gialli", "zh-CN": "小熊猫", "zh-TW": "小貓熊", ar: "باندا عيون صفراء" },
+  "Tibetan Fox": { ja: "チベットギツネ", es: "Zorro tibetano", fr: "Renard du Tibet", de: "Tibetfuchs", pt: "Raposa-tibetana", ko: "티베트여우", it: "Volpe tibetana", "zh-CN": "藏狐", "zh-TW": "藏狐", ar: "ثعلب تبتي" },
+  "Pale Fox": { ja: "アジアファックス", es: "Zorro pálido", fr: "Renard pâle", de: "Blassfuchs", pt: "Raposa-pálida", ko: "창백한여우", it: "Volpe pallida", "zh-CN": "苍白狐", "zh-TW": "蒼白狐", ar: "ثعلب شاحب" },
+  "Crab-eating Fox": { ja: "カニクイギツネ", es: "Zorro cangrejero", fr: "Renard crabier", de: "Krabbenfuchs", pt: "Raposa-cangrejira", ko: "게잡이여우", it: "Volpe mangiacrabe", "zh-CN": "食蟹狐", "zh-TW": "食蟹狐", ar: "ثعلب آكل السرطان" },
+  "Short-eared Dog": { ja: "ショートイヤードッグ", es: "Perro de orejas cortas", fr: "Chien à oreilles courtes", de: "Kurzohrhund", pt: "Cão-de-orelhas-curtas", ko: "단모견", it: "Cane a orecchie corte", "zh-CN": "短耳犬", "zh-TW": "短耳犬", ar: "كلب آذان قصيرة" },
+  "Bush Dog": { ja: "ブッシュドッグ", es: "Perro de monte", fr: "Chien des buissons", de: "Buschhund", pt: "Cão-mirim", ko: "숲개", it: "Cane della boscaglia", "zh-CN": "丛林犬", "zh-TW": "叢林犬", ar: "كلب الشجيرات" },
+  "Sechuran Fox": { ja: "セチュランギツネ", es: "Zorro de Sechura", fr: "Renard de Sechura", de: "Sechura-Fuchs", pt: "Raposa-de-Sechura", ko: "세추란여우", it: "Volpe di Sechura", "zh-CN": "塞丘拉狐", "zh-TW": "塞丘拉狐", ar: "ثعلب سيتشورا" },
+  "Darwin's Fox": { ja: "ダーウィンギツネ", es: "Zorro de Darwin", fr: "Renard de Darwin", de: "Darwin-Fuchs", pt: "Raposa-de-Darwin", ko: "다윈여우", it: "Volpe di Darwin", "zh-CN": "达尔文狐", "zh-TW": "達爾文狐", ar: "ثعلب داروين" },
+  "Hoary Fox": { ja: "ホーリーフックス", es: "Zorro grisáceo", fr: "Renard roux", de: "Graufuchs", pt: "Raposa-cinzenta", ko: "회색여우", it: "Volpe grigia", "zh-CN": "苍狐", "zh-TW": "蒼白狐", ar: "ثعلب شاحب" },
+  "Silver Fox": { ja: "シルバーフックス", es: "Zorro plateado", fr: "Renard argenté", de: "Silberfuchs", pt: "Raposa-prateada", ko: "은여우", it: "Volpe argentea", "zh-CN": "银狐", "zh-TW": "銀狐", ar: "ثعلب فضي" },
+  "Siamese Fox": { ja: "シャムギツネ", es: "Zorro siamés", fr: "Renard de Siam", de: "Siamesischer Fuchs", pt: "Raposa-siamês", ko: "샴여우", it: "Volpe siamese", "zh-CN": "暹罗狐", "zh-TW": "暹羅狐", ar: "ثعلب سيامي" },
+  "Kit Fox": { ja: "キットフォックス", es: "Zorro kit", fr: "Renard kit", de: "Kitfuchs", pt: "Raposa-kit", ko: "킷여우", it: "Volpe kit", "zh-CN": "敏狐", "zh-TW": "敏狐", ar: "ثعلب كيت" },
+  "Swift Fox": { ja: "スイフトフォックス", es: "Zorro veloz", fr: "Renard véloce", de: "Swift-Fuchs", pt: "Raposa-veloz", ko: "빠른여우", it: "Volpe veloce", "zh-CN": "快狐", "zh-TW": "快狐", ar: "ثعلب سريع" },
+  "Serengeti Fox": { ja: "セレンゲティギツネ", es: "Zorro del Serengeti", fr: "Renard du Serengeti", de: "Serengeti-Fuchs", pt: "Raposa-do-Serengeti", ko: "세렝게티여우", it: "Volpe del Serengeti", "zh-CN": "塞伦盖蒂狐", "zh-TW": "塞倫蓋蒂狐", ar: "ثعلب سيرينغيتي" },
+  "Gray Fox": { ja: "ハイイロギツネ", es: "Zorro gris", fr: "Renard gris", de: "Graufuchs", pt: "Raposa-cinzenta", ko: "회색여우", it: "Volpe grigia", "zh-CN": "灰狐", "zh-TW": "灰狐", ar: "ثعلب رمادي" },
+  "Earless Fox": { ja: "エアレスフォックス", es: "Zorro sin orejas", fr: "Renard sans oreilles", de: "Ohrenloser Fuchs", pt: "Raposa-surdas", ko: "귀없는여우", it: "Volpe senza orecchie", "zh-CN": "无耳狐", "zh-TW": "無耳狐", ar: "ثعلب بلا آذان" },
+  "Big-eared Fox": { ja: "ビッグイヤードフォックス", es: "Zorro de orejas grandes", fr: "Renard à grandes oreilles", de: "Großohrfuchs", pt: "Raposa-de-orelhas-grandes", ko: "큰귀여우", it: "Volpe a grandi orecchie", "zh-CN": "大耳狐", "zh-TW": "大耳狐", ar: "ثعلب آذان كبيرة" },
+  "Island Fox": { ja: "アイランドフォックス", es: "Zorro insular", fr: "Renard insulaire", de: "Inselfuchs", pt: "Raposa-insular", ko: "섬여우", it: "Volpe insulare", "zh-CN": "岛屿狐", "zh-TW": "島嶼狐", ar: "ثعلب جزيرة" },
+  "Koslov's Fox": { ja: "コスロフギツネ", es: "Zorro de Koslov", fr: "Renard de Koslov", de: "Koslov-Fuchs", pt: "Raposa-de-Koslov", ko: "코스로프여우", it: "Volpe di Koslov", "zh-CN": "科斯洛夫狐", "zh-TW": "科斯洛夫狐", ar: "ثعلب كوسلاف" },
+  "Bat-eared Foxes": { ja: "バットイヤードフォックス", es: "Zorros de orejas de murciélago", fr: "Renards à oreilles de chauve-souris", de: "Fenneks", pt: "Raposas-de-orelhas-de-morcego", ko: "박쥐귀여우", it: "Volpi orecchie di pipistrello", "zh-CN": "大耳狐", "zh-TW": "大耳狐", ar: "ثعالب آذان الخفاش" },
+  "Saharan Fox": { ja: "サハラギツネ", es: "Zorro del Sahara", fr: "Renard du Sahara", de: "Sahara-Fuchs", pt: "Raposa-do-Saara", ko: "사하라여우", it: "Volpe del Sahara", "zh-CN": "撒哈拉狐", "zh-TW": "撒哈拉狐", ar: "ثعلب الصحراء" },
+  "Indian Fox": { ja: "インドギツネ", es: "Zorro indio", fr: "Renard indien", de: "Indischer Fuchs", pt: "Raposa-indiana", ko: "인도여우", it: "Volpe indiana", "zh-CN": "印度狐", "zh-TW": "印度狐", ar: "ثعلب هندي" },
+  "Persian Fox": { ja: "ペルシャギツネ", es: "Zorro persa", fr: "Renard de Perse", de: "Persischer Fuchs", pt: "Raposa-persa", ko: "페르시아여우", it: "Volpe persiana", "zh-CN": "波斯狐", "zh-TW": "波斯狐", ar: "ثعلب فارسي" },
+  "Bengal Fox": { ja: "ベンガルギツネ", es: "Zorro bengalí", fr: "Renard du Bengale", de: "Bengalischer Fuchs", pt: "Raposa-bengali", ko: "벵갈여우", it: "Volpe del Bengala", "zh-CN": "孟加拉狐", "zh-TW": "孟加拉狐", ar: "ثعلب بنغالي" },
+  "Ugandan Fox": { ja: "ウガンダギツネ", es: "Zorro ugandés", fr: "Renard d'Ouganda", de: "Ugandischer Fuchs", pt: "Raposa-ugandesa", ko: "우간다여우", it: "Volpe dell'Uganda", "zh-CN": "乌干达狐", "zh-TW": "烏干達狐", ar: "ثعلب أوغندي" },
+  "Tundra Fox": { ja: "ツンドラギツネ", es: "Zorro de la tundra", fr: "Renard de la toundra", de: "Tundrafuchs", pt: "Raposa-da-tundra", ko: "툰드라여우", it: "Volpe della tundra", "zh-CN": "冻原狐", "zh-TW": "凍原狐", ar: "ثعلب التندرا" },
+  "Mountain Fox": { ja: "ヤマギツネ", es: "Zorro montés", fr: "Renard des montagnes", de: "Bergfuchs", pt: "Raposa-montesa", ko: "산여우", it: "Volpe di montagna", "zh-CN": "山狐", "zh-TW": "山狐", ar: "ثعلب الجبل" },
+  "Cozumel Fox": { ja: "コスメルギツネ", es: "Zorro de Cozumel", fr: "Renard de Cozumel", de: "Cozumel-Fuchs", pt: "Raposa-de-Cozumel", ko: "코수멜여우", it: "Volpe di Cozumel", "zh-CN": "科苏梅尔狐", "zh-TW": "科蘇梅爾狐", ar: "ثعلب كوزوميل" },
+  "Gracile Fox": { ja: "グラシルフォックス", es: "Zorro esbelto", fr: "Renard gracile", de: "Schlankfuchs", pt: "Raposa-grácil", ko: "가냘프여우", it: "Volpe gracile", "zh-CN": "纤狐", "zh-TW": "纖狐", ar: "ثعلب نحيل" },
+  "Simien Fox": { ja: "シミエンギツネ", es: "Zorro de Simien", fr: "Renard de Simien", de: "Simien-Fuchs", pt: "Raposa-de-Simien", ko: "시미엔여우", it: "Volpe di Simien", "zh-CN": "西门狐", "zh-TW": "西門狐", ar: "ثعلب سيمين" },
+  // === RHINOCEROSES ===
+  "Javan Rhinoceros": { ja: "ジャワサイ", es: "Rinoceronte de Java", fr: "Rhinocéros de Java", de: "Java-Nashorn", pt: "Rinoceronte-de-java", ko: "자바코뿔소", it: "Rinoceronte di Java", "zh-CN": "爪哇犀牛", "zh-TW": "爪哇犀牛", ar: "وحيد القرن الجاوي" },
+  "Sumatran Rhinoceros": { ja: "スマトラサイ", es: "Rinoceronte de Sumatra", fr: "Rhinocéros de Sumatra", de: "Sumatra-Nashorn", pt: "Rinoceronte-de-sumatra", ko: "수마트라코뿔소", it: "Rinoceronte di Sumatra", "zh-CN": "苏门答腊犀牛", "zh-TW": "蘇門答臘犀牛", ar: "وحيد القرن السومطري" },
+  "Indian Rhinoceros": { ja: "インドサイ", es: "Rinoceronte indio", fr: "Rhinocéros de l'Inde", de: "Indisches Nashorn", pt: "Rinoceronte-indiano", ko: "인도코뿔소", it: "Rinoceronte indiano", "zh-CN": "印度犀牛", "zh-TW": "印度犀牛", ar: "وحيد القرن الهندي" },
+  // === DEER ===
+  "Himalayan Tahr": { ja: "ヒマラヤタール", es: "Tahr del Himalaya", fr: "Tahr de l'Himalaya", de: "Himalaya-Tahr", pt: "Tahr-do-Himalaia", ko: "히말라야타르", it: "Tahr dell'Himalaya", "zh-CN": "喜马拉雅塔尔羊", "zh-TW": "喜馬拉雅塔爾羊", ar: "تار الهيمالايا" },
+  "Markhor": { ja: "マルコール", es: "Markhor", fr: "Markhor", de: "Markhor", pt: "Markhor", ko: "마르코르", it: "Markhor", "zh-CN": "捻角山羊", "zh-TW": "捻角山羊", ar: "مارخور" },
+  "Blue Sheep": { ja: "バーラル", es: "Cebú azul", fr: "Bharal", de: "Bharal", pt: "Bharal", ko: "바ראל", it: "Bharal", "zh-CN": "岩羊", "zh-TW": "岩羊", ar: "خروف أزرق" },
+  "Barbary Sheep": { ja: "アルジ", es: "Carnero de Berbería", fr: "Mouflon àmane", de: "Barbary-Schaf", pt: "Carneiro-da-berbéria", ko: "바르바리양", it: "Muflone barbary", "zh-CN": "摩弗伦羊", "zh-TW": "摩弗倫羊", ar: "خروف بربري" },
+  "Musk Deer": { ja: "ジャコウジカ", es: "Ciervo almizclero", fr: "Cerf musqué", de: "Moschustier", pt: "Cervo-almiscarado", ko: "사향노루", it: "Cervo moscado", "zh-CN": "麝", "zh-TW": "麝", ar: "ظبي المسك" },
+  "Tufted Deer": { ja: "コノハジカ", es: "Ciervo de copete", fr: "Cerf sincipital", de: "Tufted Deer", pt: "Cervo-de-crista", ko: "崾umen deer", it: "Cervo ciuffato", "zh-CN": "毛冠鹿", "zh-TW": "毛冠鹿", ar: "ظبي ذيل" },
+  "Muntjac": { ja: "ムジカ", es: "Muntíaco", fr: "Muntjac", de: "Muntjak", pt: "Muntjac", ko: "노루", it: "Muntjak", "zh-CN": "麂", "zh-TW": "麂", ar: "مونتياك" },
+  "Reeves's Muntjac": { ja: "リーブスムジカ", es: "Muntíaco de Reeves", fr: "Muntjac de Reeves", de: "Reeves-Muntjak", pt: "Muntjac-de-Reeves", ko: "리브스노루", it: "Muntjak di Reeves", "zh-CN": "赤麂", "zh-TW": "赤麂", ar: "مونتياك ريفز" },
+  "Chinese Water Deer": { ja: "コノハジカ", es: "Ciervo de agua chino", fr: "Hydropotes de Chine", de: "Chinesischer Wasserhirsch", pt: "Cervo-água-chinês", ko: "중국물돼지", it: "Cervo acquatico cinese", "zh-CN": "獐", "zh-TW": "獐", ar: "ظبي مائي صيني" },
+  "Pere David's Deer": { ja: "ダビドジカ", es: "Ciervo del padre David", fr: "Cerf du Père David", de: "Davidshirsch", pt: "Cervo-do-padre-David", ko: "다비드사슴", it: "Cervo del padre David", "zh-CN": "麋鹿", "zh-TW": "麋鹿", ar: "ظبي دافيد" },
+  "Sika Deer": { ja: "ニホンジカ", es: "Ciervo sika", fr: "Cerf sika", de: "Sika-Hirsch", pt: "Cervo-sika", ko: "사佐 사슴", it: "Cervo sika", "zh-CN": "梅花鹿", "zh-TW": "梅花鹿", ar: "ظبي سيكا" },
+  "Fallow Deer": { ja: "ダマジカ", es: "Gamo", fr: "Daim", de: "Damhirsch", pt: "Gamito", ko: "풀컷사슴", it: "Daino", "zh-CN": "黇鹿", "zh-TW": "黇鹿", ar: "ظبيالقرون" },
+  "Red Deer": { ja: "ニホンジカ", es: "Ciervo rojo", fr: "Cerf rouge", de: "Rothirsch", pt: "Cervo-vermelho", ko: "사향노루", it: "Cervo rosso", "zh-CN": "马鹿", "zh-TW": "馬鹿", ar: "ظبي أحمر" },
+  "Reindeer": { ja: "トナカイ", es: "Reno", fr: "Renne", de: "Rentier", pt: "Rena", ko: "순록", it: "Renna", "zh-CN": "驯鹿", "zh-TW": "馴鹿", ar: "رنة" },
+  "Elk": { ja: "エルク", es: "Alce", fr: "Wapiti", de: "Wapiti", pt: "Alce", ko: "엘크", it: "Wapiti", "zh-CN": "加拿大马鹿", "zh-TW": "加拿大馬鹿", ar: "الك" },
+  "Sambar Deer": { ja: "sambar", es: "Sambar", fr: "Sambar", de: "Sambar", pt: "Sambar", ko: "삼바르 사슴", it: "Sambar", "zh-CN": "水鹿", "zh-TW": "水鹿", ar: "سامبار" },
+  "Rusa Deer": { ja: "ルーサジカ", es: "Ciervo rusa", fr: "Cerf rusa", de: "Rusa-Hirsch", pt: "Cervo-rusa", ko: "루사사슴", it: "Cervo rusa", "zh-CN": "泽鹿", "zh-TW": "澤鹿", ar: "ظبي روسا" },
+  // === BIRDS ===
+  "Bald Eagle": { ja: "シマフクロウ", es: "Águila calva", fr: "Pygargue à tête blanche", de: "Weißkopfseeadler", pt: "Águia-de-cabeça-branca", ko: "머리독수리", it: "Aquila calva", "zh-CN": "白头海雕", "zh-TW": "白頭海鵰", ar: "نسر أبيض الرأس" },
+  "Golden Eagle": { ja: "キンメフクロウ", es: "Águila real", fr: "Aigle royal", de: "Steinadler", pt: "Águia-real", ko: "황금독수리", it: "Aquila reale", "zh-CN": "金雕", "zh-TW": "金雕", ar: "نسر ذهبي" },
+  "Peregrine Falcon": { ja: "ハヤブサ", es: "Halcón peregrino", fr: "Faucon pèlerin", de: "Wanderfalke", pt: "Falcão-peregrino", ko: "매", it: "Falco pellegrino", "zh-CN": "游隼", "zh-TW": "遊隼", ar: "صقر شاهين" },
+  "Red-tailed Hawk": { ja: "アカオトシキウ", es: "Busardo cola roja", fr: "Buse à queue rousse", de: "Rotschwanzbussard", pt: "Gavião-de-cauda-vermelha", ko: "붉은꼬리솔개", it: "Poiana codarossa", "zh-CN": "红尾鵟", "zh-TW": "紅尾鵟", ar: "صقر بني" },
+  "Barn Owl": { ja: "フクロウ", es: "Búho común", fr: "Chouette effraie", de: "Schleiereule", pt: "Coruja-do-ceiro", ko: "올빼미", it: "Allocco", "zh-CN": "仓鸮", "zh-TW": "倉鴞", ar: "بومة المخازن" },
+  "Great Horned Owl": { ja: "メジロ", es: "Búho cornudo", fr: "Grand-duc d'Amérique", de: "Waldohreule", pt: "Coruja-de-disco", ko: "큰각올빼미", it: "Gufo reale", "zh-CN": "大角鸮", "zh-TW": "大角鴞", ar: "بومة قرناء كبيرة" },
+  "Snowy Owl": { ja: "ジサゴウ", es: "Búho nival", fr: "Harfang des neiges", de: "Schneeeule", pt: "Coruja-nival", ko: "흰올빼미", it: "Gufo delle nevi", "zh-CN": "雪鸮", "zh-TW": "雪鴞", ar: "بومة ثلجية" },
+  "Northern Saw-whet Owl": { ja: "コキンメフクロウ", es: "Búho chico", fr: "Petit-duc d'Amérique", de: "Nördlicher Raufußkauz", pt: "Coruja-pequena", ko: "북방톱올빼미", it: "Civetta nana", "zh-CN": "鸣角鸮", "zh-TW": "鳴角鴞", ar: "بومة صيد" },
+  "Barred Owl": { ja: "フタスジオオフクロウ", es: "Búho listado", fr: "Chouette rayée", de: "Sumpfohreule", pt: "Coruja-barrada", ko: "줄올빼미", it: "Allocco striato", "zh-CN": "横斑林鸮", "zh-TW": "橫斑林鴞", ar: "بومة مشonia" },
+  "Long-eared Owl": { ja: "ミミダカフクロウ", es: "Búho orejudo", fr: "Hibou grand-duc", de: "Waldohreule", pt: "Coruja-de-orelhas", ko: "긴귀올빼미", it: "Allocco medium", "zh-CN": "长耳鸮", "zh-TW": "長耳鴞", ar: "بومة طويلة الأذن" },
+  "Great Gray Owl": { ja: "オオヅヤフクロウ", es: "Búho gigante", fr: "Chouette rayée", de: "Große Grauleuke", pt: "Coruja-cinzenta-grande", ko: "큰회색올빼미", it: "Gufo grigio maggiore", "zh-CN": "乌拉尔鸮", "zh-TW": "烏拉爾鴞", ar: "بومة رمادية كبيرة" },
+  "Burrowing Owl": { ja: "アナドリフクロウ", es: "Búho llorón", fr: "Petit-duc des plaines", de: "Kerrweule", pt: "Coruja-buraqueira", ko: "파고지올빼미", it: "Civetta delle tane", "zh-CN": "穴小鸮", "zh-TW": "穴小鴞", ar: "بومة الحفر" },
+  "Elf Owl": { ja: "エルフフクロウ", es: "Búho elfo", fr: "Petit-duc elfe", de: "Elfeneule", pt: "Coruja-elfo", ko: "요정올빼미", it: "Gufo elfo", "zh-CN": "姬鸮", "zh-TW": "姬鴞", ar: "بومة الجني" },
+  // === BIRDS - WATERFOWL ===
+  "Mallard": { ja: "マガモ", es: "Ánade real", fr: "Canard colvert", de: "Stockente", pt: "Pato-real", ko: "청둥오리", it: "Faraona", "zh-CN": "绿头鸭", "zh-TW": "綠頭鴨", ar: "بط بري" },
+  "Wood Duck": { ja: "オシドリ", es: "Pato silvestre", fr: "Canard branchu", de: "Waldente", pt: "Pato-mandarim", ko: "Wood Duck", it: "Anatra mandarina", "zh-CN": "鸳鸯", "zh-TW": "鴛鴦", ar: "بط خشبي" },
+  "Northern Pintail": { ja: "オナガガモ", es: "Ánade rabudo", fr: "Canard pilet", de: "Spießente", pt: "Pato-rabudo", ko: "긴꼬리오리", it: "Anatra codone", "zh-CN": "针尾鸭", "zh-TW": "針尾鴨", ar: "بط ذو منقار طويل" },
+  "Green-winged Teal": { ja: "ホシガモ", es: "Cerceta aliazul", fr: "Sarcelle d'hiver", de: "Krickente", pt: "Pato-fraco", ko: "초록날개버", it: "Alzavetta", "zh-CN": "绿翅鸭", "zh-TW": "綠翅鴨", ar: "ساقطة جناح أخضر" },
+  "Canvasback": { ja: "マガモ", es: "Pato gamuza", fr: "Fuligule à tête blanche", de: "Raubente", pt: "Pato-de-costas-brancas", ko: "캔버스백", it: "Fuliggine testabianca", "zh-CN": "赤嘴潜鸭", "zh-TW": "赤嘴潛鴨", ar: "بط قنادق" },
+  "Canada Goose": { ja: "マガン", es: "Ganso del Canadá", fr: "Oie du Canada", de: "Kanadagans", pt: "Ganso-do-Canadá", ko: "캐나다기러기", it: "Oca del Canada", "zh-CN": "加拿大雁", "zh-TW": "加拿大雁", ar: "أوز كندا" },
+  "Snow Goose": { ja: "ヒシクイ", es: "Ganso de las nieves", fr: "Oie des neiges", de: "Schneegans", pt: "Ganso-das-neves", ko: "흰기러기", it: "Oca delle nevi", "zh-CN": "雪雁", "zh-TW": "雪雁", ar: "أوز الثلج" },
+  "Greylag Goose": { ja: "ハクガモ", es: "Ánsar gris", fr: "Oie cendrée", de: "Graugans", pt: "Ganso-cinzento", ko: "회색기러기", it: "Oca granaiola", "zh-CN": "灰雁", "zh-TW": "灰雁", ar: "أوز رمادي" },
+  "Mute Swan": { ja: "コブントキ", es: "Cisne mudo", fr: "Cygne tuberculé", de: "Höckerschwan", pt: "Cisne-mudo", ko: "백조", it: "Cigno reale", "zh-CN": "疣鼻天鹅", "zh-TW": "疣鼻天鵝", ar: "بجعة صامتة" },
+  "Trumpeter Swan": { ja: "トランペッタントキ", es: "Cisne trompetista", fr: "Cygne siffleur", de: "Trompeterschwan", pt: "Cisne-trompeteiro", ko: "나팔백조", it: "Cigno trombettiere", "zh-CN": "喇叭天鹅", "zh-TW": "喇叭天鵝", ar: "بجعة بوقية" },
+  "Tundra Swan": { ja: "ツンドラントキ", es: "Cisne de tundra", fr: "Cygne siffleur", de: "Singschwan", pt: "Cisne-da-tundra", ko: "툰드라백조", it: "Cigno della tundra", "zh-CN": "小天鹅", "zh-TW": "小天鵝", ar: "بجعة التندرا" },
+  // === BIRDS - PASSERINES ===
+  "American Robin": { ja: "アメリカコマドリ", es: "Petirrojo americano", fr: "Merle d'Amérique", de: "Amerikanische Amsel", pt: "Tordo-americano", ko: "미국 두루미", it: "Tordo americano", "zh-CN": "旅鸫", "zh-TW": "旅鶇", ar: "سمان أمريكي" },
+  "Northern Cardinal": { ja: "ショウビウ", es: "Cardenal norteño", fr: "Cardinal rouge", de: "Nördlicher Kardinal", pt: "Cardeal-do-norte", ko: "북방붉은 Coffin", it: "Cardinale vermiglio", "zh-CN": "主红雀", "zh-TW": "主紅雀", ar: "كردينال شمالي" },
+  "Blue Jay": { ja: "ミスジガラス", es: "Arrendajo azul", fr: "Geai bleu", de: "Blauhäher", pt: "Gaio-azul", ko: "파란 Jay", it: "Ghiandaia azzurra", "zh-CN": "冠蓝鸦", "zh-TW": "冠藍鴉", ar: "حديق أزرق" },
+  "American Crow": { ja: "ハチドリ", es: "Cuervo americano", fr: "Corneille noire d'Amérique", de: "Amerikanische Krähe", pt: "Corvo-americano", ko: "미국까마귀", it: "Corvo americano", "zh-CN": "美洲乌鸦", "zh-TW": "美洲烏鴉", ar: "غراب أمريكي" },
+  "Common Raven": { ja: "ワタリガラス", es: "Cuervo común", fr: "Grand Corbeau", de: "Kolkrabe", pt: "Corvo-comum", ko: "큰까마귀", it: "Corvo imperiale", "zh-CN": "渡鸦", "zh-TW": "渡鴉", ar: "غراب شائع" },
+  "House Sparrow": { ja: "スズメ", es: "Gorrión común", fr: "Moineau domestique", de: "Hausspatz", pt: "Pardal", ko: "참새", it: "Passero domestico", "zh-CN": "家麻雀", "zh-TW": "家麻雀", ar: "عصفور منزلي" },
+  "European Robin": { ja: "コマドリ", es: "Petirrojo europeo", fr: "Rouge-gorge familier", de: "Rotkehlchen", pt: "Pintarroxeiro-europeu", ko: "유럽 두루미", it: "Pettirosso", "zh-CN": "欧亚鸲", "zh-TW": "歐亞鴝", ar: "سمان أوروبي" },
+  "Eastern Bluebird": { ja: "アジサシ", es: "Azulejo oriental", fr: "Merle bleu", de: "Östlicher Blaukehlvogel", pt: "Azulão-oriental", ko: "동방파랑새", it: "Azzurro orientale", "zh-CN": "东部蓝鸲", "zh-TW": "東部藍鴝", ar: "طائر أزرق شرقي" },
+  "Western Bluebird": { ja: "ニシアジサシ", es: "Azulejo occidental", fr: "Merle bleu occidental", de: "Westlicher Blaukehlvogel", pt: "Azulão-ocidental", ko: "서방파랑새", it: "Azzurro occidentale", "zh-CN": "西部蓝鸲", "zh-TW": "西部藍鴝", ar: "طائر أزرق غربي" },
+  "Baltimore Oriole": { ja: "アメリカムクドシ", es: "Oriente de Baltimore", fr: "Oriole de Baltimore", de: "Baltimore-Trupial", pt: "Corrupião-de-baltimore", ko: "볼티모어oriole", it: "Oriolo di Baltimore", "zh-CN": "巴尔的摩黄鹂", "zh-TW": "巴爾的摩黃鸝", ar: "وريل Baltimore" },
+  "Scarlet Tanager": { ja: "アカイロマネキ", es: "Tangara escarlata", fr: "Tangara écarlate", de: "Purpurtangare", pt: "Tie-erupi", ko: "붉은 tangara", it: "Tangara scarlatta", "zh-CN": "猩红比蓝雀", "zh-TW": "猩紅比藍雀", ar: "طنان قرمizi" },
+  "Yellow Warbler": { ja: "キelogi", es: "Reinita amarilla", fr: "Paruline jaune", de: "Gelber Vogel", pt: "Maria-catarina", ko: "노란 Username", it: "Parulina gialla", "zh-CN": "黄林莺", "zh-TW": "黃林鶯", ar: "حرباء صفراء" },
+  "White-throated Sparrow": { ja: "シロビトスズメ", es: "Gorrión de garganta blanca", fr: "Bruant à gorge blanche", de: "Weißkehl-Spatz", pt: "Pardal-de-garganta-branca", ko: "흰목참새", it: "Passero golarossa", "zh-CN": "白喉麻雀", "zh-TW": "白喉麻雀", ar: "عصفور أبيض الحلق" },
+  "Dark-eyed Junco": { ja: "ゼリダーガラス", es: "Junco ojinegro", fr: "Junco ardoisé", de: "Dunkelauge", pt: "Junco-de-olho-escuro", ko: "어두운눈 juncos", it: "Junco occhio scuro", "zh-CN": "暗眼灯草鹀", "zh-TW": "暗眼燈草鵐", ar: "جونكو داكن العينين" },
+  "Ruby-throated Hummingbird": { ja: "ツルバト", es: "Colibrí de garganta rubí", fr: "Colibri à gorge rubis", de: "Rubinkehlkolibri", pt: "Colibri-de-garganta-rubra", ko: "빨간 목 hummingbird", it: "Colibrì a gola rubino", "zh-CN": "红喉蜂鸟", "zh-TW": "紅喉蜂鳥", ar: "طائر الطير المغرد ruby" },
+  "Anna's Hummingbird": { ja: "アナズツ", es: "Colibrí de Anna", fr: "Colibri d'Anna", de: "Anna-Kolibri", pt: "Colibri-de-Anna", ko: "안나蜂鸟", it: "Colibrì di Anna", "zh-CN": "安氏蜂鸟", "zh-TW": "安氏蜂鳥", ar: "طائر الطير المغرد أنس" },
+  "Black-chinned Hummingbird": { ja: "クロアゴツツドリ", es: "Colibrí de barbilla negra", fr: "Colibri à menton noir", de: "Schwarzkehlkolibri", pt: "Colibri-de-barba-negra", ko: "검은 턱 hummingbird", it: "Colibrì a mento nero", "zh-CN": "黑颏蜂鸟", "zh-TW": "黑頦蜂鳥", ar: "طائر الطير المغرد أسود الذقن" },
+  "Belted Kingfisher": { ja: "ヤマセミ", es: "Martín pescador ceñido", fr: "Martin-pêcheur d'Amérique", de: "Eisvogel", pt: "Martim-pescador", ko: "벨트 kingfisher", it: "Martino pescatore", "zh-CN": "带翠鸟", "zh-TW": "帶翠鳥", ar: "سمان رفيع" },
+  "Great Blue Heron": { ja: "オオサギ", es: "Garza real", fr: "Héron bleu", de: "Großer Blaureiher", pt: "Garça-azul-grande", ko: "큰 파란 왜가리", it: "Airone azzurro maggiore", "zh-CN": "大蓝鹭", "zh-TW": "大藍鷺", ar: "أبي أزرق كبير" },
+  "Great Egret": { ja: "ダイサギ", es: "Garza blanca", fr: "Grande aigrette", de: "Silberreiher", pt: "Garça-branca-grande", ko: "큰왜가리", it: "Airone bianco maggiore", "zh-CN": "大白鹭", "zh-TW": "大白鷺", ar: "بلوطة كبيرة" },
+  "Snowy Egret": { ja: "コサギ", es: "Garza nieve", fr: "Aigrette neige", de: "Seidenreiher", pt: "Garça-de-sapo", ko: "눈 왜가리", it: "Airone bianco minore", "zh-CN": "小白鹭", "zh-TW": "小白鷺", ar: "بلوطة ثلجية" },
+  "Green Heron": { ja: "アマサギ", es: "Garza verde", fr: "Héron vert", de: "Grünnreiher", pt: "Garça-verde", ko: "초록 왜가리", it: "Airone verde", "zh-CN": "绿鹭", "zh-TW": "綠鷺", ar: "أبي أخضر" },
+  "Flamingo": { ja: "フラミンゴ", es: "Flamenco", fr: "Flamant rose", de: "Flamingo", pt: "Flamingo", ko: "flamingo", it: "Fenicottero", "zh-CN": "火烈鸟", "zh-TW": "火烈鳥", ar: "فلامنغو" },
+  "American Flamingo": { ja: "アメリカフラミンゴ", es: "Flamenco americano", fr: "Flamant des Caraïbes", de: "Amerikanischer Flamingo", pt: "Flamingo-americano", ko: "미국flamingo", it: "Fenicottero americano", "zh-CN": "美洲火烈鸟", "zh-TW": "美洲火烈鳥", ar: "فلامنغو أمريكي" },
+  "Sandhill Crane": { ja: "マナヅル", es: "Grulla ARE", fr: "Grue du Canada", de: "Kranich", pt: "Grous-anas", ko: "샌드 힐 두루미", it: "Gru canadese", "zh-CN": "沙丘鹤", "zh-TW": "沙丘鶴", ar: "كركي الرمال" },
+  "Whooping Crane": { ja: "オオヅル", es: "Grulla trompetera", fr: "Grue Blanche", de: "Kronenkranich", pt: "Grous-de-pescoço-branco", ko: "호루่น 두루미", it: "Gru americana", "zh-CN": "美洲鹤", "zh-TW": "美洲鶴", ar: "كركي صاخب" },
+  "Purple Gallinule": { ja: "ムラサキトキ", es: "Galineta púrpura", fr: "Talève violacée", de: "Purpurhühnchen", pt: "Galinha-d'água-púrpura", ko: "보라 gallinule", it: "Gallinella viola", "zh-CN": "紫水鸡", "zh-TW": "紫水雞", ar: "ح訇 بنفسجي" },
+  "American Coot": { ja: "ハクチョウ", es: "Focha americana", fr: "Foulque d'Amérique", de: "Amerikanisches Sumpfhuhn", pt: "Foca-americana", ko: "아메리카 coot", it: "Folaga americana", "zh-CN": "美洲骨顶", "zh-TW": "美洲骨頂", ar: "commons American coot" },
+  "Wild Turkey": { ja: "ライチョウ", es: "Pavo silvestre", fr: "Dinde sauvage", de: "Wild Truthahn", pt: "Peru-selvagem", ko: "들칠면조", it: "Tacchino selvatico", "zh-CN": "野火鸡", "zh-TW": "野火雞", ar: "ديك رومي بري" },
+  "Ring-necked Pheasant": { ja: "キジ", es: "Faisán collareja", fr: "Faisan ring-necked", de: "Ringfasan", pt: "Faisão-de-pescoço-anelado", ko: "고무 neck pheasant", it: "Fagiano collare", "zh-CN": "环颈雉", "zh-TW": "環頸雉", ar: "فيزان عنق حلقي" },
+  "Bobwhite Quail": { ja: "ウズラ", es: "Codorniz Bobwhite", fr: "Caille colin", de: "Wachtel", pt: "Codorniz-bobwhite", ko: "Bobwhite日本人", it: "Quaglia codibianca", "zh-CN": "北美鹑", "zh-TW": "北美鶉", ar: "سمان Bobwhite" },
+  "California Quail": { ja: "カリフォルニアウズラ", es: "Codorniz de California", fr: "Caille de Californie", de: "Kalifornische Wachtel", pt: "Codorniz-da-Califórnia", ko: "加利福尼亚日本人", it: "Quaglia della California", "zh-CN": "加州鹑", "zh-TW": "加州鶉", ar: "سمان كاليفورنيا" },
+  "Common Ostrich": { ja: "ダチョウ", es: "Estrucomún", fr: "Autruche d'Afrique", de: "Gemeiner Strauß", pt: "Avestruz-comum", ko: "타조", it: "Struzzo", "zh-CN": "鸵鸟", "zh-TW": "鴕鳥", ar: "نعامة" },
+  "Emu": { ja: "エミュー", es: "Emu", fr: "Émeu", de: "Emu", pt: "Emu", ko: "이류", it: "Emù", "zh-CN": "鸸鹋", "zh-TW": "鴯鶓", ar: "إيما" },
+  // === PENGUINS ===
+  "King Penguin": { ja: "キングペンギン", es: "Pingüino rey", fr: "Manchot royal", de: "Königspinguin", pt: "Pingüim-rei", ko: "왕펭귄", it: "Pinguino re", "zh-CN": "王企鹅", "zh-TW": "王企鵝", ar: "ببغاء ملك" },
+  "Emperor Penguin": { ja: "エンペラーペンギン", es: "Pingüino emperador", fr: "Manchot empereur", de: "Kaiserpinguin", pt: "Pingüim-imperador", ko: "황제펭귄", it: "Pinguino imperatore", "zh-CN": "帝企鹅", "zh-TW": "帝企鵝", ar: "ببغاء إمبراطور" },
+  "Rockhopper Penguin": { ja: "コンビ", es: "Pingüino saltarrocas", fr: "Manchot sauteur", de: "Felsenpinguin", pt: "Pingüim-saltador", ko: "바위펭귄", it: "Pinguino saltatore", "zh-CN": "跳岩企鹅", "zh-TW": "跳岩企鵝", ar: "ببغاء صخر" },
+  "Little Blue Penguin": { ja: "コペンギン", es: "Pingüino azul", fr: "Manchot pygmée", de: "Zwergpinguin", pt: "Pingüim-anão", ko: "작은 파란 펭귄", it: "Pinguino minore", "zh-CN": "小蓝企鹅", "zh-TW": "小藍企鵝", ar: "ببغاء أزرق صغير" },
+  "Gentoo Penguin": { ja: "ジンメイイロペンギン", es: "Pingüino gentoo", fr: "Manchot papou", de: "Eselspinguin", pt: "Pingüim-gentoo", ko: "젠투펭귄", it: "Pinguino papua", "zh-CN": "巴布亚企鹅", "zh-TW": "巴布亞企鵝", ar: "ببغاء جنتو" },
+  "African Penguin": { ja: "アフリカペンギン", es: "Pingüino africano", fr: "Manchot d'Afrique", de: "Brillenpinguin", pt: "Pingüim-africano", ko: "아프리카펭귄", it: "Pinguino africano", "zh-CN": "非洲企鹅", "zh-TW": "非洲企鵝", ar: "ببغاء أفريقي" },
+  // === MORE BIRDS ===
+  "Brown Kiwi": { ja: "キーウィ", es: "Kiwi marrón", fr: "Kiwi brun", de: "Brauer Kiwi", pt: "Kiwi-marrom", ko: "갈색키위", it: "Kiwi bruno", "zh-CN": "褐几维鸟", "zh-TW": "褐幾維鳥", ar: "كياوي بني" },
+  "Superb Lyrebird": { ja: "コウライウ", es: "Ave lira", fr: "Mégalure lyre", de: "Gefleckter Leierstar", pt: "Ave-lira", ko: "승iß lyrebird", it: "Uccello lira", "zh-CN": "华丽琴鸟", "zh-TW": "華麗琴鳥", ar: "طائر الليري" },
+  "Southern Cassowary": { ja: "ヘビックルシギ", es: "Casuario del sur", fr: "Casuarine casquée", de: "Helmkasuar", pt: "Casuario-do-sul", ko: "남부큰새", it: "Casuario del sud", "zh-CN": "南方鹤鸵", "zh-TW": "南方鶴鴕", ar: "كاسواري جنوبي" }
+};
+
+// Apply translations to all animals
+const locales = ['ja', 'es', 'fr', 'de', 'pt', 'ko', 'it', 'zh-CN', 'zh-TW', 'ar'];
+
+let updatedCounts = {};
+locales.forEach(locale => { updatedCounts[locale] = 0; });
+
+animals.forEach(animal => {
+  const animalId = animal.id;
+  const englishName = animal.name;
+  
+  if (animalTranslations[englishName]) {
+    locales.forEach(locale => {
+      if (!translations[locale]) {
+        translations[locale] = {};
+      }
+      if (!translations[locale][animalId]) {
+        translations[locale][animalId] = {
+          name: "",
+          description: "",
+          funFact: ""
+        };
+      }
+      
+      const translatedName = animalTranslations[englishName][locale];
+      if (translatedName) {
+        translations[locale][animalId].name = translatedName;
+        updatedCounts[locale]++;
+      }
+    });
+  }
+});
+
+// Write updated translations
+fs.writeFileSync('./src/data/animal-translations.json', JSON.stringify(translations, null, 2));
+
+console.log("Translation update completed!");
+console.log("Updated counts per locale:");
+locales.forEach(locale => {
+  console.log(`${locale}: ${updatedCounts[locale]} animals`);
+});

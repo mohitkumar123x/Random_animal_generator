@@ -1,0 +1,1115 @@
+african-elephant|African Elephant
+asian-elephant|Asian Elephant
+white-rhinoceros|White Rhinoceros
+black-rhinoceros|Black Rhinoceros
+hippopotamus|Hippopotamus
+giraffe|Giraffe
+okapi|Okapi
+cape-buffalo|Cape Buffalo
+american-bison|American Bison
+water-buffalo|Water Buffalo
+yak|Yak
+domestic-cattle|Domestic Cattle
+gaur|Gaur
+saiga-antelope|Saiga Antelope
+addax|Addax
+oryx|Oryx
+tiger|Tiger
+lion|Lion
+leopard|Leopard
+snow-leopard|Snow Leopard
+jaguar|Jaguar
+cheetah|Cheetah
+cougar|Cougar
+clouded-leopard|Clouded Leopard
+serval|Serval
+caracal|Caracal
+pallas-s-cat|Pallas's Cat
+sand-cat|Sand Cat
+fishing-cat|Fishing Cat
+brown-bear|Brown Bear
+grizzly-bear|Grizzly Bear
+polar-bear|Polar Bear
+american-black-bear|American Black Bear
+asian-black-bear|Asian Black Bear
+spectacled-bear|Spectacled Bear
+sun-bear|Sun Bear
+sloth-bear|Sloth Bear
+giant-panda|Giant Panda
+andean-bear|Andean Bear
+gray-wolf|Gray Wolf
+arctic-wolf|Arctic Wolf
+red-fox|Red Fox
+fennec-fox|Fennec Fox
+arctic-fox|Arctic Fox
+african-wild-dog|African Wild Dog
+coyote|Coyote
+jackal|Jackal
+dingo|Dingo
+maned-wolf|Maned Wolf
+western-gorilla|Western Gorilla
+eastern-gorilla|Eastern Gorilla
+chimpanzee|Chimpanzee
+bonobo|Bonobo
+orangutan|Orangutan
+siamang|Siamang
+gibbon|Gibbon
+mandrill|Mandrill
+proboscis-monkey|Proboscis Monkey
+spider-monkey|Spider Monkey
+capuchin-monkey|Capuchin Monkey
+lemur|Lemur
+indri|Indri
+tarsier|Tarsier
+aye-aye|Aye-Aye
+blue-whale|Blue Whale
+humpback-whale|Humpback Whale
+sperm-whale|Sperm Whale
+killer-whale|Killer Whale
+bottlenose-dolphin|Bottlenose Dolphin
+narwhal|Narwhal
+beluga-whale|Beluga Whale
+manatee|Manatee
+dugong|Dugong
+walrus|Walrus
+elephant-seal|Elephant Seal
+leopard-seal|Leopard Seal
+harp-seal|Harp Seal
+sea-otter|Sea Otter
+hawaiian-monk-seal|Hawaiian Monk Seal
+steller-sea-lion|Steller Sea Lion
+capybara|Capybara
+beaver|Beaver
+porcupine|Porcupine
+crested-porcupine|Crested Porcupine
+naked-mole-rat|Naked Mole Rat
+prairie-dog|Prairie Dog
+squirrel|Squirrel
+chinchilla|Chinchilla
+guinea-pig|Guinea Pig
+hamster|Hamster
+mouse|Mouse
+rat|Rat
+indian-flying-fox|Indian Flying Fox
+little-brown-bat|Little Brown Bat
+mexican-free-tailed-bat|Mexican Free-tailed Bat
+fruit-bat|Fruit Bat
+horseshoe-bat|Horseshoe Bat
+vampire-bat|Vampire Bat
+megabat|Megabat
+red-kangaroo|Red Kangaroo
+grey-kangaroo|Grey Kangaroo
+wallaby|Wallaby
+tree-kangaroo|Tree Kangaroo
+quokka|Quokka
+wombat|Wombat
+koala|Koala
+tasmanian-devil|Tasmanian Devil
+quoll|Quoll
+numbat|Numbat
+bandicoot|Bandicoot
+sugar-glider|Sugar Glider
+possum|Possum
+otter|Otter
+wolverine|Wolverine
+badger|Badger
+honey-badger|Honey Badger
+fisher|Fisher
+pine-marten|Pine Marten
+stoat|Stoat
+weasel|Weasel
+european-polecat|European Polecat
+mink|Mink
+raccoon|Raccoon
+coati|Coati
+kinkajou|Kinkajou
+red-panda|Red Panda
+hedgehog|Hedgehog
+tenrec|Tenrec
+shrew|Shrew
+star-nosed-mole|Star-nosed Mole
+golden-mole|Golden Mole
+solenodon|Solenodon
+elephant-shrew|Elephant Shrew
+chinese-pangolin|Chinese Pangolin
+sunda-pangolin|Sunda Pangolin
+indian-pangolin|Indian Pangolin
+white-bellied-pangolin|White-bellied Pangolin
+giant-pangolin|Giant Pangolin
+giant-armadillo|Giant Armadillo
+nine-banded-armadillo|Nine-banded Armadillo
+pink-fairy-armadillo|Pink Fairy Armadillo
+southern-three-banded-armadillo|Southern Three-banded Armadillo
+sloth|Sloth
+giant-anteater|Giant Anteater
+two-toed-sloth|Two-toed Sloth
+southern-tamandua|Southern Tamandua
+aardvark|Aardvark
+bat-eared-fox|Bat-eared Fox
+fossa|Fossa
+aardwolf|Aardwolf
+spotted-hyena|Spotted Hyena
+striped-hyena|Striped Hyena
+meerkat|Meerkat
+mongoose|Mongoose
+martens|Martens
+sable|Sable
+hog-badger|Hog Badger
+raccoon-dog|Raccoon Dog
+crabeater-seal|Crabeater Seal
+weddell-seal|Weddell Seal
+ross-seal|Ross Seal
+arctic-ground-squirrel|Arctic Ground Squirrel
+nutria|Nutria
+african-crested-porcupine|African Crested Porcupine
+springhare|Springhare
+cane-rat|Cane Rat
+paca|Paca
+agouti|Agouti
+mara|Mara
+rock-hyrax|Rock Hyrax
+cape-hyrax|Cape Hyrax
+hyrax|Hyrax
+golden-moles|Golden Moles
+elephant-shrews|Elephant Shrews
+fennec-foxes|Fennec Foxes
+blanford-s-fox|Blanford's Fox
+r-ppell-s-fox|Rüppell's Fox
+corsac-fox|Corsac Fox
+ussuri-brown-bear|Ussuri Brown Bear
+kodiak-bear|Kodiak Bear
+gobi-bear|Gobi Bear
+syrian-brown-bear|Syrian Brown Bear
+atlantic-walrus|Atlantic Walrus
+pacific-walrus|Pacific Walrus
+northern-fur-seal|Northern Fur Seal
+guadalupe-fur-seal|Guadalupe Fur Seal
+new-zealand-sea-lion|New Zealand Sea Lion
+galapagos-sea-lion|Galapagos Sea Lion
+south-american-sea-lion|South American Sea Lion
+australian-sea-lion|Australian Sea Lion
+antarctic-fur-seal|Antarctic Fur Seal
+subantarctic-fur-seal|Subantarctic Fur Seal
+pangolin|Pangolin
+black-footed-ferret|Black-footed Ferret
+steppe-polecat|Steppe Polecat
+yellow-throated-marten|Yellow-throated Marten
+marbled-polecat|Marbled Polecat
+least-weasel|Least Weasel
+long-tailed-weasel|Long-tailed Weasel
+greater-sheathbill|Greater Sheathbill
+yellow-eyed-panda|Yellow-eyed Panda
+tibetan-fox|Tibetan Fox
+pale-fox|Pale Fox
+crab-eating-fox|Crab-eating Fox
+short-eared-dog|Short-eared Dog
+bush-dog|Bush Dog
+sechuran-fox|Sechuran Fox
+darwin-s-fox|Darwin's Fox
+hoary-fox|Hoary Fox
+silver-fox|Silver Fox
+siamese-fox|Siamese Fox
+kit-fox|Kit Fox
+swift-fox|Swift Fox
+serengeti-fox|Serengeti Fox
+gray-fox|Gray Fox
+earless-fox|Earless Fox
+big-eared-fox|Big-eared Fox
+island-fox|Island Fox
+koslov-s-fox|Koslov's Fox
+bat-eared-foxes|Bat-eared Foxes
+saharan-fox|Saharan Fox
+indian-fox|Indian Fox
+persian-fox|Persian Fox
+bengal-fox|Bengal Fox
+ugandan-fox|Ugandan Fox
+tundra-fox|Tundra Fox
+mountain-fox|Mountain Fox
+cozumel-fox|Cozumel Fox
+gracile-fox|Gracile Fox
+simien-fox|Simien Fox
+javan-rhinoceros|Javan Rhinoceros
+sumatran-rhinoceros|Sumatran Rhinoceros
+indian-rhinoceros|Indian Rhinoceros
+himalayan-tahr|Himalayan Tahr
+markhor|Markhor
+blue-sheep|Blue Sheep
+barbary-sheep|Barbary Sheep
+musk-deer|Musk Deer
+tufted-deer|Tufted Deer
+muntjac|Muntjac
+reeves-s-muntjac|Reeves's Muntjac
+chinese-water-deer|Chinese Water Deer
+pere-david-s-deer|Pere David's Deer
+sika-deer|Sika Deer
+fallow-deer|Fallow Deer
+red-deer|Red Deer
+reindeer|Reindeer
+elk|Elk
+sambar-deer|Sambar Deer
+rusa-deer|Rusa Deer
+bald-eagle|Bald Eagle
+golden-eagle|Golden Eagle
+peregrine-falcon|Peregrine Falcon
+red-tailed-hawk|Red-tailed Hawk
+barn-owl|Barn Owl
+great-horned-owl|Great Horned Owl
+snowy-owl|Snowy Owl
+northern-saw-whet-owl|Northern Saw-whet Owl
+barred-owl|Barred Owl
+long-eared-owl|Long-eared Owl
+great-gray-owl|Great Gray Owl
+burrowing-owl|Burrowing Owl
+elf-owl|Elf Owl
+mallard|Mallard
+wood-duck|Wood Duck
+northern-pintail|Northern Pintail
+green-winged-teal|Green-winged Teal
+canvasback|Canvasback
+canada-goose|Canada Goose
+snow-goose|Snow Goose
+greylag-goose|Greylag Goose
+mute-swan|Mute Swan
+trumpeter-swan|Trumpeter Swan
+tundra-swan|Tundra Swan
+american-robin|American Robin
+northern-cardinal|Northern Cardinal
+blue-jay|Blue Jay
+american-crow|American Crow
+common-raven|Common Raven
+house-sparrow|House Sparrow
+european-robin|European Robin
+eastern-bluebird|Eastern Bluebird
+western-bluebird|Western Bluebird
+baltimore-oriole|Baltimore Oriole
+scarlet-tanager|Scarlet Tanager
+yellow-warbler|Yellow Warbler
+white-throated-sparrow|White-throated Sparrow
+dark-eyed-junco|Dark-eyed Junco
+ruby-throated-hummingbird|Ruby-throated Hummingbird
+annas-hummingbird|Annas Hummingbird
+black-chinned-hummingbird|Black-chinned Hummingbird
+belted-kingfisher|Belted Kingfisher
+great-blue-heron|Great Blue Heron
+great-egret|Great Egret
+snowy-egret|Snowy Egret
+green-heron|Green Heron
+flamingo|Greater Flamingo
+american-flamingo|American Flamingo
+sandhill-crane|Sandhill Crane
+whooping-crane|Whooping Crane
+purple-gallinule|Purple Gallinule
+american-coot|American Coot
+wild-turkey|Wild Turkey
+ring-necked-pheasant|Ring-necked Pheasant
+bobwhite-quail|Northern Bobwhite
+california-quail|California Quail
+ostrich|Common Ostrich
+emu|Emu
+king-penguin|King Penguin
+emperor-penguin|Emperor Penguin
+rockhopper-penguin|Rockhopper Penguin
+little-blue-penguin|Little Blue Penguin
+gentoo-penguin|Gentoo Penguin
+african-penguin|African Penguin
+brown-kiwi|Brown Kiwi
+lyrebird|Superb Lyrebird
+cassowary|Southern Cassowary
+scarlet-macaw|Scarlet Macaw
+blue-and-yellow-macaw|Blue-and-yellow Macaw
+hyacinth-macaw|Hyacinth Macaw
+african-grey-parrot|African Grey Parrot
+budgerigar|Budgerigar
+cockatiel|Cockatiel
+keel-billed-toucan|Keel-billed Toucan
+toco-toucan|Toco Toucan
+great-hornbill|Great Hornbill
+rhinoceros-hornbill|Rhinoceros Hornbill
+laughing-kookaburra|Laughing Kookaburra
+pied-kingfisher|Pied Kingfisher
+atlantic-puffin|Atlantic Puffin
+tufted-puffin|Tufted Puffin
+wandering-albatross|Wandering Albatross
+black-browed-albatross|Black-browed Albatross
+laysan-albatross|Laysan Albatross
+brown-pelican|Brown Pelican
+american-white-pelican|American White Pelican
+frigatebird|Magnificent Frigatebird
+northern-gannet|Northern Gannet
+blue-footed-booby|Blue-footed Booby
+red-footed-booby|Red-footed Booby
+great-cormorant|Great Cormorant
+common-loon|Common Loon
+arctic-tern|Arctic Tern
+caspian-tern|Caspian Tern
+black-skimmer|Black Skimmer
+herring-gull|Herring Gull
+laughing-gull|Laughing Gull
+killdeer|Killdeer
+american-woodcock|American Woodcock
+red-knot|Red Knot
+american-avocet|American Avocet
+black-necked-stilt|Black-necked Stilt
+willow-ptarmigan|Willow Ptarmigan
+spruce-grouse|Spruce Grouse
+ruffed-grouse|Ruffed Grouse
+chukar|Chukar
+common-crane|Common Crane
+demoiselle-crane|Demoiselle Crane
+bearded-vulture|Bearded Vulture
+andean-condor|Andean Condor
+king-vulture|King Vulture
+turkey-vulture|Turkey Vulture
+american-kestrel|American Kestrel
+merlin|Merlin
+prairie-falcon|Prairie Falcon
+gyrfalcon|Gyrfalcon
+osprey|Osprey
+northern-harrier|Northern Harrier
+coopers-hawk|Coopers Hawk
+sharp-shinned-hawk|Sharp-shinned Hawk
+swainsons-hawk|Swainsons Hawk
+rough-legged-hawk|Rough-legged Hawk
+ferruginous-hawk|Ferruginous Hawk
+white-tailed-kite|White-tailed Kite
+mississippi-kite|Mississippi Kite
+red-winged-blackbird|Red-winged Blackbird
+brown-headed-cowbird|Brown-headed Cowbird
+common-grackle|Common Grackle
+great-tailed-grackle|Great-tailed Grackle
+yellow-headed-blackbird|Yellow-headed Blackbird
+eastern-meadowlark|Eastern Meadowlark
+western-meadowlark|Western Meadowlark
+orchard-oriole|Orchard Oriole
+bullocks-oriole|Bullocks Oriole
+barn-swallow|Barn Swallow
+tree-swallow|Tree Swallow
+cliff-swallow|Cliff Swallow
+purple-martin|Purple Martin
+bank-swallow|Bank Swallow
+violet-green-swallow|Violet-green Swallow
+chimney-swift|Chimney Swift
+common-nighthawk|Common Nighthawk
+eastern-whip-poor-will|Eastern Whip-poor-will
+greater-roadrunner|Greater Roadrunner
+yellow-billed-cuckoo|Yellow-billed Cuckoo
+hoopoe|Eurasian Hoopoe
+tawny-frogmouth|Tawny Frogmouth
+common-potoo|Common Potoo
+american-goldfinch|American Goldfinch
+pine-grosbeak|Pine Grosbeak
+evening-grosbeak|Evening Grosbeak
+cassins-finch|Cassins Finch
+red-crossbill|Red Crossbill
+pine-siskin|Pine Siskin
+common-redpoll|Common Redpoll
+hoary-redpoll|Hoary Redpoll
+house-finch|House Finch
+purple-finch|Purple Finch
+eastern-wood-pewee|Eastern Wood-Pewee
+great-crested-flycatcher|Great Crested Flycatcher
+eastern-kingbird|Eastern Kingbird
+eastern-phoebe|Eastern Phoebe
+willow-flycatcher|Willow Flycatcher
+scissor-tailed-flycatcher|Scissor-tailed Flycatcher
+vermilion-flycatcher|Vermilion Flycatcher
+common-merganser|Common Merganser
+hooded-merganser|Hooded Merganser
+bufflehead|Bufflehead
+common-goldeneye|Common Goldeneye
+ring-necked-duck|Ring-necked Duck
+gadwall|Gadwall
+blue-winged-teal|Blue-winged Teal
+crested-caracara|Crested Caracara
+palm-nut-vulture|Palm-nut Vulture
+black-vulture|Black Vulture
+roseate-spoonbill|Roseate Spoonbill
+wood-stork|Wood Stork
+white-ibis|White Ibis
+limpkin|Limpkin
+rusty-blackbird|Rusty Blackbird
+clownfish|Clownfish
+blue-tang|Blue Tang
+mandarinfish|Mandarinfish
+sixbar-wrasse|Sixbar Wrasse
+yellowtail-coris|Yellowtail Coris
+bicolor-angelfish|Bicolor Angelfish
+flame-angelfish|Flame Angelfish
+queen-angelfish|Queen Angelfish
+french-angelfish|French Angelfish
+regal-tang|Regal Tang
+sohal-surgeonfish|Sohal Surgeonfish
+moorish-idol|Moorish Idol
+royal-gramma|Royal Gramma
+longnose-butterflyfish|Longnose Butterflyfish
+copperband-butterflyfish|Copperband Butterflyfish
+foureye-butterflyfish|Foureye Butterflyfish
+bluegill|Bluegill
+largemouth-bass|Largemouth Bass
+smallmouth-bass|Smallmouth Bass
+rainbow-trout|Rainbow Trout
+brook-trout|Brook Trout
+atlantic-salmon|Atlantic Salmon
+chinook-salmon|Chinook Salmon
+coho-salmon|Coho Salmon
+pacific-bluefin-tuna|Pacific Bluefin Tuna
+yellowfin-tuna|Yellowfin Tuna
+atlantic-cod|Atlantic Cod
+atlantic-grouper|Atlantic Grouper
+goliath-grouper|Goliath Grouper
+red-snapper|Red Snapper
+barracuda|Barracuda
+mahi-mahi|Mahi-Mahi
+wahoo|Wahoo
+sailfish|Sailfish
+blue-marlin|Blue Marlin
+nassau-grouper|Nassau Grouper
+striped-bass|Striped Bass
+red-drum|Red Drum
+black-drum|Black Drum
+channel-catfish|Channel Catfish
+blue-catfish|Blue Catfish
+walking-catfish|Walking Catfish
+wels-catfish|Wels Catfish
+eurasian-pike|Eurasian Pike
+muskellunge|Muskellunge
+walleye|Walleye
+common-carp|Common Carp
+grass-carp|Grass Carp
+koi-carp|Koi
+goldfish|Goldfish
+tench|Tench
+three-spined-stickleback|Three-spined Stickleback
+florida-gar|Florida Gar
+alligator-gar|Alligator Gar
+bowfin|Bowfin
+chinese-sturgeon|Chinese Sturgeon
+atlantic-sturgeon|Atlantic Sturgeon
+arctic-char|Arctic Char
+lake-trout|Lake Trout
+cutthroat-trout|Cutthroat Trout
+golden-trout|Golden Trout
+tiger-shark|Tiger Shark
+bull-shark|Bull Shark
+oceanic-whitetip-shark|Oceanic Whitetip Shark
+blacktip-shark|Blacktip Shark
+hammerhead-shark|Hammerhead Shark
+scalloped-hammerhead|Scalloped Hammerhead
+thresher-shark|Thresher Shark
+basking-shark|Basking Shark
+whale-shark|Whale Shark
+nurse-shark|Nurse Shark
+zebra-shark|Zebra Shark
+epaulette-shark|Epaulette Shark
+angel-shark|Angel Shark
+manta-ray|Manta Ray
+southern-stingray|Southern Stingray
+cownose-ray|Cownose Ray
+eagle-ray|Spotted Eagle Ray
+anglerfish|Atlantic Anglerfish
+viperfish|Viperfish
+gulper-eel|Gulper Eel
+great-white-shark|Great White Shark
+seahorse|Seahorse
+pufferfish|Pufferfish
+lungfish|Lungfish
+coelacanth|Coelacanth
+red-bellied-piranha|Red-bellied Piranha
+arapaima|Arapaima
+piranha|Piranha
+arowana|Arowana
+electric-eel|Electric Eel
+knifefish|Black Ghost Knifefish
+betta|Betta
+discus|Discus
+oscarr|Oscar
+angelfish-freshwater|Freshwater Angelfish
+convict-cichlid|Convict Cichlid
+peacock-cichlid|Peacock Cichlid
+lionfish|Lionfish
+stonefish|Stonefish
+leafy-seadragon|Leafy Seadragon
+weedy-seadragon|Weedy Seadragon
+boxfish|Yellow Boxfish
+cowfish|Longhorn Cowfish
+trunkfish|Spotted Trunkfish
+filefish|Scrawled Filefish
+triggerfish|Queen Triggerfish
+leatherjacket|Slender Leatherjacket
+parrotfish|Stoplight Parrotfish
+wrasse|Cleaner Wrasse
+tuskfish|Ornate Tuskfish
+grouper-marbled|Marbled Grouper
+wrasse-humphead|Humphead Wrasse
+coral-grouper|Coral Grouper
+cardinalfish|Banggai Cardinalfish
+damselfish|Garibaldi Damselfish
+sergeant-major|Sergeant Major
+goby|Neon Goby
+blenny|Midas Blenny
+scorpionfish|Tasseled Scorpionfish
+flathead|Bartail Flathead
+grunt|Blue-striped Grunt
+tang|Clown Tang
+squirrelfish|Squirrelfish
+sweep|Sweep
+leatherjacket-freshwater|New Zealand Magpie
+john-dory|John Dory
+boarfish|Longsnout Boarfish
+bigeye|Bigeye
+soldierfish|Blackbar Soldierfish
+green-anole|Green Anole
+komodo-dragon|Komodo Dragon
+king-cobra|King Cobra
+green-sea-turtle|Green Sea Turtle
+saltwater-crocodile|Saltwater Crocodile
+reticulated-python|Reticulated Python
+panther-chameleon|Panther Chameleon
+american-alligator|American Alligator
+leopard-gecko|Leopard Gecko
+eastern-diamondback-rattlesnake|Eastern Diamondback Rattlesnake
+gila-monster|Gila Monster
+leatherback-sea-turtle|Leatherback Sea Turtle
+boomslang|Boomslang
+green-iguana|Green Iguana
+indian-cobra|Indian Cobra
+rhinoceros-iguana|Rhinoceros Iguana
+emerald-tree-boa|Emerald Tree Boa
+gharial|Gharial
+boa-constrictor|Boa Constrictor
+mexican-beaded-lizard|Mexican Beaded Lizard
+desert-tortoise|Desert Tortoise
+black-mamba|Black Mamba
+tokay-gecko|Tokay Gecko
+king-snake|Eastern King Snake
+blue-tongued-skink|Blue-Tongued Skink
+american-crocodile|American Crocodile
+asian-water-monitor|Asian Water Monitor
+eastern-hognose-snake|Eastern Hognose Snake
+sailfin-lizard|Sailfin Lizard
+texas-rat-snake|Texas Rat Snake
+gopher-tortoise|Gopher Tortoise
+bush-viper|Bush Viper
+pancake-tortoise|Pancake Tortoise
+cottonmouth|Cottonmouth
+green-basilisk|Green Basilisk
+cuban-crocodile|Cuban Crocodile
+bearded-dragon|Central Bearded Dragon
+yellow-bellied-slider|Yellow-Bellied Slider
+western-diamondback-rattlesnake|Western Diamondback Rattlesnake
+caiman-lizard|Caiman Lizard
+nile-crocodile|Nile Crocodile
+carpet-python|Carpet Python
+brown-basilisk|Brown Basilisk
+dumerils-boa|Dumeril's Boa
+sulcata-tortoise|African Spurred Tortoise
+common-caiman|Common Caiman
+western-hognose-snake|Western Hognose Snake
+forest-cobra|Forest Cobra
+veiled-chameleon|Veiled Chameleon
+common-snapping-turtle|Common Snapping Turtle
+rough-scaled-sand-boa|Rough-Scaled Sand Boa
+philippine-crocodile|Philippine Crocodile
+rainbow-boa|Rainbow Boa
+giant-plated-lizard|Giant Plated Lizard
+alligator-snapping-turtle|Alligator Snapping Turtle
+black-spiny-tailed-iguana|Black Spiny-Tailed Iguana
+burmese-python|Burmese Python
+ornate-box-turtle|Ornate Box Turtle
+common-house-gecko|Common House Gecko
+sidewinder-rattlesnake|Sidewinder Rattlesnake
+chinese-water-dragon|Chinese Water Dragon
+west-african-dwarf-crocodile|West African Dwarf Crocodile
+cape-cobra|Cape Cobra
+crested-iguana|Crested Iguana
+argentine-tegu|Argentine Black and White Tegu
+king-brown-snake|King Brown Snake
+false-gharial|False Gharial
+indian-star-tortoise|Indian Star Tortoise
+green-anaconda|Green Anaconda
+tuatara|Tuatara
+eastern-water-dragon|Eastern Water Dragon
+spider-tortoise|Spider Tortoise
+russian-tortoise|Russian Tortoise
+ball-python|Ball Python
+cat-eyed-snake|Cat-Eyed Snake
+arabian-chameleon|Arabian Chameleon
+spotted-turtle|Spotted Turtle
+banded-krait|Banded Krait
+golden-skink|Golden Skink
+broad-snouted-caiman|Broad-Snouted Caiman
+copperhead|Copperhead
+radiated-tortoise|Radiated Tortoise
+blue-racer|Blue Racer
+side-blotched-lizard|Side-Blotched Lizard
+nile-monitor|Nile Monitor
+canebrake-rattlesnake|Canebrake Rattlesnake
+yellow-footed-tortoise|Yellow-Footed Tortoise
+puff-adder|Puff Adder
+red-eared-slider|Red-Eared Slider
+eastern-green-mamba|Eastern Green Mamba
+cape-dwarf-chameleon|Cape Dwarf Chameleon
+chinese-alligator|Chinese Alligator
+snouted-cobra|Snouted Cobra
+common-wall-lizard|Common Wall Lizard
+brown-tree-snake|Brown Tree Snake
+angulate-tortoise|Angulate Tortoise
+savannah-monitor|Savannah Monitor
+white-lipped-pit-viper|White-Lipped Pit Viper
+alabama-red-bellied-cooter|Alabama Red-Bellied Cooter
+amazon-tree-boa|Amazon Tree Boa
+california-kingsnake|California Kingsnake
+clouded-monitor|Clouded Monitor
+brazilian-rainbow-boa|Brazilian Rainbow Boa
+northern-cuirassated-lizard|Northern Cuirassated Lizard
+desert-iguana|Desert Iguana
+false-water-cobra|False Water Cobra
+garter-snake|Common Garter Snake
+shingleback-skink|Shingleback Skink
+thorny-devil|Thorny Devil
+mozambique-spitting-cobra|Mozambique Spitting Cobra
+american-bullfrog|American Bullfrog
+red-eyed-tree-frog|Red-Eyed Tree Frog
+blue-poison-dart-frog|Blue Poison Dart Frog
+golden-poison-dart-frog|Golden Poison Dart Frog
+glass-frog|Glass Frog
+pacman-frog|Pacman Frog
+budgetts-frog|Budgett's Frog
+whites-tree-frog|White's Tree Frog
+african-dwarf-frog|African Dwarf Frog
+amazon-milk-frog|Amazon Milk Frog
+gray-tree-frog|Gray Tree Frog
+spring-peeper|Spring Peeper
+wood-frog|Wood Frog
+american-toad|American Toad
+cane-toad|Cane Toad
+fire-bellied-toad|Fire-Bellied Toad
+desert-rain-frog|Desert Rain Frog
+goliath-frog|Goliath Frog
+mountain-chicken-frog|Mountain Chicken Frog
+spadefoot-toad|Spadefoot Toad
+natterjack-toad|Natterjack Toad
+midwife-toad|Midwife Toad
+european-tree-frog|European Tree Frog
+leopard-frog|Leopard Frog
+strawberry-poison-dart-frog|Strawberry Poison Dart Frog
+dyeing-poison-dart-frog|Dyeing Poison Dart Frog
+harlequin-toad|Harlequin Toad
+pickerel-frog|Pickerel Frog
+cherry-tree-frog|Cherry Tree Frog
+asian-common-toad|Asian Common Toad
+clown-tree-frog|Clown Tree Frog
+gliding-tree-frog|Gliding Tree Frog
+black-legged-poison-frog|Black-Legged Poison Frog
+red-backed-poison-frog|Red-Backed Poison Frog
+splashback-poison-frog|Splashback Poison Frog
+cane-turtle-frog|Cane Turtle Frog
+malaysian-horned-frog|Malaysian Horned Frog
+hampire-poison-dart-frog|Hampire Poison Dart Frog
+brazilian-horned-frog|Brazilian Horned Frog
+hairy-frog|Hairy Frog
+tomato-frog|Tomato Frog
+marsupial-frog|Marsupial Frog
+foam-nest-frog|Foam Nest Frog
+surinam-toad|Surinam Toad
+painted-frog|Painted Frog
+incredible-frog|Incredible Frog
+axolotl|Axolotl
+tiger-salamander|Tiger Salamander
+eastern-newt|Eastern Newt
+hellbender|Hellbender
+olm|Olm
+fire-salamander|Fire Salamander
+spotted-salamander|Spotted Salamander
+red-backed-salamander|Red-Backed Salamander
+mudpuppy|Mudpuppy
+rough-skinned-newt|Rough-Skinned Newt
+alpine-salamander|Alpine Salamander
+great-crested-newt|Great Crested Newt
+marbled-salamander|Marbled Salamander
+long-toed-salamander|Long-Toed Salamander
+slimy-salamander|Slimy Salamander
+red-salamander|Red Salamander
+lesser-siren|Lesser Siren
+greater-siren|Greater Siren
+three-toed-amphiuma|Three-Toed Amphiuma
+waterdog|Waterdog
+spring-salamander|Spring Salamander
+cave-salamander|Cave Salamander
+arboreal-salamander|Arboreal Salamander
+ensatina|Ensatina
+slender-salamander|Slender Salamander
+ringed-salamander|Ringed Salamander
+flatwoods-salamander|Flatwoods Salamander
+dusky-salamander|Dusky Salamander
+four-toed-salamander|Four-Toed Salamander
+gulf-coast-salamander|Gulf Coast Salamander
+tropical-caecilian|Tropical Caecilian
+boulengers-caecilian|Boulenger's Caecilian
+ringed-caecilian|Ringed Caecilian
+monarch-butterfly|Monarch Butterfly
+luna-moth|Luna Moth
+atlas-moth|Atlas Moth
+swallowtail-butterfly|Eastern Tiger Swallowtail
+hawk-moth|Hawk Moth
+painted-lady-butterfly|Painted Lady Butterfly
+blue-morpho-butterfly|Blue Morpho Butterfly
+glasswing-butterfly|Glasswing Butterfly
+cecropia-moth|Cecropia Moth
+io-moth|Io Moth
+polyphemus-moth|Polyphemus Moth
+viceroy-butterfly|Viceroy Butterfly
+red-admiral-butterfly|Red Admiral Butterfly
+great-spangled-fritillary|Great Spangled Fritillary
+clouded-yellow-butterfly|Clouded Yellow
+comma-butterfly|Comma Butterfly
+mourning-cloak-butterfly|Mourning Cloak Butterfly
+zebra-longwing-butterfly|Zebra Longwing Butterfly
+snowflake-butterfly|Snowflake Butterfly
+resurrection-butterfly|Resurrection Butterfly
+cabbage-white-butterfly|Small White Butterfly
+atlas-beetle|Atlas Beetle
+goliath-beetle|Goliath Beetle
+rhinoceros-beetle|Western Hercules Beetle
+stag-beetle|Stag Beetle
+firefly|Common Eastern Firefly
+dung-beetle|Scarab Dung Beetle
+ladybug|Seven-Spotted Ladybug
+tiger-beetle|Six-Spotted Tiger Beetle
+longhorn-beetle|Asian Longhorned Beetle
+click-beetle|Click Beetle
+bombardier-beetle|Bombardier Beetle
+june-bug|June Bug
+whirligig-beetle|Whirligig Beetle
+diving-beetle|Predaceous Diving Beetle
+oil-beetle|Oil Beetle
+bess-beetle|Bess Beetle
+bark-beetle|Mountain Pine Beetle
+sacred-scarab-beetle|Sacred Scarab Beetle
+carrion-beetle|American Carrion Beetle
+patrol-bess-beetle|Patrol Bess Beetle
+eyed-click-beetle|Eyed Click Beetle
+rose-chafer|Rose Chafer
+japanese-beetle|Japanese Beetle
+colorado-potato-beetle|Colorado Potato Beetle
+lily-beetle|Scarlet Lily Beetle
+elm-beetle|Elm Leaf Beetle
+fire-ant|Red Imported Fire Ant
+leafcutter-ant|Leafcutter Ant
+bullet-ant|Bullet Ant
+army-ant|Army Ant
+trap-jaw-ant|Trap-Jaw Ant
+weaver-ant|Weaver Ant
+honeybee|Western Honeybee
+bumblebee|Common Bumblebee
+carpenter-bee|Eastern Carpenter Bee
+paper-wasp|European Paper Wasp
+yellow-jacket|Common Yellow Jacket
+bald-faced-hornet|Bald-Faced Hornet
+european-hornet|European Hornet
+tarantula-hawk-wasp|Tarantula Hawk Wasp
+cuckoo-wasp|Cuckoo Wasp
+ichneumon-wasp|Giant Ichneumon Wasp
+asian-giant-hornet|Asian Giant Hornet
+sweat-bee|Sweat Bee
+mason-bee|Blue Orchard Mason Bee
+mining-bee|Tawny Mining Bee
+golden-digger-wasp|Golden Digger Wasp
+mud-dauber-wasp|Mud Dauber Wasp
+horned-mason-bee|Horned Mason Bee
+wool-carder-bee|Wool Carder Bee
+cicada-killer-wasp|Cicada Killer Wasp
+red-velvet-ant|Red Velvet Ant
+cuckoo-bumblebee|Cuckoo Bumblebee
+mosquito|Asian Tiger Mosquito
+house-fly|Common House Fly
+fruit-fly|Common Fruit Fly
+crane-fly|Crane Fly
+horsefly|Horse Fly
+bot-fly|Human Bot Fly
+hover-fly|Common Hover Fly
+black-fly|Black Fly
+dragonfly|Common Green Darner
+damselfly|Blue-Tailed Damselfly
+blue-dasher-dragonfly|Blue Dasher Dragonfly
+emperor-dragonfly|Emperor Dragonfly
+four-spotted-chaser|Four-Spotted Chaser
+robber-fly|Robber Fly
+marmalade-hoverfly|Marmalade Hoverfly
+common-mosquito|Common Mosquito
+biting-midge|Biting Midge
+deer-fly|Deer Fly
+cattle-bot-fly|Cattle Bot Fly
+praying-mantis|Chinese Praying Mantis
+orchid-mantis|Orchid Mantis
+ghost-mantis|Ghost Mantis
+leaf-mantis|Dead Leaf Mantis
+walking-stick|Common Walking Stick
+giant-walking-stick|Giant Walking Stick
+american-cockroach|American Cockroach
+german-cockroach|German Cockroach
+madagascar-hissing-cockroach|Madagascar Hissing Cockroach
+oriental-cockroach|Oriental Cockroach
+eastern-subterranean-termite|Eastern Subterranean Termite
+formosan-termite|Formosan Subterranean Termite
+dampwood-termite|Dampwood Termite
+drywood-termite|Drywood Termite
+cicada|Periodical Cicada
+dog-day-cicada|Dog-Day Cicada
+masked-devil-cicada|Masked Devil Cicada
+leafhopper|Brown Planthopper
+spittlebug|Meadow Spittlebug
+aphid|Green Peach Aphid
+bed-bug|Common Bed Bug
+kissing-bug|Triatomine Bug
+stink-bug|Brown Marmorated Stink Bug
+box-elder-bug|Box Elder Bug
+water-strider|Common Water Strider
+giant-water-bug|Giant Water Bug
+american-grasshopper|American Bird Grasshopper
+desert-locust|Desert Locust
+mormon-cricket|Mormon Cricket
+field-cricket|Field Cricket
+katydid|True Katydid
+mole-cricket|European Mole Cricket
+snowy-tree-cricket|Snowy Tree Cricket
+human-head-louse|Human Head Louse
+body-louse|Human Body Louse
+human-flea|Human Flea
+cat-flea|Cat Flea
+oriental-rat-flea|Oriental Rat Flea
+black-widow-spider|Southern Black Widow Spider
+brown-recluse-spider|Brown Recluse Spider
+wolf-spider|Common Wolf Spider
+jumping-spider|Bold Jumping Spider
+orb-weaver-spider|Garden Orb Weaver Spider
+peacock-spider|Peacock Spider
+tarantula|Mexican Red-Kneed Tarantula
+brazilian-wandering-spider|Brazilian Wandering Spider
+emperor-scorpion|Emperor Scorpion
+bark-scorpion|Arizona Bark Scorpion
+deathstalker-scorpion|Deathstalker Scorpion
+spotted-lanternfly|Spotted Lanternfly
+wheel-bug|Wheel Bug
+sawfly|Rose Slug Sawfly
+antlion|Antlion
+lacewing|Green Lacewing
+dobsonfly|Eastern Dobsonfly
+mayfly|Mayfly
+earwig|Common European Earwig
+silverfish|Common Silverfish
+firebrat|Firebrat
+jumping-bristletail|Jumping Bristletail
+snakefly|Snakefly
+cuckoo-bumblebee-parasite|Bombus Bob
+musk-bee|Musk Bee
+alkali-bee|Alkali Bee
+carpenter-ant|Black Carpenter Ant
+pharaoh-ant|Pharaoh Ant
+odorous-house-ant|Odorous House Ant
+giant-pacific-octopus|Giant Pacific Octopus
+common-octopus|Common Octopus
+blue-ringed-octopus|Blue-Ringed Octopus
+mimic-octopus|Mimic Octopus
+colossal-squid|Colossal Squid
+humboldt-squid|Humboldt Squid
+giant-squid|Giant Squid
+firefly-squid|Firefly Squid
+caribbean-reef-octopus|Caribbean Reef Octopus
+flamboyant-cuttlefish|Flamboyant Cuttlefish
+common-cuttlefish|Common Cuttlefish
+chambered-nautilus|Chambered Nautilus
+argonaut|Argonaut
+vampire-squid|Vampire Squid
+strawberry-squid|Strawberry Squid
+cockatoo-squid|Cockatoo Squid
+pajama-squid|Pajama Squid
+bobtail-squid|Bobtail Squid
+pygmy-squid|Pygmy Squid
+american-lobster|American Lobster
+european-lobster|European Lobster
+spiny-lobster|Spiny Lobster
+slipper-lobster|Slipper Lobster
+mantis-shrimp|Mantis Shrimp
+peacock-mantis-shrimp|Peacock Mantis Shrimp
+spearer-mantis-shrimp|Spearer Mantis Shrimp
+blue-crab|Blue Crab
+king-crab|Red King Crab
+japanese-spider-crab|Japanese Spider Crab
+hermit-crab|Hermit Crab
+coconut-crab|Coconut Crab
+snow-crab|Snow Crab
+fiddler-crab|Fiddler Crab
+mud-crab|Mud Crab
+atlantic-ghost-crab|Atlantic Ghost Crab
+tropical-hermit-crab|Tropical Hermit Crab
+coconut-hermit-crab|Coconut Hermit Crab
+zebra-fiddler-crab|Zebra Fiddler Crab
+great-spider-crab|Great Spider Crab
+swimming-crab|Portunus Swimming Crab
+common-shore-shrimp|Common Shore Shrimp
+antarctic-krill|Antarctic Krill
+pacific-krill|Pacific Krill
+atlantic-krill|Atlantic Krill
+giant-amphipod|Giant Amphipod
+giant-isopod|Giant Isopod
+moon-jellyfish|Moon Jellyfish
+lions-mane-jellyfish|Lion's Mane Jellyfish
+box-jellyfish|Box Jellyfish
+portuguese-man-of-war|Portuguese Man-of-War
+pacific-sea-nettle|Pacific Sea Nettle
+upside-down-jellyfish|Upside-Down Jellyfish
+immortal-jellyfish|Immortal Jellyfish
+sea-wasp|Sea Wasp
+compass-jellyfish|Compass Jellyfish
+fried-egg-jellyfish|Fried Egg Jellyfish
+blood-belly-comb-jelly|Blood Belly Comb Jelly
+atolla-jellyfish|Atolla Jellyfish
+spotted-jelly|Spotted Jelly
+mauve-stinger|Mauve Stinger
+staghorn-coral|Staghorn Coral
+brain-coral|Brain Coral
+elkhorn-coral|Elkhorn Coral
+pillar-coral|Pillar Coral
+fire-coral|Fire Coral
+blue-coral|Blue Coral
+mushroom-coral|Mushroom Coral
+black-coral|Black Coral
+sea-pen|Sea Pen
+sea-whip|Sea Whip
+sunflower-sea-star|Sunflower Sea Star
+crown-of-thorns-starfish|Crown-of-Thorns Starfish
+blue-sea-star|Blue Sea Star
+common-starfish|Common Starfish
+leather-star|Leather Star
+common-brittle-star|Common Brittle Star
+giant-basket-star|Giant Basket Star
+feather-star|Feather Star
+crinoid-feather-star|Crinoid Feather Star
+disk-brittle-star|Disk-Brittle Star
+purple-sea-urchin|Purple Sea Urchin
+long-spined-sea-urchin|Long-Spined Sea Urchin
+pencil-urchin|Pencil Urchin
+green-sea-urchin|Green Sea Urchin
+flower-urchin|Flower Urchin
+sand-dollar|Sand Dollar
+carpenter-sea-urchin|Carpenter Sea Urchin
+fire-urchin|Fire Urchin
+slate-pencil-urchin|Slate Pencil Urchin
+tiger-tail-sea-cucumber|Tiger Tail Sea Cucumber
+lolly-sea-cucumber|Lolly Sea Cucumber
+pacific-sea-cucumber|Pacific Sea Cucumber
+black-sea-cucumber|Black Sea Cucumber
+teatfish-sea-cucumber|Teatfish Sea Cucumber
+red-sea-cucumber|Red Sea Cucumber
+christmas-tree-worm|Christmas Tree Worm
+giant-tubeworm|Giant Tube Worm
+feather-duster-worm|Feather Duster Worm
+bearded-fireworm|Bearded Fireworm
+blue-glaucus|Blue Glaucus
+spanish-dancer|Spanish Dancer
+leaf-sheep|Leaf Sheep
+sea-butterfly|Sea Butterfly
+sea-angel|Sea Angel
+sea-hare|California Sea Hare
+giant-clam|Giant Clam
+geoduck|Geoduck
+atlantic-surf-clam|Atlantic Surf Clam
+bay-scallop|Bay Scallop
+blue-mussel|Blue Mussel
+thorny-oyster|Thorny Oyster
+lion-paw-scallop|Lion Paw Scallop
+nautilus-pompilius|Nautilus Pompilius
+paper-nautilus|Paper Nautilus
+atlantic-horseshoe-crab|Atlantic Horseshoe Crab
+japanese-horseshoe-crab|Japanese Horseshoe Crab
+indo-pacific-horseshoe-crab|Indo-Pacific Horseshoe Crab
+sea-squirt-tunicate|Sea Squirt
+marine-flatworm|Marine Flatworm
+sea-pen-glow|Deep-Sea Pennatula
+dodo|Dodo
+woolly-mammoth|Woolly Mammoth
+passenger-pigeon|Passenger Pigeon
+tasmanian-tiger|Tasmanian Tiger
+quagga|Quagga
+pig|Pig
+sheep|Sheep
+goat|Goat
+horse|Horse
+donkey|Donkey
+chicken|Chicken
+duck|Duck
+turkey|Turkey
+alpaca|Alpaca
+llama|Llama
+unicorn|Unicorn
+dragon|Dragon
+phoenix|Phoenix
+griffin|Griffin
+pegasus|Pegasus
+mermaid|Mermaid
+kraken|Kraken
+fairy|Fairy
+t-rex|Tyrannosaurus Rex
+triceratops|Triceratops
+stegosaurus|Stegosaurus
+velociraptor|Velociraptor
+brachiosaurus|Brachiosaurus
+pterodactyl|Pterodactyl
+ankylosaurus|Ankylosaurus
+brontosaurus|Brontosaurus
+saber-toothed-tiger|Saber-Toothed Tiger
+hydra|Hydra
+cerberus|Cerberus
+minotaur|Minotaur
+basilisk|Basilisk
+leviathan|Leviathan
+thunderbird|Thunderbird
+kitsune|Kitsune
+nessie|Loch Ness Monster
+lop-rabbit|Lop Rabbit
+persian-cat|Persian Cat
+corgi|Corgi
+baby-otter|Baby Otter
+pika-cute|Pika
+fennec-cute|Fennec Fox
+quokka-cute|Quokka
+axolotl-cute|Axolotl
+hedgehog-cute|Hedgehog
+sugar-glider-cute|Sugar Glider
+centaur|Centaur
+satyr|Satyr
+wyvern|Wyvern
+djinn|Djinn
+golem|Golem
+banshee|Banshee
+leprechaun|Leprechaun
+nymph|Nymph
+werewolf|Werewolf
+yeti|Yeti
+goblin|Goblin
+troll|Troll
+roc|Roc
+sphinx|Sphinx
+chimera|Chimera
+siren|Siren
+harpy|Harpy
+garuda|Garuda
+qilin|Qilin
+fenrir|Fenrir
+jormungandr|Jörmungandr
+cyclops|Cyclops
+medusa|Medusa
+anubis|Anubis
+allosaurus|Allosaurus
+spinosaurus|Spinosaurus
+diplodocus|Diplodocus
+parasaurolophus|Parasaurolophus
+iguanodon|Iguanodon
+archaeopteryx|Archaeopteryx
+mosasaurus|Mosasaurus
+plesiosaurus|Plesiosaurus
+dimetrodon|Dimetrodon
+woolly-rhino|Woolly Rhino
+irish-elk|Irish Elk
+dire-wolf|Dire Wolf

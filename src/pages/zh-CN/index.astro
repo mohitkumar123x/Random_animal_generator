@@ -6,7 +6,7 @@ import CategoryFilter from '../../components/CategoryFilter.astro';
 import ConservationFilter from '../../components/ConservationFilter.astro';
 import AnimalCard from '../../components/AnimalCard.astro';
 import animals from '../../data/animals.json';
-import animalTranslations from '../../data/animal-translations.json';
+import animalTranslations from '../../i18n/data/animal-translations.json';
 import { getTranslations } from '../../utils/i18n';
 
 const locale = 'zh-CN';
@@ -70,8 +70,7 @@ const animalT = animalTranslations[locale] || {};
         <select id="count-select" class="rounded-lg border border-hairline bg-canvas-elevated px-2.5 py-1.5 text-xs font-medium text-ink outline-none transition-colors focus:border-link dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#ededed] dark:focus:border-link">
           <option value="1">{t['1_animal']}</option>
           <option value="5">{t['5_animals']}</option>
-          <option value="10">{t['10_animals']}</option>
-          <option value="20">{t['20_animals']}</option>
+
         </select>
       </div>
       <button id="generate-btn" class="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2 text-sm font-medium text-white transition-all hover:opacity-90 active:scale-95 dark:bg-[#ededed] dark:text-[#0a0a0a]"><span>🎲</span> {t.generate}</button>

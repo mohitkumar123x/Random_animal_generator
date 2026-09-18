@@ -1,6 +1,6 @@
 ---
 import animals from '../data/animals.json';
-import animalTranslations from '../data/animal-translations.json';
+import animalTranslations from '../i18n/data/animal-translations.json';
 import { getTranslations } from '../utils/i18n';
 import { translateValue } from '../utils/valueTranslations';
 
@@ -85,6 +85,15 @@ const spinT = {
 
     <div id="result-display" class="mb-6 text-center">
       <div id="result-emoji" class="text-6xl mb-2 emoji-icon sm:text-7xl">❓</div>
+      <div id="result-image-wrapper" class="relative mb-2 hidden">
+        <div class="result-skeleton image-skeleton mx-auto" style="width:280px;height:180px;"></div>
+        <img id="result-image" class="mx-auto rounded-xl object-cover shadow-md hidden" style="width:280px;height:180px;" alt="" />
+        <button id="result-btn-fullscreen" class="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-lg bg-black/60 px-2.5 py-1.5 text-[11px] font-medium text-white backdrop-blur-sm transition-all hover:bg-black/80 hover:scale-105" title="View full image">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+          Fullscreen
+        </button>
+        <p id="result-image-credit" class="absolute bottom-2 left-2 text-[10px] text-white/70 hidden"><a id="result-image-credit-link" href="#" target="_blank" rel="noopener noreferrer" class="hover:text-white/90"></a></p>
+      </div>
       <h2 id="result-name" class="text-xl font-bold text-ink sm:text-2xl dark:text-[#ededed]">{t.spin_to_discover}</h2>
       <p id="result-desc" class="text-sm text-muted mt-1"></p>
     </div>
@@ -98,6 +107,15 @@ const spinT = {
     <div id="spinner-card" class="hidden mt-8 overflow-hidden rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
       <div id="card-header" class="bg-gradient-to-br from-link-soft/50 via-violet-soft/30 to-pink-soft/30 p-5 text-center dark:from-[#1a2744] dark:via-[#2a1a3a] dark:to-[#3a1a2a]">
         <div id="card-emoji" class="text-6xl mb-2 emoji-icon sm:text-7xl"></div>
+        <div id="card-image-wrapper" class="relative mb-2 hidden">
+          <div id="card-image-skeleton" class="image-skeleton mx-auto" style="width:280px;height:180px;"></div>
+          <img id="card-image" class="mx-auto rounded-xl object-cover shadow-md hidden" style="width:280px;height:180px;" alt="" />
+          <button id="card-btn-fullscreen" class="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-lg bg-black/60 px-2.5 py-1.5 text-[11px] font-medium text-white backdrop-blur-sm transition-all hover:bg-black/80 hover:scale-105" title="View full image">
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+            Fullscreen
+          </button>
+          <p id="card-image-credit" class="absolute bottom-2 left-2 text-[10px] text-white/70 hidden"><a id="card-image-credit-link" href="#" target="_blank" rel="noopener noreferrer" class="hover:text-white/90"></a></p>
+        </div>
         <h3 id="card-name" class="text-lg font-bold text-ink dark:text-[#ededed]"></h3>
         <p id="card-scientific" class="text-xs italic text-muted mt-1 hidden"></p>
         <div id="card-conservation" class="mt-2 inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium hidden"></div>
@@ -180,6 +198,13 @@ const spinT = {
   </div>
 </div>
 
+<div id="spinner-fullscreen-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 cursor-zoom-out" style="backdrop-filter:blur(8px);">
+  <button id="spinner-fullscreen-close" class="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10">
+    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+  </button>
+  <img id="spinner-fullscreen-img" class="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain shadow-2xl" alt="" />
+</div>
+
 <style is:global>
   .wheel-segment {
     position: absolute;
@@ -206,6 +231,106 @@ const spinT = {
   }
 </style>
 
+<script is:inline>
+if (!window.__downloadAnimalCard) {
+  window.__downloadAnimalCard = function(animal, labels, translatedName, translateFn, btn) {
+    btn.innerHTML = '<span>⏳</span> ' + labels.saving;
+    const W = 600, H = 1060;
+    const canvas = document.createElement('canvas');
+    canvas.width = W * 2; canvas.height = H * 2;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(2, 2);
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, W, H);
+    const grad = ctx.createLinearGradient(0, 0, W, H);
+    grad.addColorStop(0, '#eef2ff'); grad.addColorStop(0.5, '#f3e8ff'); grad.addColorStop(1, '#fce7f3');
+    ctx.fillStyle = grad; ctx.beginPath(); ctx.roundRect(0, 0, W, H, 24); ctx.fill();
+    let y = 28;
+    function wrapT(text, maxW) {
+      const words = text.split(' '), lines = []; let line = '';
+      for (const w of words) { const test = line ? line + ' ' + w : w; if (ctx.measureText(test).width > maxW) { if (line) lines.push(line); line = w; } else { line = test; } }
+      if (line) lines.push(line); return lines;
+    }
+    const cache = JSON.parse(localStorage.getItem('pexelsImageCache') || '{}');
+    const entry = cache[animal.name.toLowerCase().trim()];
+    const imgUrl = typeof entry === 'string' ? entry : (entry && entry.url);
+    function drawImageOrEmoji(imgEl) {
+      if (imgEl) {
+        const imgW = W - 56, imgH = 200;
+        ctx.save(); ctx.beginPath(); ctx.roundRect(28, y, imgW, imgH, 16); ctx.clip();
+        const s = Math.max(imgW / imgEl.width, imgH / imgEl.height);
+        const sw = imgEl.width * s, sh = imgEl.height * s;
+        ctx.drawImage(imgEl, 28 + (imgW - sw) / 2, y + (imgH - sh) / 2, sw, sh);
+        ctx.restore(); y += imgH + 20;
+      } else {
+        ctx.font = '64px sans-serif'; ctx.textAlign = 'center'; ctx.fillText(animal.emoji, W/2, y+64); y += 84;
+      }
+      finishCard(animal, labels, translatedName, translateFn, btn, ctx, W, y, wrapT);
+    }
+    if (imgUrl) {
+      fetch(imgUrl).then(r => r.blob()).then(blob => {
+        const objUrl = URL.createObjectURL(blob);
+        const el = new Image();
+        el.onload = function() { drawImageOrEmoji(el); URL.revokeObjectURL(objUrl); };
+        el.onerror = function() { drawImageOrEmoji(null); URL.revokeObjectURL(objUrl); };
+        el.src = objUrl;
+      }).catch(() => { drawImageOrEmoji(null); });
+    } else {
+      drawImageOrEmoji(null);
+    }
+    function finishCard(a, lb, tn, tf, b, ctx, W, y, wrapT) {
+      ctx.textAlign = 'center'; ctx.fillStyle = '#111827'; ctx.font = 'bold 26px system-ui, -apple-system, sans-serif';
+      ctx.fillText(tn, W/2, y+28); y += 36;
+      if (a.scientificName) { ctx.fillStyle = '#6b7280'; ctx.font = 'italic 13px system-ui, -apple-system, sans-serif'; ctx.fillText(a.scientificName, W/2, y+14); y += 20; }
+      const ck = a.conservation || 'LC'; const cb = lb.conservation[ck] || lb.conservation.LC;
+      const cm = {LC:'#16a34a',NT:'#65a30d',VU:'#d97706',EN:'#ea580c',CR:'#dc2626',EW:'#7c3aed',EX:'#6b7280',DD:'#9ca3af'};
+      const cbg = {LC:'#dcfce7',NT:'#ecfccb',VU:'#fef3c7',EN:'#ffedd5',CR:'#fee2e2',EW:'#ede9fe',EX:'#f3f4f6',DD:'#f3f4f6'};
+      ctx.font = 'bold 12px system-ui'; const bw = ctx.measureText(cb.text).width+20;
+      ctx.fillStyle = cbg[ck]||'#dcfce7'; ctx.beginPath(); ctx.roundRect((W-bw)/2, y+4, bw, 22, 11); ctx.fill();
+      ctx.fillStyle = cm[ck]||'#16a34a'; ctx.textAlign = 'center'; ctx.fillText(cb.text, W/2, y+19); y += 34;
+      ctx.textAlign = 'left'; ctx.fillStyle = '#374151'; ctx.font = '13px system-ui';
+      wrapT(a.description, W-56).slice(0,4).forEach((l,i) => ctx.fillText(l, 28, y+14+i*18));
+      y += Math.min(wrapT(a.description, W-56).length, 4)*18+20;
+      const sg = [{icon:'🌍',label:lb.habitat,value:tf(a.habitat,'habitat')},{icon:'🍽️',label:lb.diet,value:tf(a.diet,'diet')},{icon:'⏱️',label:lb.lifespan,value:a.lifespan},{icon:'⚖️',label:lb.weight,value:a.weight}];
+      const cw = (W-56-12)/2;
+      sg.forEach((s,i) => { const col=i%2,row=Math.floor(i/2),sx=28+col*(cw+12),sy=y+row*48;
+        ctx.fillStyle='#f9fafb'; ctx.beginPath(); ctx.roundRect(sx,sy,cw,42,8); ctx.fill();
+        ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1; ctx.beginPath(); ctx.roundRect(sx,sy,cw,42,8); ctx.stroke();
+        ctx.fillStyle='#6b7280'; ctx.font='10px system-ui'; ctx.textAlign='left'; ctx.fillText(s.icon+' '+s.label,sx+10,sy+16);
+        ctx.fillStyle='#111827'; ctx.font='bold 12px system-ui'; ctx.fillText(s.value,sx+10,sy+32);
+      }); y += 100;
+      const es = [{icon:'⚡',label:lb.speed,value:a.speed||'—'},{icon:'📏',label:lb.length,value:a.length||'—'},{icon:'🌐',label:lb.region,value:tf(a.region||'','region')}];
+      const ecw = (W-56-16)/3;
+      es.forEach((s,i) => { const sx=28+i*(ecw+8),sy=y;
+        ctx.fillStyle='#f0fdf4'; ctx.beginPath(); ctx.roundRect(sx,sy,ecw,42,8); ctx.fill();
+        ctx.strokeStyle='#bbf7d0'; ctx.lineWidth=1; ctx.beginPath(); ctx.roundRect(sx,sy,ecw,42,8); ctx.stroke();
+        ctx.fillStyle='#6b7280'; ctx.font='10px system-ui'; ctx.textAlign='center'; ctx.fillText(s.icon+' '+s.label,sx+ecw/2,sy+16);
+        ctx.fillStyle='#111827'; ctx.font='bold 12px system-ui'; ctx.fillText(s.value,sx+ecw/2,sy+32);
+      }); y += 56;
+      if (a.class||a.order||a.family) {
+        ctx.fillStyle='#f9fafb'; ctx.beginPath(); ctx.roundRect(28,y,W-56,64,10); ctx.fill();
+        ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1; ctx.beginPath(); ctx.roundRect(28,y,W-56,64,10); ctx.stroke();
+        ctx.fillStyle='#6b7280'; ctx.font='bold 10px system-ui'; ctx.textAlign='left'; ctx.fillText('🧬 '+lb.taxonomy,40,y+18);
+        const ti=[{l:lb.taxClass,v:a.class},{l:lb.taxOrder,v:a.order},{l:lb.taxFamily,v:a.family}].filter(x=>x.v);
+        const tcw=(W-80)/Math.max(ti.length,1);
+        ti.forEach((item,i) => { ctx.fillStyle='#6b7280'; ctx.font='11px system-ui'; ctx.textAlign='left'; ctx.fillText(item.l,40+i*tcw,y+36);
+          ctx.fillStyle='#111827'; ctx.font='bold 12px system-ui'; ctx.fillText(item.v||'—',40+i*tcw,y+52); }); y+=76;
+      }
+      ctx.fillStyle='#eff6ff'; ctx.beginPath(); ctx.roundRect(28,y,W-56,56,10); ctx.fill();
+      ctx.strokeStyle='#bfdbfe'; ctx.lineWidth=1; ctx.beginPath(); ctx.roundRect(28,y,W-56,56,10); ctx.stroke();
+      ctx.fillStyle='#2563eb'; ctx.font='bold 10px system-ui'; ctx.textAlign='left'; ctx.fillText('💡 '+lb.funFact,40,y+18);
+      ctx.fillStyle='#374151'; ctx.font='12px system-ui';
+      wrapT(a.funFact,W-80).slice(0,2).forEach((l,i) => ctx.fillText(l,40,y+34+i*16)); y+=72;
+      ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(28,y); ctx.lineTo(W-28,y); ctx.stroke(); y+=14;
+      ctx.textAlign='center'; ctx.fillStyle='#9ca3af'; ctx.font='11px system-ui'; ctx.fillText('bestrandomanimalgenerator.com',W/2,y+10);
+      canvas.toBlob(function(blob) { const url=URL.createObjectURL(blob); const link=document.createElement('a');
+        link.href=url; link.download=tn.toLowerCase().replace(/\s+/g,'-')+'.png'; link.click(); URL.revokeObjectURL(url);
+        b.innerHTML='<span>✓</span> '+lb.saved; setTimeout(function(){b.innerHTML='<span>📥</span> '+lb.download;},2000);
+      }, 'image/png');
+    }
+  };
+}
+</script>
+
 <script define:vars={{ animals: JSON.stringify(animals), spinT: JSON.stringify(spinT), animalT: JSON.stringify(animalT), locale: locale }}>
   const allAnimals = JSON.parse(animals);
   const t = JSON.parse(spinT);
@@ -227,6 +352,33 @@ const spinT = {
   function getAnimalName(animal) { return (animalTranslations[animal.id] && animalTranslations[animal.id].name) || animal.name; }
   function getAnimalDescription(animal) { return (animalTranslations[animal.id] && animalTranslations[animal.id].description) || animal.description; }
   function getAnimalFunFact(animal) { return (animalTranslations[animal.id] && animalTranslations[animal.id].funFact) || animal.funFact; }
+
+  const PEXELS_API_KEY = 'xEfnJ9xU5Fem8MeEPh1zE3lURDVneBkLnPGnrNAjnbMCBAY0LGtdgLFE';
+  const pexelsCache = JSON.parse(localStorage.getItem('pexelsImageCache') || '{}');
+  Object.keys(pexelsCache).forEach(k => { if (typeof pexelsCache[k] === 'string') delete pexelsCache[k]; });
+  async function fetchAnimalImage(animalName) {
+    const cacheKey = animalName.toLowerCase().trim();
+    if (pexelsCache[cacheKey]) return pexelsCache[cacheKey];
+    try {
+      const res = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(animalName)}&per_page=1&orientation=landscape`, {
+        headers: { 'Authorization': PEXELS_API_KEY }
+      });
+      if (!res.ok) return null;
+      const data = await res.json();
+      if (data.photos && data.photos.length > 0) {
+        const photo = data.photos[0];
+        const result = {
+          url: photo.src.large2x || photo.src.large,
+          photographer: photo.photographer || '',
+          photoUrl: photo.url || '',
+        };
+        pexelsCache[cacheKey] = result;
+        localStorage.setItem('pexelsImageCache', JSON.stringify(pexelsCache));
+        return result;
+      }
+    } catch (e) { console.error('Pexels fetch error:', e); }
+    return null;
+  }
 
   const SEGMENT_COLORS = [
     '#0070f3', '#7928ca', '#ff0080', '#50e3c2', '#f5a623', '#ee0000',
@@ -318,6 +470,25 @@ const spinT = {
       document.getElementById('result-name').textContent = getAnimalName(winner);
       document.getElementById('result-desc').textContent = `${winner.category} · ${translateVal(winner.region, 'region')}`;
 
+      const resultImgWrapper = document.getElementById('result-image-wrapper');
+      const resultImgEl = document.getElementById('result-image');
+      const resultSkel = resultImgWrapper?.querySelector('.result-skeleton');
+      resultImgWrapper.classList.remove('hidden');
+      resultImgEl.classList.add('hidden');
+      resultImgEl.src = '';
+      if (resultSkel) resultSkel.classList.remove('hidden');
+      fetchAnimalImage(winner.name).then(data => {
+        if (data) {
+          resultImgEl.onload = () => { if (resultSkel) resultSkel.classList.add('hidden'); resultImgEl.classList.remove('hidden'); };
+          resultImgEl.onerror = () => { if (resultSkel) resultSkel.classList.add('hidden'); };
+          resultImgEl.src = data.url;
+          resultImgEl.alt = getAnimalName(winner);
+        } else {
+          if (resultSkel) resultSkel.classList.add('hidden');
+          resultImgWrapper.classList.add('hidden');
+        }
+      });
+
       const consLabels = {
         LC: { text: t.consLC, color: 'bg-conservation-lc/15 text-conservation-lc border border-conservation-lc/30' },
         NT: { text: t.consNT, color: 'bg-conservation-nt/15 text-conservation-nt border border-conservation-nt/30' },
@@ -332,6 +503,31 @@ const spinT = {
       const card = document.getElementById('spinner-card');
       card.classList.remove('hidden');
       document.getElementById('card-emoji').textContent = winner.emoji;
+      const cardImgWrapper = document.getElementById('card-image-wrapper');
+      const cardImgEl = document.getElementById('card-image');
+      const cardImgSkel = document.getElementById('card-image-skeleton');
+      cardImgWrapper.classList.remove('hidden');
+      cardImgEl.classList.add('hidden');
+      cardImgEl.src = '';
+      if (cardImgSkel) cardImgSkel.classList.remove('hidden');
+      fetchAnimalImage(winner.name).then(data => {
+        if (data) {
+          cardImgEl.onload = () => { if (cardImgSkel) cardImgSkel.classList.add('hidden'); cardImgEl.classList.remove('hidden'); };
+          cardImgEl.onerror = () => { if (cardImgSkel) cardImgSkel.classList.add('hidden'); };
+          cardImgEl.src = data.url;
+          cardImgEl.alt = getAnimalName(winner);
+          const creditEl = document.getElementById('card-image-credit');
+          const creditLink = document.getElementById('card-image-credit-link');
+          if (creditLink && data.photographer && data.photoUrl) {
+            creditLink.textContent = `Photo by ${data.photographer} on Pexels`;
+            creditLink.href = data.photoUrl;
+            creditEl?.classList.remove('hidden');
+          }
+        } else {
+          if (cardImgSkel) cardImgSkel.classList.add('hidden');
+          cardImgWrapper.classList.add('hidden');
+        }
+      });
       document.getElementById('card-name').textContent = getAnimalName(winner);
 
       const sciEl = document.getElementById('card-scientific');
@@ -421,18 +617,40 @@ const spinT = {
 
       document.getElementById('sc-btn-download').onclick = () => {
         const btn = document.getElementById('sc-btn-download');
-        btn.innerHTML = '<span>⏳</span> ...';
-        const svgData = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml" style="font-family:system-ui,-apple-system,sans-serif;background:#fff;padding:32px;width:536px;"><div style="text-align:center;padding:24px 0;border-radius:16px;background:linear-gradient(135deg,#d3e5ff50,#7928ca30,#ff008030);"><div style="font-size:72px;margin-bottom:8px;">${winner.emoji}</div><h2 style="margin:0;font-size:24px;font-weight:700;">${getAnimalName(winner)}</h2><div style="margin-top:8px;display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;background:#22c55e20;color:#22c55e;">${cons.text}</div></div><p style="font-size:14px;color:#4d4d4d;line-height:1.6;margin:16px 0;">${getAnimalDescription(winner)}</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;margin-bottom:12px;"><div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>Habitat:</strong> ${translateVal(winner.habitat, 'habitat')}</div><div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>Diet:</strong> ${translateVal(winner.diet, 'diet')}</div><div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>Lifespan:</strong> ${winner.lifespan}</div><div style="padding:8px;border:1px solid #ebebeb;border-radius:8px;"><strong>Weight:</strong> ${winner.weight}</div></div><div style="padding:10px;border:1px solid #d3e5ff;border-radius:8px;background:#d3e5ff30;font-size:13px;"><strong>Fun Fact:</strong> ${getAnimalFunFact(winner)}</div><p style="font-size:11px;color:#8f8f8f;text-align:center;margin-top:16px;">Random Animal Generator</p></div></foreignObject></svg>`;
-        const blob = new Blob([svgData], { type: 'image/svg+xml' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${getAnimalName(winner).toLowerCase().replace(/\s+/g, '-')}.svg`;
-        a.click();
-        URL.revokeObjectURL(url);
-        btn.innerHTML = '<span>✓</span> ' + t.download;
-        setTimeout(() => { btn.innerHTML = '<span>📥</span> ' + t.download; }, 2000);
+        window.__downloadAnimalCard?.(winner, {
+          habitat: t.habitat, diet: t.diet, lifespan: t.lifespan, weight: t.weight,
+          speed: t.speed, length: t.length, region: t.region, taxonomy: t.taxonomy,
+          taxClass: t.taxClass, taxOrder: t.taxOrder, taxFamily: t.taxFamily,
+          funFact: t.funFact, download: t.download, saving: t.saving, saved: t.saved, years: t.years,
+          conservation: {
+            LC:{text:t.consLC},NT:{text:t.consNT},VU:{text:t.consVU},EN:{text:t.consEN},CR:{text:t.consCR},EW:{text:t.consEW},EX:{text:t.consEX},DD:{text:t.consDD},
+          },
+        }, getAnimalName(winner), translateVal, btn);
       };
+
+      document.getElementById('result-btn-fullscreen')?.addEventListener('click', () => {
+        const img = document.getElementById('result-image');
+        if (!img || !img.src) return;
+        const fsImg = document.getElementById('spinner-fullscreen-img');
+        if (fsImg) { fsImg.src = img.src; fsImg.alt = img.alt; }
+        document.getElementById('spinner-fullscreen-overlay')?.classList.remove('hidden');
+      });
+      document.getElementById('card-btn-fullscreen')?.addEventListener('click', () => {
+        const img = document.getElementById('card-image');
+        if (!img || !img.src) return;
+        const fsImg = document.getElementById('spinner-fullscreen-img');
+        if (fsImg) { fsImg.src = img.src; fsImg.alt = img.alt; }
+        document.getElementById('spinner-fullscreen-overlay')?.classList.remove('hidden');
+      });
+      document.getElementById('spinner-fullscreen-overlay')?.addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) document.getElementById('spinner-fullscreen-overlay')?.classList.add('hidden');
+      });
+      document.getElementById('spinner-fullscreen-close')?.addEventListener('click', () => {
+        document.getElementById('spinner-fullscreen-overlay')?.classList.add('hidden');
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') document.getElementById('spinner-fullscreen-overlay')?.classList.add('hidden');
+      });
 
       card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 5200);
@@ -449,6 +667,8 @@ const spinT = {
     document.getElementById('result-emoji').textContent = '❓';
     document.getElementById('result-name').textContent = t.spinToDiscover;
     document.getElementById('result-desc').textContent = '';
+    document.getElementById('result-image-wrapper').classList.add('hidden');
+    document.getElementById('card-image-wrapper').classList.add('hidden');
     document.getElementById('spinner-card').classList.add('hidden');
     buildWheel();
   });

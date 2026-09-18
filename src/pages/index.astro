@@ -6,7 +6,7 @@ import CategoryFilter from '../components/CategoryFilter.astro';
 import ConservationFilter from '../components/ConservationFilter.astro';
 import AnimalCard from '../components/AnimalCard.astro';
 import animals from '../data/animals.json';
-import animalTranslations from '../data/animal-translations.json';
+import animalTranslations from '../i18n/data/animal-translations.json';
 import { getTranslations } from '../utils/i18n';
 
 const locale = 'en';
@@ -79,8 +79,7 @@ const animalT = animalTranslations[locale] || {};
         >
           <option value="1">{t['1_animal']}</option>
           <option value="5">{t['5_animals']}</option>
-          <option value="10">{t['10_animals']}</option>
-          <option value="20">{t['20_animals']}</option>
+
         </select>
       </div>
       <div class="flex items-center gap-2 flex-wrap">
@@ -263,6 +262,13 @@ const animalT = animalTranslations[locale] || {};
   <Footer />
 </Layout>
 
+<div id="home-fullscreen-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 cursor-zoom-out" style="backdrop-filter:blur(8px);">
+  <button id="home-fullscreen-close" class="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10">
+    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+  </button>
+  <img id="home-fullscreen-img" class="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain shadow-2xl" alt="" />
+</div>
+
 <script define:vars={{ animals: JSON.stringify(animals), locale: 'en', animalT: JSON.stringify(animalT) }}>
   const allAnimals = JSON.parse(animals);
   const animalTranslations = JSON.parse(animalT);
@@ -279,6 +285,34 @@ const animalT = animalTranslations[locale] || {};
   window.__valueMaps = {diet:dietMap, habitat:habitatMap, region:regionMap};
   function translateVal(value, field) { const map = window.__valueMaps && window.__valueMaps[field]; const l = window.__cardLocale || locale; return (map && map[l] && map[l][value]) || value; }
   window.__shareT = { shareTitle:'Share this animal', copyLink:'Copy Link', shareTwitter:'Twitter', shareFacebook:'Facebook', shareWhatsApp:'WhatsApp', sharePinterest:'Pinterest', shareEmail:'Email', nativeShare:'More...' };
+
+  const PEXELS_API_KEY = 'xEfnJ9xU5Fem8MeEPh1zE3lURDVneBkLnPGnrNAjnbMCBAY0LGtdgLFE';
+  const pexelsCache = JSON.parse(localStorage.getItem('pexelsImageCache') || '{}');
+  Object.keys(pexelsCache).forEach(k => { if (typeof pexelsCache[k] === 'string') delete pexelsCache[k]; });
+  async function fetchAnimalImage(animalName) {
+    const cacheKey = animalName.toLowerCase().trim();
+    if (pexelsCache[cacheKey]) return pexelsCache[cacheKey];
+    try {
+      const res = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(animalName)}&per_page=1&orientation=landscape`, {
+        headers: { 'Authorization': PEXELS_API_KEY }
+      });
+      if (!res.ok) return null;
+      const data = await res.json();
+      if (data.photos && data.photos.length > 0) {
+        const photo = data.photos[0];
+        const result = {
+          url: photo.src.large2x || photo.src.large,
+          photographer: photo.photographer || '',
+          photoUrl: photo.url || '',
+        };
+        pexelsCache[cacheKey] = result;
+        localStorage.setItem('pexelsImageCache', JSON.stringify(pexelsCache));
+        return result;
+      }
+    } catch (e) { console.error('Pexels fetch error:', e); }
+    return null;
+  }
+
   let soundEnabled = true;
   let currentCategory = 'all';
   let currentConservation = 'all';
@@ -430,6 +464,14 @@ const animalT = animalTranslations[locale] || {};
           card.innerHTML = `
             <div class="bg-gradient-to-br from-link-soft/50 via-violet-soft/30 to-pink-soft/30 p-5 text-center dark:from-[#1a2744] dark:via-[#2a1a3a] dark:to-[#3a1a2a]">
               <div class="text-5xl mb-2 emoji-icon" style="animation-delay: ${i * 300}ms">${animal.emoji}</div>
+              <div class="multi-card-image mb-2 hidden" style="position:relative;">
+                <div class="multi-card-skeleton image-skeleton mx-auto" style="width:100%;max-width:260px;height:160px;"></div>
+                <img class="multi-card-img mx-auto rounded-lg object-cover shadow-md hidden" style="width:100%;max-width:260px;height:160px;" alt="${getAnimalName(animal)}" />
+                <button class="multi-card-fullscreen absolute bottom-2 right-2 flex items-center gap-1 rounded-lg bg-black/60 px-2 py-1 text-[10px] font-medium text-white backdrop-blur-sm transition-all hover:bg-black/80 hover:scale-105" title="View full image">
+                  <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+                </button>
+                <p class="multi-card-credit absolute bottom-2 left-2 text-[10px] text-white/70 hidden"><a class="multi-card-credit-link" href="#" target="_blank" rel="noopener noreferrer" class="hover:text-white/90"></a></p>
+              </div>
               <h3 class="text-base font-bold text-ink dark:text-[#ededed]">${getAnimalName(animal)}</h3>
               <span class="mt-1 inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-medium ${cons.color}">${cons.text}</span>
             </div>
@@ -455,6 +497,7 @@ const animalT = animalTranslations[locale] || {};
               </div>
               <div class="mt-3 flex gap-2">
                 <button class="multi-share-btn flex-1 flex items-center justify-center gap-1.5 rounded-xl border border-blue-200 bg-blue-50 px-3 py-2 text-xs font-medium text-blue-600 transition-all hover:bg-blue-100 dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-400 dark:hover:bg-blue-500/20"><span>🔗</span> ${jsT.share || 'Share'}</button>
+                <button class="multi-download-btn flex-1 flex items-center justify-center gap-1.5 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-medium text-emerald-600 transition-all hover:bg-emerald-100 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-400 dark:hover:bg-emerald-500/20"><span>📥</span> ${jsT.download || 'Download'}</button>
                 <button class="multi-view-btn flex-1 flex items-center justify-center gap-1.5 rounded-xl border border-hairline bg-canvas px-3 py-2 text-xs font-medium text-ink transition-all hover:bg-hairline dark:border-[#333] dark:bg-[#111] dark:text-[#ededed] dark:hover:bg-[#333]" data-id="${animal.id}">${jsT.view}</button>
               </div>
             </div>
@@ -464,7 +507,47 @@ const animalT = animalTranslations[locale] || {};
             window.displayAnimal?.(animal);
             document.getElementById('animal-card-container')?.scrollIntoView({ behavior: 'smooth' });
           });
+          card.querySelector('.multi-download-btn')?.addEventListener('click', function() {
+            window.__downloadAnimalCard?.(animal, {
+              habitat: jsT.habitat, diet: jsT.diet, lifespan: jsT.lifespan, weight: jsT.weight,
+              speed: jsT.speed, length: jsT.length, region: jsT.region, taxonomy: jsT.taxonomy,
+              taxClass: jsT.taxClass, taxOrder: jsT.taxOrder, taxFamily: jsT.taxFamily,
+              funFact: jsT.funFact, download: jsT.download || 'Download', saving: jsT.saving || 'Saving...', saved: jsT.saved || 'Saved!', years: jsT.years,
+              conservation: {
+                LC:{text:jsT.consLC},NT:{text:jsT.consNT},VU:{text:jsT.consVU},EN:{text:jsT.consEN},CR:{text:jsT.consCR},EW:{text:jsT.consEW},EX:{text:jsT.consEX},DD:{text:jsT.consDD},
+              },
+            }, getAnimalName(animal), translateVal, this);
+          });
+          card.querySelector('.multi-card-fullscreen')?.addEventListener('click', () => {
+            const imgEl = card.querySelector('.multi-card-img');
+            if (!imgEl || !imgEl.src) return;
+            const fsImg = document.getElementById('home-fullscreen-img');
+            if (fsImg) { fsImg.src = imgEl.src; fsImg.alt = imgEl.alt; }
+            document.getElementById('home-fullscreen-overlay')?.classList.remove('hidden');
+          });
           multiContainer.appendChild(card);
+          const imgWrap = card.querySelector('.multi-card-image');
+          const img = imgWrap?.querySelector('.multi-card-img');
+          const skel = imgWrap?.querySelector('.multi-card-skeleton');
+          if (imgWrap && img && skel) {
+            imgWrap.classList.remove('hidden');
+          }
+          fetchAnimalImage(animal.name).then(data => {
+            if (data && img && skel) {
+              img.onload = () => { skel.classList.add('hidden'); img.classList.remove('hidden'); };
+              img.onerror = () => { skel.classList.add('hidden'); };
+              img.src = data.url;
+              const creditLink = card.querySelector('.multi-card-credit-link');
+              const creditEl = card.querySelector('.multi-card-credit');
+              if (creditLink && data.photographer && data.photoUrl) {
+                creditLink.textContent = `Photo by ${data.photographer} on Pexels`;
+                creditLink.href = data.photoUrl;
+                creditEl?.classList.remove('hidden');
+              }
+            } else if (skel) {
+              skel.classList.add('hidden');
+            }
+          });
         });
       }
     });
@@ -509,10 +592,18 @@ const animalT = animalTranslations[locale] || {};
   function renderCompare() {
     const container = document.getElementById('compare-content');
     if (!container || compareList.length < 2) return;
-    container.innerHTML = compareList.map(animal => `
-      <div class="rounded-xl border border-hairline bg-canvas p-4 dark:border-[#333] dark:bg-[#111]">
+    container.innerHTML = compareList.map((animal, i) => `
+      <div class="compare-card rounded-xl border border-hairline bg-canvas p-4 dark:border-[#333] dark:bg-[#111]">
         <div class="text-center mb-3">
           <div class="text-4xl emoji-icon mb-1">${animal.emoji}</div>
+          <div class="compare-image mb-2 hidden" style="position:relative;">
+            <div class="compare-skeleton image-skeleton mx-auto" style="width:100%;max-width:260px;height:160px;"></div>
+            <img class="compare-img mx-auto rounded-lg object-cover shadow-md hidden" style="width:100%;max-width:260px;height:160px;" alt="${animal.name}" />
+            <button class="compare-fullscreen absolute bottom-2 right-2 flex items-center gap-1 rounded-lg bg-black/60 px-2 py-1 text-[10px] font-medium text-white backdrop-blur-sm transition-all hover:bg-black/80 hover:scale-105" title="View full image">
+              <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+            </button>
+            <p class="compare-credit absolute bottom-2 left-2 text-[10px] text-white/70 hidden"><a class="compare-credit-link" href="#" target="_blank" rel="noopener noreferrer" class="hover:text-white/90"></a></p>
+          </div>
           <h3 class="font-bold text-ink dark:text-[#ededed]">${animal.name}</h3>
         </div>
         <div class="space-y-2 text-xs">
@@ -523,8 +614,48 @@ const animalT = animalTranslations[locale] || {};
           <div class="flex justify-between"><span class="text-faint">${jsT.speed}</span><span class="font-medium text-ink dark:text-[#ededed]">${animal.speed}</span></div>
           <div class="flex justify-between"><span class="text-faint">${jsT.length}</span><span class="font-medium text-ink dark:text-[#ededed]">${animal.length}</span></div>
         </div>
+        <button class="compare-download-btn mt-3 w-full flex items-center justify-center gap-1.5 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-medium text-emerald-600 transition-all hover:bg-emerald-100 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-400 dark:hover:bg-emerald-500/20"><span>📥</span> ${jsT.download || 'Download'}</button>
       </div>
     `).join('');
+    container.querySelectorAll('.compare-card').forEach((card, i) => {
+      const animal = compareList[i];
+      const imgWrap = card.querySelector('.compare-image');
+      const img = imgWrap?.querySelector('.compare-img');
+      const skel = imgWrap?.querySelector('.compare-skeleton');
+      if (imgWrap) imgWrap.classList.remove('hidden');
+      card.querySelector('.compare-download-btn')?.addEventListener('click', function() {
+        window.__downloadAnimalCard?.(animal, {
+          habitat: jsT.habitat, diet: jsT.diet, lifespan: jsT.lifespan, weight: jsT.weight,
+          speed: jsT.speed, length: jsT.length, region: jsT.region, taxonomy: jsT.taxonomy,
+          taxClass: jsT.taxClass, taxOrder: jsT.taxOrder, taxFamily: jsT.taxFamily,
+          funFact: jsT.funFact, download: jsT.download || 'Download', saving: jsT.saving || 'Saving...', saved: jsT.saved || 'Saved!', years: jsT.years,
+          conservation: { LC:{text:jsT.consLC},NT:{text:jsT.consNT},VU:{text:jsT.consVU},EN:{text:jsT.consEN},CR:{text:jsT.consCR},EW:{text:jsT.consEW},EX:{text:jsT.consEX},DD:{text:jsT.consDD} },
+        }, getAnimalName(animal), translateVal, this);
+      });
+      card.querySelector('.compare-fullscreen')?.addEventListener('click', () => {
+        const imgEl = card.querySelector('.compare-img');
+        if (!imgEl || !imgEl.src) return;
+        const fsImg = document.getElementById('home-fullscreen-img');
+        if (fsImg) { fsImg.src = imgEl.src; fsImg.alt = imgEl.alt; }
+        document.getElementById('home-fullscreen-overlay')?.classList.remove('hidden');
+      });
+      fetchAnimalImage(animal.name).then(data => {
+        if (data && img && skel) {
+          img.onload = () => { skel.classList.add('hidden'); img.classList.remove('hidden'); };
+          img.onerror = () => { skel.classList.add('hidden'); };
+          img.src = data.url;
+          const creditLink = card.querySelector('.compare-credit-link');
+          const creditEl = card.querySelector('.compare-credit');
+          if (creditLink && data.photographer && data.photoUrl) {
+            creditLink.textContent = `Photo by ${data.photographer} on Pexels`;
+            creditLink.href = data.photoUrl;
+            creditEl?.classList.remove('hidden');
+          }
+        } else if (skel) {
+          skel.classList.add('hidden');
+        }
+      });
+    });
   }
 
   // Quiz
@@ -557,6 +688,14 @@ const animalT = animalTranslations[locale] || {};
     container.innerHTML = `
       <p class="text-sm text-body mb-1 dark:text-[#a1a1a1]">${question}</p>
       <div class="text-center text-3xl mb-3 emoji-icon">${correct.emoji}</div>
+      <div class="quiz-image mb-3 hidden text-center" style="position:relative;">
+        <div class="quiz-skeleton image-skeleton mx-auto" style="max-width:260px;height:160px;"></div>
+        <img class="quiz-img mx-auto rounded-lg object-cover shadow-md hidden" style="max-width:260px;height:160px;" alt="${correct.name}" />
+        <button class="quiz-fullscreen absolute bottom-2 right-2 flex items-center gap-1 rounded-lg bg-black/60 px-2 py-1 text-[10px] font-medium text-white backdrop-blur-sm transition-all hover:bg-black/80 hover:scale-105" title="View full image">
+          <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+        </button>
+        <p class="quiz-credit absolute bottom-2 left-2 text-[10px] text-white/70 hidden"><a class="quiz-credit-link" href="#" target="_blank" rel="noopener noreferrer" class="hover:text-white/90"></a></p>
+      </div>
       <div class="grid grid-cols-2 gap-2">
         ${options.map(o => `
           <button class="quiz-option rounded-lg border border-hairline bg-canvas p-3 text-xs font-medium text-body text-left dark:border-[#333] dark:bg-[#111] dark:text-[#a1a1a1]" data-value="${o[answerKey]}" data-correct="${o[answerKey] === correct[answerKey]}">
@@ -565,6 +704,38 @@ const animalT = animalTranslations[locale] || {};
         `).join('')}
       </div>
     `;
+
+    const quizImgWrap = container.querySelector('.quiz-image');
+    const quizImg = quizImgWrap?.querySelector('img');
+    const quizSkel = quizImgWrap?.querySelector('.quiz-skeleton');
+    if (quizImgWrap) {
+      quizImgWrap.classList.remove('hidden');
+    }
+    if (quizImgWrap && quizImg) {
+      fetchAnimalImage(correct.name).then(data => {
+        if (data) {
+          quizImg.onload = () => { if (quizSkel) quizSkel.classList.add('hidden'); quizImg.classList.remove('hidden'); };
+          quizImg.onerror = () => { if (quizSkel) quizSkel.classList.add('hidden'); };
+          quizImg.src = data.url;
+          const creditLink = container.querySelector('.quiz-credit-link');
+          const creditEl = container.querySelector('.quiz-credit');
+          if (creditLink && data.photographer && data.photoUrl) {
+            creditLink.textContent = `Photo by ${data.photographer} on Pexels`;
+            creditLink.href = data.photoUrl;
+            creditEl?.classList.remove('hidden');
+          }
+        } else {
+          if (quizSkel) quizSkel.classList.add('hidden');
+        }
+      });
+      container.querySelector('.quiz-fullscreen')?.addEventListener('click', () => {
+        const imgEl = container.querySelector('.quiz-img');
+        if (!imgEl || !imgEl.src) return;
+        const fsImg = document.getElementById('home-fullscreen-img');
+        if (fsImg) { fsImg.src = imgEl.src; fsImg.alt = imgEl.alt; }
+        document.getElementById('home-fullscreen-overlay')?.classList.remove('hidden');
+      });
+    }
 
     container.querySelectorAll('.quiz-option').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -642,6 +813,17 @@ const animalT = animalTranslations[locale] || {};
 
   window.addEventListener('conservation-change', (e) => {
     currentConservation = e.detail;
+  });
+
+  // Fullscreen overlay
+  document.getElementById('home-fullscreen-overlay')?.addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) document.getElementById('home-fullscreen-overlay')?.classList.add('hidden');
+  });
+  document.getElementById('home-fullscreen-close')?.addEventListener('click', () => {
+    document.getElementById('home-fullscreen-overlay')?.classList.add('hidden');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') document.getElementById('home-fullscreen-overlay')?.classList.add('hidden');
   });
 
   // URL param support

@@ -1,6 +1,6 @@
 // i18n UI dictionary — following https://docs.astro.build/en/recipes/i18n/
 // Central source for languages, default lang, and UI strings
-import translations from '../data/translations.json';
+import translations from './data/translations.json';
 
 export const languages = {
   en: 'English',
