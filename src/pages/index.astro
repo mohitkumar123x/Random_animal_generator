@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import CategoryFilter from '../components/CategoryFilter.astro';
 import ConservationFilter from '../components/ConservationFilter.astro';
+import SavedAnimals from '../components/SavedAnimals.astro';
 import AnimalCard from '../components/AnimalCard.astro';
 import animals from '../data/animals.json';
 import animalTranslations from '../i18n/data/animal-translations.json';
@@ -89,6 +90,24 @@ const animalT = animalTranslations[locale] || {};
         >
           <span class="dice-icon">🎲</span> {t.generate}
         </button>
+        <a
+          href="/spinner"
+          class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas-elevated px-3 py-1.5 text-xs font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"
+        >
+          <span>🎡</span> {t.spinner_wheel}
+        </a>
+        <button
+          id="compare-btn"
+          class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas-elevated px-3 py-1.5 text-xs font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"
+        >
+          <span>⚖️</span> {t.compare}
+        </button>
+        <button
+          id="quiz-btn"
+          class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas-elevated px-3 py-1.5 text-xs font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"
+        >
+          <span>🧠</span> {t.animal_quiz}
+        </button>
         <button
           id="no-repeat-toggle"
           class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas-elevated px-3 py-1.5 text-xs font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"
@@ -107,6 +126,7 @@ const animalT = animalTranslations[locale] || {};
             <path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
           </svg>
         </button>
+        <SavedAnimals locale={locale} />
       </div>
     </div>
 

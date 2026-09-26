@@ -258,6 +258,25 @@ function getConservationLabels() {
   };
 }
 
+function getFavorites() {
+  try { return JSON.parse(localStorage.getItem('favorites') || '[]'); } catch (e) { return []; }
+}
+function isFavorite(id) {
+  return getFavorites().some(f => f.id === id);
+}
+function setFavoriteBtnState(animal) {
+  const t = getCardT();
+  const btn = document.getElementById('btn-favorite');
+  if (!btn) return;
+  const saved = isFavorite(animal.id);
+  btn.innerHTML = saved
+    ? `<span>♥</span> <span id="btn-favorite-text">${t.saved || 'Saved!'}</span>`
+    : `<span>♡</span> <span id="btn-favorite-text">${t.save || 'Save'}</span>`;
+}
+function notifyFavoritesChanged() {
+  window.dispatchEvent(new CustomEvent('favorites-changed'));
+}
+
 function getAnimalName(animal) {
   const t = window.__animalT;
   return (t && t[animal.id] && t[animal.id].name) || animal.name;
@@ -443,22 +462,22 @@ window.displayAnimal = function(animal) {
   document.getElementById('label-family').textContent = t.taxFamily;
   document.getElementById('label-funfact').textContent = '💡 ' + t.funFact;
 
-  document.getElementById('btn-favorite-text').textContent = t.save;
+  setFavoriteBtnState(animal);
   document.getElementById('btn-share-text').textContent = t.share;
   document.getElementById('btn-copy-text').textContent = t.copy;
   document.getElementById('btn-download-text').textContent = t.download;
 
   document.getElementById('btn-favorite').onclick = () => {
-    const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+    const favs = getFavorites();
     const exists = favs.find(f => f.id === animal.id);
     if (!exists) {
       favs.unshift(animal);
       localStorage.setItem('favorites', JSON.stringify(favs.slice(0, 50)));
-      document.getElementById('btn-favorite').innerHTML = `<span>♥</span> <span id="btn-favorite-text">${t.saved}</span>`;
     } else {
       localStorage.setItem('favorites', JSON.stringify(favs.filter(f => f.id !== animal.id)));
-      document.getElementById('btn-favorite').innerHTML = `<span>♡</span> <span id="btn-favorite-text">${t.save}</span>`;
     }
+    setFavoriteBtnState(animal);
+    notifyFavoritesChanged();
   };
 
   document.getElementById('btn-share').onclick = () => window.openSharePopup(animal);

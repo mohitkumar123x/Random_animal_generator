@@ -29,6 +29,7 @@ const spinT = {
   taxFamily: t.tax_family,
   years: t.years,
   save: t.save,
+  saved: t.saved,
   copy: t.copy,
   download: t.download,
   share: t.share,
@@ -353,6 +354,18 @@ if (!window.__downloadAnimalCard) {
   function getAnimalDescription(animal) { return (animalTranslations[animal.id] && animalTranslations[animal.id].description) || animal.description; }
   function getAnimalFunFact(animal) { return (animalTranslations[animal.id] && animalTranslations[animal.id].funFact) || animal.funFact; }
 
+  function getFavorites() {
+    try { return JSON.parse(localStorage.getItem('favorites') || '[]'); } catch (e) { return []; }
+  }
+  function setSpinnerSaveState(animal) {
+    const btn = document.getElementById('sc-btn-save');
+    if (!btn) return;
+    const saved = getFavorites().some(f => f.id === animal.id);
+    btn.innerHTML = saved
+      ? `<span class="transition-transform group-hover:scale-110">♥</span> ${t.saved || 'Saved!'}`
+      : `<span class="transition-transform group-hover:scale-110">♡</span> ${t.save || 'Save'}`;
+  }
+
   const PEXELS_API_KEY = 'xEfnJ9xU5Fem8MeEPh1zE3lURDVneBkLnPGnrNAjnbMCBAY0LGtdgLFE';
   const pexelsCache = JSON.parse(localStorage.getItem('pexelsImageCache') || '{}');
   Object.keys(pexelsCache).forEach(k => { if (typeof pexelsCache[k] === 'string') delete pexelsCache[k]; });
@@ -555,17 +568,18 @@ if (!window.__downloadAnimalCard) {
       document.getElementById('sc-family').textContent = winner.family || '—';
       document.getElementById('sc-funfact').textContent = getAnimalFunFact(winner);
 
+      setSpinnerSaveState(winner);
       document.getElementById('sc-btn-save').onclick = () => {
-        const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+        const favs = getFavorites();
         const exists = favs.find(f => f.id === winner.id);
         if (!exists) {
           favs.unshift(winner);
           localStorage.setItem('favorites', JSON.stringify(favs.slice(0, 50)));
-          document.getElementById('sc-btn-save').innerHTML = '<span>♥</span> ' + t.save;
         } else {
           localStorage.setItem('favorites', JSON.stringify(favs.filter(f => f.id !== winner.id)));
-          document.getElementById('sc-btn-save').innerHTML = '<span>♡</span> ' + t.save;
         }
+        setSpinnerSaveState(winner);
+        window.dispatchEvent(new CustomEvent('favorites-changed'));
       };
 
       document.getElementById('sc-btn-share').onclick = () => {
