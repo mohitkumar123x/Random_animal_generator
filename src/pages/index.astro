@@ -12,13 +12,46 @@ import { getTranslations } from '../utils/i18n';
 
 const locale = 'en';
 const t = getTranslations(locale);
-const animalT = animalTranslations[locale] || {};
+const translationsMap = animalTranslations as Record<string, Record<string, { name?: string; description?: string; funFact?: string }>>;
+const animalT = translationsMap[locale] || {};
+
+// Dataset stats — computed from animals.json so homepage numbers always match the data.
+const totalRecords = animals.length;
+const fictionalCats = new Set(['mythical', 'fantasy']);
+const prehistoricCats = new Set(['prehistoric']);
+const livingRecords = animals.filter(a => !fictionalCats.has(a.category) && !prehistoricCats.has(a.category));
+const livingCount = livingRecords.length;
+const uniqueScientificNames = new Set(animals.map(a => a.scientificName)).size;
+const fictionalCount = animals.filter(a => fictionalCats.has(a.category)).length;
+const prehistoricCount = animals.filter(a => prehistoricCats.has(a.category)).length;
+
+const categoryMeta = [
+  ['mammal', 'Mammals'], ['bird', 'Birds'], ['insect', 'Insects'], ['fish', 'Fish'],
+  ['marine', 'Marine'], ['reptile', 'Reptiles'], ['amphibian', 'Amphibians'],
+  ['prehistoric', 'Prehistoric'], ['fantasy', 'Fantasy'], ['mythical', 'Mythical'],
+  ['farm', 'Farm'], ['cute', 'Cute'],
+];
+const categoryCounts = categoryMeta.map(([cat, label]) => ({
+  cat, label, count: animals.filter(a => a.category === cat).length,
+}));
+const maxCatCount = Math.max(...categoryCounts.map(c => c.count));
+
+const statusMeta = [
+  ['LC', 'Least Concern'], ['NT', 'Near Threatened'], ['VU', 'Vulnerable'], ['EN', 'Endangered'],
+  ['CR', 'Critically Endangered'], ['EW', 'Extinct in the Wild'], ['EX', 'Extinct'], ['DD', 'Data Deficient'],
+];
+const statusCounts = statusMeta.map(([code, label]) => ({
+  code, label, count: livingRecords.filter(a => a.conservation === code).length,
+}));
+const maxStatusCount = Math.max(...statusCounts.map(s => s.count));
+const threatenedCount = livingRecords.filter(a => ['VU', 'EN', 'CR', 'EW', 'EX'].includes(a.conservation)).length;
 ---
 
 <Layout
-  title={t.title}
-  description={t.description}
+  title="Random Animal Generator with Pictures & Fun Facts"
+  description="Generate a random animal, explore its picture and learn about its habitat, diet, and other characteristics. Try animal filters, the spinner wheel, and quiz tools."
   canonical="https://bestrandomanimalgenerator.com"
+  imageAlt="Random Animal Generator with pictures and fun facts – free online tool showing a random animal card with habitat, diet and conservation status"
   pagePath="/"
 >
   <Navbar pagePath="/" />
@@ -201,55 +234,239 @@ const animalT = animalTranslations[locale] || {};
     </section>
 
     <!-- SEO Content Section -->
-    <section class="mt-12 space-y-10 text-body">
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h1}</h2>
-        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">{t.seo_p1}</p>
-      </div>
+    <section class="mt-12 space-y-12 text-body" aria-label="About this tool">
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">What Is This Tool?</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">This is a free random animal generator. Press Generate (or the Spacebar) and it picks an animal at random from a database of {totalRecords} records and shows a profile with habitat, diet, lifespan, size, speed, scientific name, and a short fun fact. You can filter by animal group or conservation label, generate several animals at once, save favourites, and use the same database from the <a href="/spinner" class="text-link hover:underline">spinner wheel</a>, <a href="/quiz" class="text-link hover:underline">quiz</a>, and <a href="/compare" class="text-link hover:underline">compare</a> pages.</p>
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">The collection mixes real wildlife with a few creative categories. Most records are living or recently living species ({livingCount} records across mammals, birds, fish, reptiles, amphibians, insects, marine life, farm animals, and the cute collection). It also includes {prehistoricCount} prehistoric animals known from the fossil record, and {fictionalCount} mythical and fantasy creatures from folklore and fiction. Across all categories there are {uniqueScientificNames} distinct scientific names among the {totalRecords} records; a handful of species appear twice (once in their main group and once under Cute).</p>
+      </article>
 
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h2}</h2>
-        {t.seo_p2.split('||').map((p, i) => (
-          <p class:list={['text-sm leading-relaxed dark:text-[#a1a1a1]', { 'mb-3': i === 0 }]}>{p}</p>
-        ))}
-      </div>
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">How the Generator Works</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">Selection runs entirely in your browser. When you click Generate, the tool first builds an eligible list: it starts from all records, keeps only the category and conservation filter you selected (if any), and — when No Repeat is on — drops animals you have already seen in this browser. It then shuffles that list with a randomized sort based on JavaScript's <code class="rounded border border-hairline bg-canvas px-1.5 py-0.5 font-mono text-xs text-faint dark:border-[#333] dark:bg-[#111]">Math.random()</code> and takes the first entries. Nothing is sent to a server.</p>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">This is a practical random pick for everyday use. It is not a statistically uniform or cryptographic shuffle, so results are fine for games, art prompts, and learning, but should not be treated as research-grade randomness. If a filter combination leaves no eligible animals (for example, every matching animal has already been seen with No Repeat on), the generator has nothing to show until you change the filters or turn No Repeat off.</p>
 
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h3}</h2>
-        {t.seo_p3.split('||').map((p, i) => (
-          <p class:list={['text-sm leading-relaxed dark:text-[#a1a1a1]', { 'mb-3': i === 0 }]}>{p}</p>
-        ))}
-      </div>
+        <figure class="my-5" id="how-flow">
+          <figcaption class="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">What happens when you click Generate</figcaption>
+          <div class="mx-auto flex max-w-md flex-col items-stretch gap-0" role="list" aria-label="How the generator works, step by step">
+            <div class="flow-step flex items-start gap-3 rounded-xl border border-hairline bg-canvas px-4 py-3 text-sm font-medium text-ink dark:border-[#333] dark:bg-[#111] dark:text-[#ededed]" role="listitem">
+              <span class="flow-num" aria-hidden="true">1</span>
+              <span class="flex-1">Choose filters (optional)<span class="block text-xs font-normal text-muted">Category · Conservation label · How many</span></span>
+            </div>
+            <div class="flow-arrow py-1 text-muted" aria-hidden="true">
+              <svg class="mx-auto h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+            </div>
+            <div class="flow-step flex items-start gap-3 rounded-xl border border-hairline bg-canvas px-4 py-3 text-sm font-medium text-ink dark:border-[#333] dark:bg-[#111] dark:text-[#ededed]" role="listitem">
+              <span class="flow-num" aria-hidden="true">2</span>
+              <span class="flex-1">Build the eligible list<span class="block text-xs font-normal text-muted">Filtered records; unseen only if No Repeat is on</span></span>
+            </div>
+            <div class="flow-arrow py-1 text-muted" aria-hidden="true">
+              <svg class="mx-auto h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+            </div>
+            <div class="flow-step flex items-start gap-3 rounded-xl border border-hairline bg-canvas px-4 py-3 text-sm font-medium text-ink dark:border-[#333] dark:bg-[#111] dark:text-[#ededed]" role="listitem">
+              <span class="flow-num" aria-hidden="true">3</span>
+              <span class="flex-1">Shuffle and pick<span class="block text-xs font-normal text-muted">Randomized sort with Math.random() in your browser</span></span>
+            </div>
+            <div class="flow-arrow py-1 text-muted" aria-hidden="true">
+              <svg class="mx-auto h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+            </div>
+            <div class="flow-step flex items-start gap-3 rounded-xl border border-hairline bg-canvas px-4 py-3 text-sm font-medium text-ink dark:border-[#333] dark:bg-[#111] dark:text-[#ededed]" role="listitem">
+              <span class="flow-num" aria-hidden="true">4</span>
+              <span class="flex-1">Show the profile<span class="block text-xs font-normal text-muted">Name, emoji, facts, habitat, diet, status label</span></span>
+            </div>
+            <div class="flow-arrow py-1 text-muted" aria-hidden="true">
+              <svg class="mx-auto h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+            </div>
+            <div class="flow-step flex items-start gap-3 rounded-xl border border-hairline bg-canvas px-4 py-3 text-sm font-medium text-ink dark:border-[#333] dark:bg-[#111] dark:text-[#ededed]" role="listitem">
+              <span class="flow-num" aria-hidden="true">5</span>
+              <span class="flex-1">Use the result<span class="block text-xs font-normal text-muted">Save · Share · Download · Generate again</span></span>
+            </div>
+          </div>
+        </figure>
 
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h4}</h2>
-        {t.seo_p4.split('||').map((p, i) => (
-          <p class:list={['text-sm leading-relaxed dark:text-[#a1a1a1]', { 'mb-3': i === 0 }]}>{p}</p>
-        ))}
-      </div>
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">The <a href="/spinner" class="text-link hover:underline">spinner wheel</a> uses the same database in a more visual way: each eligible animal gets a slice, the wheel spins, and it lands on one result. It is handy for group settings where people want to watch the pick happen.</p>
+      </article>
 
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h5}</h2>
-        {t.seo_p5.split('||').map((p, i) => (
-          <p class:list={['text-sm leading-relaxed dark:text-[#a1a1a1]', { 'mb-3': i === 0 }]}>{p}</p>
-        ))}
-      </div>
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Results with Pictures and Profiles</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">Every result includes an emoji icon and a written profile. The animal card shows the common name, scientific name, habitat, diet, lifespan, weight, speed, length, region, class, order, family, and a fun fact. When image data is available on the card, you can open a larger view; the card tool also supports saving and downloading a shareable image of the animal.</p>
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">Written details sit next to the visual cue so you get both: a quick recognizable symbol and enough text to use the result in a lesson, sketch, or story without leaving the page.</p>
+      </article>
 
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h6}</h2>
-        {t.seo_p6.split('||').map((p, i) => (
-          <p class:list={['text-sm leading-relaxed dark:text-[#a1a1a1]', { 'mb-3': i === 0 }]}>{p}</p>
-        ))}
-      </div>
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Use the Generator for Drawing Ideas</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">If you are stuck on what to sketch, generate an animal and draw that. The range of the database helps: insects are good for texture, marine animals for silhouette, and prehistoric entries for imaginative work grounded in fossil anatomy. You can also set your own rule on top of a result — for example, draw only the wings, or sketch the animal as a flat silhouette.</p>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">A few real species from the database and what they are useful to practise:</p>
 
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h7}</h2>
-        <ul class="space-y-2 text-sm leading-relaxed dark:text-[#a1a1a1]">
-          {[t.seo_feat_1, t.seo_feat_2, t.seo_feat_3, t.seo_feat_4, t.seo_feat_5, t.seo_feat_6, t.seo_feat_7, t.seo_feat_8, t.seo_feat_9, t.seo_feat_10, t.seo_feat_11, t.seo_feat_12].map(feat => (
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> {feat}</li>
-          ))}
+        <div class="my-4 overflow-x-auto rounded-xl border border-hairline dark:border-[#333]">
+          <table class="w-full min-w-[560px] text-left text-xs">
+            <thead class="bg-canvas dark:bg-[#111]">
+              <tr>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Animal in the database</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Useful to practise</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Why</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline dark:divide-[#333]">
+              <tr><td class="px-3 py-2.5 text-ink dark:text-[#ededed]">Giant Pacific Octopus</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Tentacle movement &amp; suction cups</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Soft body with no skeleton forces fluid gesture lines</td></tr>
+              <tr><td class="px-3 py-2.5 text-ink dark:text-[#ededed]">Giraffe</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Neck geometry &amp; coat patches</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Extreme proportions teach large-shape construction</td></tr>
+              <tr><td class="px-3 py-2.5 text-ink dark:text-[#ededed]">Pangolin</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Overlapping keratin scales</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">A repeating texture you rarely get from other animals</td></tr>
+              <tr><td class="px-3 py-2.5 text-ink dark:text-[#ededed]">Ruby-throated Hummingbird</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Wing blur &amp; iridescence</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Tiny scale plus motion is a hard colour-and-edge exercise</td></tr>
+              <tr><td class="px-3 py-2.5 text-ink dark:text-[#ededed]">Axolotl</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">External gills &amp; rounded skull</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Simple friendly shapes, good for character design</td></tr>
+              <tr><td class="px-3 py-2.5 text-ink dark:text-[#ededed]">King Cobra</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Spread hood &amp; scale rows</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Dynamic pose with pattern work in one subject</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">Saved animals stay in your browser, so you can build a personal prompt list over time.</p>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Animal Activities for Kids and Classrooms</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">Each profile carries structured fields — habitat, diet, class, order, family, and a conservation label — which makes the tool usable as a quick research starter. A few simple ways to use it with younger learners:</p>
+        <ul class="mb-3 space-y-2 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span><span><strong class="font-semibold text-ink dark:text-[#ededed]">Journal entry</strong> — generate one animal, sketch it, and copy down one fact.</span></li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span><span><strong class="font-semibold text-ink dark:text-[#ededed]">Quiz mode</strong> — guess where an animal lives or what it eats from the emoji alone, then check the card.</span></li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span><span><strong class="font-semibold text-ink dark:text-[#ededed]">Compare mode</strong> — put two animals side by side and list differences in size, speed, or lifespan.</span></li>
         </ul>
-      </div>
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">The interface uses large tap targets and works on phones and tablets. The tool is free and does not require an account. Conservation labels in the collection follow the IUCN category codes (for example CR for Critically Endangered), but not every record has been re-checked against the live Red List — see the notes in the statistics section below before treating a label as current.</p>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Explore Animal Names</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">Every card shows the common name and the scientific binomial (for example, Snow Leopard — <em>Panthera uncia</em> — Class Mammalia, Order Carnivora, Family Felidae). Binomial nomenclature goes back to Linnaeus's <em>Systema Naturae</em> (1735) and is still how biologists write species names, so the names here match what you will find in museum catalogs and field guides.</p>
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">Writers use the generator for character and place names; students use it the other way around, covering the common name and guessing the animal from the taxonomy. With No Repeat on, you can cycle through the collection without seeing the same entry twice in a row.</p>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Explore Animal Categories</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">The category filter narrows the pool to one group. Wildlife categories (mammals, birds, fish, reptiles, amphibians, insects, marine) list real species. Prehistoric entries are animals known from fossils. Mythical and fantasy entries come from folklore and fiction — they are for creativity and games, not biology — and their status labels in the dataset are playful, not real conservation assessments. Farm and Cute include domestic breeds and a few species that also appear in their main wildlife category.</p>
+
+        <div class="my-4 overflow-x-auto rounded-xl border border-hairline dark:border-[#333]">
+          <table class="w-full min-w-[600px] text-left text-xs">
+            <thead class="bg-canvas dark:bg-[#111]">
+              <tr>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Category</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Examples in this database</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Notes</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline dark:divide-[#333]">
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Prehistoric</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Tyrannosaurus Rex, Triceratops, Saber-Toothed Tiger</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Fossil-record animals; labelled Extinct in the dataset</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Recently extinct (wildlife)</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Dodo, Passenger Pigeon, Quagga, Tasmanian Tiger</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Real species that died out in recorded history; the woolly mammoth (also in Mammals) went extinct thousands of years ago</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Marine &amp; aquatic</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Blue Whale, Giant Isopod, Leafy Seadragon</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Living species; filter Marine or Fish depending on the record</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Mythical &amp; fantasy</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Dragon, Griffin, Phoenix, Unicorn, Hydra</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Folklore and fiction only — no real conservation status</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Farm</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Pig, Sheep, Goat, Horse, Chicken, Llama</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Domesticated species and breeds</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Cute</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Quokka, Fennec Fox, Axolotl, Corgi, Pika</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Mix of real species (some duplicated from other categories) and domestic breeds</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">The Spinner Wheel</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">The <a href="/spinner" class="text-link hover:underline">spinner wheel</a> draws from the same records as the homepage generator. Each eligible animal gets a slice; the wheel spins and settles on one result. It works well when a group is picking together — a classroom, a family, or a game table — because everyone can see the same roll. Category filters on that page narrow the wheel the same way they narrow the homepage pool.</p>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">What the Numbers Show</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">The charts below are calculated directly from this site's dataset, so they always match what the generator actually contains. For context on the wider world of species: scientists estimate roughly 8.7 million eukaryotic species on Earth (Mora et al., 2011, <em>PLoS Biology</em>), only about 2 million of which have been formally described; <a href="https://www.gbif.org" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">GBIF</a> aggregates described-species data, and the <a href="https://www.iucnredlist.org" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">IUCN Red List</a> has assessed more than 160,000 species for extinction risk since 1964.</p>
+
+        <figure class="my-5">
+          <figcaption class="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">Records per category (of {totalRecords} total records)</figcaption>
+          <div class="space-y-2.5">
+            {categoryCounts.map(c => (
+              <div class="flex items-center gap-3">
+                <span class="w-24 shrink-0 text-xs font-medium text-body dark:text-[#a1a1a1]">{c.label}</span>
+                <div class="h-4 flex-1 overflow-hidden rounded-full bg-hairline dark:bg-[#333]">
+                  <div class:list={['h-full rounded-full', c.cat === 'fantasy' || c.cat === 'mythical' ? 'bg-violet' : c.cat === 'prehistoric' ? 'bg-warning' : 'bg-link']} style={`width: ${Math.round((c.count / maxCatCount) * 100)}%`}></div>
+                </div>
+                <span class="w-10 shrink-0 text-right text-xs tabular-nums text-muted">{c.count}</span>
+              </div>
+            ))}
+          </div>
+          <p class="mt-2 text-xs text-muted">Bar length is relative to the largest group. Each record has exactly one category, so these counts add up to {totalRecords}.</p>
+        </figure>
+
+        <h3 class="mt-6 mb-3 text-base font-semibold text-ink dark:text-[#ededed]">Conservation labels on living and recently living records</h3>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">Status labels in this collection use the eight IUCN Red List category codes: Extinct (EX), Extinct in the Wild (EW), Critically Endangered (CR), Endangered (EN), Vulnerable (VU), Near Threatened (NT), Least Concern (LC), and Data Deficient (DD). The chart below counts only the {livingCount} records in wildlife, farm, and cute categories. It excludes {fictionalCount} mythical and fantasy entries (folklore, not assessed species) and {prehistoricCount} prehistoric entries (fossil-record animals, not IUCN assessments). Data Deficient is shown separately and is not counted as Least Concern.</p>
+
+        <figure class="my-5">
+          <figcaption class="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">Status labels among {livingCount} living and recently living records</figcaption>
+          <div class="space-y-2.5">
+            {statusCounts.map(s => (
+              <div class="flex items-center gap-3">
+                <span class="w-28 shrink-0 text-xs font-medium text-body dark:text-[#a1a1a1]">{s.label}</span>
+                <div class="h-4 flex-1 overflow-hidden rounded-full bg-hairline dark:bg-[#333]">
+                  <div class:list={['h-full rounded-full',
+                    s.code === 'LC' && 'bg-conservation-lc',
+                    s.code === 'NT' && 'bg-conservation-nt',
+                    s.code === 'VU' && 'bg-conservation-vu',
+                    s.code === 'EN' && 'bg-conservation-en',
+                    s.code === 'CR' && 'bg-conservation-cr',
+                    s.code === 'EW' && 'bg-conservation-ew',
+                    s.code === 'EX' && 'bg-conservation-ex',
+                    s.code === 'DD' && 'bg-muted',
+                  ]} style={`width: ${Math.max(1, Math.round((s.count / maxStatusCount) * 100))}%`}></div>
+                </div>
+                <span class="w-14 shrink-0 text-right text-xs tabular-nums text-muted">{s.count}</span>
+              </div>
+            ))}
+          </div>
+          <p class="mt-2 text-xs text-muted">These {livingCount} labels add up to {livingCount}. Of them, {threatenedCount} carry a threatened-or-higher label (VU, EN, CR, EW, or EX). Statuses can change as new assessments are published — check the live IUCN Red List before relying on a specific label.</p>
+        </figure>
+
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">A note on accuracy: labels in this dataset are educational approximations based on IUCN categories. They have not all been re-verified against the current Red List entry for each species, and some records are domestic breeds or duplicated profiles rather than independent wild assessments. Treat them as a starting point for learning, then confirm any status you plan to cite at <a href="https://www.iucnredlist.org" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">iucnredlist.org</a>.</p>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Who Uses This Tool?</h2>
+        <div class="my-4 overflow-x-auto rounded-xl border border-hairline dark:border-[#333]">
+          <table class="w-full min-w-[520px] text-left text-xs">
+            <thead class="bg-canvas dark:bg-[#111]">
+              <tr>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">If you are…</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">You can use it to…</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline dark:divide-[#333]">
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Drawing or painting</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Get an unexpected subject for a sketch or study</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Teaching or homeschooling</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Pull up a quick animal fact sheet or quiz prompt</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Writing</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Find names, traits, or metaphors from real species</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Playing a tabletop or video game</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Roll random encounters or creature rosters</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Hosting a quiz or party game</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Run the spinner wheel or a name-memory round</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Just curious</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Learn one new animal each time you press Space</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Features</h2>
+        <ul class="grid gap-2 sm:grid-cols-2">
+          <li class="flex items-start gap-2 text-sm leading-relaxed dark:text-[#a1a1a1]"><span class="mt-0.5 text-conservation-lc">✓</span>{totalRecords} records across 12 categories, including prehistoric and fantasy</li>
+          <li class="flex items-start gap-2 text-sm leading-relaxed dark:text-[#a1a1a1]"><span class="mt-0.5 text-conservation-lc">✓</span>Scientific names, habitat, diet, lifespan, speed and taxonomy on each card</li>
+          <li class="flex items-start gap-2 text-sm leading-relaxed dark:text-[#a1a1a1]"><span class="mt-0.5 text-conservation-lc">✓</span>Status labels using the eight IUCN category codes on wildlife records</li>
+          <li class="flex items-start gap-2 text-sm leading-relaxed dark:text-[#a1a1a1]"><span class="mt-0.5 text-conservation-lc">✓</span>Category and conservation filters</li>
+          <li class="flex items-start gap-2 text-sm leading-relaxed dark:text-[#a1a1a1]"><span class="mt-0.5 text-conservation-lc">✓</span>Spinner wheel, quiz and compare tools on separate pages</li>
+          <li class="flex items-start gap-2 text-sm leading-relaxed dark:text-[#a1a1a1]"><span class="mt-0.5 text-conservation-lc">✓</span>No Repeat mode to avoid seeing the same animal twice</li>
+          <li class="flex items-start gap-2 text-sm leading-relaxed dark:text-[#a1a1a1]"><span class="mt-0.5 text-conservation-lc">✓</span>Keyboard shortcuts (Space, R, M) and dark mode</li>
+          <li class="flex items-start gap-2 text-sm leading-relaxed dark:text-[#a1a1a1]"><span class="mt-0.5 text-conservation-lc">✓</span>Free to use with no signup; runs in your browser</li>
+        </ul>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Official Sources and Further Reading</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">Wildlife facts on this site are informed by primary conservation and scientific institutions. For deeper work, start here:</p>
+        <ul class="space-y-2 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-muted">→</span><a href="https://www.iucnredlist.org" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">IUCN Red List of Threatened Species</a> — the global standard for species' extinction risk, running since 1964.</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-muted">→</span><a href="https://www.gbif.org" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">GBIF — Global Biodiversity Information Facility</a> — open infrastructure for described-species data.</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-muted">→</span><a href="https://www.fisheries.noaa.gov" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">NOAA Fisheries</a> — species profiles including the blue whale and other marine megafauna.</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-muted">→</span><a href="https://www.nhm.ac.uk" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">Natural History Museum, London</a> — research and collections covering extinct species such as the dodo.</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-muted">→</span><a href="https://naturalhistory.si.edu" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">Smithsonian National Museum of Natural History</a> — research on evolution, taxonomy and fossil groups.</li>
+        </ul>
+        <p class="mt-3 text-sm leading-relaxed dark:text-[#a1a1a1]">Dataset statistics on this page are generated from the site's own animal file and update automatically when that file changes. Conservation category codes follow the IUCN Red List system; individual labels in this collection are educational and may lag behind the live Red List.</p>
+      </article>
     </section>
 
     <!-- FAQ Section -->
@@ -855,4 +1072,125 @@ const animalT = animalTranslations[locale] || {};
       window.displayAnimal?.(found);
     }
   }
+</script>
+
+<style>
+  #how-flow .flow-num {
+    display: inline-flex;
+    height: 1.5rem;
+    width: 1.5rem;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid var(--color-hairline);
+    background: var(--color-canvas-elevated);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-muted);
+    transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s ease;
+  }
+  :global(html.dark) #how-flow .flow-num {
+    border-color: #333;
+    background: #1a1a1a;
+  }
+
+  #how-flow .flow-step {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+  #how-flow .flow-arrow {
+    opacity: 0;
+    transition: opacity 0.4s ease, color 0.35s ease, transform 0.35s ease;
+  }
+  #how-flow.is-inview .flow-step,
+  #how-flow.is-inview .flow-arrow {
+    opacity: 1;
+    transform: none;
+  }
+
+  #how-flow .flow-step.flow-active {
+    border-color: var(--color-link);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-link) 20%, transparent);
+  }
+  #how-flow .flow-step.flow-active .flow-num {
+    border-color: var(--color-link);
+    background: var(--color-link);
+    color: #fff;
+    transform: scale(1.1);
+  }
+  #how-flow .flow-arrow.flow-active {
+    color: var(--color-link);
+    transform: translateY(2px) scale(1.15);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #how-flow .flow-step,
+    #how-flow .flow-arrow {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    #how-flow .flow-step.flow-active {
+      box-shadow: none;
+    }
+    #how-flow .flow-step.flow-active .flow-num,
+    #how-flow .flow-arrow.flow-active {
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    const fig = document.getElementById('how-flow');
+    if (!fig) return;
+    const steps = Array.from(fig.querySelectorAll('.flow-step'));
+    const arrows = Array.from(fig.querySelectorAll('.flow-arrow'));
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const items = [];
+    steps.forEach((el, i) => {
+      items.push(el);
+      if (arrows[i]) items.push(arrows[i]);
+    });
+
+    if (reduce) {
+      fig.classList.add('is-inview');
+      return;
+    }
+
+    items.forEach((el, i) => {
+      el.style.transitionDelay = (i * 90) + 'ms';
+    });
+
+    let loopTimer = null;
+    function startLoop() {
+      items.forEach(el => { el.style.transitionDelay = '0ms'; });
+      let idx = 0;
+      loopTimer = setInterval(() => {
+        items.forEach(el => el.classList.remove('flow-active'));
+        items[idx].classList.add('flow-active');
+        idx = (idx + 1) % items.length;
+      }, 1300);
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          fig.classList.add('is-inview');
+          io.disconnect();
+          const entranceMs = items.length * 90 + 550;
+          setTimeout(startLoop, entranceMs);
+        }
+      });
+    }, { threshold: 0.35 });
+    io.observe(fig);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && loopTimer) { clearInterval(loopTimer); loopTimer = null; }
+      else if (!document.hidden && fig.classList.contains('is-inview') && !loopTimer) { startLoop(); }
+    });
+  })();
 </script>

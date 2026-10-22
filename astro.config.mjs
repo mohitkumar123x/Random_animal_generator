@@ -10,7 +10,17 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
-      filter: (page) => !page.includes('/api/'),
+      filter: (page) => {
+        const excludedPaths = [
+          '/api/',
+          '/privacy-policy',
+          '/terms-and-conditions',
+          '/disclaimer',
+          '/contact-us',
+          '/about-us',
+        ];
+        return !excludedPaths.some((path) => page.includes(path));
+      },
     }),
   ],
   i18n: {

@@ -2,10 +2,19 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { getTranslations, type Locale } from '../utils/i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = getTranslations(locale);
+const canonical = locale === 'en' ? 'https://bestrandomanimalgenerator.com/terms-and-conditions' : `https://bestrandomanimalgenerator.com/${locale}/terms-and-conditions`;
 ---
 
-<Layout title="Terms & Conditions | Random Animal Generator" description="Terms and Conditions for using the Random Animal Generator website and tools." pagePath="/terms-and-conditions">
-  <Navbar pagePath="/terms-and-conditions" />
+<Layout title={`${t.terms} | Random Animal Generator`} description="Terms and Conditions for using the Random Animal Generator website and tools." canonical={canonical} locale={locale} pagePath="/terms-and-conditions" noindex={true}>
+  <Navbar locale={locale} pagePath="/terms-and-conditions" />
 
   <main class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
     <div class="mb-10 text-center">
@@ -85,5 +94,5 @@ import Footer from '../components/Footer.astro';
     </div>
   </main>
 
-  <Footer />
+  <Footer locale={locale} />
 </Layout>

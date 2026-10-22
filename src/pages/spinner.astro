@@ -4,16 +4,682 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import SpinnerContent from '../components/Spinner.astro';
 import { getTranslations } from '../utils/i18n';
+import animals from '../data/animals.json';
 
 const locale = 'en';
 const t = getTranslations(locale);
 
 const SITE_URL = 'https://bestrandomanimalgenerator.com';
 const canonical = `${SITE_URL}/spinner`;
+
+// Dataset stats — computed from animals.json so page numbers always match the data.
+const totalRecords = animals.length;
+const pct = (n: number) => Math.round((n / totalRecords) * 1000) / 10;
+
+const categoryMeta: [string, string][] = [
+  ['mammal', 'Mammals'], ['bird', 'Birds'], ['insect', 'Insects'], ['fish', 'Fish'],
+  ['marine', 'Marine'], ['reptile', 'Reptiles'], ['amphibian', 'Amphibians'],
+  ['prehistoric', 'Prehistoric'], ['fantasy', 'Fantasy'], ['mythical', 'Mythical'],
+  ['farm', 'Farm'], ['cute', 'Cute'],
+];
+const categoryCounts = categoryMeta.map(([cat, label]) => ({
+  cat, label, count: animals.filter(a => a.category === cat).length,
+}));
+const maxCatCount = Math.max(...categoryCounts.map(c => c.count));
+const aquaticCount = animals.filter(a => a.category === 'marine' || a.category === 'fish').length;
+
+const fictionalCats = new Set(['mythical', 'fantasy']);
+const prehistoricCats = new Set(['prehistoric']);
+const fictionalCount = animals.filter(a => fictionalCats.has(a.category)).length;
+const prehistoricCount = animals.filter(a => prehistoricCats.has(a.category)).length;
+const livingRecords = animals.filter(a => !fictionalCats.has(a.category) && !prehistoricCats.has(a.category));
+const livingCount = livingRecords.length;
+
+const statusMeta: [string, string][] = [
+  ['LC', 'Least Concern'], ['NT', 'Near Threatened'], ['VU', 'Vulnerable'], ['EN', 'Endangered'],
+  ['CR', 'Critically Endangered'], ['EW', 'Extinct in the Wild'], ['EX', 'Extinct'], ['DD', 'Data Deficient'],
+];
+const statusCounts = statusMeta.map(([code, label]) => ({
+  code, label, count: livingRecords.filter(a => a.conservation === code).length,
+}));
+const maxStatusCount = Math.max(...statusCounts.map(s => s.count));
+const threatenedCount = livingRecords.filter(a => ['VU', 'EN', 'CR', 'EW', 'EX'].includes(a.conservation)).length;
+
+const dietNames = ['Carnivore', 'Herbivore', 'Omnivore', 'Insectivore', 'Detritivore', 'Filter feeder'];
+const dietCounts = dietNames.map(name => ({
+  name, count: animals.filter(a => a.diet === name).length,
+}));
+const maxDietCount = Math.max(...dietCounts.map(d => d.count));
 ---
 
-<Layout title={`${t.spinner_title} | Random Animal Generator`} description={t.spinner_desc} canonical={canonical} locale={locale} pagePath="/spinner">
+<Layout
+  title="Random Animal Spinner Wheel | Best Random Animal Generator"
+  description="Spin the random animal generator wheel online and land on a random animal with pictures, fun facts and conservation status. Free animal picker wheel."
+  canonical={canonical}
+  imageAlt="Random Animal Generator Wheel – colorful spinner wheel that lands on a random animal with a picture, fun fact and conservation status"
+  locale={locale}
+  pagePath="/spinner"
+>
   <Navbar locale={locale} pagePath="/spinner" />
   <SpinnerContent locale={locale} />
+
+  <div class="mx-auto max-w-3xl px-4 pb-14 sm:px-6" id="wheel-guide">
+    <section class="space-y-11 text-body" aria-label="About the random animal generator wheel">
+      <article>
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">
+          This page is a free <strong class="font-semibold text-ink dark:text-[#ededed]">random animal generator wheel</strong> — a spinner wheel where every slice stands for an animal. Press Spin, watch the wheel slow down, and the pointer lands on one animal at random. Every slice here is a real animal record with a picture, a profile and a fun fact. Use it as a random animal picker wheel for games, a random animal generator wheel with pictures for lessons, or a quick animal name generator when you need ideas on the spot. Everything runs in your browser, so you can spin the wheel online on a laptop, phone or tablet with no signup and no download.
+        </p>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">What Is a Random Animal Generator Wheel?</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          A random animal generator wheel is a wheel-of-fortune picker in which each slice represents an animal instead of a prize. You press Spin, the wheel turns for a few seconds, and the fixed pointer at the top decides which slice wins. Because a whole group watches the same rotation, the result feels transparent — nobody can claim the pick was biased when everyone saw it land. That visible randomness is the main advantage a random animal generator wheel spinner has over quietly shuffling a list in the background.
+        </p>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Ours is an online random animal generator wheel tool: nothing to install, print or sign up for. Each spin ends in a full result card with the animal's common name, scientific name, emoji, photograph when one is available, habitat, diet, lifespan, speed, size, region, taxonomy and a short fun fact. Teachers use it to assign species for research, families use it to settle whose turn it is, and artists and writers use it as a prompt generator. The same collection also powers the <a href="/" class="text-link hover:underline">random animal generator on the homepage</a>, the <a href="/quiz" class="text-link hover:underline">animal quiz</a>, and the <a href="/compare" class="text-link hover:underline">animal compare tool</a>.
+        </p>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">How the Random Animal Generator Wheel Works, Step by Step</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          The wheel is deliberately simple, which is what makes it reliable. Below is the exact path from button press to result card, followed by a flowchart you can follow the first time you use the tool.
+        </p>
+
+        <figure class="my-5" id="wheel-flow">
+          <figcaption class="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">What happens when you press Spin</figcaption>
+          <div class="mx-auto flex max-w-md flex-col items-stretch gap-0" role="list" aria-label="How the random animal generator wheel works, step by step">
+            <div class="wflow-step" role="listitem">
+              <span class="wflow-num" aria-hidden="true">1</span>
+              <span class="flex-1">Pick a category (optional)<span class="block text-xs font-normal text-muted">12 categories, or leave it on All Animals</span></span>
+            </div>
+            <div class="wflow-arrow" aria-hidden="true">
+              <svg class="mx-auto h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+            </div>
+            <div class="wflow-step" role="listitem">
+              <span class="wflow-num" aria-hidden="true">2</span>
+              <span class="flex-1">Press the Spin button<span class="block text-xs font-normal text-muted">The button locks so nobody can double-spin</span></span>
+            </div>
+            <div class="wflow-arrow" aria-hidden="true">
+              <svg class="mx-auto h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+            </div>
+            <div class="wflow-step" role="listitem">
+              <span class="wflow-num" aria-hidden="true">3</span>
+              <span class="flex-1">The tool chooses a winning slice<span class="block text-xs font-normal text-muted">A random slice index from Math.random() in your browser</span></span>
+            </div>
+            <div class="wflow-arrow" aria-hidden="true">
+              <svg class="mx-auto h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+            </div>
+            <div class="wflow-step" role="listitem">
+              <span class="wflow-num" aria-hidden="true">4</span>
+              <span class="flex-1">The wheel rotates eight full turns<span class="block text-xs font-normal text-muted">2,880° plus the offset that lands the winner under the pointer</span></span>
+            </div>
+            <div class="wflow-arrow" aria-hidden="true">
+              <svg class="mx-auto h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+            </div>
+            <div class="wflow-step" role="listitem">
+              <span class="wflow-num" aria-hidden="true">5</span>
+              <span class="flex-1">The spin settles after five seconds<span class="block text-xs font-normal text-muted">Ticks slow down and the centre emoji cycles through the slices</span></span>
+            </div>
+            <div class="wflow-arrow" aria-hidden="true">
+              <svg class="mx-auto h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+            </div>
+            <div class="wflow-step" role="listitem">
+              <span class="wflow-num" aria-hidden="true">6</span>
+              <span class="flex-1">The result card appears<span class="block text-xs font-normal text-muted">Name, picture, profile and fun fact, with Save, Share and Download</span></span>
+            </div>
+          </div>
+        </figure>
+
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">
+          The selection runs entirely on your device: the page builds the list of eligible animals, filters it by your category, and picks one index with JavaScript's <code class="rounded border border-hairline bg-canvas px-1.5 py-0.5 font-mono text-xs text-faint dark:border-[#333] dark:bg-[#111]">Math.random()</code>. No account, no server round-trip, no form. Photographs load separately when the card needs one, so the spin stays instant. Google's guidance describes interactive tools like this as <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">main content</a> of a page — the wheel is the point of this page, and the guide below helps you get more out of it.
+        </p>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Inside a 5-Second Spin</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          The wheel has four visible parts: a fixed pointer at the top (12 o'clock), the coloured disc divided into equal slices, an emoji label on every slice, and a hub in the centre that cycles through the animals while the disc moves. The disc is drawn with a CSS conic gradient of twelve alternating colours, so slices stay sharp at any screen size.
+        </p>
+
+        <figure class="my-5">
+          <figcaption class="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">Anatomy of the random animal generator wheel</figcaption>
+          <div class="overflow-x-auto rounded-xl border border-hairline bg-canvas p-3 dark:border-[#333] dark:bg-[#111]">
+            <svg viewBox="0 0 420 232" class="mx-auto h-auto w-full max-w-lg" role="img" aria-label="Diagram of the wheel: a fixed pointer at the top, equal coloured slices with animal emoji, and a centre hub showing the current emoji">
+              <g transform="translate(20,26)">
+                <circle cx="100" cy="100" r="94" fill="#fafafa" stroke="#ebebeb" stroke-width="2" />
+                <g stroke="#ffffff" stroke-width="1.5">
+                  <path d="M100,100 L100.0,12.0 A88,88 0 0 1 162.2,37.8 Z" fill="#0070f3" />
+                  <path d="M100,100 L162.2,37.8 A88,88 0 0 1 188.0,100.0 Z" fill="#7928ca" />
+                  <path d="M100,100 L188.0,100.0 A88,88 0 0 1 162.2,162.2 Z" fill="#ff0080" />
+                  <path d="M100,100 L162.2,162.2 A88,88 0 0 1 100.0,188.0 Z" fill="#50e3c2" />
+                  <path d="M100,100 L100.0,188.0 A88,88 0 0 1 37.8,162.2 Z" fill="#f5a623" />
+                  <path d="M100,100 L37.8,162.2 A88,88 0 0 1 12.0,100.0 Z" fill="#ee0000" />
+                  <path d="M100,100 L12.0,100.0 A88,88 0 0 1 37.8,37.8 Z" fill="#22c55e" />
+                  <path d="M100,100 L37.8,37.8 A88,88 0 0 1 100.0,12.0 Z" fill="#a855f7" />
+                </g>
+                <circle cx="100" cy="100" r="26" fill="#ffffff" stroke="#ebebeb" stroke-width="2" />
+                <text x="100" y="108" text-anchor="middle" font-size="20">🎡</text>
+                <g font-size="12" fill="#ffffff">
+                  <text x="131" y="38">🐘</text>
+                  <text x="152" y="78">🐧</text>
+                  <text x="145" y="136">🦈</text>
+                  <text x="108" y="160">🦋</text>
+                  <text x="62" y="150">🐸</text>
+                  <text x="44" y="112">🦁</text>
+                  <text x="56" y="66">🐢</text>
+                  <text x="92" y="42">🦊</text>
+                </g>
+              </g>
+              <polygon points="108,6 132,6 120,26" fill="#171717" />
+              <g stroke="#8f8f8f" stroke-width="1" fill="none">
+                <path d="M134,16 L232,34" />
+                <path d="M196,74 L232,74" />
+                <path d="M186,180 L232,158" />
+                <path d="M140,140 L232,200" />
+              </g>
+              <g font-size="11" fill="#4d4d4d">
+                <text x="236" y="37">Fixed pointer at 12 o'clock</text>
+                <text x="236" y="77">Equal slices (up to 16)</text>
+                <text x="236" y="161">Animal emoji per slice</text>
+                <text x="236" y="203">Centre hub emoji</text>
+              </g>
+            </svg>
+          </div>
+          <p class="mt-2 text-xs text-muted">Eight slices shown for clarity; the tool uses up to 16 depending on your category.</p>
+        </figure>
+
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          The rotation runs on a CSS transition of five seconds with the timing function <code class="rounded border border-hairline bg-canvas px-1.5 py-0.5 font-mono text-xs text-faint dark:border-[#333] dark:bg-[#111]">cubic-bezier(0.17, 0.67, 0.12, 0.99)</code>, an ease-out curve in the family described by the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">MDN easing function reference</a>. It starts fast and spends the last seconds crawling, which is what a real wheel does once friction takes over. The timeline of a single spin:
+        </p>
+
+        <div class="my-4 overflow-x-auto rounded-xl border border-hairline dark:border-[#333]">
+          <table class="w-full min-w-[540px] text-left text-xs">
+            <thead class="bg-canvas dark:bg-[#111]">
+              <tr>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Time</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">What you see and hear</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline dark:divide-[#333]">
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">0.0 s</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Spin button locks, a whoosh, the first tick</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">0.0–0.8 s</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Fast phase — most of the 2,880° happens, ticks about every 45 ms</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">0.8–3.0 s</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Deceleration; tick spacing stretches from ~60 ms to 130 ms</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">3.0–5.0 s</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Final settle; ticks past 300 ms, fading in volume</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">5.0 s</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Wheel stops on the winning slice; a two-note chime plays</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">5.2 s</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Result card and profile appear, page scrolls to them</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">
+          The centre emoji cycles every 80 milliseconds during the spin, so the middle of the wheel feels as busy as the rim. Sound is generated on the fly with the Web Audio API — there is no audio file to download — and it stops with the wheel.
+        </p>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Odds on Every Slice: How Fair Is the Spin?</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Slices are equal by construction: the wheel covers 360 degrees, so with <em>n</em> slices each occupies 360 ÷ <em>n</em> degrees and has a 1 ÷ <em>n</em> chance of winning. The wheel shows up to 16 slices at a time — wide enough to read, small enough that the odds still feel like a lottery.
+        </p>
+
+        <div class="my-4 overflow-x-auto rounded-xl border border-hairline dark:border-[#333]">
+          <table class="w-full min-w-[440px] text-left text-xs">
+            <thead class="bg-canvas dark:bg-[#111]">
+              <tr>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Slices on the wheel</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Degrees per slice</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Chance for any one animal</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline dark:divide-[#333]">
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">2</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">180°</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">50%</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">4</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">90°</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">25%</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">8</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">45°</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">12.5%</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">12</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">30°</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">8.3%</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">16</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">22.5°</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">6.25%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Three points about fairness are worth stating plainly. Every spin is independent — landing on the same animal twice in a row does not make the next spin "due" to change. No slice is weighted, and the random index is generated with the same function for every position, as documented in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">MDN reference for Math.random()</a>. That function produces pseudo-random numbers and is not suitable for security or gambling — for a classroom pick, a party game or a drawing prompt it is exactly right.
+        </p>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">What Is on the Wheel? The Database Behind the Spin</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          The wheel draws from the same {totalRecords}-record collection used across this site, covering 12 categories from mammals to prehistoric and mythical entries. Every record carries a name, emoji, habitat, diet, lifespan, weight, speed, length, region, taxonomy, a scientific name and a fun fact. Choosing a category rebuilds the pool before your next spin — the way you turn the general wheel into a specialist one for sea animals, cute animals, farm animals or predators.
+        </p>
+
+        <figure class="my-5">
+          <figcaption class="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">Records per category (of {totalRecords} total)</figcaption>
+          <div class="space-y-2.5">
+            {categoryCounts.map(c => (
+              <div class="flex items-center gap-3">
+                <span class="w-24 shrink-0 text-xs font-medium text-body dark:text-[#a1a1a1]">{c.label}</span>
+                <div class="h-4 flex-1 overflow-hidden rounded-full bg-hairline dark:bg-[#333]">
+                  <div class:list={['h-full rounded-full', c.cat === 'fantasy' || c.cat === 'mythical' ? 'bg-violet' : c.cat === 'prehistoric' ? 'bg-warning' : 'bg-link']} style={`width: ${Math.max(2, Math.round((c.count / maxCatCount) * 100))}%`}></div>
+                </div>
+                <span class="w-16 shrink-0 text-right text-xs tabular-nums text-muted">{c.count} · {pct(c.count)}%</span>
+              </div>
+            ))}
+          </div>
+          <p class="mt-2 text-xs text-muted">Bar length is relative to the largest group; each record has exactly one category, so counts add up to {totalRecords}.</p>
+        </figure>
+
+        <div class="my-4 overflow-x-auto rounded-xl border border-hairline dark:border-[#333]">
+          <table class="w-full min-w-[560px] text-left text-xs">
+            <thead class="bg-canvas dark:bg-[#111]">
+              <tr>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Category</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Records</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Share</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Examples you can land on</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline dark:divide-[#333]">
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Mammals</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">253</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">22.7%</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">African Elephant, Snow Leopard, Red Panda</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Birds</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">182</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">16.3%</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Emperor Penguin, Bald Eagle, Kakapo</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Insects</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">160</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">14.3%</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Monarch Butterfly, Atlas Beetle</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Fish</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">130</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">11.7%</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Clownfish, Whale Shark, Manta Ray</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Marine</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">120</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">10.8%</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Blue Whale, Giant Pacific Octopus</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Reptiles</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">110</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">9.9%</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Komodo Dragon, King Cobra, Galápagos Tortoise</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Amphibians</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">79</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">7.1%</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Golden Poison Frog, Hellbender</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Prehistoric</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">21</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">1.9%</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Tyrannosaurus Rex, Triceratops</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Fantasy &amp; Mythical</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">40</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">3.6%</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Dragon, Griffin, Phoenix — folklore, not biology</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Farm &amp; Cute</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">20</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">1.8%</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Pig, Sheep, Quokka, Fennec Fox</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Diets are spread across the collection like this: carnivores account for {dietCounts[0].count} records ({pct(dietCounts[0].count)}%), herbivores {dietCounts[1].count} ({pct(dietCounts[1].count)}%), omnivores {dietCounts[2].count} ({pct(dietCounts[2].count)}%), insectivores {dietCounts[3].count}, detritivores {dietCounts[4].count} and filter feeders {dietCounts[5].count}. That matters for a predator-themed wheel: Fish and Reptiles are each about 70% carnivores here, Marine sits at 53%, and Farm has none at all.
+        </p>
+
+        <figure class="my-5">
+          <figcaption class="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">Diet split across all {totalRecords} records</figcaption>
+          <div class="space-y-2.5">
+            {dietCounts.map(d => (
+              <div class="flex items-center gap-3">
+                <span class="w-24 shrink-0 text-xs font-medium text-body dark:text-[#a1a1a1]">{d.name}</span>
+                <div class="h-4 flex-1 overflow-hidden rounded-full bg-hairline dark:bg-[#333]">
+                  <div class="h-full rounded-full bg-cyan" style={`width: ${Math.max(2, Math.round((d.count / maxDietCount) * 100))}%`}></div>
+                </div>
+                <span class="w-16 shrink-0 text-right text-xs tabular-nums text-muted">{d.count} · {pct(d.count)}%</span>
+              </div>
+            ))}
+          </div>
+          <p class="mt-2 text-xs text-muted">Taken directly from the diet field of each record.</p>
+        </figure>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Conservation Labels on the Result Cards</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Every wildlife result carries a conservation label using the eight category codes of the <a href="https://www.iucnredlist.org" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">IUCN Red List</a>, the global extinction-risk assessment running since 1964. The chart counts the {livingCount} living and recently living records — excluding the {fictionalCount} mythical and fantasy entries and the {prehistoricCount} prehistoric ones, which the IUCN does not assess.
+        </p>
+
+        <figure class="my-5">
+          <figcaption class="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">Status labels among {livingCount} living and recently living records</figcaption>
+          <div class="space-y-2.5">
+            {statusCounts.map(s => (
+              <div class="flex items-center gap-3">
+                <span class="w-32 shrink-0 text-xs font-medium text-body dark:text-[#a1a1a1]">{s.label}</span>
+                <div class="h-4 flex-1 overflow-hidden rounded-full bg-hairline dark:bg-[#333]">
+                  <div class:list={['h-full rounded-full',
+                    s.code === 'LC' && 'bg-conservation-lc',
+                    s.code === 'NT' && 'bg-conservation-nt',
+                    s.code === 'VU' && 'bg-conservation-vu',
+                    s.code === 'EN' && 'bg-conservation-en',
+                    s.code === 'CR' && 'bg-conservation-cr',
+                    s.code === 'EW' && 'bg-conservation-ew',
+                    s.code === 'EX' && 'bg-conservation-ex',
+                    s.code === 'DD' && 'bg-muted',
+                  ]} style={`width: ${Math.max(1, Math.round((s.count / maxStatusCount) * 100))}%`}></div>
+                </div>
+                <span class="w-10 shrink-0 text-right text-xs tabular-nums text-muted">{s.count}</span>
+              </div>
+            ))}
+          </div>
+          <p class="mt-2 text-xs text-muted">{threatenedCount} of these records carry a threatened-or-higher label (Vulnerable, Endangered, Critically Endangered, Extinct in the Wild or Extinct).</p>
+        </figure>
+
+        <div class="my-4 overflow-x-auto rounded-xl border border-hairline dark:border-[#333]">
+          <table class="w-full min-w-[560px] text-left text-xs">
+            <thead class="bg-canvas dark:bg-[#111]">
+              <tr>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Code</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">IUCN category</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Records</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">What it means in one line</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline dark:divide-[#333]">
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">LC</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Least Concern</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">823</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Widespread, abundant, no immediate risk</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">NT</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Near Threatened</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">41</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Likely to qualify as threatened soon</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">VU</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Vulnerable</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">93</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">High extinction risk in the wild</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">EN</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Endangered</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">49</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Very high extinction risk</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">CR</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Critically Endangered</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">36</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Extremely likely to go extinct</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">EW / EX</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Extinct in the Wild / Extinct</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">1 / 5</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Only in captivity, or none remain</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">DD</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Data Deficient</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">6</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Not enough data to assess</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">
+          These labels are educational: they follow the IUCN category system, but individual entries have not all been re-checked against the live Red List. If you plan to cite a status in schoolwork or an article, confirm it at <a href="https://www.iucnredlist.org" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">iucnredlist.org</a> first. Used casually, the labels turn a random spin into a conversation starter — one spin can land on a Critically Endangered species and open a ten-minute discussion.
+        </p>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Ways to Use the Random Animal Generator Wheel</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          The wheel suits any situation where a group needs an unbiased pick that everyone can watch. These are the settings it gets used in most:
+        </p>
+
+        <div class="my-4 overflow-x-auto rounded-xl border border-hairline dark:border-[#333]">
+          <table class="w-full min-w-[560px] text-left text-xs">
+            <thead class="bg-canvas dark:bg-[#111]">
+              <tr>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Setting</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">How to run it</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">What you get</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline dark:divide-[#333]">
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Classroom and homeschool</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Filter to your topic, spin once per student</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">An assigned species with habitat, diet, taxonomy and status for research</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Party and icebreaker games</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Everyone spins; the group acts out each result</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">A visible, uncontested pick with emoji and photo to prompt the game</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Drawing and art practice</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Spin, then sketch only from the result card</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">A fresh subject every time — insects for texture, marine life for silhouette</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Creative writing</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Spin for a name, trait or metaphor</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Common and binomial names, region and fun fact for world-building</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Team turns and fair choices</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Spin before each round to decide who starts</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">A neutral referee when everyone watched the wheel land</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Daily learning habit</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">One spin a day; save favourites</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">A personal list of animals stored in your own browser</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">
+          For anything that needs more than one animal at a time, switch to the <a href="/" class="text-link hover:underline">homepage generator</a>, which produces 1 or 5 animals in one go with a No Repeat mode. For knowledge practice, the <a href="/quiz" class="text-link hover:underline">quiz</a> pulls questions from the same records, and <a href="/compare" class="text-link hover:underline">compare</a> puts two animals side by side. More background lives on our <a href="/about-us" class="text-link hover:underline">about page</a>.
+        </p>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Set Up the Wheel for the Result You Want</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          One tool covers many specific searches because the category dropdown reshapes the pool before the next spin. Match your request to the setting that produces it:
+        </p>
+
+        <div class="my-4 overflow-x-auto rounded-xl border border-hairline dark:border-[#333]">
+          <table class="w-full min-w-[580px] text-left text-xs">
+            <thead class="bg-canvas dark:bg-[#111]">
+              <tr>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">You want…</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Category to select</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Pool</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Notes</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline dark:divide-[#333]">
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Random sea animal generator wheel</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Marine or Fish</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">{aquaticCount} records combined</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Sharks, whales, octopuses, seahorses, rays and reef fish</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Random cute animal generator wheel</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Cute</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">10 records</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Quokka, Fennec Fox, Axolotl, Corgi, Pika, Hedgehog and more</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Random predator animal generator wheel</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Fish, Reptiles or Marine</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">130 / 110 / 120</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">The most carnivore-heavy categories in the dataset</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Random animal name generator wheel</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Any</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">All {totalRecords} records</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Each card shows the common name plus the scientific binomial</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Random animal generator wheel for kids</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Cute or Farm</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">20 records</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Emoji, photo and a one-sentence fun fact; one tap to spin</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Random animal generator wheel with pictures</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Any</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">All {totalRecords} records</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">A photo when an image is found, plus a fullscreen view</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]">Random animal generator wheel tool for parties</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">All Animals</td><td class="px-3 py-2.5 tabular-nums text-body dark:text-[#a1a1a1]">All {totalRecords} records</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Full-size wheel, sound effects, and a result a room can see</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Category names come from the dataset itself; prehistoric, mythical and fantasy entries are creative content rather than living species. The <a href="/blog" class="text-link hover:underline">blog</a> goes deeper on how the collection is put together.
+        </p>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Random Animal Generator Wheel vs. Our Other Random Pickers</h2>
+        <p class="mb-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          All four tools draw from the same {totalRecords} records; they differ in how the pick is presented. Pick the format that suits your situation:
+        </p>
+
+        <div class="my-4 overflow-x-auto rounded-xl border border-hairline dark:border-[#333]">
+          <table class="w-full min-w-[560px] text-left text-xs">
+            <thead class="bg-canvas dark:bg-[#111]">
+              <tr>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Tool</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">Best for</th>
+                <th class="px-3 py-2.5 font-semibold uppercase tracking-wider text-faint">What it does differently</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline dark:divide-[#333]">
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]"><a href="/spinner" class="text-link hover:underline">Spinner wheel</a></td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Groups watching one pick happen</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Animated five-second spin, sound effects, up to 16 slices</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]"><a href="/" class="text-link hover:underline">Random animal generator</a></td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Fast results, several at once</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">1 or 5 animals per press, conservation filter, No Repeat mode</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]"><a href="/quiz" class="text-link hover:underline">Animal quiz</a></td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Testing what you already know</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Four-option questions on habitat and diet, with streaks</td></tr>
+              <tr><td class="px-3 py-2.5 font-medium text-ink dark:text-[#ededed]"><a href="/compare" class="text-link hover:underline">Animal compare</a></td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Studying two animals together</td><td class="px-3 py-2.5 text-body dark:text-[#a1a1a1]">Side-by-side fields for size, speed, lifespan and status</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Frequently Asked Questions</h2>
+        <div class="space-y-3">
+          <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+            <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+              <span>Is the random animal generator wheel free to use?</span>
+              <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+              <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">Yes. It is free, needs no account, has no spin limit and runs entirely in your browser.</p>
+            </div>
+          </details>
+
+          <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+            <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+              <span>How many animals can it pick from?</span>
+              <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+              <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">The collection holds {totalRecords} records across 12 categories. Each spin fills the wheel with up to 16 slices from the category you selected.</p>
+            </div>
+          </details>
+
+          <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+            <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+              <span>Is the spin genuinely random?</span>
+              <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+              <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">The winning index comes from JavaScript's <code class="rounded border border-hairline bg-canvas px-1.5 py-0.5 font-mono text-xs text-faint dark:border-[#333] dark:bg-[#111]">Math.random()</code>, so equal slices get equal chances and spins do not influence one another. It is pseudo-random — fine for games and teaching, not for security or gambling.</p>
+            </div>
+          </details>
+
+          <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+            <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+              <span>Does it work on phones and tablets?</span>
+              <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+              <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">Yes. The layout is responsive, the Spin button is a large tap target, and the wheel scales to the screen width in any modern mobile browser — no app needed.</p>
+            </div>
+          </details>
+
+          <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+            <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+              <span>How do I get only sea, cute or predator animals?</span>
+              <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+              <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">Use the category dropdown above the wheel: Marine or Fish for sea animals, Cute for the cuddliest entries, Fish or Reptiles for predators. Every option is listed with its record count in the table above.</p>
+            </div>
+          </details>
+
+          <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+            <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+              <span>Do results include pictures and facts?</span>
+              <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+              <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">Every spin returns a card with the name, emoji, habitat, diet, lifespan, weight, speed, length, region, taxonomy and a fun fact, plus a photograph when one can be found.</p>
+            </div>
+          </details>
+
+          <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+            <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+              <span>Is it safe for kids, and does it store my data?</span>
+              <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+              <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">There is no signup, no chat and no advertising in the wheel itself. Favourites you save stay in your browser's local storage on your own device; see the <a href="/privacy-policy" class="text-link hover:underline">privacy policy</a> for detail.</p>
+            </div>
+          </details>
+
+          <details class="group rounded-xl border border-hairline bg-canvas dark:border-[#333] dark:bg-[#111]">
+            <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-ink dark:text-[#ededed]">
+              <span>Are different categories available to spin?</span>
+              <svg class="h-5 w-5 flex-shrink-0 text-muted transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div class="border-t border-hairline px-5 pb-4 pt-3 dark:border-[#333]">
+              <p class="text-sm leading-relaxed text-body dark:text-[#a1a1a1]">Yes. The category dropdown includes Mammals, Birds, Insects, Fish, Marine, Reptiles, Amphibians, Farm, Prehistoric, Mythical, Fantasy and Cute. Choosing one rebuilds the wheel from that category for your next spin.</p>
+            </div>
+          </details>
+        </div>
+
+        <script type="application/ld+json" set:html={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is the random animal generator wheel free to use?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. It is free, needs no account, has no spin limit and runs entirely in your browser."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How many animals can it pick from?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": `The collection holds ${totalRecords} records across 12 categories. Each spin fills the wheel with up to 16 slices from the category you selected.`
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is the spin genuinely random?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The winning index comes from JavaScript's Math.random(), so equal slices get equal chances and spins do not influence one another. It is pseudo-random — fine for games and teaching, not for security or gambling."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does it work on phones and tablets?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. The layout is responsive, the Spin button is a large tap target, and the wheel scales to the screen width in any modern mobile browser — no app needed."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I get only sea, cute or predator animals?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Use the category dropdown above the wheel: Marine or Fish for sea animals, Cute for the cuddliest entries, Fish or Reptiles for predators. Every option is listed with its record count in the table above."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do results include pictures and facts?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Every spin returns a card with the name, emoji, habitat, diet, lifespan, weight, speed, length, region, taxonomy and a fun fact, plus a photograph when one can be found."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is it safe for kids, and does it store my data?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "There is no signup, no chat and no advertising in the wheel itself. Favourites you save stay in your browser's local storage on your own device; see the privacy policy for detail."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are different categories available to spin?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. The category dropdown includes Mammals, Birds, Insects, Fish, Marine, Reptiles, Amphibians, Farm, Prehistoric, Mythical, Fantasy and Cute. Choosing one rebuilds the wheel from that category for your next spin."
+              }
+            }
+          ]
+        })} />
+      </article>
+
+      <article>
+        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">Official Sources and Further Reading</h2>
+        <p class="mb-4 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          Wildlife facts and labels on this site are informed by primary conservation and scientific institutions. When a spin sparks a question worth answering properly, start here:
+        </p>
+        <ul class="space-y-2 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-muted">→</span><a href="https://www.iucnredlist.org" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">IUCN Red List of Threatened Species</a> — the global standard for extinction risk since 1964.</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-muted">→</span><a href="https://www.gbif.org" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">GBIF — Global Biodiversity Information Facility</a> — open data on described species.</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-muted">→</span><a href="https://www.fisheries.noaa.gov" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">NOAA Fisheries</a> — species profiles for whales, sharks and other marine life.</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-muted">→</span><a href="https://www.nhm.ac.uk" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">Natural History Museum, London</a> — collections covering extinct species such as the dodo.</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-muted">→</span><a href="https://naturalhistory.si.edu" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">Smithsonian National Museum of Natural History</a> — taxonomy, evolution and fossil groups.</li>
+          <li class="flex items-start gap-2"><span class="mt-0.5 text-muted">→</span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">MDN: Math.random()</a> — how the wheel's random index is produced.</li>
+        </ul>
+        <p class="mt-3 text-sm leading-relaxed dark:text-[#a1a1a1]">
+          All statistics on this page — category counts, diet splits, status labels and record totals — are calculated from this site's own dataset when the page builds, so they always match what the wheel contains. Conservation codes follow the IUCN system; individual labels are educational and may lag behind the live Red List. Questions about the tool go to the <a href="/contact-us" class="text-link hover:underline">contact page</a>.
+        </p>
+      </article>
+    </section>
+  </div>
+
   <Footer locale={locale} />
 </Layout>
+
+<style>
+  #wheel-flow .wflow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-hairline);
+    background: var(--color-canvas);
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+  #wheel-flow .wflow-num {
+    display: inline-flex;
+    height: 1.5rem;
+    width: 1.5rem;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid var(--color-hairline);
+    background: var(--color-canvas-elevated);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-link);
+  }
+  #wheel-flow .wflow-arrow {
+    padding: 0.25rem 0;
+    color: var(--color-muted);
+  }
+  :global(html.dark) #wheel-flow .wflow-step {
+    border-color: #333;
+    background: #111;
+    color: #ededed;
+  }
+  :global(html.dark) #wheel-flow .wflow-num {
+    border-color: #333;
+    background: #1a1a1a;
+  }
+</style>

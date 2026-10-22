@@ -217,7 +217,10 @@ test.describe('Spinner Page - Pexels Images', () => {
     await page.waitForTimeout(500);
 
     await page.locator('#spin-btn').click();
-    await page.waitForTimeout(6000);
+    await page.waitForFunction(() => {
+      const skel = document.querySelector('#result-image-wrapper .image-skeleton, #result-image-wrapper .skeleton');
+      return !skel || skel.classList.contains('hidden');
+    }, { timeout: 15000 });
 
     const resultSkelHidden = await page.evaluate(() => {
       const skel = document.querySelector('#result-image-wrapper .image-skeleton, #result-image-wrapper .skeleton');

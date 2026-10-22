@@ -1,7 +1,7 @@
 {
   "en": {
-    "title": "Random Animal Generator | Free Online Tool with Pictures & Fun Facts",
-    "description": "Generate random animals instantly with pictures, fun facts, habitat, diet, conservation status and more. The best free random animal generator for kids, teachers, artists, and animal lovers. Over 1000+ animals with a spinner wheel, drawing prompts, and quiz.",
+    "title": "Random Animal Generator – Free Online Tool with Pictures | Best Random Animal Generator",
+    "description": "Free random animal generator with pictures, fun facts, habitat & conservation status. 1,000+ animals for drawing, kids, teachers & creative writing.",
     "hero_title": "Random Animal Generator",
     "hero_desc": "Discover amazing animals with fun facts, conservation status, and more. Press <kbd>Space</kbd> to generate.",
     "generate": "Generate",
@@ -150,8 +150,8 @@
     "cat_insect": "Insects",
     "cat_marine": "Marine",
     "all_status": "All Status",
-    "spinner_title": "🎡 Animal Spinner",
-    "spinner_desc": "Spin the wheel and discover a random animal!",
+    "spinner_title": "🎡 Random Animal Generator Wheel",
+    "spinner_desc": "Spin the wheel and land on a random animal with pictures, fun facts and conservation status.",
     "spin_btn": "🎡 Spin",
     "spinning": "⏳ Spinning...",
     "spin_to_discover": "Spin to discover!",
@@ -185,7 +185,10 @@
     "compare_summary": "Comparison Summary",
     "compare_same": "Same",
     "compare_different": "Different",
-    "compare_vs": "vs"
+    "compare_vs": "vs",
+    "placeholder": "Press <kbd class=\"rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]\">Space</kbd> or tap the button to generate",
+    "fullscreen": "Fullscreen",
+    "photo_by": "Photo by {photographer} on Pexels"
   },
   "es": {
     "title": "Generador de Animales Aleatorios | Herramienta Gratis con Imágenes y Datos",
@@ -370,7 +373,10 @@
     "seo_feat_9": "Modo sin repetición para descubrimientos únicos",
     "seo_feat_10": "Efectos de sonido con control de alternancia",
     "seo_feat_11": "Soporte de modo oscuro y modo claro",
-    "seo_feat_12": "100% gratis sin registro requerido"
+    "seo_feat_12": "100% gratis sin registro requerido",
+    "placeholder": "Presiona <kbd class=\"rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]\">Espacio</kbd> o toca el botón para generar",
+    "fullscreen": "Pantalla completa",
+    "photo_by": "Foto de {photographer} en Pexels"
   },
   "ja": {
     "title": "ランダム動物生成器 | 画像と楽しい事実の無料オンラインツール",
@@ -555,7 +561,10 @@
     "seo_feat_9": "ユニークな発見のための繰り返しなしモード",
     "seo_feat_10": "トグルコントロール付き効果音",
     "seo_feat_11": "ダークモードとライトモードのサポート",
-    "seo_feat_12": "登録不要の100%無料"
+    "seo_feat_12": "登録不要の100%無料",
+    "placeholder": "<kbd class=\"rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]\">スペース</kbd>キーを押すか、ボタンをタップして生成",
+    "fullscreen": "全画面",
+    "photo_by": "Pexelsの{photographer}による写真"
   },
   "fr": {
     "title": "Générateur d'Animaux Aléatoires | Outil Gratuit avec Images et Faits Amusants",
@@ -740,7 +749,10 @@
     "seo_feat_9": "Mode sans répétition pour des découvertes uniques",
     "seo_feat_10": "Effets sonores avec contrôle bascule",
     "seo_feat_11": "Support du mode sombre et mode clair",
-    "seo_feat_12": "100% gratuit sans inscription requise"
+    "seo_feat_12": "100% gratuit sans inscription requise",
+    "placeholder": "Appuyez sur <kbd class=\"rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]\">Espace</kbd> ou appuyez sur le bouton pour générer",
+    "fullscreen": "Plein écran",
+    "photo_by": "Photo de {photographer} sur Pexels"
   },
   "de": {
     "title": "Zufälliger Tiergenerator | Kostenloses Online-Tool mit Bildern & Fun Facts",
@@ -925,7 +937,10 @@
     "seo_feat_9": "Kein-Wiederholen-Modus für einzigartige Entdeckungen",
     "seo_feat_10": "Soundeffekte mit Toggle-Steuerung",
     "seo_feat_11": "Dark-Mode- und Light-Mode-Unterstützung",
-    "seo_feat_12": "100% kostenlos ohne Registrierung"
+    "seo_feat_12": "100% kostenlos ohne Registrierung",
+    "placeholder": "Drücken Sie <kbd class=\"rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]\">Leertaste</kbd> oder tippen Sie auf die Schaltfläche zum Generieren",
+    "fullscreen": "Vollbild",
+    "photo_by": "Foto von {photographer} auf Pexels"
   },
   "pt": {
     "title": "Gerador de Animais Aleatórios | Ferramenta Online Grátis com Imagens e Curiosidades",
@@ -1110,7 +1125,10 @@
     "seo_feat_9": "Modo sem repetição para descobertas únicas",
     "seo_feat_10": "Efeitos sonoros com controle de alternância",
     "seo_feat_11": "Suporte a modo escuro e modo claro",
-    "seo_feat_12": "100% gratuito sem registro necessário"
+    "seo_feat_12": "100% gratuito sem registro necessário",
+    "placeholder": "Pressione <kbd class=\"rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]\">Espaço</kbd> ou toque no botão para gerar",
+    "fullscreen": "Tela cheia",
+    "photo_by": "Foto de {photographer} no Pexels"
   },
   "ko": {
     "title": "랜덤 동물 생성기 | 그림과 재미있는 사실이 있는 무료 온라인 도구",
@@ -1295,7 +1313,10 @@
     "seo_feat_9": "독특한 발견을 위한 반복 없음 모드",
     "seo_feat_10": "토글 컨트롤이 있는 사운드 효과",
     "seo_feat_11": "다크 모드와 라이트 모드 지원",
-    "seo_feat_12": "등록 불필요 100% 무료"
+    "seo_feat_12": "등록 불필요 100% 무료",
+    "placeholder": "<kbd class=\"rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]\">스페이스</kbd>를 누르거나 버튼을 눌러 생성",
+    "fullscreen": "전체 화면",
+    "photo_by": "Pexels의 {photographer} 사진"
   },
   "it": {
     "title": "Generatore di Animali Casuali | Strumento Online Gratuito con Immagini e Curiosità",
@@ -1480,7 +1501,10 @@
     "seo_feat_9": "Modalità senza ripetizione per scoperte uniche",
     "seo_feat_10": "Effetti sonori con controllo toggle",
     "seo_feat_11": "Supporto modalità scura e modalità chiara",
-    "seo_feat_12": "100% gratuito senza registrazione richiesta"
+    "seo_feat_12": "100% gratuito senza registrazione richiesta",
+    "placeholder": "Premi <kbd class=\"rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]\">Spazio</kbd> o tocca il pulsante per generare",
+    "fullscreen": "Schermo intero",
+    "photo_by": "Foto di {photographer} su Pexels"
   },
   "zh-CN": {
     "title": "随机动物生成器 | 带图片和趣味知识的免费在线工具",
@@ -1664,7 +1688,10 @@
     "seo_feat_9": "无重复模式，用于独特发现",
     "seo_feat_10": "带开关控制的音效",
     "seo_feat_11": "暗色模式和亮色模式支持",
-    "seo_feat_12": "100%免费，无需注册"
+    "seo_feat_12": "100%免费，无需注册",
+    "placeholder": "按 <kbd class=\"rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]\">空格键</kbd> 或点击按钮生成",
+    "fullscreen": "全屏",
+    "photo_by": "照片由 Pexels 上的 {photographer} 提供"
   },
   "zh-TW": {
     "title": "隨機動物生成器 | 帶圖片和趣味知識的免費線上工具",
@@ -1849,7 +1876,10 @@
     "seo_feat_9": "無重複模式，用於獨特發現",
     "seo_feat_10": "帶開關控制的音效",
     "seo_feat_11": "深色模式和淺色模式支援",
-    "seo_feat_12": "100%免費，無需註冊"
+    "seo_feat_12": "100%免費，無需註冊",
+    "placeholder": "按 <kbd class=\"rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]\">空白鍵</kbd> 或點擊按鈕生成",
+    "fullscreen": "全螢幕",
+    "photo_by": "照片由 Pexels 上的 {photographer} 提供"
   },
   "ar": {
     "title": "مولّد حيوانات عشوائية | أداة مجانية عبر الإنترنت مع صور وحقائق ممتعة",
@@ -2033,6 +2063,10 @@
     "seo_feat_9": "وضع عدم التكرار لاكتشافات فريدة",
     "seo_feat_10": "مؤثرات صوتية مع التحكم بالتبديل",
     "seo_feat_11": "دعم الوضع الليلي والنهاري",
-    "seo_feat_12": "مجاني 100% بدون تسجيل مطلوب"
+    "seo_feat_12": "مجاني 100% بدون تسجيل مطلوب",
+    "nav_more": "المزيد",
+    "placeholder": "اضغط <kbd class=\"rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]\">مسافة</kbd> أو اضغط على الزر لإنشاء",
+    "fullscreen": "ملء الشاشة",
+    "photo_by": "الصورة بواسطة {photographer} على Pexels"
   }
 }

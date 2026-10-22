@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 ---
 
-<Layout title="免责声明 | 随机动物生成器" description="随机动物生成器的免责声明。了解我们工具提供的信息的使用限制和准确性。" locale="zh-CN" pagePath="/disclaimer">
+<Layout noindex={true} title="免责声明 | 随机动物生成器" description="随机动物生成器的免责声明。了解我们工具提供的信息的使用限制和准确性。" locale="zh-CN" pagePath="/disclaimer">
   <Navbar locale="zh-CN" pagePath="/disclaimer" />
 
   <main class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
