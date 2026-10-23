@@ -6,7 +6,6 @@ User-agent: *
 Allow: /
 
 Disallow: /api/
-Disallow: /_astro/
 
 Sitemap: ${sitemapURL.href}
 `;

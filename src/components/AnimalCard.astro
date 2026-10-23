@@ -159,28 +159,78 @@ if (!window.__downloadAnimalCard) {
     const imgUrl = typeof entry === 'string' ? entry : (entry && entry.url);
     function drawImageOrEmoji(imgEl) {
       if (imgEl) {
-        const imgW = W - 56, imgH = 200;
-        ctx.save(); ctx.beginPath(); ctx.roundRect(28, y, imgW, imgH, 16); ctx.clip();
-        const s = Math.max(imgW / imgEl.width, imgH / imgEl.height);
-        const sw = imgEl.width * s, sh = imgEl.height * s;
-        ctx.drawImage(imgEl, 28 + (imgW - sw) / 2, y + (imgH - sh) / 2, sw, sh);
-        ctx.restore(); y += imgH + 20;
+        const containerW = W - 56;
+        const containerH = 300;
+        const imgX = 28, imgY = y;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.roundRect(imgX, imgY, containerW, containerH, 16);
+        ctx.clip();
+
+        // Ambient matching background frame
+        const bgScale = Math.max(containerW / imgEl.width, containerH / imgEl.height);
+        const bgW = imgEl.width * bgScale;
+        const bgH = imgEl.height * bgScale;
+        ctx.drawImage(imgEl, imgX + (containerW - bgW) / 2, imgY + (containerH - bgH) / 2, bgW, bgH);
+
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.78)';
+        ctx.fillRect(imgX, imgY, containerW, containerH);
+
+        // Entire uncropped sharp image centered inside
+        const scale = Math.min((containerW - 16) / imgEl.width, (containerH - 16) / imgEl.height);
+        const drawW = Math.round(imgEl.width * scale);
+        const drawH = Math.round(imgEl.height * scale);
+        const drawX = Math.round(imgX + (containerW - drawW) / 2);
+        const drawY = Math.round(imgY + (containerH - drawH) / 2);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.roundRect(drawX, drawY, drawW, drawH, 10);
+        ctx.clip();
+        ctx.drawImage(imgEl, drawX, drawY, drawW, drawH);
+        ctx.restore();
+
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(imgX, imgY, containerW, containerH, 16);
+        ctx.stroke();
+
+        ctx.restore();
+        y += containerH + 20;
       } else {
         ctx.font = '64px sans-serif'; ctx.textAlign = 'center'; ctx.fillText(animal.emoji, W/2, y+64); y += 84;
       }
       finishCard(animal, labels, translatedName, translateFn, btn, ctx, W, y, wrapT);
     }
-    if (imgUrl) {
-      fetch(imgUrl).then(r => r.blob()).then(blob => {
-        const objUrl = URL.createObjectURL(blob);
-        const el = new Image();
-        el.onload = function() { drawImageOrEmoji(el); URL.revokeObjectURL(objUrl); };
-        el.onerror = function() { drawImageOrEmoji(null); URL.revokeObjectURL(objUrl); };
-        el.src = objUrl;
-      }).catch(() => { drawImageOrEmoji(null); });
-    } else {
-      drawImageOrEmoji(null);
+    async function resolveAndDraw() {
+      let finalUrl = imgUrl;
+      if (!finalUrl && typeof fetchAnimalImage === 'function') {
+        try {
+          const fetched = await fetchAnimalImage(animal.name);
+          if (fetched && fetched.url) finalUrl = fetched.url;
+        } catch(e) {}
+      }
+      if (finalUrl) {
+        fetch(finalUrl).then(r => r.blob()).then(blob => {
+          const objUrl = URL.createObjectURL(blob);
+          const el = new Image();
+          el.onload = function() { drawImageOrEmoji(el); URL.revokeObjectURL(objUrl); };
+          el.onerror = function() { drawImageOrEmoji(null); URL.revokeObjectURL(objUrl); };
+          el.src = objUrl;
+        }).catch(() => {
+          const el = new Image();
+          el.crossOrigin = 'anonymous';
+          el.onload = function() { drawImageOrEmoji(el); };
+          el.onerror = function() { drawImageOrEmoji(null); };
+          el.src = finalUrl;
+        });
+      } else {
+        drawImageOrEmoji(null);
+      }
     }
+    resolveAndDraw();
     function finishCard(a, lb, tn, tf, b, ctx, W, y, wrapT) {
       ctx.textAlign = 'center'; ctx.fillStyle = '#111827'; ctx.font = 'bold 26px system-ui, -apple-system, sans-serif';
       ctx.fillText(tn, W/2, y+28); y += 36;
@@ -214,7 +264,7 @@ if (!window.__downloadAnimalCard) {
         ctx.fillStyle='#f9fafb'; ctx.beginPath(); ctx.roundRect(28,y,W-56,64,10); ctx.fill();
         ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1; ctx.beginPath(); ctx.roundRect(28,y,W-56,64,10); ctx.stroke();
         ctx.fillStyle='#6b7280'; ctx.font='bold 10px system-ui'; ctx.textAlign='left'; ctx.fillText('🧬 '+lb.taxonomy,40,y+18);
-        const ti=[{l:lb.taxClass,v:a.class},{l:lb.taxOrder,v:a.order},{l:lb.taxFamily,v:a.family}].filter(x=>x.v);
+        const ti=[{l:lb.taxClass,v:tf(a.class,'class')||a.class},{l:lb.taxOrder,v:a.order},{l:lb.taxFamily,v:a.family}].filter(x=>x.v);
         const tcw=(W-80)/Math.max(ti.length,1);
         ti.forEach((item,i) => { ctx.fillStyle='#6b7280'; ctx.font='11px system-ui'; ctx.textAlign='left'; ctx.fillText(item.l,40+i*tcw,y+36);
           ctx.fillStyle='#111827'; ctx.font='bold 12px system-ui'; ctx.fillText(item.v||'—',40+i*tcw,y+52); }); y+=76;
@@ -236,21 +286,47 @@ if (!window.__downloadAnimalCard) {
 </script>
 <script is:inline>
 function getCardT() {
-  return window.__cardT || {
-    habitat:'Habitat', diet:'Diet', lifespan:'Lifespan', weight:'Weight',
-    speed:'Speed', length:'Length', region:'Region', taxonomy:'Taxonomy',
-    taxClass:'Class:', taxOrder:'Order:', taxFamily:'Family:',
-    funFact:'Fun Fact', save:'Save', share:'Share', copy:'Copy', download:'Download',
-    years:'years', copied:'Copied!', saving:'Saving...', saved:'Saved!',
-    shareTitle:'Share this animal', copyLink:'Copy Link',
-    shareTwitter:'Twitter', shareFacebook:'Facebook', shareWhatsApp:'WhatsApp',
-    sharePinterest:'Pinterest', shareEmail:'Email', nativeShare:'More...',
-    consLC:'Least Concern', consNT:'Near Threatened', consVU:'Vulnerable',
-    consEN:'Endangered', consCR:'Critically Endangered', consEW:'Extinct in Wild',
-    consEX:'Extinct', consDD:'Data Deficient',
-    placeholder:'Press <kbd class="rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]">Space</kbd> or tap the button to generate',
-    fullscreen:'Fullscreen',
-    photoBy:'Photo by {photographer} on Pexels'
+  const t = window.__cardT || {};
+  return {
+    habitat: t.habitat || 'Habitat',
+    diet: t.diet || 'Diet',
+    lifespan: t.lifespan || 'Lifespan',
+    weight: t.weight || 'Weight',
+    speed: t.speed || 'Speed',
+    length: t.length || 'Length',
+    region: t.region || 'Region',
+    taxonomy: t.taxonomy || 'Taxonomy',
+    taxClass: t.taxClass || 'Class:',
+    taxOrder: t.taxOrder || 'Order:',
+    taxFamily: t.taxFamily || 'Family:',
+    funFact: t.funFact || 'Fun Fact',
+    save: t.save || 'Save',
+    share: t.share || 'Share',
+    copy: t.copy || 'Copy',
+    download: t.download || 'Download',
+    years: t.years || 'years',
+    copied: t.copied || 'Copied!',
+    saving: t.saving || 'Saving...',
+    saved: t.saved || 'Saved!',
+    shareTitle: t.shareTitle || 'Share this animal',
+    copyLink: t.copyLink || 'Copy Link',
+    shareTwitter: t.shareTwitter || 'Twitter',
+    shareFacebook: t.shareFacebook || 'Facebook',
+    shareWhatsApp: t.shareWhatsApp || 'WhatsApp',
+    sharePinterest: t.sharePinterest || 'Pinterest',
+    shareEmail: t.shareEmail || 'Email',
+    nativeShare: t.nativeShare || 'More...',
+    consLC: t.consLC || 'Least Concern',
+    consNT: t.consNT || 'Near Threatened',
+    consVU: t.consVU || 'Vulnerable',
+    consEN: t.consEN || 'Endangered',
+    consCR: t.consCR || 'Critically Endangered',
+    consEW: t.consEW || 'Extinct in Wild',
+    consEX: t.consEX || 'Extinct',
+    consDD: t.consDD || 'Data Deficient',
+    placeholder: t.placeholder || 'Press <kbd class="rounded border border-hairline bg-canvas-elevated px-1.5 py-0.5 font-mono text-faint dark:border-[#333] dark:bg-[#1a1a1a]">Space</kbd> or tap the button to generate',
+    fullscreen: t.fullscreen || 'Fullscreen',
+    photoBy: t.photoBy || 'Photo by {photographer} on Pexels'
   };
 }
 
@@ -303,7 +379,7 @@ function translateVal(value, field) {
   const locale = window.__cardLocale || 'en';
   if (locale === 'en' || !value) return value;
   const map = window.__valueMaps && window.__valueMaps[field];
-  return (map && map[locale] && map[locale][value]) || value;
+  return (map && map[locale] && map[locale][value]) || (map && map[value]) || value;
 }
 
 const PEXELS_API_KEY = 'xEfnJ9xU5Fem8MeEPh1zE3lURDVneBkLnPGnrNAjnbMCBAY0LGtdgLFE';
@@ -456,7 +532,7 @@ window.displayAnimal = function(animal) {
   document.getElementById('card-length').textContent = animal.length;
   document.getElementById('card-region').textContent = translateVal(animal.region, 'region');
   document.getElementById('card-funfact').textContent = getAnimalFunFact(animal);
-  document.getElementById('card-class').textContent = animal.class || '—';
+  document.getElementById('card-class').textContent = translateVal(animal.class, 'class') || animal.class || '—';
   document.getElementById('card-order').textContent = animal.order || '—';
   document.getElementById('card-family').textContent = animal.family || '—';
 
@@ -475,6 +551,8 @@ window.displayAnimal = function(animal) {
 
   const fsText = document.getElementById('btn-fullscreen-text');
   if (fsText) fsText.textContent = t.fullscreen || 'Fullscreen';
+  const fsBtn = document.getElementById('btn-fullscreen');
+  if (fsBtn) fsBtn.title = t.fullscreen || 'Fullscreen';
 
   setFavoriteBtnState(animal);
   document.getElementById('btn-share-text').textContent = t.share;
@@ -528,29 +606,81 @@ window.displayAnimal = function(animal) {
 
       let y = 28;
 
-      const img = await new Promise((resolve) => {
-        const cache = JSON.parse(localStorage.getItem('pexelsImageCache') || '{}');
-        const url = cache[animal.name.toLowerCase().trim()];
-        if (!url) return resolve(null);
-        const el = new Image();
-        el.crossOrigin = 'anonymous';
-        el.onload = () => resolve(el);
-        el.onerror = () => resolve(null);
-        el.src = url;
+      const img = await new Promise(async (resolve) => {
+        try {
+          const cache = JSON.parse(localStorage.getItem('pexelsImageCache') || '{}');
+          let entry = cache[animal.name.toLowerCase().trim()];
+          let imgUrl = typeof entry === 'string' ? entry : (entry && entry.url);
+          if (!imgUrl && typeof fetchAnimalImage === 'function') {
+            const fetched = await fetchAnimalImage(animal.name);
+            if (fetched && fetched.url) imgUrl = fetched.url;
+          }
+          if (!imgUrl) return resolve(null);
+
+          try {
+            const r = await fetch(imgUrl);
+            if (r.ok) {
+              const blob = await r.blob();
+              const objUrl = URL.createObjectURL(blob);
+              const el = new Image();
+              el.onload = () => { URL.revokeObjectURL(objUrl); resolve(el); };
+              el.onerror = () => { URL.revokeObjectURL(objUrl); resolve(null); };
+              el.src = objUrl;
+              return;
+            }
+          } catch (e) {}
+
+          const el = new Image();
+          el.crossOrigin = 'anonymous';
+          el.onload = () => resolve(el);
+          el.onerror = () => resolve(null);
+          el.src = imgUrl;
+        } catch (e) {
+          resolve(null);
+        }
       });
 
       if (img) {
-        const imgW = W - 56, imgH = 200;
+        const containerW = W - 56;
+        const containerH = 300;
         const imgX = 28, imgY = y;
+
         ctx.save();
         ctx.beginPath();
-        ctx.roundRect(imgX, imgY, imgW, imgH, 16);
+        ctx.roundRect(imgX, imgY, containerW, containerH, 16);
         ctx.clip();
-        const s = Math.max(imgW / img.width, imgH / img.height);
-        const sw = img.width * s, sh = img.height * s;
-        ctx.drawImage(img, imgX + (imgW - sw) / 2, imgY + (imgH - sh) / 2, sw, sh);
+
+        // Ambient matching background frame
+        const bgScale = Math.max(containerW / img.width, containerH / img.height);
+        const bgW = img.width * bgScale;
+        const bgH = img.height * bgScale;
+        ctx.drawImage(img, imgX + (containerW - bgW) / 2, imgY + (containerH - bgH) / 2, bgW, bgH);
+
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.78)';
+        ctx.fillRect(imgX, imgY, containerW, containerH);
+
+        // Entire uncropped sharp image centered inside
+        const scale = Math.min((containerW - 16) / img.width, (containerH - 16) / img.height);
+        const drawW = Math.round(img.width * scale);
+        const drawH = Math.round(img.height * scale);
+        const drawX = Math.round(imgX + (containerW - drawW) / 2);
+        const drawY = Math.round(imgY + (containerH - drawH) / 2);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.roundRect(drawX, drawY, drawW, drawH, 10);
+        ctx.clip();
+        ctx.drawImage(img, drawX, drawY, drawW, drawH);
         ctx.restore();
-        y += imgH + 20;
+
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(imgX, imgY, containerW, containerH, 16);
+        ctx.stroke();
+
+        ctx.restore();
+        y += containerH + 20;
       } else {
         ctx.font = '64px sans-serif';
         ctx.textAlign = 'center';
@@ -669,7 +799,7 @@ window.displayAnimal = function(animal) {
         ctx.textAlign = 'left';
         ctx.fillText('🧬 ' + t.taxonomy, 40, y + 18);
         const taxItems = [
-          { label: t.taxClass, value: animal.class },
+          { label: t.taxClass, value: translateVal(animal.class, 'class') || animal.class },
           { label: t.taxOrder, value: animal.order },
           { label: t.taxFamily, value: animal.family },
         ].filter(x => x.value);

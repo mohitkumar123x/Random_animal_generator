@@ -186,7 +186,7 @@ const threatenedCount = livingRecords.filter(a => ['VU', 'EN', 'CR', 'EW', 'EX']
       </div>
     </div>
 
-    <AnimalCard />
+    <AnimalCard locale="en" />
 
     <div id="multi-results" class="hidden mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
 
@@ -1066,8 +1066,23 @@ const threatenedCount = livingRecords.filter(a => ['VU', 'EN', 'CR', 'EW', 'EX']
   // URL param support
   const urlParams = new URLSearchParams(window.location.search);
   const animalParam = urlParams.get('animal');
+  const searchParam = urlParams.get('search') || urlParams.get('q');
   if (animalParam) {
     const found = allAnimals.find(a => a.id === animalParam);
+    if (found) {
+      window.displayAnimal?.(found);
+    }
+  } else if (searchParam) {
+    const q = searchParam.trim().toLowerCase();
+    const found = allAnimals.find(a =>
+      a.id.toLowerCase() === q ||
+      a.name.toLowerCase() === q ||
+      (a.scientificName && a.scientificName.toLowerCase() === q) ||
+      getAnimalName(a).toLowerCase() === q
+    ) || allAnimals.find(a =>
+      a.name.toLowerCase().includes(q) ||
+      getAnimalName(a).toLowerCase().includes(q)
+    );
     if (found) {
       window.displayAnimal?.(found);
     }

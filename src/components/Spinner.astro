@@ -280,28 +280,78 @@ if (!window.__downloadAnimalCard) {
     const imgUrl = typeof entry === 'string' ? entry : (entry && entry.url);
     function drawImageOrEmoji(imgEl) {
       if (imgEl) {
-        const imgW = W - 56, imgH = 200;
-        ctx.save(); ctx.beginPath(); ctx.roundRect(28, y, imgW, imgH, 16); ctx.clip();
-        const s = Math.max(imgW / imgEl.width, imgH / imgEl.height);
-        const sw = imgEl.width * s, sh = imgEl.height * s;
-        ctx.drawImage(imgEl, 28 + (imgW - sw) / 2, y + (imgH - sh) / 2, sw, sh);
-        ctx.restore(); y += imgH + 20;
+        const containerW = W - 56;
+        const containerH = 300;
+        const imgX = 28, imgY = y;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.roundRect(imgX, imgY, containerW, containerH, 16);
+        ctx.clip();
+
+        // Ambient matching background frame
+        const bgScale = Math.max(containerW / imgEl.width, containerH / imgEl.height);
+        const bgW = imgEl.width * bgScale;
+        const bgH = imgEl.height * bgScale;
+        ctx.drawImage(imgEl, imgX + (containerW - bgW) / 2, imgY + (containerH - bgH) / 2, bgW, bgH);
+
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.78)';
+        ctx.fillRect(imgX, imgY, containerW, containerH);
+
+        // Entire uncropped sharp image centered inside
+        const scale = Math.min((containerW - 16) / imgEl.width, (containerH - 16) / imgEl.height);
+        const drawW = Math.round(imgEl.width * scale);
+        const drawH = Math.round(imgEl.height * scale);
+        const drawX = Math.round(imgX + (containerW - drawW) / 2);
+        const drawY = Math.round(imgY + (containerH - drawH) / 2);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.roundRect(drawX, drawY, drawW, drawH, 10);
+        ctx.clip();
+        ctx.drawImage(imgEl, drawX, drawY, drawW, drawH);
+        ctx.restore();
+
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(imgX, imgY, containerW, containerH, 16);
+        ctx.stroke();
+
+        ctx.restore();
+        y += containerH + 20;
       } else {
         ctx.font = '64px sans-serif'; ctx.textAlign = 'center'; ctx.fillText(animal.emoji, W/2, y+64); y += 84;
       }
       finishCard(animal, labels, translatedName, translateFn, btn, ctx, W, y, wrapT);
     }
-    if (imgUrl) {
-      fetch(imgUrl).then(r => r.blob()).then(blob => {
-        const objUrl = URL.createObjectURL(blob);
-        const el = new Image();
-        el.onload = function() { drawImageOrEmoji(el); URL.revokeObjectURL(objUrl); };
-        el.onerror = function() { drawImageOrEmoji(null); URL.revokeObjectURL(objUrl); };
-        el.src = objUrl;
-      }).catch(() => { drawImageOrEmoji(null); });
-    } else {
-      drawImageOrEmoji(null);
+    async function resolveAndDraw() {
+      let finalUrl = imgUrl;
+      if (!finalUrl && typeof fetchAnimalImage === 'function') {
+        try {
+          const fetched = await fetchAnimalImage(animal.name);
+          if (fetched && fetched.url) finalUrl = fetched.url;
+        } catch(e) {}
+      }
+      if (finalUrl) {
+        fetch(finalUrl).then(r => r.blob()).then(blob => {
+          const objUrl = URL.createObjectURL(blob);
+          const el = new Image();
+          el.onload = function() { drawImageOrEmoji(el); URL.revokeObjectURL(objUrl); };
+          el.onerror = function() { drawImageOrEmoji(null); URL.revokeObjectURL(objUrl); };
+          el.src = objUrl;
+        }).catch(() => {
+          const el = new Image();
+          el.crossOrigin = 'anonymous';
+          el.onload = function() { drawImageOrEmoji(el); };
+          el.onerror = function() { drawImageOrEmoji(null); };
+          el.src = finalUrl;
+        });
+      } else {
+        drawImageOrEmoji(null);
+      }
     }
+    resolveAndDraw();
     function finishCard(a, lb, tn, tf, b, ctx, W, y, wrapT) {
       ctx.textAlign = 'center'; ctx.fillStyle = '#111827'; ctx.font = 'bold 26px system-ui, -apple-system, sans-serif';
       ctx.fillText(tn, W/2, y+28); y += 36;

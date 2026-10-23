@@ -97,7 +97,7 @@ const labels = {
     const loc = window.__cardLocale || 'en';
     if (loc === 'en' || !val) return val;
     const map = window.__valueMaps && window.__valueMaps[field];
-    return (map && map[loc] && map[loc][val]) || val;
+    return (map && map[loc] && map[loc][val]) || (map && map[val]) || val;
   }
 
   function render() {
