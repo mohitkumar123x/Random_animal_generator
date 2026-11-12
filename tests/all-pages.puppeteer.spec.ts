@@ -17,7 +17,7 @@ const MOCK_PEXELS_RESPONSE = JSON.stringify({
 const MOCK_FETCH_SCRIPT = `
   const originalFetch = window.fetch;
   window.fetch = function(url, opts) {
-    if (typeof url === 'string' && url.includes('api.pexels.com')) {
+    if (typeof url === 'string' && (url.includes('/api/pexels') || url.includes('api.pexels.com'))) {
       return Promise.resolve(new Response('${MOCK_PEXELS_RESPONSE}', {
         status: 200,
         headers: { 'Content-Type': 'application/json' }
@@ -117,12 +117,14 @@ describe('Puppeteer - Homepage Pexels Integration', () => {
     expect(overlayHidden).toBe(true);
   });
 
-  test('should use correct API key', async () => {
+  test('should not expose private API key in client requests', async () => {
     let capturedAuth = '';
+    let capturedUrl = '';
     await page.evaluateOnNewDocument(`
       const originalFetch = window.fetch;
       window.fetch = function(url, opts) {
-        if (typeof url === 'string' && url.includes('api.pexels.com')) {
+        if (typeof url === 'string' && (url.includes('/api/pexels') || url.includes('api.pexels.com'))) {
+          window.__capturedUrl = url;
           window.__capturedAuth = opts?.headers?.Authorization || '';
           return Promise.resolve(new Response('${MOCK_PEXELS_RESPONSE}', {
             status: 200,
@@ -136,8 +138,10 @@ describe('Puppeteer - Homepage Pexels Integration', () => {
     await page.keyboard.press('Space');
     await delay(3000);
 
+    capturedUrl = await page.evaluate(() => (window as any).__capturedUrl || '');
     capturedAuth = await page.evaluate(() => (window as any).__capturedAuth || '');
-    expect(capturedAuth).toBe('xEfnJ9xU5Fem8MeEPh1zE3lURDVneBkLnPGnrNAjnbMCBAY0LGtdgLFE');
+    expect(capturedUrl).toContain('/api/pexels');
+    expect(capturedAuth).toBe('');
   });
 
   test('should cache images in localStorage', async () => {
@@ -394,22 +398,24 @@ describe('Puppeteer - Compare Section Images', () => {
     await page.close();
   });
 
-  test('should show compare cards with image wrappers', async () => {
+  test('should show compare cards with image wrappers on compare page', async () => {
     await page.evaluateOnNewDocument(MOCK_FETCH_SCRIPT);
-    await page.goto(BASE_URL, { waitUntil: 'networkidle0' });
+    await page.goto(`${BASE_URL}/compare`, { waitUntil: 'networkidle0' });
 
-    const compareBtn = await page.$('#compare-btn');
-    if (compareBtn) {
-      await compareBtn.click();
+    const randomPick = await page.$('#random-pick');
+    if (randomPick) {
+      await randomPick.click();
       await delay(3000);
 
       const cardCount = await page.evaluate(() => {
-        return document.querySelectorAll('.compare-card').length;
+        const a = document.getElementById('card-a');
+        const b = document.getElementById('card-b');
+        return (a && b) ? 2 : 0;
       });
       expect(cardCount).toBe(2);
 
       const imgWrappers = await page.evaluate(() => {
-        return document.querySelectorAll('.compare-image').length;
+        return document.querySelectorAll('.compare-image-wrapper').length;
       });
       expect(imgWrappers).toBe(2);
     }

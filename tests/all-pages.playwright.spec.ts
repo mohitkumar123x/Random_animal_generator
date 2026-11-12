@@ -4,7 +4,7 @@ const BASE_URL = 'http://localhost:4321';
 
 // Helper: intercept Pexels API calls
 function interceptPexels(page: import('@playwright/test').Page) {
-  return page.route('**/api.pexels.com/**', async (route) => {
+  return page.route(/(api\.pexels\.com|\/api\/pexels)/, async (route) => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
@@ -305,29 +305,43 @@ test.describe('Quiz Page - Pexels Images', () => {
   });
 });
 
-test.describe('Compare Section - Pexels Images', () => {
-  test('should show compare section with images', async ({ page }) => {
+test.describe('Compare & Quiz Navigation - Pexels Images', () => {
+  test('should navigate to compare page and show compare cards with images', async ({ page }) => {
     await interceptPexels(page);
     await interceptImages(page);
     await page.goto(BASE_URL);
     await page.waitForTimeout(500);
 
-    // The compare section is in index.astro - find and click compare button
     const compareBtn = page.locator('#compare-btn');
-    if (await compareBtn.isVisible()) {
-      await compareBtn.click();
+    await expect(compareBtn).toHaveAttribute('href', '/compare');
+    await compareBtn.click();
+    await page.waitForURL('**/compare');
+
+    const randomPick = page.locator('#random-pick');
+    if (await randomPick.isVisible()) {
+      await randomPick.click();
       await page.waitForTimeout(3000);
 
-      const compareCards = page.locator('.compare-card');
-      const count = await compareCards.count();
-      expect(count).toBe(2);
+      const cardA = page.locator('#card-a');
+      await expect(cardA).toBeVisible();
+      const cardB = page.locator('#card-b');
+      await expect(cardB).toBeVisible();
 
-      // Check image wrappers exist
-      for (let i = 0; i < count; i++) {
-        const imgWrap = compareCards.nth(i).locator('.compare-image');
-        await expect(imgWrap).toBeAttached();
-      }
+      const imgWrappers = page.locator('.compare-image-wrapper');
+      const count = await imgWrappers.count();
+      expect(count).toBe(2);
     }
+  });
+
+  test('should navigate to quiz page from toolbar', async ({ page }) => {
+    await page.goto(BASE_URL);
+    await page.waitForTimeout(500);
+
+    const quizBtn = page.locator('#quiz-btn');
+    await expect(quizBtn).toHaveAttribute('href', '/quiz');
+    await quizBtn.click();
+    await page.waitForURL('**/quiz');
+    await expect(page.locator('#quiz-area')).toBeVisible();
   });
 });
 
@@ -360,10 +374,12 @@ test.describe('Download Card - Full Info', () => {
   });
 });
 
-test.describe('Pexels API Key', () => {
-  test('should use correct API key in requests', async ({ page }) => {
+test.describe('Pexels API Security', () => {
+  test('should not expose private API key in client requests', async ({ page }) => {
     let authHeader = '';
-    await page.route('**/api.pexels.com/**', async (route) => {
+    let requestedUrl = '';
+    await page.route(/(api\.pexels\.com|\/api\/pexels)/, async (route) => {
+      requestedUrl = route.request().url();
       authHeader = route.request().headers()['authorization'] || '';
       await route.fulfill({
         status: 200,
@@ -377,7 +393,8 @@ test.describe('Pexels API Key', () => {
     await page.keyboard.press('Space');
     await page.waitForTimeout(3000);
 
-    expect(authHeader).toBe('xEfnJ9xU5Fem8MeEPh1zE3lURDVneBkLnPGnrNAjnbMCBAY0LGtdgLFE');
+    expect(requestedUrl).toContain('/api/pexels');
+    expect(authHeader).toBe('');
   });
 });
 

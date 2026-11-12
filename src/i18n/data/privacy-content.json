@@ -1,0 +1,618 @@
+{
+  "en": {
+    "meta_desc": "Privacy Policy for Random Animal Generator. Learn how we collect, use, and protect your information.",
+    "title": "Privacy Policy",
+    "last_updated": "Last updated: January 1, 2026",
+    "sections": [
+      {
+        "title": "Introduction",
+        "text": "Welcome to Random Animal Generator (\"we,\" \"our,\" or \"us\"). We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our tools."
+      },
+      {
+        "title": "Information We Collect",
+        "text": "We may collect information that you provide directly, such as when you contact us through our form. This may include:",
+        "list": [
+          "Name and email address",
+          "Any message content you submit"
+        ],
+        "extra": "We also automatically collect certain information when you visit our site, including your IP address, browser type, device information, and usage data through cookies and similar technologies."
+      },
+      {
+        "title": "How We Use Your Information",
+        "text": "We use the information we collect to:",
+        "list": [
+          "Respond to your inquiries and provide customer support",
+          "Improve and optimize our website and tools",
+          "Analyze usage trends to enhance user experience",
+          "Ensure the security and integrity of our platform"
+        ]
+      },
+      {
+        "title": "Cookies and Local Storage",
+        "text": "We use local storage to remember your preferences, such as theme settings and your animal generation history (when \"No Repeat\" mode is enabled). This data is stored entirely in your browser and is never transmitted to our servers. You can clear this data at any time through your browser settings."
+      },
+      {
+        "title": "Third-Party Services",
+        "text": "We may use third-party services such as analytics providers to help us understand how our site is used. These services may collect information sent by your browser as part of a web page request. We do not sell or share your personal information with third parties for their marketing purposes."
+      },
+      {
+        "title": "Data Security",
+        "text": "We implement reasonable security measures to protect your information. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security."
+      },
+      {
+        "title": "Children's Privacy",
+        "text": "Our website is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us and we will promptly delete it."
+      },
+      {
+        "title": "Changes to This Policy",
+        "text": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the \"Last updated\" date above."
+      },
+      {
+        "title": "Contact Us",
+        "hasContactLink": true,
+        "contactPre": "If you have any questions about this Privacy Policy, please",
+        "contactLink": "contact us"
+      }
+    ]
+  },
+  "es": {
+    "meta_desc": "Política de Privacidad de Random Animal Generator. Conozca cómo recopilamos, utilizamos y protegemos su información.",
+    "title": "Política de Privacidad",
+    "last_updated": "Última actualización: 1 de enero de 2026",
+    "sections": [
+      {
+        "title": "Introducción",
+        "text": "Bienvenido a Random Animal Generator (\"nosotros\", \"nuestro\"). Nos comprometemos a proteger su privacidad. Esta Política de Privacidad explica cómo recopilamos, utilizamos y protegemos su información cuando visita nuestro sitio web y utiliza nuestras herramientas."
+      },
+      {
+        "title": "Información Que Recopilamos",
+        "text": "Podemos recopilar la información que usted proporciona voluntariamente, por ejemplo al contactarnos mediante nuestro formulario:",
+        "list": [
+          "Nombre y dirección de correo electrónico",
+          "El contenido de los mensajes enviados"
+        ],
+        "extra": "Asimismo, recopilamos de forma automatizada cierta información técnica durante su navegación, como dirección IP, tipo de navegador, características del dispositivo y datos analíticos de uso."
+      },
+      {
+        "title": "Cómo Usamos su Información",
+        "text": "Utilizamos la información recopilada para:",
+        "list": [
+          "Responder a sus consultas y brindarle soporte",
+          "Mejorar y optimizar nuestras herramientas y rendimiento",
+          "Analizar tendencias para perfeccionar la experiencia del usuario",
+          "Garantizar la seguridad y protección de la plataforma"
+        ]
+      },
+      {
+        "title": "Cookies y Almacenamiento Local",
+        "text": "Utilizamos el almacenamiento local (Local Storage) para recordar sus preferencias (como el tema visual o el historial del modo \"Sin Repetición\"). Estos datos residen exclusivamente en su navegador y nunca se transmiten a servidores externos."
+      },
+      {
+        "title": "Servicios de Terceros",
+        "text": "Podemos emplear herramientas analíticas de terceros para comprender cómo interactúan los usuarios con el sitio. Nunca vendemos ni compartimos sus datos personales con fines comerciales o publicitarios."
+      },
+      {
+        "title": "Seguridad de los Datos",
+        "text": "Adoptamos medidas razonables de protección técnica. No obstante, ninguna transmisión por Internet es 100% invulnerable, por lo que no es posible garantizar una seguridad absoluta."
+      },
+      {
+        "title": "Privacidad Infantil",
+        "text": "Nuestros servicios no están orientados a recabar datos de menores de 13 años. Si considera que un menor nos ha facilitado información personal, contáctenos para su inmediata eliminación."
+      },
+      {
+        "title": "Modificaciones a Esta Política",
+        "text": "Podemos actualizar esta política periódicamente. Cualquier ajuste se reflejará de inmediato en esta página con su respectiva fecha de revisión."
+      },
+      {
+        "title": "Contacto",
+        "hasContactLink": true,
+        "contactPre": "Si tiene dudas o consultas sobre esta Política de Privacidad, por favor",
+        "contactLink": "contáctenos"
+      }
+    ]
+  },
+  "pt": {
+    "meta_desc": "Política de Privacidade do Random Animal Generator. Saiba como coletamos, utilizamos e protegemos seus dados pessoais.",
+    "title": "Política de Privacidade",
+    "last_updated": "Última atualização: 1 de janeiro de 2026",
+    "sections": [
+      {
+        "title": "Introdução",
+        "text": "Bem-vindo ao Random Animal Generator (\"nós\", \"nosso\"). Temos o compromisso de resguardar sua privacidade. Esta Política de Privacidade descreve como tratamos e protegemos seus dados ao utilizar nosso site e ferramentas interativas."
+      },
+      {
+        "title": "Informações Coletadas",
+        "text": "Podemos coletar dados fornecidos diretamente por você, como ao preencher nosso formulário de contato:",
+        "list": [
+          "Nome e endereço de e-mail",
+          "Conteúdo das mensagens enviadas"
+        ],
+        "extra": "Também coletamos dados técnicos automaticamente durante o acesso, incluindo endereço IP, navegador, dispositivo e métricas de navegação."
+      },
+      {
+        "title": "Como Utilizamos Suas Informações",
+        "text": "Utilizamos as informações com os seguintes propósitos:",
+        "list": [
+          "Responder a dúvidas e fornecer suporte técnico",
+          "Aprimorar a estabilidade e os recursos do site",
+          "Avaliar métricas de uso para otimizar a experiência",
+          "Manter a segurança e integridade do nosso ecossistema"
+        ]
+      },
+      {
+        "title": "Cookies e Armazenamento Local",
+        "text": "Utilizamos o Local Storage do navegador para salvar preferências pessoais, como tema escuro e animais visualizados no modo \"Sem Repetição\". Essas informações permanecem apenas no seu dispositivo."
+      },
+      {
+        "title": "Serviços de Terceiros",
+        "text": "Podemos utilizar serviços confiáveis de análise estatística para entender padrões de tráfego. Não comercializamos nem compartilhamos seus dados com terceiros para fins de marketing."
+      },
+      {
+        "title": "Segurança da Informação",
+        "text": "Empregamos padrões adequados de proteção digital. Contudo, nenhum sistema conectado à internet é totalmente imune a riscos."
+      },
+      {
+        "title": "Privacidade de Crianças",
+        "text": "Não coletamos intencionalmente informações de crianças menores de 13 anos. Caso identifique envio indevido de dados por um menor, entre em contato para que possamos excluí-los."
+      },
+      {
+        "title": "Atualizações desta Política",
+        "text": "Podemos revisar esta política periodicamente. Quaisquer alterações entram em vigor a partir da data de publicação indicada nesta página."
+      },
+      {
+        "title": "Contato",
+        "hasContactLink": true,
+        "contactPre": "Em caso de dúvidas a respeito desta Política de Privacidade, sinta-se à vontade para",
+        "contactLink": "falar conosco"
+      }
+    ]
+  },
+  "ja": {
+    "meta_desc": "Random Animal Generatorのプライバシーポリシー。情報の収集、使用、保護方針についてご説明します。",
+    "title": "プライバシーポリシー",
+    "last_updated": "最終更新日: 2026年1月1日",
+    "sections": [
+      {
+        "title": "はじめに",
+        "text": "Random Animal Generator（以下「当サイト」）へようこそ。私たちはユーザーの皆様のプライバシー保護を重視しています。本ポリシーでは、当ツールの利用時に収集される情報の取り扱いについて説明します。"
+      },
+      {
+        "title": "収集する情報",
+        "text": "お問い合わせフォームなどを通じてユーザーから直接提供される情報を収集する場合があります：",
+        "list": [
+          "お名前およびメールアドレス",
+          "送信されたメッセージ内容"
+        ],
+        "extra": "また、IPアドレス、ブラウザ種別、アクセスログなどの技術的情報をアクセス解析目的で自動的に収集する場合があります。"
+      },
+      {
+        "title": "情報の利用目的",
+        "text": "収集した情報は以下の目的で利用されます：",
+        "list": [
+          "お問い合わせへの返信およびサポートの提供",
+          "ウェブサイトの機能改善および安定運用",
+          "利用動向の把握による使いやすさの向上",
+          "不正アクセスの防止およびセキュリティの確保"
+        ]
+      },
+      {
+        "title": "Cookieおよびローカルストレージ",
+        "text": "テーマ設定や「重複なしモード」の表示履歴などを記憶するため、ブラウザのローカルストレージを使用しています。これらはブラウザ内にのみ保存され、当方のサーバーへ送信されることはありません。"
+      },
+      {
+        "title": "第三者サービス",
+        "text": "トラフィック分析のために第三者の解析ツールを利用する場合があります。個人情報を広告主等の第三者に販売・提供することは一切ありません。"
+      },
+      {
+        "title": "データの保護",
+        "text": "適切な安全対策を講じてデータ保護に努めていますが、インターネット上の通信において100%の完全性を保証することはできません。"
+      },
+      {
+        "title": "児童のプライバシー",
+        "text": "当サイトは13歳未満の児童を対象とした個人情報の収集を行いません。誤って提供されたと思われる場合は、速やかにご連絡ください。"
+      },
+      {
+        "title": "本ポリシーの改定",
+        "text": "本ポリシーは必要に応じて改定されることがあります。改定された内容は本ページに掲載された時点で効力を持ちます。"
+      },
+      {
+        "title": "お問い合わせ",
+        "hasContactLink": true,
+        "contactPre": "プライバシーポリシーに関するご質問は、",
+        "contactLink": "お問い合わせ窓口"
+      }
+    ]
+  },
+  "fr": {
+    "meta_desc": "Politique de Confidentialité de Random Animal Generator. Découvrez comment nous traitons et protégeons vos données.",
+    "title": "Politique de Confidentialité",
+    "last_updated": "Dernière mise à jour : 1er janvier 2026",
+    "sections": [
+      {
+        "title": "Introduction",
+        "text": "Bienvenue sur Random Animal Generator (« nous »). Nous accordons une importance primordiale à la protection de votre vie privée. La présente politique détaille notre gestion de vos données lors de l'utilisation de nos outils."
+      },
+      {
+        "title": "Données Collectées",
+        "text": "Nous pouvons collecter les données que vous nous soumettez directement via nos formulaires :",
+        "list": [
+          "Nom et adresse e-mail",
+          "Contenu du message envoyé"
+        ],
+        "extra": "Nous collectons également des données techniques de navigation (adresse IP, navigateur, appareil, métriques d'audience) de manière automatisée."
+      },
+      {
+        "title": "Utilisation des Données",
+        "text": "Ces données nous permettent de :",
+        "list": [
+          "Répondre à vos demandes et vous assister",
+          "Optimiser l'ergonomie et les fonctionnalités du site",
+          "Analyser l'usage afin d'améliorer nos générateurs",
+          "Assurer la sécurité de notre infrastructure"
+        ]
+      },
+      {
+        "title": "Cookies et Stockage Local",
+        "text": "Nous utilisons le stockage local (Local Storage) de votre navigateur pour conserver vos préférences (thème, historique du mode « Sans Répétition »). Ces éléments ne quittent jamais votre terminal."
+      },
+      {
+        "title": "Services Tiers",
+        "text": "Des outils d'analyse statistique peuvent être employés pour comprendre les flux de visite. Nous ne commercialisons aucune information personnelle à des tiers."
+      },
+      {
+        "title": "Sécurité",
+        "text": "Nous appliquons des mesures de sécurité conformes aux standards du web pour préserver vos données contre tout accès non autorisé."
+      },
+      {
+        "title": "Mineurs",
+        "text": "Notre site ne sollicite aucune information auprès des enfants de moins de 13 ans. Tout enregistrement involontaire sera supprimé sur simple demande."
+      },
+      {
+        "title": "Modifications",
+        "text": "Cette politique peut être mise à jour à tout moment. Les révisions prennent effet dès leur publication en ligne."
+      },
+      {
+        "title": "Nous Contacter",
+        "hasContactLink": true,
+        "contactPre": "Pour toute question relative à cette politique, veuillez",
+        "contactLink": "nous contacter"
+      }
+    ]
+  },
+  "de": {
+    "meta_desc": "Datenschutzerklärung für Random Animal Generator. Erfahren Sie, wie wir Ihre Daten erheben, verarbeiten und schützen.",
+    "title": "Datenschutzerklärung",
+    "last_updated": "Zuletzt aktualisiert: 1. Januar 2026",
+    "sections": [
+      {
+        "title": "Einleitung",
+        "text": "Willkommen bei Random Animal Generator („wir“). Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Diese Datenschutzerklärung erläutert, wie wir Daten erfassen und verarbeiten."
+      },
+      {
+        "title": "Erfasste Daten",
+        "text": "Wir erfassen Angaben, die Sie uns freiwillig übermitteln (z. B. über das Kontaktformular):",
+        "list": [
+          "Name und E-Mail-Adresse",
+          "Inhalt Ihrer Anfrage"
+        ],
+        "extra": "Darüber hinaus erfassen unsere Systeme automatisch technische Verbindungsdaten (IP-Adresse, Browsertyp, Nutzungsdauer)."
+      },
+      {
+        "title": "Verwendungszwecke",
+        "text": "Wir nutzen diese Informationen ausschließlich zur:",
+        "list": [
+          "Beantwortung Ihrer Fragen und Bereitstellung von Support",
+          "Optimierung der Website-Geschwindigkeit und Funktionalität",
+          "Statistischen Auswertung zur Verbesserung der Tools",
+          "Aufrechterhaltung der technischen Sicherheit"
+        ]
+      },
+      {
+        "title": "Cookies und Lokaler Speicher",
+        "text": "Für Voreinstellungen (Design-Modus, Verlauf bei „Keine Wiederholung“) nutzen wir den lokalen Browserspeicher (Local Storage). Diese Daten verbleiben lokal auf Ihrem Endgerät."
+      },
+      {
+        "title": "Dienste Dritter",
+        "text": "Zur Webanalyse können Drittanbieter-Dienste eingesetzt werden. Wir verkaufen oder vermarkten keinerlei personenbezogene Daten an Dritte."
+      },
+      {
+        "title": "Datensicherheit",
+        "text": "Wir setzen angemessene technische Schutzmaßnahmen ein, weisen jedoch darauf hin, dass die Datenübertragung im Internet Sicherheitslücken aufweisen kann."
+      },
+      {
+        "title": "Jugendschutz",
+        "text": "Unser Angebot richtet sich nicht an Kinder unter 13 Jahren. Sollten versehentlich Daten von Kindern erfasst worden sein, werden wir diese umgehend löschen."
+      },
+      {
+        "title": "Änderungen dieser Erklärung",
+        "text": "Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf anzupassen. Die jeweils aktuelle Fassung finden Sie stets an dieser Stelle."
+      },
+      {
+        "title": "Kontakt",
+        "hasContactLink": true,
+        "contactPre": "Bei Fragen zu dieser Datenschutzerklärung können Sie uns gern",
+        "contactLink": "kontaktieren"
+      }
+    ]
+  },
+  "it": {
+    "meta_desc": "Informativa sulla Privacy di Random Animal Generator. Scopri come raccogliamo, utilizziamo e proteggiamo i tuoi dati.",
+    "title": "Informativa sulla Privacy",
+    "last_updated": "Ultimo aggiornamento: 1 gennaio 2026",
+    "sections": [
+      {
+        "title": "Introduzione",
+        "text": "Benvenuto su Random Animal Generator (\"noi\"). Ci impegniamo a garantire la massima tutela della tua privacy. Questa informativa illustra le modalità di gestione delle informazioni durante la navigazione sul nostro portale."
+      },
+      {
+        "title": "Dati Raccolti",
+        "text": "Raccogliamo i dati forniti volontariamente tramite i moduli di contatto:",
+        "list": [
+          "Nome e indirizzo email",
+          "Testo del messaggio inviato"
+        ],
+        "extra": "Vengono inoltre raccolti in automatico dati tecnici di navigazione, tra cui indirizzo IP, tipo di browser e statistiche aggregate di fruizione."
+      },
+      {
+        "title": "Finalità del Trattamento",
+        "text": "I dati sono trattati per:",
+        "list": [
+          "Rispondere a quesiti e fornire assistenza",
+          "Migliorare l'efficienza e le funzionalità delle nostre pagine",
+          "Analizzare i trend di utilizzo per arricchire l'esperienza utente",
+          "Garantire la sicurezza e l'integrità del servizio"
+        ]
+      },
+      {
+        "title": "Cookie e Memoria Locale",
+        "text": "Utilizziamo il Local Storage del browser per memorizzare opzioni come il tema chiaro/scuro e la cronologia della modalità \"Nessuna Ripetizione\". Tali dati restano confinati nel tuo dispositivo."
+      },
+      {
+        "title": "Servizi di Terze Parti",
+        "text": "Possiamo impiegare strumenti analitici terzi per comprendere il traffico web. Non cediamo né vendiamo informazioni personali a terzi per scopi promozionali."
+      },
+      {
+        "title": "Sicurezza",
+        "text": "Adottiamo standard tecnici adeguati a proteggere i dati, pur riconoscendo che nessuna trasmissione digitale è esente da rischi al 100%."
+      },
+      {
+        "title": "Tutela dei Minori",
+        "text": "Il sito non raccoglie scientemente informazioni su minori di 13 anni. In caso di ricezione non intenzionale, provvederemo alla cancellazione immediata."
+      },
+      {
+        "title": "Modifiche all'Informativa",
+        "text": "Ci riserviamo il diritto di aggiornare periodicamente la presente informativa. Le modifiche saranno effettive con la pubblicazione su questa pagina."
+      },
+      {
+        "title": "Contatti",
+        "hasContactLink": true,
+        "contactPre": "Per qualunque domanda relativa alla presente privacy policy, puoi",
+        "contactLink": "contattarci"
+      }
+    ]
+  },
+  "ko": {
+    "meta_desc": "Random Animal Generator의 개인정보 처리방침. 이용자의 정보 수집, 활용 및 보호 방침을 안내합니다.",
+    "title": "개인정보 처리방침",
+    "last_updated": "최종 수정일: 2026년 1월 1일",
+    "sections": [
+      {
+        "title": "소개",
+        "text": "Random Animal Generator(이하 \"당사\")는 이용자의 개인정보를 소중하게 보호합니다. 본 개인정보 처리방침은 웹사이트 및 생성기 도구 이용 시 수집되는 정보의 처리 방식에 대해 설명합니다."
+      },
+      {
+        "title": "수집하는 정보",
+        "text": "문의 양식을 통해 이용자가 직접 입력하여 제출하는 정보를 수집할 수 있습니다:",
+        "list": [
+          "이름 및 이메일 주소",
+          "제출된 문의 메시지 내용"
+        ],
+        "extra": "또한 서비스 이용 과정에서 IP 주소, 브라우저 유형, 기기 정보, 방문 기록 등의 기술적 데이터가 자동으로 수집될 수 있습니다."
+      },
+      {
+        "title": "정보의 이용 목적",
+        "text": "수집된 정보는 다음 목적에 한해 사용됩니다:",
+        "list": [
+          "이용자 문의 응대 및 고객 지원",
+          "웹사이트 기능 개선 및 속도 최적화",
+          "서비스 이용 통계 분석 및 사용자 경험 향상",
+          "시스템 보안 및 부정 이용 방지"
+        ]
+      },
+      {
+        "title": "쿠키 및 로컬 스토리지",
+        "text": "테마 설정(다크모드) 및 '중복 없이 생성' 기능의 기록 유지를 위해 브라우저의 로컬 스토리지(Local Storage)를 활용합니다. 이 데이터는 이용자의 기기에만 저장되며 외부 서버로 전송되지 않습니다."
+      },
+      {
+        "title": "제3자 서비스 제공",
+        "text": "트래픽 분석을 위해 신뢰할 수 있는 제3자 분석 도구를 사용할 수 있습니다. 당사는 이용자의 개인정보를 제3자에게 판매하거나 마케팅 용도로 공유하지 않습니다."
+      },
+      {
+        "title": "정보 보안",
+        "text": "개인정보의 안전성을 확보하기 위해 합리적인 기술적 조치를 취하고 있으나, 인터넷을 통한 모든 데이터 전송의 절대적인 보안을 보장할 수는 없습니다."
+      },
+      {
+        "title": "만 14세 미만 아동의 개인정보",
+        "text": "본 사이트는 만 14세 미만 아동의 개인정보를 의도적으로 수집하지 않습니다. 아동의 정보가 수집된 사실을 인지하신 경우 즉시 삭제를 요청하실 수 있습니다."
+      },
+      {
+        "title": "방침의 변경",
+        "text": "본 방침은 관계 법령이나 서비스 변경에 따라 개정될 수 있으며, 개정 시 본 페이지를 통해 공지됩니다."
+      },
+      {
+        "title": "문의하기",
+        "hasContactLink": true,
+        "contactPre": "개인정보 처리방침에 관한 문의는",
+        "contactLink": "문의하기 페이지"
+      }
+    ]
+  },
+  "zh-CN": {
+    "meta_desc": "随机动物生成器（Random Animal Generator）隐私政策。详细了解我们如何收集、使用和保护您的个人信息。",
+    "title": "隐私政策",
+    "last_updated": "最近更新日期：2026年1月1日",
+    "sections": [
+      {
+        "title": "引言",
+        "text": "欢迎访问随机动物生成器（下称“我们”）。我们高度重视您的隐私安全。本隐私政策阐明了当您访问本网站及使用各项互动工具时，我们如何处理您的相关信息。"
+      },
+      {
+        "title": "信息收集",
+        "text": "当您使用在线表单与我们联络时，我们可能会收集您主动提交的信息：",
+        "list": [
+          "您的姓名与电子邮箱地址",
+          "您提交的具体留言与咨询内容"
+        ],
+        "extra": "在您浏览网站期间，系统亦可能自动记录部分非个人身份识别的技术信息，包括IP地址、浏览器类型、设备参数及页面访问日志。"
+      },
+      {
+        "title": "信息使用方式",
+        "text": "所收集的信息仅用于以下合法用途：",
+        "list": [
+          "回复您的意见咨询并提供客服技术支持",
+          "优化网站运行性能与工具交互体验",
+          "统计流量趋势以完善科普知识内容",
+          "防范安全漏洞与恶意滥用行为"
+        ]
+      },
+      {
+        "title": "Cookie 与本地存储（Local Storage）",
+        "text": "我们利用浏览器的本地存储功能记录您的使用偏好（例如暗黑模式设置、“无重复抽取”的历史动物记录）。该数据仅留存于您的设备端，绝不会上传至服务器。"
+      },
+      {
+        "title": "第三方技术服务",
+        "text": "我们可能引入第三方统计服务分析网站综合流量。我们承诺绝不向任何第三方机构出租、出售或共享您的个人隐私资料用于商业营销。"
+      },
+      {
+        "title": "数据安全保障",
+        "text": "我们部署了符合行业标准的安全防护措施。然而，互联网环境中的数据传输无法保证百分之百绝对安全。"
+      },
+      {
+        "title": "未成年人隐私保护",
+        "text": "本网站不针对13周岁以下未成年人收集信息。若家长发现未成年人向我们提供了资料，请及时与我们联络予以清除。"
+      },
+      {
+        "title": "政策更新与公示",
+        "text": "隐私条款可能会根据服务变动适时修订。最新条款一经在本页面公布即行生效。"
+      },
+      {
+        "title": "联系我们",
+        "hasContactLink": true,
+        "contactPre": "若对本隐私政策存有任何疑问，请随时",
+        "contactLink": "与我们取得联络"
+      }
+    ]
+  },
+  "zh-TW": {
+    "meta_desc": "隨機動物生成器（Random Animal Generator）隱私權政策。詳細了解我們如何收集、使用和保護您的個人資料。",
+    "title": "隱私權政策",
+    "last_updated": "最近更新日期：2026年1月1日",
+    "sections": [
+      {
+        "title": "前言",
+        "text": "歡迎使用隨機動物生成器（以下簡稱「我們」）。我們極為重視您的隱私權保護。本隱私權政策旨在說明您在使用本網站各項工具時，我們如何處理與維護您的相關資訊。"
+      },
+      {
+        "title": "收集的資訊內容",
+        "text": "當您透過線上表單與我們聯絡時，我們可能會收集您主動填寫的內容：",
+        "list": [
+          "您的姓名與電子郵件地址",
+          "您所送出的訊息內容與意見回饋"
+        ],
+        "extra": "在瀏覽過程中，系統亦會自動記錄必要的技術數據（例如IP位址、瀏覽器規格、作業系統及網站操作流量）。"
+      },
+      {
+        "title": "資料運用目的",
+        "text": "收集的資料僅用於：",
+        "list": [
+          "回覆您的提問並提供支援協助",
+          "改善網站效能及提升使用者體驗",
+          "分析整體造訪趨勢以擴充動物資料庫",
+          "維護系統安全並防止惡意存取"
+        ]
+      },
+      {
+        "title": "Cookie 與本機儲存（Local Storage）",
+        "text": "我們使用瀏覽器的本機儲存功能記住您的個人設定（如深色主題或「不重複抽取」的動物記錄）。這些資料完全留存在您的設備本機，絕不回傳雲端伺服器。"
+      },
+      {
+        "title": "第三方服務",
+        "text": "我們可能運用第三方流量分析工具以理解網站運作情況。我們絕不販售或任意提供您的個人資訊給第三方從事商業行銷。"
+      },
+      {
+        "title": "資訊安全維護",
+        "text": "我們實施合理的安全防護機制，但網際網路上的資料傳輸無法保證絕對無懈可擊。"
+      },
+      {
+        "title": "兒童隱私權保護",
+        "text": "本服務並非針對13歲以下兒童收集資訊。若發現有兒童誤向我們傳送個人資料，我們將立即協助刪除。"
+      },
+      {
+        "title": "政策修訂",
+        "text": "我們得隨時修正本隱私權條款，修改後之版本於本頁面公告後即刻生效。"
+      },
+      {
+        "title": "聯絡我們",
+        "hasContactLink": true,
+        "contactPre": "若對本隱私權政策有任何疑問，歡迎隨時",
+        "contactLink": "與我們聯繫"
+      }
+    ]
+  },
+  "ar": {
+    "meta_desc": "سياسة الخصوصية لمولّد الحيوانات العشوائية. تعرف على كيفية جمعنا لمعلوماتك واستخدامها وحمايتها.",
+    "title": "سياسة الخصوصية",
+    "last_updated": "آخر تحديث: 1 يناير 2026",
+    "sections": [
+      {
+        "title": "مقدمة",
+        "text": "مرحباً بكم في مولّد الحيوانات العشوائية (\"نحن\"). نحن ملتزمون بحماية خصوصيتك وأمان بياناتك. توضح هذه السياسة كيفية تعاملنا مع البيانات عند استخدامك لموقعنا."
+      },
+      {
+        "title": "المعلومات التي نجمعها",
+        "text": "قد نقوم بجمع المعلومات التي تقدمها لنا طواعية عبر نموذج الاتصال، مثل:",
+        "list": [
+          "الاسم وعنوان البريد الإلكتروني",
+          "محتوى الرسالة المرسلة"
+        ],
+        "extra": "كما نقوم بجمع بعض المعلومات التقنية آلياً، مثل عنوان IP ونوع المتصفح وبيانات الاستخدام العامة."
+      },
+      {
+        "title": "كيف نستخدم معلوماتك",
+        "text": "نستخدم هذه المعلومات للأغراض التالية فقط:",
+        "list": [
+          "الرد على استفساراتك وتقديم الدعم المطلوب",
+          "تحسين أداء الموقع وتطوير أدواتنا",
+          "تحليل مؤشرات التصفح لتحسين تجربة المستخدم",
+          "حماية أمان واستقرار المنصة"
+        ]
+      },
+      {
+        "title": "ملفات تعريف الارتباط والتخزين المحلي",
+        "text": "نستخدم التخزين المحلي (Local Storage) في متصفحك لحفظ تفضيلاتك مثل المظهر الداكن وحفظ الحيوانات في وضع \"بدون تكرار\". هذه البيانات تبقى على جهازك فقط ولا ترسل إلى خوادمنا."
+      },
+      {
+        "title": "خدمات الطرف الثالث",
+        "text": "قد نستخدم أدوات تحليل تابعة لأطراف ثالثة لفهم حركة المرور. نحن لا نبيع أو نشارك معلوماتك الشخصية مع أي طرف ثالث لأغراض تسويقية."
+      },
+      {
+        "title": "أمان البيانات",
+        "text": "نطبق تدابير أمنية ملائمة لحماية بياناتك، لكن تجدر الإشارة إلى أنه لا توجد وسيلة نقل إلكترونية آمنة بنسبة 100% عبر الإنترنت."
+      },
+      {
+        "title": "خصوصية الأطفال",
+        "text": "موقعنا لا يستهدف جمع بيانات الأطفال دون سن 13 عاماً، وإذا تبين لنا وجود مثل هذه البيانات فسنقوم بحذفها فوراً."
+      },
+      {
+        "title": "تعديل السياسة",
+        "text": "قد نقوم بتحديث هذه السياسة بين الحين والآخر، وتصبح التعديلات سارية بمجرد نشرها على هذه الصفحة."
+      },
+      {
+        "title": "اتصل بنا",
+        "hasContactLink": true,
+        "contactPre": "إذا كانت لديك أي أسئلة بشأن سياسة الخصوصية، يرجى",
+        "contactLink": "الاتصال بنا"
+      }
+    ]
+  }
+}

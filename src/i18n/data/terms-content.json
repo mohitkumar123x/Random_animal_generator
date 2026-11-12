@@ -1,0 +1,574 @@
+{
+  "en": {
+    "meta_desc": "Terms and Conditions for using the Random Animal Generator website and tools.",
+    "title": "Terms & Conditions",
+    "last_updated": "Last updated: January 1, 2026",
+    "sections": [
+      {
+        "title": "Acceptance of Terms",
+        "text": "By accessing and using the Random Animal Generator website (\"the Service\"), you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you may not use the Service."
+      },
+      {
+        "title": "Use of the Service",
+        "text": "The Service is provided free of charge for personal, educational, and non-commercial use. You may:",
+        "list": [
+          "Use the random animal generator, spinner wheel, quiz, and comparison tools",
+          "Share animal information with proper attribution",
+          "Use the tool in educational settings and classroom activities"
+        ]
+      },
+      {
+        "title": "Intellectual Property",
+        "text": "The content on this website, including text, design, graphics, and code, is owned by or licensed to Random Animal Generator. Animal data and descriptions are provided for educational purposes. You may not reproduce, distribute, or create derivative works without our express written permission."
+      },
+      {
+        "title": "Accuracy of Information",
+        "text": "While we strive to provide accurate and up-to-date information about animals, we make no warranties or representations about the completeness, accuracy, or reliability of the content. Animal facts and conservation statuses are sourced from publicly available data and may be subject to change."
+      },
+      {
+        "title": "Limitation of Liability",
+        "text": "Random Animal Generator shall not be held liable for any direct, indirect, incidental, exemplary, consequential, or punitive damages arising from your use of or inability to use the Service. The Service is provided \"as is\" without warranties of any kind."
+      },
+      {
+        "title": "User Conduct",
+        "text": "You agree not to:",
+        "list": [
+          "Use the Service for any unlawful purpose",
+          "Attempt to gain unauthorized access to any part of the Service",
+          "Interfere with or disrupt the Service or servers",
+          "Use automated systems to access the Service without permission"
+        ]
+      },
+      {
+        "title": "Changes to Terms",
+        "text": "We reserve the right to modify these Terms and Conditions at any time. Changes will be effective immediately upon posting. Your continued use of the Service after any changes constitutes acceptance of the new terms."
+      },
+      {
+        "title": "Contact Us",
+        "hasContactLink": true,
+        "contactPre": "If you have any questions about these Terms and Conditions, please",
+        "contactLink": "contact us"
+      }
+    ]
+  },
+  "es": {
+    "meta_desc": "Términos y Condiciones de uso del sitio web y herramientas de Random Animal Generator.",
+    "title": "Términos y Condiciones",
+    "last_updated": "Última actualización: 1 de enero de 2026",
+    "sections": [
+      {
+        "title": "Aceptación de los Términos",
+        "text": "Al acceder y utilizar el sitio web de Random Animal Generator (\"el Servicio\"), usted acepta quedar vinculado por estos Términos y Condiciones. Si no está de acuerdo con alguna parte, no deberá utilizar el Servicio."
+      },
+      {
+        "title": "Uso del Servicio",
+        "text": "El Servicio se ofrece de forma gratuita para fines personales, educativos y no comerciales. Usted puede:",
+        "list": [
+          "Utilizar el generador, la ruleta, el quiz y las herramientas de comparación",
+          "Compartir fichas e información con la debida atribución",
+          "Integrar la herramienta en aulas y actividades escolares"
+        ]
+      },
+      {
+        "title": "Propiedad Intelectual",
+        "text": "El contenido de este sitio web, incluidos textos, diseños, gráficos y código fuente, es propiedad de Random Animal Generator o cuenta con licencias pertinentes. No está permitida la reproducción o redistribución no autorizada."
+      },
+      {
+        "title": "Exactitud de la Información",
+        "text": "Si bien procuramos mantener datos zoológicos precisos y actualizados, no otorgamos garantías absolutas sobre su exhaustividad o exactitud. Los datos de conservación proceden de fuentes públicas de acceso abierto."
+      },
+      {
+        "title": "Limitación de Responsabilidad",
+        "text": "Random Animal Generator no será responsable de ningún daño directo, indirecto, incidental o consecuente derivado del uso o imposibilidad de uso del Servicio, el cual se suministra \"tal cual\"."
+      },
+      {
+        "title": "Conducta del Usuario",
+        "text": "Usted se compromete a no:",
+        "list": [
+          "Utilizar el Servicio con fines ilícitos o contrarios a la ley",
+          "Intentar vulnerar la seguridad o acceder sin autorización a los sistemas",
+          "Interferir en el funcionamiento normal de los servidores",
+          "Utilizar robots o rastreadores automatizados que sobrecarguen la plataforma"
+        ]
+      },
+      {
+        "title": "Modificación de Términos",
+        "text": "Nos reservamos el derecho de modificar estos términos en cualquier momento. Las modificaciones entrarán en vigor a partir de su publicación en esta página."
+      },
+      {
+        "title": "Contacto",
+        "hasContactLink": true,
+        "contactPre": "Si tiene dudas acerca de estos Términos y Condiciones, por favor",
+        "contactLink": "contáctenos"
+      }
+    ]
+  },
+  "pt": {
+    "meta_desc": "Termos e Condições de uso do site e das ferramentas do Random Animal Generator.",
+    "title": "Termos e Condições",
+    "last_updated": "Última atualização: 1 de janeiro de 2026",
+    "sections": [
+      {
+        "title": "Aceitação dos Termos",
+        "text": "Ao acessar e utilizar o site Random Animal Generator (\"o Serviço\"), você concorda em cumprir estes Termos e Condições. Caso não concorde com qualquer item, solicitamos não utilizar o Serviço."
+      },
+      {
+        "title": "Uso do Serviço",
+        "text": "O Serviço é disponibilizado gratuitamente para uso pessoal, educacional e não comercial. Você tem permissão para:",
+        "list": [
+          "Utilizar o gerador de animais, roleta, quiz e ferramenta de comparação",
+          "Compartilhar informações de animais com a devida atribuição",
+          "Empregar o recurso em salas de aula e trabalhos pedagógicos"
+        ]
+      },
+      {
+        "title": "Propriedade Intelectual",
+        "text": "O conteúdo deste site, incluindo textos, leiaute, ilustrações e código, pertence ao Random Animal Generator ou é licenciado. Não é permitida a reprodução sem autorização prévia por escrito."
+      },
+      {
+        "title": "Precisão das Informações",
+        "text": "Embora nos esforcemos para manter dados zoológicos confiáveis e atualizados, não garantimos a exatidão absoluta de todos os registros. Os status de conservação provêm de fontes públicas."
+      },
+      {
+        "title": "Limitação de Responsabilidade",
+        "text": "O Random Animal Generator não se responsabiliza por quaisquer danos diretos, indiretos ou incidentais decorrentes do uso ou incapacidade de uso do Serviço, fornecido \"no estado em que se encontra\"."
+      },
+      {
+        "title": "Conduta do Usuário",
+        "text": "Você concorda em não:",
+        "list": [
+          "Utilizar o Serviço para propósitos ilegais ou prejudiciais",
+          "Tentar obter acesso não autorizado aos sistemas ou servidores",
+          "Interromper ou sobrecarregar a infraestrutura do site",
+          "Executar scripts automatizados ou raspagem sem prévia autorização"
+        ]
+      },
+      {
+        "title": "Alterações nos Termos",
+        "text": "Reservamo-nos o direito de atualizar estes termos a qualquer momento. A continuidade no uso após as alterações implica na aceitação dos novos termos."
+      },
+      {
+        "title": "Contato",
+        "hasContactLink": true,
+        "contactPre": "Em caso de dúvidas sobre estes Termos e Condições, sinta-se à vontade para",
+        "contactLink": "falar conosco"
+      }
+    ]
+  },
+  "ja": {
+    "meta_desc": "Random Animal Generatorの利用規約。ウェブサイトおよびツールの利用条件についてご案内します。",
+    "title": "利用規約",
+    "last_updated": "最終更新日: 2026年1月1日",
+    "sections": [
+      {
+        "title": "規約への同意",
+        "text": "Random Animal Generator（以下「当サービス」）にアクセスし利用することにより、利用者は本利用規約に同意したものとみなされます。本規約に同意されない場合は、利用をお控えください。"
+      },
+      {
+        "title": "サービスの利用",
+        "text": "当サービスは、個人、教育、および非営利目的で無料提供されています。利用者は以下を行うことができます：",
+        "list": [
+          "動物ジェネレーター、ルーレット、クイズ、比較ツールの自由な利用",
+          "適切な出典明記を伴う動物情報の共有",
+          "学校教育や授業、ワークショップ等での教材としての活用"
+        ]
+      },
+      {
+        "title": "知的財産権",
+        "text": "本サイト上のテキスト、デザイン、グラフィック、プログラムコード等のコンテンツは当サービスに帰属またはライセンスされています。無断転載・再配布を禁止します。"
+      },
+      {
+        "title": "情報の正確性",
+        "text": "私たちは正確で最新の野生生物情報を提供するよう努めていますが、その完全性や最新性についていかなる保証も行うものではありません。"
+      },
+      {
+        "title": "免責事項",
+        "text": "当サービスの利用または利用不能から生じたいかなる損害についても、当サービスは一切の責任を負いません。本サービスは「現状有姿」で提供されます。"
+      },
+      {
+        "title": "禁止事項",
+        "text": "以下の行為を禁止します：",
+        "list": [
+          "法令または公序良俗に反する目的での利用",
+          "システムへの不正アクセスまたはそれを試みる行為",
+          "サーバーに過度な負荷をかける行為",
+          "事前の許可なく自動化ツール等を用いてデータ抽出を行う行為"
+        ]
+      },
+      {
+        "title": "規約の変更",
+        "text": "当サービスは必要に応じて本規約を変更できるものとします。変更後の規約は本サイトに掲載された時点で効力を生じます。"
+      },
+      {
+        "title": "お問い合わせ",
+        "hasContactLink": true,
+        "contactPre": "本利用規約に関するご質問がございましたら、",
+        "contactLink": "お問い合わせフォーム"
+      }
+    ]
+  },
+  "fr": {
+    "meta_desc": "Conditions Générales d'Utilisation du site et des outils Random Animal Generator.",
+    "title": "Conditions Générales d'Utilisation",
+    "last_updated": "Dernière mise à jour : 1er janvier 2026",
+    "sections": [
+      {
+        "title": "Acceptation des Conditions",
+        "text": "En accédant au service Random Animal Generator (« le Service »), vous acceptez d'être lié par les présentes Conditions Générales. Si vous êtes en désaccord avec ces dispositions, veuillez ne pas utiliser le Service."
+      },
+      {
+        "title": "Utilisation du Service",
+        "text": "Le Service est fourni à titre gracieux pour un usage personnel, pédagogique et non commercial. Il vous est permis de :",
+        "list": [
+          "Utiliser librement le générateur, la roue, le quiz et le comparateur",
+          "Partager les fiches et contenus avec mention de la source",
+          "Employer ces ressources dans le cadre d'activités scolaires et éducatives"
+        ]
+      },
+      {
+        "title": "Propriété Intellectuelle",
+        "text": "L'ensemble des éléments (textes, interfaces, graphismes, code) est la propriété exclusive de Random Animal Generator ou fait l'objet d'une licence. Toute reproduction non autorisée est interdite."
+      },
+      {
+        "title": "Exactitude des Données",
+        "text": "Bien que nous veillions à la fiabilité des informations naturalistes, nous ne garantissons pas l'exhaustivité ou l'exactitude absolue des fiches, celles-ci étant issues de données publiques."
+      },
+      {
+        "title": "Limitation de Responsabilité",
+        "text": "Random Animal Generator ne saurait être tenu pour responsable de tout préjudice résultant de l'utilisation ou de l'impossibilité d'utiliser le Service, qui est délivré « en l'état »."
+      },
+      {
+        "title": "Comportement de l'Utilisateur",
+        "text": "Vous vous engagez à ne pas :",
+        "list": [
+          "Utiliser le Service à des fins illégales ou frauduleuses",
+          "Tenter de contourner les mesures de sécurité ou d'accéder aux systèmes sans droit",
+          "Perturber ou surcharger les serveurs hébergeant le site",
+          "Employer des robots d'extraction de données sans accord formel"
+        ]
+      },
+      {
+        "title": "Modification des Conditions",
+        "text": "Nous nous réservons le droit de modifier les présentes conditions à tout moment. Elles prennent effet dès leur publication sur cette page."
+      },
+      {
+        "title": "Contact",
+        "hasContactLink": true,
+        "contactPre": "Pour toute question relative aux présentes conditions, vous pouvez",
+        "contactLink": "nous contacter"
+      }
+    ]
+  },
+  "de": {
+    "meta_desc": "Allgemeine Geschäfts- und Nutzungsbedingungen für die Website Random Animal Generator.",
+    "title": "Nutzungsbedingungen",
+    "last_updated": "Zuletzt aktualisiert: 1. Januar 2026",
+    "sections": [
+      {
+        "title": "Geltungsbereich und Zustimmung",
+        "text": "Durch den Zugriff auf und die Nutzung von Random Animal Generator („der Dienst“) erklären Sie sich mit diesen Nutzungsbedingungen einverstanden. Wenn Sie nicht zustimmen, dürfen Sie den Dienst nicht nutzen."
+      },
+      {
+        "title": "Nutzung des Dienstes",
+        "text": "Die Nutzung ist für persönliche, gemeinnützige und schulische Zwecke kostenfrei gestattet. Sie dürfen insbesondere:",
+        "list": [
+          "Die Generatoren, das Glücksrad, Quizze und Vergleichswerkzeuge frei verwenden",
+          "Arteninformationen unter Quellenangabe teilen",
+          "Den Dienst im Unterricht und bei Bildungsworkshops einsetzen"
+        ]
+      },
+      {
+        "title": "Geistiges Eigentum",
+        "text": "Alle Inhalte dieser Website (Texte, Design, Grafiken, Quellcode) unterliegen dem Urheberrecht von Random Animal Generator oder lizenzierten Partnern. Eine unbefugte Vervielfältigung ist untersagt."
+      },
+      {
+        "title": "Genauigkeit der Informationen",
+        "text": "Wir bemühen uns um gewissenhafte biologische Angaben, übernehmen jedoch keine Gewähr für die Vollständigkeit oder ständige Aktualität der dargestellten Daten."
+      },
+      {
+        "title": "Haftungsbeschränkung",
+        "text": "Random Animal Generator haftet nicht für Schäden, die aus der Nutzung oder Nichtverfügbarkeit des Dienstes entstehen. Der Dienst wird ohne Mängelgewähr bereitgestellt."
+      },
+      {
+        "title": "Pflichten der Nutzer",
+        "text": "Folgende Handlungen sind untersagt:",
+        "list": [
+          "Rechtswidrige oder missbräuchliche Nutzung",
+          "Unbefugte Zugriffsversuche auf Server und Systeme",
+          "Störung der Systemintegrität oder absichtliche Überlastung",
+          "Automatisierte Massenabfragen ohne vorherige Genehmigung"
+        ]
+      },
+      {
+        "title": "Änderungen der Bedingungen",
+        "text": "Wir behalten uns vor, diese Nutzungsbedingungen jederzeit zu aktualisieren. Änderungen werden unmittelbar mit ihrer Veröffentlichung wirksam."
+      },
+      {
+        "title": "Kontakt",
+        "hasContactLink": true,
+        "contactPre": "Haben Sie Fragen zu unseren Nutzungsbedingungen? Gern können Sie uns",
+        "contactLink": "kontaktieren"
+      }
+    ]
+  },
+  "it": {
+    "meta_desc": "Termini e Condizioni di utilizzo del sito e degli strumenti di Random Animal Generator.",
+    "title": "Termini e Condizioni",
+    "last_updated": "Ultimo aggiornamento: 1 gennaio 2026",
+    "sections": [
+      {
+        "title": "Accettazione dei Termini",
+        "text": "Accedendo e utilizzando Random Animal Generator (\"il Servizio\"), l'utente accetta di rispettare i presenti Termini e Condizioni. In caso di disaccordo, si invita a non usufruire del Servizio."
+      },
+      {
+        "title": "Utilizzo del Servizio",
+        "text": "Il Servizio è offerto a titolo gratuito per scopi personali, formativi e non commerciali. È consentito:",
+        "list": [
+          "Utilizzare generatori, ruota, quiz e comparatore di specie",
+          "Condividere le schede informative citando la fonte",
+          "Adottare lo strumento in contesti educativi e scolastici"
+        ]
+      },
+      {
+        "title": "Proprietà Intellettuale",
+        "text": "Tutti i contenuti (testi, codice, interfacce, grafiche) sono di proprietà di Random Animal Generator o concessi in licenza. È vietata la riproduzione non autorizzata."
+      },
+      {
+        "title": "Accuratezza dei Dati",
+        "text": "Pur verificando costantemente le nozioni zoologiche, non garantiamo la totale assenza di inesattezze nelle informazioni desunte da fonti pubbliche."
+      },
+      {
+        "title": "Limitazione di Responsabilità",
+        "text": "Random Animal Generator non potrà essere ritenuto responsabile per danni diretti o indiretti causati dall'uso o dall'impossibilità d'uso della piattaforma, fornita \"così com'è\"."
+      },
+      {
+        "title": "Condotta dell'Utente",
+        "text": "L'utente accetta di non:",
+        "list": [
+          "Usare il Servizio per fini illeciti",
+          "Tentare accessi non autorizzati all'infrastruttura di rete",
+          "Compromettere o sovraccaricare il corretto funzionamento dei server",
+          "Effettuare web scraping sistematico senza espressa autorizzazione"
+        ]
+      },
+      {
+        "title": "Modifiche ai Termini",
+        "text": "Ci riserviamo il diritto di modificare i presenti termini in ogni momento. Le nuove condizioni diverranno efficaci al momento della loro pubblicazione."
+      },
+      {
+        "title": "Contatti",
+        "hasContactLink": true,
+        "contactPre": "Per eventuali chiarimenti sui Termini e Condizioni, puoi",
+        "contactLink": "contattarci"
+      }
+    ]
+  },
+  "ko": {
+    "meta_desc": "Random Animal Generator 웹사이트 및 도구 이용에 관한 이용약관입니다.",
+    "title": "이용약관",
+    "last_updated": "최종 수정일: 2026년 1월 1일",
+    "sections": [
+      {
+        "title": "약관의 동의",
+        "text": "Random Animal Generator(이하 \"서비스\")에 접속하여 이를 이용함으로써 귀하는 본 이용약관에 동의하게 됩니다. 본 약관에 동의하지 않으실 경우 서비스 이용이 제한될 수 있습니다."
+      },
+      {
+        "title": "서비스의 이용",
+        "text": "본 서비스는 개인적, 교육적, 비영리 목적으로 무료 제공됩니다. 이용자는 다음 활동을 할 수 있습니다:",
+        "list": [
+          "랜덤 생성기, 스피너 룰렛, 퀴즈 및 비교 도구의 자유로운 이용",
+          "출처 표기를 통한 동물 정보의 비영리 공유",
+          "학교 수업 및 교육 프로그램에서의 교재 활용"
+        ]
+      },
+      {
+        "title": "지식재산권",
+        "text": "본 웹사이트의 텍스트, 디자인, 그래픽, 코드 등 모든 콘텐츠는 Random Animal Generator에 소유권 또는 라이선스가 있습니다. 무단 복제 및 전재를 금합니다."
+      },
+      {
+        "title": "정보의 정확성",
+        "text": "생물학적 데이터의 신뢰성을 유지하기 위해 최선을 다하고 있으나, 공공 데이터의 특성상 정보의 완전성이나 절대적인 무결성을 보증하지는 않습니다."
+      },
+      {
+        "title": "책임의 제한",
+        "text": "당사는 서비스의 이용 또는 이용 불가로 인해 발생하는 어떠한 직간접적 손해에 대해서도 책임을 지지 않으며, 서비스는 \"있는 그대로\" 제공됩니다."
+      },
+      {
+        "title": "이용자 준수 사항",
+        "text": "이용자는 다음 행위를 하여서는 안 됩니다:",
+        "list": [
+          "불법적이거나 부정한 목적의 서비스 이용",
+          "시스템 및 서버에 대한 무단 침입 시도",
+          "서버의 정상적인 운영을 방해하거나 과부하를 유발하는 행위",
+          "사전 승인 없는 자동화 스크립트 및 스크래핑 행위"
+        ]
+      },
+      {
+        "title": "약관의 변경",
+        "text": "당사는 필요한 경우 본 약관을 개정할 수 있으며, 개정된 약관은 본 페이지에 게시된 시점부터 효력을 갖습니다."
+      },
+      {
+        "title": "문의처",
+        "hasContactLink": true,
+        "contactPre": "이용약관에 대한 문의 사항이 있으신 경우",
+        "contactLink": "문의하기 페이지"
+      }
+    ]
+  },
+  "zh-CN": {
+    "meta_desc": "随机动物生成器（Random Animal Generator）网站及在线工具服务条款。",
+    "title": "服务条款",
+    "last_updated": "最近更新日期：2026年1月1日",
+    "sections": [
+      {
+        "title": "条款接受",
+        "text": "访问并使用随机动物生成器（下称“本服务”），即表示您已阅读并同意遵守本服务条款。如不同意其中任何内容，请立即停止使用本服务。"
+      },
+      {
+        "title": "服务使用规范",
+        "text": "本服务免费面向个人非商业用途及公益教育活动开放。您享有以下权利：",
+        "list": [
+          "自由使用动物抽取、大转盘、知识竞答及属性比对工具",
+          "在注明来源的前提下合理分享动物科普档案卡片",
+          "将本工具作为辅助资源引入课堂或教学教研场景"
+        ]
+      },
+      {
+        "title": "知识产权归属",
+        "text": "网站所呈现的所有文字、版面设计、图表及程序代码均属随机动物生成器所有或已取得授权许可。未经书面批准，严禁进行商业化镜像或抄袭。"
+      },
+      {
+        "title": "信息准确性免责声明",
+        "text": "尽管我们力求保证生物分类与物种描述的客观权威，但不对内容的绝对完整性作任何担保。相关保护等级及数据均源于开放公开资料库。"
+      },
+      {
+        "title": "责任限制",
+        "text": "本服务按“原样”基础提供。对于因使用或无法使用本服务导致的任何直接或间接附带损失，平台概不承担赔偿责任。"
+      },
+      {
+        "title": "禁止行为",
+        "text": "使用者承诺绝不从事以下行为：",
+        "list": [
+          "利用本服务从事违反法律法规的活动",
+          "尝试破坏系统防护或实施非授权渗透行为",
+          "人为干扰服务器网络正常运转",
+          "未经许可使用爬虫机器人对服务器造成异常负载"
+        ]
+      },
+      {
+        "title": "条款修改",
+        "text": "我们保留根据业务发展随时调整本条款的权利。修改后的协议一经公布即刻生效。"
+      },
+      {
+        "title": "联系我们",
+        "hasContactLink": true,
+        "contactPre": "若对本服务条款存有任何疑问，请随时",
+        "contactLink": "与我们取得联络"
+      }
+    ]
+  },
+  "zh-TW": {
+    "meta_desc": "隨機動物生成器（Random Animal Generator）網站及各項工具服務條款。",
+    "title": "服務條款",
+    "last_updated": "最近更新日期：2026年1月1日",
+    "sections": [
+      {
+        "title": "條款之同意",
+        "text": "當您存取並使用隨機動物生成器（以下簡稱「本服務」），即視為您已閱讀、瞭解並同意遵守本服務條款。若您不同意任何條款內容，請勿繼續使用本服務。"
+      },
+      {
+        "title": "服務使用規範",
+        "text": "本服務免費開放予個人非商業用途及教育學習活動。您獲授權進行：",
+        "list": [
+          "自由操作隨機抽取、大轉盤、測驗與比對等互動功能",
+          "於標明出處之情況下合理分享動物資料卡片",
+          "將工具運用於學校課堂、教材輔助及自然科學研究"
+        ]
+      },
+      {
+        "title": "智慧財產權",
+        "text": "本網站上所有內容（包含文字編寫、版面構圖、圖示及原始碼）均受智慧財產權保護，未經事先書面許可，不得任意重製或散布。"
+      },
+      {
+        "title": "資訊正確性聲明",
+        "text": "我們竭力提供準確的動物科普資訊，但對於資料之絕對完整性與即時性不提供明示或默示之保證。"
+      },
+      {
+        "title": "責任限制",
+        "text": "本服務係依「現況」提供。對於因使用或無法使用本服務而衍生之任何間接或衍生性損害，本團隊不負擔任何賠償責任。"
+      },
+      {
+        "title": "使用者義務",
+        "text": "使用者承諾不得：",
+        "list": [
+          "將本服務用於任何非法或侵權之目的",
+          "嘗試規避安全機制或未經授權存取後端系統",
+          "干擾或阻斷伺服器與網路之正常運作",
+          "未經同意使用自動化爬蟲程式大量抓取伺服器資源"
+        ]
+      },
+      {
+        "title": "條款之變更",
+        "text": "我們保留隨時修改本條款之權利，修正後之內容自本頁面公布時起立即生效。"
+      },
+      {
+        "title": "聯絡我們",
+        "hasContactLink": true,
+        "contactPre": "若對本服務條款有任何疑問，歡迎隨時",
+        "contactLink": "與我們聯繫"
+      }
+    ]
+  },
+  "ar": {
+    "meta_desc": "الشروط والأحكام الخاصة باستخدام موقع وأدوات مولّد الحيوانات العشوائية.",
+    "title": "الشروط والأحكام",
+    "last_updated": "آخر تحديث: 1 يناير 2026",
+    "sections": [
+      {
+        "title": "قبول الشروط",
+        "text": "من خلال الوصول إلى موقع مولّد الحيوانات العشوائية واستخدامه (\"الخدمة\")، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق عليها، يرجى عدم استخدام الخدمة."
+      },
+      {
+        "title": "استخدام الخدمة",
+        "text": "يتم توفير الخدمة مجاناً للاستخدام الشخصي والتعليمي وغير التجاري. يُسمح لك بما يلي:",
+        "list": [
+          "استخدام أدوات التوليد والعجلة والاختبار والمقارنة بحرية",
+          "مشاركة بطاقات الحيوانات مع الإشارة إلى المصدر",
+          "توظيف الأداة في الأنشطة المدرسية والوسائل التعليمية"
+        ]
+      },
+      {
+        "title": "الملكية الفكرية",
+        "text": "جميع المحتويات على الموقع (النصوص والتصاميم والرموز البرمجية) مملوكة أو مرخصة لمولّد الحيوانات العشوائية، ولا يجوز إعادة إنتاجها دون إذن مسبق."
+      },
+      {
+        "title": "دقة المعلومات",
+        "text": "رغم حرصنا على تحري الدقة العلمية، فإننا لا نقدم أي ضمانات صريحة أو ضمنية بشأن اكتمال المعلومات الواردة من مصادر مفتوحة."
+      },
+      {
+        "title": "حدود المسؤولية",
+        "text": "لا نتحمل أي مسؤولية عن أي أضرار مباشرة أو غير مباشرة تنشأ عن استخدامك للخدمة المقدمة \"كما هي\"."
+      },
+      {
+        "title": "سلوك المستخدم",
+        "text": "أنت تتعهد بعدم القيام بما يلي:",
+        "list": [
+          "استخدام الخدمة في أي غرض غير قانوني",
+          "محاولة الوصول غير المصرح به للأنظمة والخوادم",
+          "تعطيل أو التأثير سلباً على كفاءة الخوادم",
+          "استخدام برمجيات الاستخراج الآلي دون إذن خطي"
+        ]
+      },
+      {
+        "title": "تعديل الشروط",
+        "text": "نحتفظ بالحق في تعديل هذه الشروط في أي وقت، وتصبح سارية فور نشرها على هذه الصفحة."
+      },
+      {
+        "title": "اتصل بنا",
+        "hasContactLink": true,
+        "contactPre": "إذا كانت لديك استفسارات بشأن هذه الشروط، يسعدنا",
+        "contactLink": "تواصلك معنا"
+      }
+    ]
+  }
+}

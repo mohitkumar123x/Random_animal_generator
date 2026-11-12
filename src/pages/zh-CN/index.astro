@@ -9,7 +9,7 @@ import AnimalCard from '../../components/AnimalCard.astro';
 import animals from '../../data/animals.json';
 import animalTranslations from '../../i18n/data/animal-translations.json';
 import valuesData from '../../i18n/data/values.json';
-import { getTranslations } from '../../utils/i18n';
+import { getTranslations, defaultImageAlts } from '../../utils/i18n';
 
 const locale = 'zh-CN';
 const t = getTranslations(locale);
@@ -27,6 +27,7 @@ const localeValues = {
   title={t.title}
   description={t.description}
   canonical={`https://bestrandomanimalgenerator.com/${locale}`}
+  imageAlt={defaultImageAlts[locale]}
   locale={locale}
   pagePath="/"
 >
@@ -83,35 +84,32 @@ const localeValues = {
         </select>
       </div>
       <button id="generate-btn" class="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2 text-sm font-medium text-white transition-all hover:opacity-90 active:scale-95 dark:bg-[#ededed] dark:text-[#0a0a0a]"><span>🎲</span> {t.generate}</button>
+      <a
+        href={`/${locale}/spinner`}
+        class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas-elevated px-3 py-1.5 text-xs font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"
+      >
+        <span>🎡</span> {t.spinner_wheel}
+      </a>
+      <a
+        id="compare-btn"
+        href={`/${locale}/compare`}
+        class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas-elevated px-3 py-1.5 text-xs font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"
+      >
+        <span>⚖️</span> {t.compare}
+      </a>
+      <a
+        id="quiz-btn"
+        href={`/${locale}/quiz`}
+        class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas-elevated px-3 py-1.5 text-xs font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"
+      >
+        <span>🧠</span> {t.animal_quiz}
+      </a>
       <button id="no-repeat-toggle" class="flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas-elevated px-3 py-1.5 text-xs font-medium text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]"><span id="no-repeat-icon">🔁</span> {t.no_repeat}</button>
       <button id="sound-toggle" class="flex h-8 w-8 items-center justify-center rounded-lg border border-hairline bg-canvas-elevated text-body transition-colors hover:bg-hairline-soft dark:border-[#333] dark:bg-[#1a1a1a] dark:text-[#a1a1a1] dark:hover:bg-[#222]" aria-label="Toggle sound">
         <svg id="sound-on-icon" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
         <svg id="sound-off-icon" class="h-4 w-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" /></svg>
       </button>
       <SavedAnimals locale={locale} />
-    </div>
-
-    <div id="quiz-section" class="hidden mb-8">
-      <div class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-lg font-semibold text-ink dark:text-[#ededed]">🧠 {t.animal_quiz}</h2>
-          <div class="flex items-center gap-3">
-            <span class="text-xs text-muted">分数: <span id="quiz-score" class="font-bold text-ink dark:text-[#ededed]">0</span>/<span id="quiz-total" class="text-ink dark:text-[#ededed]">0</span></span>
-            <button id="quiz-next" class="rounded-lg bg-ink px-3 py-1.5 text-xs font-medium text-white hover:opacity-90 dark:bg-[#ededed] dark:text-[#0a0a0a]">下一个 →</button>
-          </div>
-        </div>
-        <div id="quiz-content"></div>
-      </div>
-    </div>
-
-    <div id="compare-section" class="hidden mb-8">
-      <div class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-lg font-semibold text-ink dark:text-[#ededed]">⚖️ {t.compare_animals}</h2>
-          <button id="compare-close" class="text-xs text-muted hover:text-ink dark:hover:text-[#ededed]">✕ 关闭</button>
-        </div>
-        <div id="compare-content" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
-      </div>
     </div>
 
     <AnimalCard locale={locale} />
@@ -134,57 +132,6 @@ const localeValues = {
         <div class="flex items-center gap-3 rounded-lg border border-hairline bg-canvas p-3 dark:border-[#333] dark:bg-[#111]"><kbd class="flex-shrink-0 rounded border border-hairline bg-canvas-elevated px-2 py-1 font-mono text-xs text-faint dark:border-[#333] dark:bg-[#1a1a1a]">Space</kbd><span class="text-xs text-body">{t.generate_random}</span></div>
         <div class="flex items-center gap-3 rounded-lg border border-hairline bg-canvas p-3 dark:border-[#333] dark:bg-[#111]"><kbd class="flex-shrink-0 rounded border border-hairline bg-canvas-elevated px-2 py-1 font-mono text-xs text-faint dark:border-[#333] dark:bg-[#1a1a1a]">R</kbd><span class="text-xs text-body">{t.regenerate}</span></div>
         <div class="flex items-center gap-3 rounded-lg border border-hairline bg-canvas p-3 dark:border-[#333] dark:bg-[#111]"><kbd class="flex-shrink-0 rounded border border-hairline bg-canvas-elevated px-2 py-1 font-mono text-xs text-faint dark:border-[#333] dark:bg-[#1a1a1a]">M</kbd><span class="text-xs text-body">{t.toggle_sound}</span></div>
-      </div>
-    </section>
-
-    <section class="mt-12 space-y-10 text-body">
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h1}</h2>
-        <p class="text-sm leading-relaxed dark:text-[#a1a1a1]">{t.seo_p1}</p>
-      </div>
-
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h2}</h2>
-        {t.seo_p2.split('||').map((p, i) => (
-          <p class:list={['text-sm leading-relaxed dark:text-[#a1a1a1]', { 'mb-3': i === 0 }]}>{p}</p>
-        ))}
-      </div>
-
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h3}</h2>
-        {t.seo_p3.split('||').map((p, i) => (
-          <p class:list={['text-sm leading-relaxed dark:text-[#a1a1a1]', { 'mb-3': i === 0 }]}>{p}</p>
-        ))}
-      </div>
-
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h4}</h2>
-        {t.seo_p4.split('||').map((p, i) => (
-          <p class:list={['text-sm leading-relaxed dark:text-[#a1a1a1]', { 'mb-3': i === 0 }]}>{p}</p>
-        ))}
-      </div>
-
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h5}</h2>
-        {t.seo_p5.split('||').map((p, i) => (
-          <p class:list={['text-sm leading-relaxed dark:text-[#a1a1a1]', { 'mb-3': i === 0 }]}>{p}</p>
-        ))}
-      </div>
-
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h6}</h2>
-        {t.seo_p6.split('||').map((p, i) => (
-          <p class:list={['text-sm leading-relaxed dark:text-[#a1a1a1]', { 'mb-3': i === 0 }]}>{p}</p>
-        ))}
-      </div>
-
-      <div>
-        <h2 class="mb-4 text-xl font-bold text-ink dark:text-[#ededed]">{t.seo_h7}</h2>
-        <ul class="space-y-2 text-sm leading-relaxed dark:text-[#a1a1a1]">
-          {[t.seo_feat_1, t.seo_feat_2, t.seo_feat_3, t.seo_feat_4, t.seo_feat_5, t.seo_feat_6, t.seo_feat_7, t.seo_feat_8, t.seo_feat_9, t.seo_feat_10, t.seo_feat_11, t.seo_feat_12].map(feat => (
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-conservation-lc">✓</span> {feat}</li>
-          ))}
-        </ul>
       </div>
     </section>
 
@@ -227,8 +174,7 @@ const localeValues = {
   window.__shareT = { shareTitle:'分享这个动物', copyLink:'复制链接', shareTwitter:'Twitter', shareFacebook:'Facebook', shareWhatsApp:'WhatsApp', sharePinterest:'Pinterest', shareEmail:'电子邮件', nativeShare:'更多...' };
   let soundEnabled = true, currentCategory = 'all', currentConservation = 'all', noRepeatMode = false;
   let seenAnimalIds = JSON.parse(localStorage.getItem('seenAnimals') || '[]');
-  let compareList = [], quizState = { score: 0, total: 0, current: null };
-  const audioCtx = typeof AudioContext !== 'undefined' ? new AudioContext() : null;
+    const audioCtx = typeof AudioContext !== 'undefined' ? new AudioContext() : null;
   function playGenerateSound() { if (!soundEnabled || !audioCtx) return; if (audioCtx.state === 'suspended') audioCtx.resume(); const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); osc.connect(gain); gain.connect(audioCtx.destination); osc.type = 'sine'; osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(1046.5, audioCtx.currentTime + 0.1); gain.gain.setValueAtTime(0.1, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2); osc.start(audioCtx.currentTime); osc.stop(audioCtx.currentTime + 0.2); }
   function getFilteredPool() { let pool = allAnimals; if (currentCategory !== 'all') pool = pool.filter(a => a.category === currentCategory); if (currentConservation !== 'all') pool = pool.filter(a => a.conservation === currentConservation); if (noRepeatMode) pool = pool.filter(a => !seenAnimalIds.includes(a.id)); return pool; }
   function getRandomAnimals(count) { const pool = getFilteredPool(); return [...pool].sort(() => Math.random() - 0.5).slice(0, Math.min(count, pool.length)); }
@@ -247,12 +193,6 @@ const localeValues = {
           });
           multiContainer.appendChild(card); }); } }); }
   document.getElementById('no-repeat-toggle')?.addEventListener('click', () => { noRepeatMode = !noRepeatMode; const icon = document.getElementById('no-repeat-icon'); const btn = document.getElementById('no-repeat-toggle'); if (noRepeatMode) { icon.textContent = '✅'; btn.classList.add('border-link', 'text-link'); btn.classList.remove('border-hairline', 'text-body'); } else { icon.textContent = '🔁'; btn.classList.remove('border-link', 'text-link'); btn.classList.add('border-hairline', 'text-body'); seenAnimalIds = []; localStorage.removeItem('seenAnimals'); } });
-  document.getElementById('compare-btn')?.addEventListener('click', () => { const section = document.getElementById('compare-section'); section.classList.toggle('hidden'); if (!section.classList.contains('hidden')) { const pool = allAnimals.slice(0, 20); const a = pool[Math.floor(Math.random() * pool.length)]; let b = a; while (b === a) b = pool[Math.floor(Math.random() * pool.length)]; compareList = [a, b]; renderCompare(); } });
-  document.getElementById('compare-close')?.addEventListener('click', () => { document.getElementById('compare-section').classList.add('hidden'); });
-  function renderCompare() { const container = document.getElementById('compare-content'); if (!container || compareList.length < 2) return; container.innerHTML = compareList.map(animal => `<div class="rounded-xl border border-hairline bg-canvas p-4 dark:border-[#333] dark:bg-[#111]"><div class="text-center mb-3"><div class="text-4xl emoji-icon mb-1">${animal.emoji}</div><h3 class="font-bold text-ink dark:text-[#ededed]">${getAnimalName(animal)}</h3></div><div class="space-y-2 text-xs"><div class="flex justify-between"><span class="text-faint">${jsT.habitat}</span><span class="font-medium text-ink dark:text-[#ededed]">${translateVal(animal.habitat, "habitat")}</span></div><div class="flex justify-between"><span class="text-faint">${jsT.diet}</span><span class="font-medium text-ink dark:text-[#ededed]">${translateVal(animal.diet, "diet")}</span></div><div class="flex justify-between"><span class="text-faint">${jsT.lifespan}</span><span class="font-medium text-ink dark:text-[#ededed]">${translateVal(animal.lifespan, "lifespan") || animal.lifespan.replace(/\byears?\b/gi, jsT.years)}</span></div><div class="flex justify-between"><span class="text-faint">${jsT.weight}</span><span class="font-medium text-ink dark:text-[#ededed]">${animal.weight}</span></div><div class="flex justify-between"><span class="text-faint">${jsT.speed}</span><span class="font-medium text-ink dark:text-[#ededed]">${animal.speed}</span></div><div class="flex justify-between"><span class="text-faint">${jsT.length}</span><span class="font-medium text-ink dark:text-[#ededed]">${animal.length}</span></div></div></div>`).join(''); }
-  document.getElementById('quiz-btn')?.addEventListener('click', () => { const section = document.getElementById('quiz-section'); section.classList.toggle('hidden'); if (!section.classList.contains('hidden') && !quizState.current) { nextQuizQuestion(); } });
-  document.getElementById('quiz-next')?.addEventListener('click', nextQuizQuestion);
-  function nextQuizQuestion() { const pool = allAnimals; const correct = pool[Math.floor(Math.random() * pool.length)]; const wrongAnswers = []; while (wrongAnswers.length < 3) { const w = pool[Math.floor(Math.random() * pool.length)]; if (w.id !== correct.id && !wrongAnswers.find(x => x.id === w.id)) wrongAnswers.push(w); } const options = [correct, ...wrongAnswers].sort(() => Math.random() - 0.5); quizState.current = correct; const isDiet = Math.random() > 0.5; const question = isDiet ? `${jsT.quizDiet.replace('{name}', correct.name)}` : `${jsT.quizHabitat.replace('{name}', correct.name)}`; const answerKey = isDiet ? 'diet' : 'habitat'; const container = document.getElementById('quiz-content'); container.innerHTML = `<p class="text-sm text-body mb-1 dark:text-[#a1a1a1]">${question}</p><div class="text-center text-3xl mb-3 emoji-icon">${correct.emoji}</div><div class="grid grid-cols-2 gap-2">${options.map(o => `<button class="quiz-option rounded-lg border border-hairline bg-canvas p-3 text-xs font-medium text-body text-left dark:border-[#333] dark:bg-[#111] dark:text-[#a1a1a1]" data-value="${o[answerKey]}" data-correct="${o[answerKey] === correct[answerKey]}">${o[answerKey]}</button>`).join('')}</div>`; container.querySelectorAll('.quiz-option').forEach(btn => { btn.addEventListener('click', () => { if (container.querySelector('.correct, .wrong')) return; const isCorrect = btn.dataset.correct === 'true'; quizState.total++; if (isCorrect) quizState.score++; document.getElementById('quiz-score').textContent = quizState.score; document.getElementById('quiz-total').textContent = quizState.total; btn.classList.add(isCorrect ? 'correct' : 'wrong'); if (!isCorrect) { container.querySelector(`[data-correct="true"]`)?.classList.add('correct'); } }); }); }
   function getDailyAnimal() { const today = new Date(); return allAnimals[(today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate()) % allAnimals.length]; }
   function showDailyAnimal() { const daily = getDailyAnimal(); const section = document.getElementById('daily-section'); const card = document.getElementById('daily-card'); if (!section || !card) return; section.classList.remove('hidden'); card.innerHTML = `<div class="text-5xl emoji-icon">${daily.emoji}</div><div class="flex-1"><h3 class="font-bold text-ink dark:text-[#ededed]">${getAnimalName(daily)}</h3><p class="text-xs text-body dark:text-[#a1a1a1] mt-1 line-clamp-2">${getAnimalDescription(daily)}</p></div><button class="daily-view-btn rounded-lg bg-ink px-3 py-1.5 text-xs font-medium text-white hover:opacity-90 dark:bg-[#ededed] dark:text-[#0a0a0a]" data-id="${daily.id}">${jsT.view}</button>`; card.querySelector('.daily-view-btn')?.addEventListener('click', () => { window.displayAnimal?.(daily); document.getElementById('animal-card-container')?.scrollIntoView({ behavior: 'smooth' }); }); }
   showDailyAnimal();
@@ -264,5 +204,5 @@ const localeValues = {
   window.addEventListener('conservation-change', (e) => { currentConservation = e.detail; });
   const urlParams = new URLSearchParams(window.location.search);
   const animalParam = urlParams.get('animal');
-  if (animalParam) { const found = allAnimals.find(a => a.id === animalParam); if (found) { window.displayAnimal?.(found); } }
+  if (animalParam) { const found = allAnimals.find(a => a.id === animalParam); if (found) { window.displayAnimal?.(found); } } else { window.displayAnimal?.(getDailyAnimal()); }
 </script>

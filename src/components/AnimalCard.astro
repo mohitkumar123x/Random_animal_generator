@@ -382,7 +382,6 @@ function translateVal(value, field) {
   return (map && map[locale] && map[locale][value]) || (map && map[value]) || value;
 }
 
-const PEXELS_API_KEY = 'xEfnJ9xU5Fem8MeEPh1zE3lURDVneBkLnPGnrNAjnbMCBAY0LGtdgLFE';
 const pexelsCache = JSON.parse(localStorage.getItem('pexelsImageCache') || '{}');
 Object.keys(pexelsCache).forEach(k => { if (typeof pexelsCache[k] === 'string') delete pexelsCache[k]; });
 
@@ -390,9 +389,7 @@ async function fetchAnimalImage(animalName) {
   const cacheKey = animalName.toLowerCase().trim();
   if (pexelsCache[cacheKey]) return pexelsCache[cacheKey];
   try {
-    const res = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(animalName)}&per_page=1&orientation=landscape`, {
-      headers: { 'Authorization': PEXELS_API_KEY }
-    });
+    const res = await fetch(`/api/pexels?query=${encodeURIComponent(animalName)}`);
     if (!res.ok) return null;
     const data = await res.json();
     if (data.photos && data.photos.length > 0) {

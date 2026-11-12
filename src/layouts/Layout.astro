@@ -1,5 +1,5 @@
 ---
-import { getTranslations, type Locale } from '../utils/i18n';
+import { getTranslations, type Locale, brandNames, defaultImageAlts } from '../utils/i18n';
 
 interface Props {
   title?: string;
@@ -12,31 +12,41 @@ interface Props {
   dir?: string;
   pagePath?: string;
   noindex?: boolean;
+  keywords?: string;
+  author?: string;
 }
 
 const SITE_URL = 'https://bestrandomanimalgenerator.com';
-const SITE_NAME = 'Best Random Animal Generator';
+const DEFAULT_SITE_NAME = 'Best Random Animal Generator';
 
 const {
   title = "Random Animal Generator – Free Online Tool with Pictures",
   description = "Free random animal generator with pictures, fun facts, habitat & conservation status. 1,000+ animals for drawing, kids, teachers & creative writing.",
   canonical,
   image = `${SITE_URL}/og-image.png`,
-  imageAlt = "Random Animal Generator – free online tool showing a random animal with pictures, fun facts and conservation status",
+  imageAlt,
   type = 'website',
   locale = 'en',
   dir = locale === 'ar' ? 'rtl' : 'ltr',
   pagePath = '',
   noindex = false,
+  keywords,
+  author,
 } = Astro.props;
 
+const siteBrand = (brandNames as any)[locale] || DEFAULT_SITE_NAME;
+const fallbackImageAlt = (defaultImageAlts as any)[locale] || defaultImageAlts.en;
+const finalImageAlt = imageAlt || fallbackImageAlt;
+
+const escapedBrand = siteBrand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const baseTitle = title
   .replace(/\s*\|\s*Best Random Animal Generator/gi, '')
   .replace(/\s*\|\s*Random Animal Generator/gi, '')
+  .replace(new RegExp(`\\s*\\|\\s*${escapedBrand}`, 'gi'), '')
   .trim();
 const pageTitle = baseTitle
-  ? (baseTitle.includes(SITE_NAME) ? baseTitle : `${baseTitle} | ${SITE_NAME}`)
-  : SITE_NAME;
+  ? (baseTitle.includes(siteBrand) ? baseTitle : `${baseTitle} | ${siteBrand}`)
+  : siteBrand;
 const allLocales = ['en', 'es', 'ja', 'fr', 'de', 'pt', 'ko', 'it', 'zh-CN', 'zh-TW', 'ar'];
 
 // Normalize path with leading & trailing slash for 100% sitemap and server consistency
@@ -58,6 +68,51 @@ const pageCanonical = canonical
 const t = getTranslations(locale as Locale);
 const isHomePage = cleanPath === '/';
 const isBlogPage = cleanPath === '/blog/';
+
+const ogLocaleMap: Record<string, string> = {
+  en: 'en_US',
+  es: 'es_ES',
+  ja: 'ja_JP',
+  fr: 'fr_FR',
+  de: 'de_DE',
+  pt: 'pt_BR',
+  ko: 'ko_KR',
+  it: 'it_IT',
+  'zh-CN': 'zh_CN',
+  'zh-TW': 'zh_TW',
+  ar: 'ar_SA',
+};
+const ogLocale = ogLocaleMap[locale] || locale.replace('-', '_');
+
+const pageKeywords = locale === 'en' ? (keywords || (t as any).meta_keywords || (t as any).keywords) : undefined;
+const softwareDesc = (locale === 'en' && ((t as any).software_description || (t as any).app_description)) || "Free online random animal generator with pictures, fun facts, conservation status, spinner wheel, and quiz. Over 1,000 animals.";
+const softwareFeatures = (locale === 'en' && ((t as any).featureList || (t as any).feature_list)) || [
+  "Random animal generator with pictures and fun facts",
+  "Random animal generator wheel (spinner)",
+  "Random animal generator for drawing and art prompts",
+  "Random animal generator for kids and classrooms",
+  "Animal name generator with scientific names",
+  "Category filters: mammals, birds, fish, reptiles, amphibians, insects, marine, farm, cute, prehistoric, mythical, fantasy",
+  "Conservation status filters based on the IUCN Red List categories",
+  "Animal quiz and side-by-side compare mode",
+  "No-repeat mode for unique discoveries"
+];
+
+const pageAuthor = author || siteBrand;
+
+const publishingPrinciplesUrl = `${SITE_URL}${locale === 'en' ? '' : '/' + locale}/about-us/`;
+const verifiedSocials: string[] = [];
+
+const organizationEntity = {
+  "@type": "Organization",
+  "name": siteBrand,
+  "url": SITE_URL,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${SITE_URL}/favicon-96x96.png`
+  },
+  "publishingPrinciples": publishingPrinciplesUrl
+};
 ---
 
 <!doctype html>
@@ -85,11 +140,13 @@ const isBlogPage = cleanPath === '/blog/';
     )}
     <link rel="canonical" href={pageCanonical} />
 
-    <!-- Hreflang Tags -->
-    {allLocales.map(loc => (
+    <!-- Hreflang Tags (suppressed on error and noindex pages) -->
+    {!noindex && cleanPath !== '/404/' && cleanPath !== '/500/' && allLocales.map(loc => (
       <link rel="alternate" hreflang={loc} href={getUrlForLocale(loc)} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={getUrlForLocale('en')} />
+    {!noindex && cleanPath !== '/404/' && cleanPath !== '/500/' && (
+      <link rel="alternate" hreflang="x-default" href={getUrlForLocale('en')} />
+    )}
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
@@ -99,9 +156,9 @@ const isBlogPage = cleanPath === '/blog/';
     <meta property="og:image" content={image} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content={SITE_NAME} />
-    <meta property="og:locale" content={locale.replace('-', '_')} />
-    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:site_name" content={siteBrand} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:image:alt" content={finalImageAlt} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -109,24 +166,20 @@ const isBlogPage = cleanPath === '/blog/';
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
-    <meta name="twitter:image:alt" content={imageAlt} />
+    <meta name="twitter:image:alt" content={finalImageAlt} />
 
     <!-- Additional SEO -->
-    <meta name="author" content="Best Random Animal Generator" />
-    <meta name="keywords" content="random animal generator, random animal generator for drawing, best random animal generator, random animal generator with pictures, name a random animal generator, random animal generator draw, a random animal generator, random animal generator for kids, random animal generator name, random animal generator art, unique random animal generator, random prehistoric animal generator, random aquatic animal generator, random extinct animal generator, random cute animal generator, random mythical animal generator, random fantasy animal generator, random farm animal generator" />
+    <meta name="author" content={pageAuthor} />
+    {pageKeywords && <meta name="keywords" content={pageKeywords} />}
     <meta name="theme-color" content="#fafafa" />
-    <meta name="application-name" content={SITE_NAME} />
-
-    <!-- Geo -->
-    <meta name="geo.region" content="US" />
-    <meta name="geo.placename" content="United States" />
+    <meta name="application-name" content={siteBrand} />
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Random Animal Generator" />
+    <meta name="apple-mobile-web-app-title" content={siteBrand} />
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Preconnect -->
@@ -138,9 +191,11 @@ const isBlogPage = cleanPath === '/blog/';
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": SITE_NAME,
+      "name": siteBrand,
       "url": SITE_URL,
       "description": description,
+      "publisher": organizationEntity,
+      "publishingPrinciples": publishingPrinciplesUrl,
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
@@ -155,7 +210,7 @@ const isBlogPage = cleanPath === '/blog/';
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": SITE_NAME,
+      "name": siteBrand,
       "operatingSystem": "Web Browser",
       "applicationCategory": "EducationalApplication",
       "offers": {
@@ -163,20 +218,14 @@ const isBlogPage = cleanPath === '/blog/';
         "price": "0",
         "priceCurrency": "USD"
       },
-      "description": "Free online random animal generator with pictures, fun facts, conservation status, spinner wheel, and quiz. Over 1,000 animals.",
+      "description": softwareDesc,
       "url": SITE_URL,
       "screenshot": image,
-      "featureList": [
-        "Random animal generator with pictures and fun facts",
-        "Random animal generator wheel (spinner)",
-        "Random animal generator for drawing and art prompts",
-        "Random animal generator for kids and classrooms",
-        "Animal name generator with scientific names",
-        "Category filters: mammals, birds, fish, reptiles, amphibians, insects, marine, farm, cute, prehistoric, mythical, fantasy",
-        "Conservation status filters based on the IUCN Red List categories",
-        "Animal quiz and side-by-side compare mode",
-        "No-repeat mode for unique discoveries"
-      ]
+      "featureList": softwareFeatures,
+      "author": organizationEntity,
+      "creator": organizationEntity,
+      "publisher": organizationEntity,
+      "publishingPrinciples": publishingPrinciplesUrl
     })} />
 
     <!-- JSON-LD Structured Data: BreadcrumbList -->
@@ -219,15 +268,8 @@ const isBlogPage = cleanPath === '/blog/';
           "@type": "WebPage",
           "@id": pageCanonical
         },
-        "publisher": {
-          "@type": "Organization",
-          "name": SITE_NAME,
-          "url": SITE_URL,
-          "logo": {
-            "@type": "ImageObject",
-            "url": `${SITE_URL}/favicon-96x96.png`
-          }
-        }
+        "author": organizationEntity,
+        "publisher": organizationEntity
       })} />
     )}
 

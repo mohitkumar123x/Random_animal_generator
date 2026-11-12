@@ -23,7 +23,7 @@ export type Locale = keyof typeof languages;
 
 // Re-export raw UI translations (same shape as translations.json)
 // `ui` is the dictionary used by useTranslations helper per recipe
-export const ui = translations as Record<Locale, Record<string, string>>;
+export const ui = translations as Record<Locale, Record<string, any>>;
 
 // Route translations (optional) — translate URL segments per locale
 // Example: { de: { about: "uber-uns" }, fr: { about: "a-propos" } }

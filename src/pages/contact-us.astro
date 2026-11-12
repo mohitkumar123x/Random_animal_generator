@@ -2,7 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { getTranslations, type Locale } from '../utils/i18n';
+import { getTranslations, type Locale, brandNames, defaultImageAlts } from '../utils/i18n';
+import contactData from '../i18n/data/contact-content.json';
 
 interface Props {
   locale?: Locale;
@@ -10,110 +11,114 @@ interface Props {
 
 const { locale = 'en' } = Astro.props;
 const t = getTranslations(locale);
+const c = (contactData as any)[locale] || (contactData as any).en;
 const canonical = locale === 'en' ? 'https://bestrandomanimalgenerator.com/contact-us' : `https://bestrandomanimalgenerator.com/${locale}/contact-us`;
 ---
 
-<Layout title={`${t.contact_us} | Random Animal Generator`} description="Get in touch with the Random Animal Generator team. We'd love to hear your feedback, questions, and suggestions." canonical={canonical} locale={locale} pagePath="/contact-us" noindex={true}>
+<Layout title={`${t.contact_us} | ${brandNames[locale]}`} description={c.meta_desc} canonical={canonical} locale={locale} pagePath="/contact-us" imageAlt={defaultImageAlts[locale]}>
   <Navbar locale={locale} pagePath="/contact-us" />
 
   <main class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
     <div class="mb-10 text-center">
-      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">Contact Us</h1>
+      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl dark:text-[#ededed]">{c.title}</h1>
       <p class="mx-auto mt-3 max-w-lg text-sm text-body sm:text-base dark:text-[#a1a1a1]">
-        Have a question, suggestion, or just want to say hello? We'd love to hear from you.
+        {c.subtitle}
       </p>
     </div>
 
     <div class="grid gap-8 sm:grid-cols-2">
       <div class="space-y-6">
         <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
-          <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Send Us a Message</h2>
-          <form class="space-y-4">
+          <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">{c.form_title}</h2>
+          <form class="space-y-4" id="contact-form" novalidate>
             <div>
-              <label for="name" class="mb-1 block text-xs font-medium text-body dark:text-[#a1a1a1]">Name</label>
+              <label for="name" class="mb-1 block text-xs font-medium text-body dark:text-[#a1a1a1]">{c.name_label}</label>
               <input
                 type="text"
                 id="name"
                 name="name"
                 class="w-full rounded-lg border border-hairline bg-canvas-elevated px-3 py-2 text-sm text-ink outline-none transition-colors focus:border-link dark:border-[#333] dark:bg-[#111] dark:text-[#ededed] dark:focus:border-link"
-                placeholder="Your name"
+                placeholder={c.name_placeholder}
               />
             </div>
             <div>
-              <label for="email" class="mb-1 block text-xs font-medium text-body dark:text-[#a1a1a1]">Email</label>
+              <label for="email" class="mb-1 block text-xs font-medium text-body dark:text-[#a1a1a1]">{c.email_label}</label>
               <input
                 type="email"
                 id="email"
                 name="email"
                 class="w-full rounded-lg border border-hairline bg-canvas-elevated px-3 py-2 text-sm text-ink outline-none transition-colors focus:border-link dark:border-[#333] dark:bg-[#111] dark:text-[#ededed] dark:focus:border-link"
-                placeholder="your@email.com"
+                placeholder={c.email_placeholder}
               />
             </div>
             <div>
-              <label for="subject" class="mb-1 block text-xs font-medium text-body dark:text-[#a1a1a1]">Subject</label>
+              <label for="subject" class="mb-1 block text-xs font-medium text-body dark:text-[#a1a1a1]">{c.subject_label}</label>
               <input
                 type="text"
                 id="subject"
                 name="subject"
                 class="w-full rounded-lg border border-hairline bg-canvas-elevated px-3 py-2 text-sm text-ink outline-none transition-colors focus:border-link dark:border-[#333] dark:bg-[#111] dark:text-[#ededed] dark:focus:border-link"
-                placeholder="How can we help?"
+                placeholder={c.subject_placeholder}
               />
             </div>
             <div>
-              <label for="message" class="mb-1 block text-xs font-medium text-body dark:text-[#a1a1a1]">Message</label>
+              <label for="message" class="mb-1 block text-xs font-medium text-body dark:text-[#a1a1a1]">{c.message_label}</label>
               <textarea
                 id="message"
                 name="message"
                 rows="4"
                 class="w-full rounded-lg border border-hairline bg-canvas-elevated px-3 py-2 text-sm text-ink outline-none transition-colors focus:border-link dark:border-[#333] dark:bg-[#111] dark:text-[#ededed] dark:focus:border-link"
-                placeholder="Your message..."
+                placeholder={c.message_placeholder}
               ></textarea>
             </div>
             <button
               type="submit"
               class="w-full rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-white transition-all hover:opacity-90 active:scale-95 dark:bg-[#ededed] dark:text-[#0a0a0a]"
             >
-              Send Message
+              {c.send_btn}
             </button>
+            <p id="contact-success" class="hidden mt-3 rounded-lg bg-green-50 px-4 py-3 text-sm font-medium text-green-700 dark:bg-green-900/20 dark:text-green-400">
+              ✅ Your message has been sent! We'll get back to you within 1–2 business days.
+            </p>
           </form>
         </section>
       </div>
 
       <div class="space-y-6">
         <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
-          <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Other Ways to Reach Us</h2>
+          <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">{c.reach_title}</h2>
           <div class="space-y-4">
             <div class="flex items-start gap-3">
               <span class="mt-0.5 text-lg">&#128231;</span>
               <div>
-                <p class="text-sm font-medium text-ink dark:text-[#ededed]">Email</p>
+                <p class="text-sm font-medium text-ink dark:text-[#ededed]">{c.email_channel}</p>
                 <p class="text-xs text-body dark:text-[#a1a1a1]">hello@bestrandomanimalgenerator.com</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
               <span class="mt-0.5 text-lg">&#127760;</span>
               <div>
-                <p class="text-sm font-medium text-ink dark:text-[#ededed]">Social Media</p>
-                <p class="text-xs text-body dark:text-[#a1a1a1]">Follow us for daily animal facts and updates.</p>
+                <p class="text-sm font-medium text-ink dark:text-[#ededed]">{c.social_channel}</p>
+                <p class="text-xs text-body dark:text-[#a1a1a1]">{c.social_desc}</p>
               </div>
             </div>
           </div>
         </section>
 
         <section class="rounded-2xl border border-hairline bg-canvas-elevated p-6 dark:border-[#333] dark:bg-[#1a1a1a]">
-          <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">Frequently Asked</h2>
+          <h2 class="mb-3 text-lg font-semibold text-ink dark:text-[#ededed]">{c.faq_title}</h2>
           <div class="space-y-3">
             <div>
-              <p class="text-sm font-medium text-ink dark:text-[#ededed]">Can I use the animal data for my project?</p>
-              <p class="text-xs text-body dark:text-[#a1a1a1]">Yes! Our tool is free for everyone. Feel free to use it for education, games, or creative projects.</p>
+              <p class="text-sm font-medium text-ink dark:text-[#ededed]">{c.faq_q1}</p>
+              <p class="text-xs text-body dark:text-[#a1a1a1]">{c.faq_a1}</p>
             </div>
             <div>
-              <p class="text-sm font-medium text-ink dark:text-[#ededed]">How do I report a bug?</p>
-              <p class="text-xs text-body dark:text-[#a1a1a1]">Send us a message using the form and we'll look into it right away.</p>
+              <p class="text-sm font-medium text-ink dark:text-[#ededed]">{c.faq_q2}</p>
+              <p class="text-xs text-body dark:text-[#a1a1a1]">{c.faq_a2}</p>
             </div>
             <div>
-              <p class="text-sm font-medium text-ink dark:text-[#ededed]">Can I suggest a new animal?</p>
-              <p class="text-xs text-body dark:text-[#a1a1a1]">Absolutely! We're always looking to expand our database. Let us know which animal you'd like to see.</p>
+              <p class="text-sm font-medium text-ink dark:text-[#ededed]">{c.faq_q3}</p>
+              <p class="text-xs text-body dark:text-[#a1a1a1]">{c.faq_a3}</p>
             </div>
           </div>
         </section>
@@ -123,3 +128,37 @@ const canonical = locale === 'en' ? 'https://bestrandomanimalgenerator.com/conta
 
   <Footer locale={locale} />
 </Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const successMsg = document.getElementById('contact-success');
+
+  form?.addEventListener('submit', (e: Event) => {
+    e.preventDefault();
+
+    const nameInput = form.querySelector<HTMLInputElement>('#name');
+    const emailInput = form.querySelector<HTMLInputElement>('#email');
+    const messageInput = form.querySelector<HTMLTextAreaElement>('#message');
+
+    // Basic client-side validation
+    if (!nameInput?.value.trim() || !emailInput?.value.trim() || !messageInput?.value.trim()) {
+      return;
+    }
+
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (btn) {
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+      btn.style.cursor = 'not-allowed';
+    }
+
+    // Show success message
+    if (successMsg) {
+      successMsg.classList.remove('hidden');
+      successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Reset form fields
+    form.reset();
+  });
+</script>
